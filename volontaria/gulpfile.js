@@ -3,7 +3,7 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 
 // Please change this path to hit the static file
-var path = "./source/static/"
+var path = "./src/assets/"
 
 gulp.task('sass', function () {
     return gulp.src(path + 'scss/app.scss')

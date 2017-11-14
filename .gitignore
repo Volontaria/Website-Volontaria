@@ -1,6 +1,1 @@
-package-lock.json
-node_modules/
-source/static/css/
-
-# IDE
 .idea/
