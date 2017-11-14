@@ -2,3 +2,51 @@
 Please use this file to style all basic item like link (a),
 paragraph (p) or list (ul, ol)
 *****/
+
+html, body {
+    margin:0;
+	padding:0;
+    width: 100%;
+	height:100%;
+    background-color: $main-background;
+}
+
+#container {
+    width: 100%;
+    min-height:100%;
+	position:relative;
+}
+
+#content {
+    width: 100%;
+    padding-bottom: 420px;
+}
+
+#footer {
+    width: 100%;
+	height: 420px;
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+
+h2, h3, h4 {
+    font-weight: 400;
+    margin: 10px 0;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 20px;
+}
+
+hr {
+    border: 1px solid $main-border;
+}

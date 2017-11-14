@@ -1,0 +1,38 @@
+.button {
+    display: inline-block;
+    padding: 10px;
+
+    background-color: $main-color;
+    color: white;
+
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+
+    transition: all $ease-inout-sine 200ms;
+
+    &:hover {
+        box-shadow: 0 3px 6px $main-color;
+        color: $main-color;
+        background-color: white;
+    }
+
+    &--warning {
+        background-color: $color-warning;
+
+        &:hover {
+            color: $color-warning;
+            box-shadow: 0 3px 6px $color-warning;
+        }
+    }
+
+    &--danger {
+        background-color: $color-danger;
+
+        &:hover {
+            color: $color-danger;
+            box-shadow: 0 3px 6px $color-danger;
+        }
+    }
+}

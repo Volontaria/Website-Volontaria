@@ -2,6 +2,7 @@
 Import all basic file
 *****/
 @import "../external/normalize/normalize.css";
+@import "../external/font-awesome-4.7.0/css/font-awesome.css";
 @import "_fonts.scss";
 @import "_easings.scss";
 @import "_theme.scss";
@@ -14,6 +15,13 @@ Import components
 example:
 @import "components/_buttons.scss";
 *****/
+@import "components/_button.scss";
+@import "components/_card.scss";
+@import "components/_table.scss";
+@import "components/_nav.scss";
+@import "components/_top-nav.scss";
+@import "components/_pre-footer.scss";
+@import "components/_footer.scss";
 
 
 /*****
@@ -22,3 +30,4 @@ Import pages
 example:
 @import "pages/_home.scss";
 *****/
+@import "pages/_homepage.scss";

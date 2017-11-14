@@ -1,0 +1,39 @@
+.top-nav {
+    height: 50px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    background-color: $main-color;
+
+    display: flex;
+    justify-content: space-between;
+
+    &__left {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    &__item {
+        display: block;
+        height: 20px;
+        padding: 15px;
+        color: white;
+
+        transition: all $ease-inout-sine 200ms;
+
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+
+        &--brand {
+            background-color: $main-color-dark;
+
+            &:hover {
+                background-color: $main-color-dark;
+                color: white;
+            }
+        }
+    }
+}

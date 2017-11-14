@@ -1,0 +1,32 @@
+.nav {
+    display: inline-block;
+    border: 1px solid $main-border;
+
+    background-color: $main-background-dark;
+
+    &__title {
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    &__item{
+        display: block;
+        color: inherit;
+        text-decoration: none;
+        border-top: 1px solid $main-border;
+        background: white;
+        padding: 10px;
+
+        transition: all $ease-inout-sine 200ms;
+
+        &:hover {
+            box-shadow: 0 3px 6px $main-border;
+            background-color: $main-background-dark;
+        }
+
+        &::before {
+            content: "\F105";  /* this is your text. You can also use UTF-8 character codes as I do here */
+            font-family: FontAwesome;
+        }
+    }
+}
