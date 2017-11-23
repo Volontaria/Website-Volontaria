@@ -7,8 +7,13 @@ import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HomepageComponent } from './components/pages/homepage/homepage.component';
 import { DocumentationComponent } from './components/pages/documentation/documentation.component'
+import { HomepageComponent } from './components/pages/home-page/home-page.component';
+import { MySchedulepageComponent } from './components/pages/myschedule-page/myschedule-page.component';
+import { ActivitiespageComponent } from './components/pages/activities-page/activities-page.component';
+import { InfopageComponent } from './components/pages/info-page/info-page.component';
+import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './components/pages/notfound-page/notfound-page.component';
 
 @NgModule({
   declarations: [
@@ -16,10 +21,15 @@ import { DocumentationComponent } from './components/pages/documentation/documen
     FooterComponent,
     HeaderComponent,
     HomepageComponent,
-    DocumentationComponent
+    MySchedulepageComponent,
+    ActivitiespageComponent,
+    InfopageComponent,
+    DocumentationComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     HttpModule
   ],
   providers: [UserService],
