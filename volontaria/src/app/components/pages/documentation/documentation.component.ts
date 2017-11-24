@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'app-documentation',
+  selector: 'documentation-page',
   templateUrl: './documentation.component.html',
   encapsulation: ViewEncapsulation.None
 })

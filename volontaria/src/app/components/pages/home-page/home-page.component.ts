@@ -5,11 +5,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   templateUrl: './home-page.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class HomepageComponent implements OnInit {
+export class HomePageComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

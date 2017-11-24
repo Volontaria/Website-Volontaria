@@ -5,7 +5,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   templateUrl: './myschedule-page.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class MySchedulepageComponent implements OnInit {
+export class MySchedulePageComponent implements OnInit {
 
   constructor() {
   }

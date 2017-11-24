@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: 'activities-page.component.html',
   selector: 'activities-page'
 })
-export class ActivitiespageComponent {
+export class ActivitiesPageComponent {
 
   constructor() {
 

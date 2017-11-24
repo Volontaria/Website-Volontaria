@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-describe('Test notfound-page', () => {
+describe('NotFoundPageComponent', () => {
 
   let app: PageNotFoundComponent;
   let fixture: ComponentFixture<PageNotFoundComponent>;
@@ -12,20 +12,23 @@ describe('Test notfound-page', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-
       declarations: [PageNotFoundComponent]
-    });
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PageNotFoundComponent);
 
     app = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css('h2'));
+    el = de.nativeElement;
   });
 
-  de = fixture.debugElement.query(By.css('h2'));
-  el = de.nativeElement;
+  it('should create', () => {
+    expect(app).toBeTruthy();
+  });
 
-  it('', () => {
+  it('Should display 404', () => {
     fixture.detectChanges();
-    expect(el.textContent).toEqual('Not Found Page')
+    console.log(el);
+    expect(el.textContent).toEqual('404 - Page not found');
   });
 });
