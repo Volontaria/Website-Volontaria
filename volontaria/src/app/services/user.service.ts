@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
 
-  constructor(public http:Http) { }
+  constructor(public http:HttpClient) { }
 
-  getUsers() {
-    return this.http.get('https://my-json-server.typicode.com/volontaria/mock-api/users')
-      .map(res => res.json())
+  getUsers(): Observable<object[]> {
+    return this.http.get<object[]>('https://my-json-server.typicode.com/volontaria/mock-api/users');
   }
 
 }
