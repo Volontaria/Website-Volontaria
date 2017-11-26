@@ -24,6 +24,7 @@
     "core-js": "^2.4.1",
     "flexboxgrid-sass": "^8.0.5",
     "node-sass": "^4.7.2",
+    "roboto-fontface": "^0.8.0",
     "rxjs": "^5.5.2",
     "sass-loader": "^6.0.6",
     "zone.js": "^0.8.14"
