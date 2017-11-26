@@ -14,10 +14,12 @@ import { InfoPageComponent } from './components/pages/info-page/info-page.compon
 import { PageNotFoundComponent } from './components/pages/notfound-page/notfound-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ActivityConfirmationComponent } from './components/pages/activities-page/activity-confirmation-page/activity-confirmation-page.component';
 
 const appRoutes = [
   { path: 'index', component: HomePageComponent },
   { path: 'activities', component: ActivitiesPageComponent},
+  { path: 'confirmation', component: ActivityConfirmationComponent },
   { path: 'schedule', component: MySchedulePageComponent},
   { path: 'info', component: InfoPageComponent},
   { path: 'docs', component: DocumentationComponent },
@@ -33,6 +35,7 @@ const appRoutes = [
     HomePageComponent,
     MySchedulePageComponent,
     ActivitiesPageComponent,
+    ActivityConfirmationComponent,
     InfoPageComponent,
     DocumentationComponent,
     PageNotFoundComponent
