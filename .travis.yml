@@ -19,7 +19,7 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 install:
-- npm install -g angular-cli
+- npm install -g @angular/cli
 - (cd volontaria/src && npm install)
 
 script:
