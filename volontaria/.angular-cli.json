@@ -19,7 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css"
       ],
       "stylePreprocessorOptions": {
         "includePaths": [
