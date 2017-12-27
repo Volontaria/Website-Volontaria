@@ -16,15 +16,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AdminActivityDetailComponent } from './components/pages/admin-activity-detail/admin-activity-detail.component';
 import { AdminActivitiesComponent } from './components/pages/admin-activities/admin-activities.component';
+import { AdminVolunteersComponent } from './components/pages/admin-volunteers/admin-volunteers.component';
+import { ActivityConfirmationComponent } from './components/pages/activities-page/activity-confirmation-page/activity-confirmation-page.component';
 
 const appRoutes = [
   { path: 'index', component: HomePageComponent },
   { path: 'activities', component: ActivitiesPageComponent},
+  { path: 'confirmation', component: ActivityConfirmationComponent },
   { path: 'schedule', component: MySchedulePageComponent},
   { path: 'info', component: InfoPageComponent},
   { path: 'admin/activities', component: AdminActivitiesComponent },
   { path: 'admin/activity', component: AdminActivityDetailComponent },
   { path: 'docs', component: DocumentationComponent },
+  { path: 'admin/volunteers', component: AdminVolunteersComponent },
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent}
 ];
@@ -37,6 +41,8 @@ const appRoutes = [
     HomePageComponent,
     MySchedulePageComponent,
     ActivitiesPageComponent,
+    ActivityConfirmationComponent,
+    AdminVolunteersComponent,
     AdminActivitiesComponent,
     AdminActivityDetailComponent,
     InfoPageComponent,
