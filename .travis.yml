@@ -20,10 +20,9 @@ before_install:
 
 install:
 - npm install -g @angular/cli
-- (cd volontaria/src && npm install)
+- (cd volontaria && npm install)
 
 script:
-- (cd volontaria/src && ng lint)
-- (cd volontaria/src && ng test)
-- (cd volontaria/src && ng serve &)
-- (cd volontaria/src && ng e2e)
+- (cd volontaria && ng lint)
+- (cd volontaria && ng test)
+- (cd volontaria && ng e2e)
