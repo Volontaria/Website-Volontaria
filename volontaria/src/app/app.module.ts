@@ -14,6 +14,7 @@ import { InfoPageComponent } from './components/pages/info-page/info-page.compon
 import { PageNotFoundComponent } from './components/pages/notfound-page/notfound-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AdminVolunteersComponent } from './components/pages/admin-volunteers/admin-volunteers.component';
 
 const appRoutes = [
   { path: 'index', component: HomePageComponent },
@@ -21,6 +22,7 @@ const appRoutes = [
   { path: 'schedule', component: MySchedulePageComponent},
   { path: 'info', component: InfoPageComponent},
   { path: 'docs', component: DocumentationComponent },
+  { path: 'admin/volunteers', component: AdminVolunteersComponent },
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent}
 ];
@@ -33,6 +35,7 @@ const appRoutes = [
     HomePageComponent,
     MySchedulePageComponent,
     ActivitiesPageComponent,
+    AdminVolunteersComponent,
     InfoPageComponent,
     DocumentationComponent,
     PageNotFoundComponent
