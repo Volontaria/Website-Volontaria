@@ -18,6 +18,8 @@ import { AdminActivityDetailComponent } from './components/pages/admin-activity-
 import { AdminActivitiesComponent } from './components/pages/admin-activities/admin-activities.component';
 import { AdminVolunteersComponent } from './components/pages/admin-volunteers/admin-volunteers.component';
 import { ActivityConfirmationComponent } from './components/pages/activities-page/activity-confirmation-page/activity-confirmation-page.component';
+import { ManageAccountPageComponent } from './components/pages/manage-account-page/manage-account-page.component';
+import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 
 const appRoutes = [
   { path: 'index', component: HomePageComponent },
@@ -25,6 +27,8 @@ const appRoutes = [
   { path: 'confirmation', component: ActivityConfirmationComponent },
   { path: 'schedule', component: MySchedulePageComponent},
   { path: 'info', component: InfoPageComponent},
+  { path: 'register', component: ManageAccountPageComponent },
+  { path: 'login', component: LoginPageComponent },
   { path: 'admin/activities', component: AdminActivitiesComponent },
   { path: 'admin/activity', component: AdminActivityDetailComponent },
   { path: 'docs', component: DocumentationComponent },
@@ -41,6 +45,8 @@ const appRoutes = [
     HomePageComponent,
     MySchedulePageComponent,
     ActivitiesPageComponent,
+    ManageAccountPageComponent,
+    LoginPageComponent,
     ActivityConfirmationComponent,
     AdminVolunteersComponent,
     AdminActivitiesComponent,
