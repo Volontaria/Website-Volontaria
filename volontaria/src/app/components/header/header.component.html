@@ -3,21 +3,21 @@
     <a routerLink="" routerLinkActive="active" class="top-nav__item top-nav__item--brand">
       Volontaria
     </a>
-    <a *ngIf="isAuthenticated" routerLink="/activities" routerLinkActive="active" class="top-nav__item">
+    <a *ngIf="isAuthenticated()" routerLink="/activities" routerLinkActive="active" class="top-nav__item">
       Inscription
     </a>
-    <a *ngIf="isAuthenticated" routerLink="/schedule" routerLinkActive="active" class="top-nav__item">
+    <a *ngIf="isAuthenticated()" routerLink="/schedule" routerLinkActive="active" class="top-nav__item">
       Mon horaire
     </a>
-    <a *ngIf="isAuthenticated" routerLink="/info" routerLinkActive="active" class="top-nav__item">
+    <a *ngIf="isAuthenticated()" routerLink="/info" routerLinkActive="active" class="top-nav__item">
       Info
     </a>
   </div>
   <div class="top-nav__right">
-    <a *ngIf="isAuthenticated" routerLink="/logout" class="top-nav__item">
+    <a *ngIf="isAuthenticated()" routerLink="/logout" class="top-nav__item">
       Log out
     </a>
-    <a *ngIf="!isAuthenticated" routerLink="/login" class="top-nav__item">
+    <a *ngIf="!isAuthenticated()" routerLink="/login" class="top-nav__item">
       Log in
     </a>
   </div>

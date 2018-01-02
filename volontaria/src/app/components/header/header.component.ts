@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
@@ -6,14 +6,12 @@ import {AuthenticationService} from "../../services/authentication.service";
   templateUrl: './header.component.html',
   encapsulation: ViewEncapsulation.None,
 })
-export class HeaderComponent implements OnInit {
-
-  isAuthenticated: boolean;
+export class HeaderComponent {
 
   constructor(private authenticationService: AuthenticationService) { }
 
-  ngOnInit() {
-    this.isAuthenticated = this.authenticationService.isAuthenticated();
+  isAuthenticated() {
+    return this.authenticationService.isAuthenticated()
   }
 
 }
