@@ -1,110 +1,104 @@
-<div class="myschedule__content">
-  <div class="row">
-    <div class="col-md-6">
-      <h2>#Mes coordonnées</h2>
-      <table class="table" style="width: 100%;">
-        <tr>
-          <th>#Prénom</th>
-          <td>#John</td>
-        </tr>
-        <tr>
-          <th>#Nom</th>
-          <td>#Doe</td>
-        </tr>
-        <tr>
-          <th>#Téléphone (Maison)</th>
-          <td>#+1 514 123 4567</td>
-        </tr>
-        <tr>
-          <th>#Téléphone (Cellulaire)</th>
-          <td>#+1 514 123 4567</td>
-        </tr>
-        <tr>
-          <th>#Courriel</th>
-          <td>#john.doe@exemple.com</td>
-        </tr>
-      </table>
-    </div>
-    <div class="col-md-6">
-      <h2>#Mon compte</h2>
-      <table class="table" style="width: 100%;">
-        <tr>
-          <th>#Nom d'utilisateur</th>
-          <td>#John Doe</td>
-        </tr>
-        <tr>
-          <th>#Mot de passe</th>
-          <td><a href="#" class="button">#Réinitialiser mon mot de passe</a></td>
-        </tr>
-      </table>
-    </div>
+<div class="myschedule">
+  <div class="myschedule__infos">
+    <h2>Mes coordonnées</h2>
+    <table class="table">
+      <tr>
+        <th>Prénom</th>
+        <td>{{ user.first_name }}</td>
+      </tr>
+      <tr>
+        <th>Nom</th>
+        <td>{{ user.last_name }}</td>
+      </tr>
+      <tr>
+        <th>Téléphone (Maison)</th>
+        <td>{{ user.phone }}</td>
+      </tr>
+      <tr>
+        <th>Téléphone (Cellulaire)</th>
+        <td>{{ user.mobile }}</td>
+      </tr>
+      <tr>
+        <th>Courriel</th>
+        <td>{{ user.email }}</td>
+      </tr>
+    </table>
   </div>
-  <div class="row">
-    <h2>#Mon horraire - Bénévole</h2>
-    <div class="col-md-12">
-      <table class="table" style="width: 100%;">
-        <tr>
-          <th>#Date</th>
-          <th>#Heure</th>
-          <th>#Catégorie</th>
-          <th>#Activité</th>
-          <th>#Lieu</th>
-          <th>#Responsable</th>
-          <th>#Durée</th>
-        </tr>
-        <tr>
-          <td>#Date</td>
-          <td>#Heure</td>
-          <td>#Catégorie</td>
-          <td>#Activité</td>
-          <td>#Lieu</td>
-          <td>#Responsable</td>
-          <td>#Durée</td>
-        </tr>
-        <tr>
-          <td>#Date</td>
-          <td>#Heure</td>
-          <td>#Catégorie</td>
-          <td>#Activité</td>
-          <td>#Lieu</td>
-          <td>#Responsable</td>
-          <td>#Durée</td>
-        </tr>
-      </table>
-    </div>
+  <div class="myschedule__account">
+    <h2>Mon compte</h2>
+    <table class="table">
+      <tr>
+        <th>Nom d'utilisateur</th>
+        <td>{{ user.username }}</td>
+      </tr>
+    </table>
   </div>
-  <div class="row">
-    <h2>#Mon horraire - Remplacant</h2>
-    <div class="col-md-12">
-      <table class="table" style="width: 100%;">
-        <tr>
-          <th>#Date</th>
-          <th>#Heure</th>
-          <th>#Catégorie</th>
-          <th>#Activité</th>
-          <th>#Lieu</th>
-          <th>#Responsable</th>
-          <th>#Durée</th>
-        </tr>
-        <tr>
-          <td>#Date</td>
-          <td>#Heure</td>
-          <td>#Catégorie</td>
-          <td>#Activité</td>
-          <td>#Lieu</td>
-          <td>#Responsable</td>
-          <td>#Durée</td>
-        </tr>
-        <tr>
-          <td>#Date</td>
-          <td>#Heure</td>
-          <td>#Catégorie</td>
-          <td>#Activité</td>
-          <td>#Lieu</td>
-          <td>#Responsable</td>
-          <td>#Durée</td>
-        </tr>
-      </table>
-    </div>
+  <div class="myschedule__volunteer">
+    <h2>Mon horaire - Bénévole</h2>
+    <table class="table">
+      <tr>
+        <th>Début</th>
+        <th>Fin</th>
+        <th>Activité</th>
+        <th>Lieu</th>
+      </tr>
+      <tr *ngIf="eventsAsVolunteer.length == 0">
+        <td colspan="7">
+          Aucun evenement pour le moment
+        </td>
+      </tr>
+      <tr *ngFor="let event of eventsAsVolunteer">
+        <td>
+          {{ event.start_date | date:'dd MMMM yyyy'}}<br/>
+          {{ event.start_date | date:'HH:mm'}}
+        </td>
+        <td>
+          {{ event.end_date | date:'dd MMMM yyyy'}}<br/>
+          {{ event.end_date | date:'HH:mm'}}
+        </td>
+        <td>
+          {{ event.task_type.name }}
+        </td>
+        <td>
+          {{ event.cell.address.address_line1 }}<br/>
+          {{ event.cell.address.address_line2 }}<br/>
+          {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="myschedule__on-hold">
+    <h2>Mon horaire - Remplacant</h2>
+    <table class="table">
+      <tr>
+        <th>Début</th>
+        <th>Fin</th>
+        <th>Activité</th>
+        <th>Lieu</th>
+      </tr>
+      <tr *ngIf="eventsAsOnHold.length == 0">
+        <td colspan="7">
+          Aucun evenement pour le moment
+        </td>
+      </tr>
+      <tr *ngFor="let event of eventsAsOnHold">
+        <td>
+          {{ event.start_date | date:'dd MMMM yyyy'}}<br/>
+          {{ event.start_date | date:'HH:mm'}}
+        </td>
+        <td>
+          {{ event.end_date | date:'dd MMMM yyyy'}}<br/>
+          {{ event.end_date | date:'HH:mm'}}
+        </td>
+        <td>
+          {{ event.task_type.name }}
+        </td>
+        <td>
+          {{ event.cell.address.address_line1 }}<br/>
+          {{ event.cell.address.address_line2 }}<br/>
+          {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
+        </td>
+      </tr>
+    </table>
   </div>
 </div>

@@ -1,20 +1,22 @@
-<div class="login-page__content">
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <h2>#Se connecter</h2>
-      <div class="login-page__form">
-        <p>$Nom d'utilisateur</p>
-        <input id="login_username" maxlength="40" name="username" placeholder="Nom d'utilisateur" type="text">
-        <br>
-        <p>#Mot de passe</p>
-        <input id="login_password" maxlength="40" name="password" placeholder="Password" type="password">
-        <br>
-        <button class="button" style="width: 20%">Valider</button>
-        <br>
-        <p>Pas de compte? <a href="/register" class="button">Créer un compte</a></p>
-      </div>
-    </div>
-    <div class="col-md-3"></div>
+<div class="login-page">
+  <h2 class="login-page__title">
+    Se connecter
+  </h2>
+  <div class="login-page__form">
+    <p *ngIf="error" class="login-page__form__error">
+      {{error}}
+    </p>
+    <p>
+      Nom d'utilisateur
+      <input [(ngModel)]="login" id="login_username" maxlength="40" name="username" placeholder="Nom d'utilisateur" type="text" />
+    </p>
+    <p>
+      Mot de passe
+      <input [(ngModel)]="password" id="login_password" maxlength="40" name="password" placeholder="Password" type="password" />
+    </p>
+    <button class="button" (click)="authenticate()">Se connecter</button>
+    <p>
+      <a routerLink='/register'>Pas encore de compte ?</a>
+    </p>
   </div>
 </div>

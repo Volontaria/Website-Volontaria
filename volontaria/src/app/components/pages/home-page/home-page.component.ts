@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Cycle} from "../../../models/cycle";
+import {CycleService} from "../../../services/cycle.service";
 
 @Component({
   selector: 'home-page',
@@ -8,6 +10,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class HomePageComponent {
 
-  constructor() { }
+  cycles: Cycle[];
+
+  constructor(private cycleService:CycleService) {
+    this.cycleService.getCycles().subscribe(
+      data => {
+        this.cycles = data.results.map(c => new Cycle(c) );
+      }
+    );
+  }
 
 }

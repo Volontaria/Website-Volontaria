@@ -1,17 +1,30 @@
-<div class="activity-confirmation-page__content">
-  <h2>#Veuillez réviser les informations suivantes :</h2>
+<div class="activity-confirmation-page">
+  <h2>Veuillez réviser les informations suivantes :</h2>
   <br>
-  <p><span style="font-weight: bold;">#Date : </span>dimanche 26 novembre 2017 - 08h45 à 14h00</p>
-  <p><span style="font-weight: bold;">#Activité : </span>Emballage: peser les aliments des participants en étant attitré
-    à une station.</p>
-  <p><span style="font-weight: bold;">#Lieu : </span>Montréal</p>
-  <p><span style="font-weight: bold;">#Catégorie : </span>Emballage</p>
-  <br>
-  <a
-    href="http://www.google.com/calendar/event?action=TEMPLATE&text=Volontaria Emballage&dates=20171126T084500/20171126T140000&details=Emballage: peser les aliments des participants en étant attitré&location=Montréal&trp=false&sprop=&sprop=name:"
-    target="_blank" rel="nofollow">Ajouter à Google Calendar</a>
+  <p>
+    <b>Debut : </b>
+    {{ event.start_date | date:'dd MMMM yyyy - HH:mm'}}
+  </p>
+  <p>
+    <b>Fin : </b>
+    {{ event.end_date | date:'dd MMMM yyyy - HH:mm'}}
+  </p>
+  <p>
+    <b>Activité : </b>
+    {{ event.task_type.name }}
+  </p>
+  <p>
+    <b>Lieu : </b>
+    {{ event.cell.name }}
+  </p>
+  <p>
+    <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=Volontaria Emballage&dates=20171126T084500/20171126T140000&details=Emballage: peser les aliments des participants en étant attitré&location=Montréal&trp=false&sprop=&sprop=name:"
+       target="_blank" rel="nofollow">
+      Ajouter à Google Calendar
+    </a>
+  </p>
   <div class="activity-confirmation-page__missions">
-    <h3>#Les missions des bénévoles sont variés, en voivi un apperçu.</h3>
+    <h3>Les missions des bénévoles sont variés, en voivi un apperçu :</h3>
     <ul>
       <li>#Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
       <li>#Pellentesque vitae metus sagittis, commodo felis eu, placerat dui.</li>
@@ -21,12 +34,9 @@
     </ul>
   </div>
   <div class="activity-confirmation-page__validate">
-    <p>#Voulez-vous vous inscrir à cette activité ?</p>
-    <div class="row">
-      <div class="col-md-offset-4"></div>
-      <div class="col-md-2"><a href="#" class="button">#Oui</a></div>
-      <div class="col-md-2"><a href="#" class="button button--danger">#Non</a></div>
-      <div class="col-md-offset-4"></div>
-    </div>
+    <p>Voulez-vous vous inscrire à cet evenement ?</p>
+    <a href="#" class="button">S'inscrire comme benevole</a>
+    <a href="#" class="button">S'inscrire comme remplacant</a>
+
   </div>
 </div>

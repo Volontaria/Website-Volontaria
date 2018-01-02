@@ -1,20 +1,15 @@
 .page-homepage {
-  &__content {
-    margin: auto;
-    width: 50%;
-    text-align: center;
-  }
-  &__box {
-    background-color: #F1F1F1;
-    border: 1px solid lightgrey;
-    padding: 1rem;
-  }
-  &__bold {
-    font-weight: bold;
-  }
+  padding: 1rem;
+
   &__title {
     font-size: 30px;
     text-align: center;
     margin: 30px;
+  }
+
+  &__content {
+    margin: auto;
+    width: 50%;
+    text-align: center;
   }
 }

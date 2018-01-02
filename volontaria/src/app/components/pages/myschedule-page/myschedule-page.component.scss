@@ -1,5 +1,27 @@
 .myschedule {
-  &__content {
+  padding: 1rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &__infos {
+    width: calc(50% - 2rem);
+    padding: 1rem;
+  }
+
+  &__account {
+    width: calc(50% - 2rem);
+    padding: 1rem;
+  }
+
+  &__volunteer {
+    width: calc(100% - 2rem);
+    padding: 1rem;
+  }
+
+  &__on-hold {
+    width: calc(100% - 2rem);
     padding: 1rem;
   }
 }

@@ -1,39 +1,46 @@
-<div class="manage-account-page__content">
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <h2>#Créer un compte</h2>
-      <div class="manage-account-page__form">
-        <p>#Nom d'utilisateur</p>
-        <input id="form_username" maxlength="40" name="username" type="text">
-        <br>
-        <p>#Mot de Passe</p>
-        <input id="form_password" maxlength="40" minlength="8" name="password" type="password">
-        <br>
-        <p>#Confirmation du mot de Passe</p>
-        <input id="form_password_conf" maxlength="40" minlength="8" name="password_conf" type="password">
-        <br>
-        <p>#Prénom</p>
-        <input id="form_first_name" maxlength="40" name="fisrt_name" type="text">
-        <br>
-        <p>#Nom</p>
-        <input id="form_last_name" maxlength="40" name="last_name" type="text">
-        <br>
-        <p>#Courriel</p>
-        <input id="form_email" maxlength="40" name="email" type="email">
-        <br>
-        <p>#Téléphone maison</p>
-        <input id="form_phone_home" maxlength="40" name="phone_home" type="tel">
-        <br>
-        <p>#Téléphone cellulaire</p>
-        <input id="form_phone_mobile" maxlength="40" name="phone_mobile" type="tel">
-        <br>
-        <p>#Note</p>
-        <textarea id="form_note" maxlength="600" name="note"></textarea>
-        <br>
-        <button class="button" style="width: 20%">Valider</button>
-      </div>
-    </div>
-    <div class="col-md-3"></div>
+<div class="manage-account-page">
+  <h2 class="manage-account-page__title">
+    Créer un compte
+  </h2>
+  <div class="manage-account-page__form">
+    <p class="manage-account-page__form__info">
+      Vous avez deja un compte ? <a href="/login">Connectez-vous</a>!
+    </p>
+    <p *ngIf="error" class="login-page__form__error">
+      {{error}}
+    </p>
+    <p>
+      <label for="form_username">Nom d'utilisateur</label><br/>
+      <input [(ngModel)]="user.username" id="form_username" name="username" type="text">
+    </p>
+    <p>
+      <label for="form_password">Mot de Passe</label><br/>
+      <input [(ngModel)]="password" id="form_password" name="password" type="password">
+    </p>
+    <p>
+      <label for="form_password_confirmation">Confirmation du mot de Passe</label><br/>
+      <input [(ngModel)]="password_confirmation" id="form_password_confirmation" name="password_confirmation" type="password">
+    </p>
+    <p>
+      <label for="form_first_name">Prénom</label><br/>
+      <input [(ngModel)]="user.first_name" id="form_first_name" name="fisrt_name" type="text">
+    </p>
+    <p>
+      <label for="form_last_name">Nom</label><br/>
+      <input [(ngModel)]="user.last_name" id="form_last_name" name="last_name" type="text">
+    </p>
+    <p>
+      <label for="form_email">Courriel</label><br/>
+      <input [(ngModel)]="user.email" id="form_email" name="email" type="email">
+    </p>
+    <p>
+      <label for="form_phone_home">Téléphone maison</label><br/>
+      <input [(ngModel)]="user.phone" id="form_phone_home" name="phone_home" type="tel">
+    </p>
+    <p>
+      <label for="form_phone_mobile">Téléphone cellulaire</label><br/>
+      <input [(ngModel)]="user.mobile" id="form_phone_mobile" name="phone_mobile" type="tel">
+    </p>
+    <button (click)="createAccount()" class="button">Creer le compte</button>
   </div>
 </div>

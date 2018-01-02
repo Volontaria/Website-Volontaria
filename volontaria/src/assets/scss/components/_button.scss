@@ -10,11 +10,13 @@
     font-size: 14px;
 
     transition: all $ease-inout-sine 200ms;
+    border: none;
 
     &:hover {
         box-shadow: 0 3px 6px $main-color;
         color: $main-color;
         background-color: white;
+        cursor: pointer;
     }
 
     &--warning {

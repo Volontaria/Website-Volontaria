@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {AuthenticationService} from "../../../services/authentication.service";
+import { Router } from '@angular/router';
+import {UserService} from "../../../services/user.service";
+import {NotificationsService} from "angular2-notifications";
 
 
 @Component({
@@ -7,5 +11,33 @@ import { Component } from '@angular/core';
   styleUrls: ['login-page.component.scss']
 })
 export class LoginPageComponent{
-  constructor(){}
+
+  login: string;
+  password: string;
+  error: string;
+
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router,
+    private userService:UserService,
+    private notificationService: NotificationsService
+  ){}
+
+  authenticate() {
+    this.authenticationService.authenticate(this.login, this.password).subscribe(
+      data => {
+        localStorage.setItem('token', data.token);
+        this.userService.getProfile().subscribe(
+          data => {
+            localStorage.setItem('userProfile', JSON.stringify(data));
+            this.notificationService.success('Connecte', 'Bienvenue!');
+            this.router.navigate(['/']);
+          }
+        );
+      },
+      err => {
+        this.error = 'Ces identifiants sont incorrects!';
+      }
+    );
+  }
 }

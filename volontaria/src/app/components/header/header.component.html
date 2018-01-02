@@ -1,22 +1,24 @@
 <ul id="header" class="top-nav">
   <div class="top-nav__left">
     <a routerLink="" routerLinkActive="active" class="top-nav__item top-nav__item--brand">
-      #Volontaria
+      Volontaria
     </a>
-    <a routerLink="/activities" routerLinkActive="active" class="top-nav__item">
-      #Inscription
+    <a *ngIf="isAuthenticated" routerLink="/activities" routerLinkActive="active" class="top-nav__item">
+      Inscription
     </a>
-    <a routerLink="/schedule" routerLinkActive="active" class="top-nav__item">
-      #Mon horaire
+    <a *ngIf="isAuthenticated" routerLink="/schedule" routerLinkActive="active" class="top-nav__item">
+      Mon horaire
     </a>
-    <a routerLink="/info" routerLinkActive="active" class="top-nav__item">
-      #Info
+    <a *ngIf="isAuthenticated" routerLink="/info" routerLinkActive="active" class="top-nav__item">
+      Info
     </a>
   </div>
   <div class="top-nav__right">
-    <a href="#" class="top-nav__item">
-      #Log out
-      <i class="fa fa-sign-out" aria-hidden="true"></i>
+    <a *ngIf="isAuthenticated" routerLink="/logout" class="top-nav__item">
+      Log out
+    </a>
+    <a *ngIf="!isAuthenticated" routerLink="/login" class="top-nav__item">
+      Log in
     </a>
   </div>
 </ul>

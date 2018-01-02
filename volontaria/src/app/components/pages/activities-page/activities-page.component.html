@@ -1,6 +1,6 @@
-<div class="activities-page__content">
+<div class="activities-page">
   <div class="activities-page__upcoming-events">
-    <table class="table" style="width: 100%;">
+    <table class="table">
       <tr>
         <td>#Journée d'embalage - Novembre 2017</td>
         <td>#Les inscriptions sont maintenant ouvertes</td>
@@ -8,114 +8,61 @@
     </table>
   </div>
   <div class="activities-page__filter">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="box">
-          <select>
-            <option>#Pré-embalage</option>
-            <option>#Embalage</option>
-          </select>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="box">
-          <select>
-            <option>#Montréal</option>
-            <option>#Laval</option>
-          </select>
-        </div>
-      </div>
-    </div>
+    <select multiple [(ngModel)]="tasktypeFilter" (change)="filter()">
+      <option disabled>Filter par tache</option>
+      <option *ngFor="let tasktype of tasktypes" value="{{ tasktype.id }} ">
+        {{ tasktype.name }}
+      </option>
+    </select>
+    <select multiple [(ngModel)]="cellFilter" (change)="filter()">
+      <option disabled>Filter par cellule</option>
+      <option *ngFor="let cell of cells" value="{{ cell.id }} ">
+        {{ cell.name }}
+      </option>
+    </select>
   </div>
   <div class="activities-page__activities">
-    <table class="table" style="width: 100%;">
+    <table class="table">
       <tr>
-        <th>#Évenement</th>
-        <th>#Date</th>
-        <th>#Heure</th>
-        <th>#Catégorie</th>
-        <th>#Activité</th>
-        <th>#Lieu</th>
-        <th>#Inscription</th>
+        <th>Début</th>
+        <th>Fin</th>
+        <th>Activité</th>
+        <th>Lieu</th>
+        <th>Inscription</th>
       </tr>
-      <tr>
-        <td>#Novembre</td>
-        <td>#dimanche 26 novembre</td>
-        <td>#08h45 à 14h00</td>
-        <td>#Embalage</td>
-        <td>#Emballage: peser les aliments des participants en étant attitré à une station.</td>
-        <td>#Montréal</td>
-        <td>#Bénévoles : 15 / 15<br>#Remplacants : 1 / 4<br><a routerLink="/confirmation" class="button">#Je veux
-          m'inscrire comme
-          remplacant</a></td>
+      <tr *ngFor="let event of filteredEvents">
+        <td>
+          {{ event.start_date | date:'dd MMMM yyyy'}}<br/>
+          {{ event.start_date | date:'HH:mm'}}
+        </td>
+        <td>
+          {{ event.end_date | date:'dd MMMM yyyy'}}<br/>
+          {{ event.end_date | date:'HH:mm'}}
+        </td>
+        <td>
+          {{ event.task_type.name }}
+        </td>
+        <td>
+          {{ event.cell.address.address_line1 }}<br/>
+          {{ event.cell.address.address_line2 }}<br/>
+          {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
+        </td>
+        <td>
+          Bénévoles : {{ event.volunteers.length }} / {{ event.nb_volunteers_needed }}<br>
+          Remplacants : {{ event.volunteers_standby.length }} / {{ event.nb_volunteers_standby_needed }}<br>
+          <p>
+            <a routerLink="/confirmation/{{ event.id }}" class="button">
+              Voir le detail
+            </a>
+          </p>
+          <p *ngIf="!event.volunteers.indexOf(user.id)">
+            Deja inscrit comme benevole.
+          </p>
+          <p *ngIf="!event.volunteers_standby.indexOf(user.id)">
+            Deja inscrit comme remplacant.
+          </p>
+        </td>
       </tr>
-      <tr>
-        <td>#Novembre</td>
-        <td>#dimanche 26 novembre</td>
-        <td>#08h45 à 14h00</td>
-        <td>#Embalage</td>
-        <td>#Emballage: peser les aliments des participants en étant attitré à une station.</td>
-        <td>#Montréal</td>
-        <td>#Bénévoles : 15 / 15<br>#Remplacants : 1 / 4<br><a routerLink="/confirmation" class="button">#Je veux
-          m'inscrire comme
-          remplacant</a></td>
-      </tr>
-      <tr>
-        <td>#Novembre</td>
-        <td>#dimanche 26 novembre</td>
-        <td>#08h45 à 14h00</td>
-        <td>#Embalage</td>
-        <td>#Emballage: peser les aliments des participants en étant attitré à une station.</td>
-        <td>#Montréal</td>
-        <td>#Bénévoles : 10 / 15<br>#Remplacants : 1 / 4<br><a routerLink="/confirmation" class="button">#Je veux
-          m'inscrire comme
-          bénévole</a></td>
-      </tr>
-      <tr>
-        <td>#Novembre</td>
-        <td>#dimanche 26 novembre</td>
-        <td>#08h45 à 14h00</td>
-        <td>#Embalage</td>
-        <td>#Emballage: peser les aliments des participants en étant attitré à une station.</td>
-        <td>#Montréal</td>
-        <td>#Bénévoles : 10 / 15<br>#Remplacants : 1 / 4<br><a routerLink="/confirmation" class="button">#Je veux
-          m'inscrire comme
-          bénévole</a></td>
-      </tr>
-      <tr>
-        <td>#Novembre</td>
-        <td>#dimanche 26 novembre</td>
-        <td>#08h45 à 14h00</td>
-        <td>#Embalage</td>
-        <td>#Emballage: peser les aliments des participants en étant attitré à une station.</td>
-        <td>#Montréal</td>
-        <td>#Bénévoles : 15 / 15<br>#Remplacants : 1 / 4<br><a routerLink="/confirmation" class="button">#Je veux
-          m'inscrire comme
-          remplacant</a></td>
-      </tr>
-      <tr>
-        <td>#Novembre</td>
-        <td>#dimanche 26 novembre</td>
-        <td>#08h45 à 14h00</td>
-        <td>#Embalage</td>
-        <td>#Emballage: peser les aliments des participants en étant attitré à une station.</td>
-        <td>#Montréal</td>
-        <td>#Bénévoles : 15 / 15<br>#Remplacants : 1 / 4<br><a routerLink="/confirmation" class="button">#Je veux
-          m'inscrire comme
-          remplacant</a></td>
-      </tr>
-      <tr>
-        <td>#Novembre</td>
-        <td>#dimanche 26 novembre</td>
-        <td>#08h45 à 14h00</td>
-        <td>#Embalage</td>
-        <td>#Emballage: peser les aliments des participants en étant attitré à une station.</td>
-        <td>#Montréal</td>
-        <td>#Bénévoles : 15 / 15<br>#Remplacants : 1 / 4<br><a routerLink="/confirmation" class="button">#Je veux
-          m'inscrire comme
-          remplacant</a></td>
-      </tr>
-
     </table>
   </div>
 

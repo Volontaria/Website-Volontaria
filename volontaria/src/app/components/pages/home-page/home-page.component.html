@@ -1,19 +1,20 @@
 <div class="page-homepage">
   <div class="page-homepage__title">
-    #Bonjour Noel!
+    Bonjour #Noel!
   </div>
   <div class="page-homepage__content">
-    <h3>#Voici les évenements à venir :</h3>
-    <div class="page-homepage__box">
-      <p class="page-homepage__bold">#Journée d'embalage - Novembre 2017</p>
-      <p>#14 Novenbre au 2 décembre 2017</p>
-      <a href="#" class="button">#Cliquez ici pour soumettre votre candidature</a>
+    <h3>Voici les évenements à venir :</h3>
+    <div class="card" *ngFor="let cycle of cycles">
+      <p>
+        <b>{{ cycle.name }}</b>
+      </p>
+      <p>
+        Du {{ cycle.start_date | date:'dd/MM/yyyy'}} au {{ cycle.end_date | date:'dd/MM/yyyy'}}
+      </p>
+      <a routerLink="/activities" class="button">
+        Cliquez ici pour soumettre votre candidature
+      </a>
     </div>
-    <br>
-    <br>
-    <br>
-    <p>#Si c'est votre première visite, veuillez lire attentivement les instructions pour Volontaria :</p>
-    <a href="#">#Instructions</a>
   </div>
 
 </div>

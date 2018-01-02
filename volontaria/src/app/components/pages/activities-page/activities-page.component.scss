@@ -1,11 +1,15 @@
 .activities-page {
-  &__content {
+  padding: 1rem;
+
+  &__upcoming-events {
     padding: 1rem;
   }
-  &__upcoming-events {
 
-  }
   &__filter {
+    padding: 1rem;
+  }
 
+  &__activities {
+    padding: 1rem;
   }
 }

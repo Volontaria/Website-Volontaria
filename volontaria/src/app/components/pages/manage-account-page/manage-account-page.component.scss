@@ -1,9 +1,22 @@
 .manage-account-page {
-  &__content {
-    padding: 1rem;
+  padding: 1rem;
+
+  &__title {
+    text-align: center;
   }
+
   &__form {
+    background-color: #dfdfdf;
     padding: 2rem;
-    background-color: #f2f2f2;
+
+    width: 450px;
+    margin: auto;
+
+    text-align: left;
+
+    &__info {
+      text-align: center;
+      padding-bottom: 40px;
+    }
   }
 }

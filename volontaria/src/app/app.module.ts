@@ -1,9 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
 import { UserService } from './services/user.service';
+import { AuthenticationService } from './services/authentication.service';
+import { EventService } from './services/event.service';
+import { TasktypeService } from './services/tasktype.service';
+import { CycleService } from './services/cycle.service';
+import { CellService } from './services/cell.service';
+import { CanActivateViaAuthGuard } from './guards/CanActivateViaAuthGuard';
+
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DocumentationComponent } from './components/pages/documentation/documentation.component'
@@ -20,21 +28,101 @@ import { AdminVolunteersComponent } from './components/pages/admin-volunteers/ad
 import { ActivityConfirmationComponent } from './components/pages/activities-page/activity-confirmation-page/activity-confirmation-page.component';
 import { ManageAccountPageComponent } from './components/pages/manage-account-page/manage-account-page.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
+import { LogoutPageComponent } from './components/pages/logout-page/logout-page.component';
+
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 const appRoutes = [
-  { path: 'index', component: HomePageComponent },
-  { path: 'activities', component: ActivitiesPageComponent},
-  { path: 'confirmation', component: ActivityConfirmationComponent },
-  { path: 'schedule', component: MySchedulePageComponent},
-  { path: 'info', component: InfoPageComponent},
-  { path: 'register', component: ManageAccountPageComponent },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'admin/activities', component: AdminActivitiesComponent },
-  { path: 'admin/activity', component: AdminActivityDetailComponent },
-  { path: 'docs', component: DocumentationComponent },
-  { path: 'admin/volunteers', component: AdminVolunteersComponent },
-  { path: '', redirectTo: '/index', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent}
+  {
+    path: 'index',
+    component: HomePageComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: 'activities',
+    component: ActivitiesPageComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: 'confirmation/:eventId',
+    component: ActivityConfirmationComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: 'schedule',
+    component: MySchedulePageComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: 'info',
+    component: InfoPageComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: 'register',
+    component: ManageAccountPageComponent
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent
+  },
+  {
+    path: 'logout',
+    component: LogoutPageComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: 'admin/activities',
+    component: AdminActivitiesComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: 'admin/activity',
+    component: AdminActivityDetailComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: 'docs',
+    component: DocumentationComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: 'admin/volunteers',
+    component: AdminVolunteersComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: '',
+    redirectTo: '/index',
+    pathMatch: 'full',
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({
@@ -47,6 +135,7 @@ const appRoutes = [
     ActivitiesPageComponent,
     ManageAccountPageComponent,
     LoginPageComponent,
+    LogoutPageComponent,
     ActivityConfirmationComponent,
     AdminVolunteersComponent,
     AdminActivitiesComponent,
@@ -62,10 +151,20 @@ const appRoutes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }
-    )
+    ),
+    FormsModule,
+    SimpleNotificationsModule.forRoot(),
   ],
   exports: [ RouterModule ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    AuthenticationService,
+    EventService,
+    TasktypeService,
+    CycleService,
+    CellService,
+    CanActivateViaAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
