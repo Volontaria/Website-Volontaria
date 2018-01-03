@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyHttpInterceptor } from './my-http-interceptor'
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
@@ -20,8 +23,6 @@ import { MySchedulePageComponent } from './components/pages/myschedule-page/mysc
 import { ActivitiesPageComponent } from './components/pages/activities-page/activities-page.component';
 import { InfoPageComponent } from './components/pages/info-page/info-page.component';
 import { PageNotFoundComponent } from './components/pages/notfound-page/notfound-page.component';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { AdminActivityDetailComponent } from './components/pages/admin-activity-detail/admin-activity-detail.component';
 import { AdminActivitiesComponent } from './components/pages/admin-activities/admin-activities.component';
 import { AdminVolunteersComponent } from './components/pages/admin-volunteers/admin-volunteers.component';
@@ -163,7 +164,12 @@ const appRoutes = [
     TasktypeService,
     CycleService,
     CellService,
-    CanActivateViaAuthGuard
+    CanActivateViaAuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyHttpInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })
