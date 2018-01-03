@@ -6,12 +6,12 @@ import {NotificationsService} from "angular2-notifications";
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'app';
 
   public options = {
     position: ["bottom", "right"],
     timeOut: 5000,
     lastOnBottom: true,
+    preventDuplicates: true,
   };
 
   constructor(){ }
