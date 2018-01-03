@@ -2,7 +2,7 @@
   <h2 class="login-page__title">
     Se connecter
   </h2>
-  <div class="login-page__form">
+  <form class="login-page__form" (ngSubmit)="authenticate()">
     <p *ngIf="error" class="login-page__form__error">
       {{error}}
     </p>
@@ -14,9 +14,9 @@
       Mot de passe
       <input [(ngModel)]="password" id="login_password" maxlength="40" name="password" placeholder="Password" type="password" />
     </p>
-    <button class="button" (click)="authenticate()">Se connecter</button>
+    <button class="button">Se connecter</button>
     <p>
       <a routerLink='/register'>Pas encore de compte ?</a>
     </p>
-  </div>
+  </form>
 </div>
