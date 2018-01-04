@@ -49,17 +49,14 @@
         </td>
         <td>
           Bénévoles : {{ event.volunteers.length }} / {{ event.nb_volunteers_needed }}<br>
-          Remplacants : {{ event.volunteers_standby.length }} / {{ event.nb_volunteers_standby_needed }}<br>
+          Remplacants : #0 / {{ event.nb_volunteers_standby_needed }}<br>
           <p>
             <a routerLink="/confirmation/{{ event.id }}" class="button">
               Voir le detail
             </a>
           </p>
           <p *ngIf="!event.volunteers.indexOf(user.id)">
-            Deja inscrit comme benevole.
-          </p>
-          <p *ngIf="!event.volunteers_standby.indexOf(user.id)">
-            Deja inscrit comme remplacant.
+            Deja inscrit.
           </p>
         </td>
       </tr>
