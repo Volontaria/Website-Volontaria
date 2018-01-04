@@ -50,7 +50,7 @@
         <td>
           Bénévoles : {{ event.volunteers.length }} / {{ event.nb_volunteers_needed }}<br>
           Remplacants : #0 / {{ event.nb_volunteers_standby_needed }}<br>
-          <p>
+          <p *ngIf="event.volunteers.indexOf(user.id)">
             <a routerLink="/confirmation/{{ event.id }}" class="button">
               Voir le detail
             </a>
