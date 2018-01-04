@@ -7,37 +7,37 @@ import {AuthenticationService} from "./authentication.service";
 
 
 @Injectable()
-export class EventService extends GlobalService{
+export class ParticipationService extends GlobalService{
 
   constructor(public http:HttpClient,
               private authenticationService:AuthenticationService) {
     super();
   }
 
-  getEvents(): Observable<any> {
+  getParticipations(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'http://127.0.0.1:8000/volunteer/events',
+      'http://127.0.0.1:8000/volunteer/participations',
       {headers: headers}
     );
   }
 
-  getEvent(id:number): Observable<any> {
+  getMyParticipations(): Observable<any> {
     let headers = this.getHeaders();
-    return this.http.get<any>(
-      'http://127.0.0.1:8000/volunteer/events/' + id,
-      {headers: headers}
-    );
-  }
-
-  getEventWhereVolunteer(): Observable<any> {
-    let headers = this.getHeaders();
-    let userId = this.authenticationService.getProfile().id;
-    let params = new HttpParams().set('volunteers', userId);
+    let username = this.authenticationService.getProfile().username;
+    let params = new HttpParams().set('username', username);
 
     return this.http.get<any>(
-      'http://127.0.0.1:8000/volunteer/events',
+      'http://127.0.0.1:8000/volunteer/participations',
       {headers: headers, params:params}
+    );
+  }
+
+  getParticipation(id:number): Observable<any> {
+    let headers = this.getHeaders();
+    return this.http.get<any>(
+      'http://127.0.0.1:8000/volunteer/participations/' + id,
+      {headers: headers}
     );
   }
 }

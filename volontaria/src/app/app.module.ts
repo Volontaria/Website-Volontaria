@@ -13,6 +13,7 @@ import { EventService } from './services/event.service';
 import { TasktypeService } from './services/tasktype.service';
 import { CycleService } from './services/cycle.service';
 import { CellService } from './services/cell.service';
+import { ParticipationService } from './services/participation.service';
 import { CanActivateViaAuthGuard } from './guards/CanActivateViaAuthGuard';
 
 import { FooterComponent } from './components/footer/footer.component';
@@ -164,6 +165,7 @@ const appRoutes = [
     TasktypeService,
     CycleService,
     CellService,
+    ParticipationService,
     CanActivateViaAuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
