@@ -4,3 +4,9 @@ input {
   border-radius: 0;
   padding: 10px;
 }
+
+.input {
+  &--error {
+    box-shadow: 0 0 5px $color-danger;
+  }
+}

@@ -17,7 +17,8 @@ export class ManageAccountPageComponent {
   password: string;
   password_confirmation: string;
 
-  error: string;
+  error: any;
+  errorConfirmationPassword: string;
 
   constructor(private userService:UserService,
               private router:Router,
@@ -27,19 +28,27 @@ export class ManageAccountPageComponent {
   }
 
   createAccount() {
-    if(this.password == this.password_confirmation){
+    if(this.checkConfirmPassword()){
       this.userService.createUser(this.user, this.password).subscribe(
         data => {
           this.notificationService.success('Inscription reussis', 'Verifier vos courriels!');
           this.router.navigate(['/login']);
         },
-        err => {
-          this.error = err;
+        error => {
+          this.error = error;
         }
       );
     }
+  }
+
+  checkConfirmPassword() {
+    if(this.password != this.password_confirmation) {
+      this.errorConfirmationPassword = "La verification de mot de passe est errone.";
+      return false;
+    }
     else {
-      this.error = 'La verification de mot de passe est errone.';
+      this.errorConfirmationPassword = null;
+      return true;
     }
   }
 }

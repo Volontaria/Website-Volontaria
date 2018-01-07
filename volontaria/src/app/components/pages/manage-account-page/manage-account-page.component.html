@@ -2,45 +2,132 @@
   <h2 class="manage-account-page__title">
     Créer un compte
   </h2>
-  <div class="manage-account-page__form">
+  <form class="manage-account-page__form" (ngSubmit)="createAccount()">
     <p class="manage-account-page__form__info">
-      Vous avez deja un compte ? <a href="/login">Connectez-vous</a>!
+      Vous avez deja un compte ?
+      <a href="/login">
+        Connectez-vous
+      </a>!
     </p>
-    <p *ngIf="error" class="login-page__form__error">
-      {{error}}
+    <div class="manage-account-page__form__input">
+      <label for="form_username">
+        Nom d'utilisateur *
+      </label>
+      <br/>
+      <input [(ngModel)]="user.username"
+             id="form_username"
+             name="username"
+             type="text"
+             [ngClass]="{'input--error': error && error.error.username}">
+      <ul *ngIf="error && error.error.username">
+        <li *ngFor="let message of error.error.username">
+          {{ message }}
+        </li>
+      </ul>
+    </div>
+    <div class="manage-account-page__form__input">
+      <label for="form_password">
+        Mot de Passe *
+      </label>
+      <br/>
+      <input [(ngModel)]="password"
+             id="form_password"
+             name="password"
+             type="password"
+             [ngClass]="{'input--error': error && error.error.password}">
+      <ul *ngIf="error && error.error.password">
+        <li *ngFor="let message of error.error.password">
+          {{ message }}
+        </li>
+      </ul>
+    </div>
+    <div class="manage-account-page__form__input">
+      <label for="form_password_confirmation">
+        Confirmation du mot de passe *
+      </label>
+      <br/>
+      <input [(ngModel)]="password_confirmation"
+             id="form_password_confirmation"
+             name="password_confirmation"
+             type="password"
+             (change)="checkConfirmPassword()"
+             [ngClass]="{'input--error': errorConfirmationPassword}">
+      <ul *ngIf="errorConfirmationPassword">
+        <li>
+          {{ errorConfirmationPassword }}
+        </li>
+      </ul>
+    </div>
+    <div class="manage-account-page__form__input">
+      <label for="form_email">
+        Courriel *
+      </label>
+      <br/>
+      <input [(ngModel)]="user.email"
+             id="form_email"
+             name="email"
+             type="email"
+             [ngClass]="{'input--error': error && error.error.email}">
+      <ul *ngIf="error && error.error.email">
+        <li *ngFor="let message of error.error.email">
+          {{ message }}
+        </li>
+      </ul>
+    </div>
+    <p>
+      <label for="form_first_name">
+        Prénom
+      </label>
+      <br/>
+      <input [(ngModel)]="user.first_name"
+             id="form_first_name"
+             name="fisrt_name"
+             type="text">
     </p>
     <p>
-      <label for="form_username">Nom d'utilisateur</label><br/>
-      <input [(ngModel)]="user.username" id="form_username" name="username" type="text">
+      <label for="form_last_name">
+        Nom
+      </label>
+      <br/>
+      <input [(ngModel)]="user.last_name"
+             id="form_last_name"
+             name="last_name"
+             type="text">
     </p>
-    <p>
-      <label for="form_password">Mot de Passe</label><br/>
-      <input [(ngModel)]="password" id="form_password" name="password" type="password">
-    </p>
-    <p>
-      <label for="form_password_confirmation">Confirmation du mot de Passe</label><br/>
-      <input [(ngModel)]="password_confirmation" id="form_password_confirmation" name="password_confirmation" type="password">
-    </p>
-    <p>
-      <label for="form_first_name">Prénom</label><br/>
-      <input [(ngModel)]="user.first_name" id="form_first_name" name="fisrt_name" type="text">
-    </p>
-    <p>
-      <label for="form_last_name">Nom</label><br/>
-      <input [(ngModel)]="user.last_name" id="form_last_name" name="last_name" type="text">
-    </p>
-    <p>
-      <label for="form_email">Courriel</label><br/>
-      <input [(ngModel)]="user.email" id="form_email" name="email" type="email">
-    </p>
-    <p>
-      <label for="form_phone_home">Téléphone maison</label><br/>
-      <input [(ngModel)]="user.phone" id="form_phone_home" name="phone_home" type="tel">
-    </p>
-    <p>
-      <label for="form_phone_mobile">Téléphone cellulaire</label><br/>
-      <input [(ngModel)]="user.mobile" id="form_phone_mobile" name="phone_mobile" type="tel">
-    </p>
-    <button (click)="createAccount()" class="button">Creer le compte</button>
-  </div>
+    <div class="manage-account-page__form__input">
+      <label for="form_phone_home">
+        Téléphone maison
+      </label>
+      <br/>
+      <input [(ngModel)]="user.phone"
+             id="form_phone_home"
+             name="phone_home"
+             type="tel"
+             [ngClass]="{'input--error': error && error.error.phone}">
+      <ul *ngIf="error && error.error.phone">
+        <li *ngFor="let message of error.error.phone">
+          {{ message }}
+       </li>
+      </ul>
+    </div>
+    <div class="manage-account-page__form__input">
+      <label for="form_phone_mobile">
+        Téléphone cellulaire
+      </label>
+      <br/>
+      <input [(ngModel)]="user.mobile"
+             id="form_phone_mobile"
+             name="phone_mobile"
+             type="tel"
+             [ngClass]="{'input--error': error && error.error.mobile}">
+      <ul *ngIf="error && error.error.mobile">
+        <li *ngFor="let message of error.error.mobile">
+          {{ message }}
+        </li>
+      </ul>
+    </div>
+    <button class="button">
+      Creer le compte
+    </button>
+  </form>
 </div>
