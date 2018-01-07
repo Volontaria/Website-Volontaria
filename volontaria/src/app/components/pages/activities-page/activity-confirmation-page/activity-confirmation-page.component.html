@@ -3,25 +3,19 @@
   <br>
   <p>
     <b>Debut : </b>
-    {{ event.start_date | date:'dd MMMM yyyy - HH:mm'}}
+    <span *ngIf="event">{{ event.start_date | date:'dd MMMM yyyy - HH:mm'}}</span>
   </p>
   <p>
     <b>Fin : </b>
-    {{ event.end_date | date:'dd MMMM yyyy - HH:mm'}}
+    <span *ngIf="event">{{ event.end_date | date:'dd MMMM yyyy - HH:mm'}}</span>
   </p>
   <p>
     <b>Activité : </b>
-    {{ event.task_type.name }}
+    <span *ngIf="event">{{ event.task_type.name }}</span>
   </p>
   <p>
     <b>Lieu : </b>
-    {{ event.cell.name }}
-  </p>
-  <p>
-    <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=Volontaria Emballage&dates=20171126T084500/20171126T140000&details=Emballage: peser les aliments des participants en étant attitré&location=Montréal&trp=false&sprop=&sprop=name:"
-       target="_blank" rel="nofollow">
-      Ajouter à Google Calendar
-    </a>
+    <span *ngIf="event">{{ event.cell.name }}</span>
   </p>
   <div class="activity-confirmation-page__missions">
     <h3>Les missions des bénévoles sont variés, en voivi un apperçu :</h3>
@@ -33,10 +27,9 @@
       <li>#Integer sagittis metus vehicula vulputate pellentesque.</li>
     </ul>
   </div>
-  <div class="activity-confirmation-page__validate">
+  <div class="activity-confirmation-page__validate" *ngIf="event.volunteers.indexOf(user.id) < 0">
     <p>Voulez-vous vous inscrire à cet evenement ?</p>
-    <a href="#" class="button">S'inscrire comme benevole</a>
-    <a href="#" class="button">S'inscrire comme remplacant</a>
-
+    <a class="button" (click)="submit(false)">S'inscrire comme benevole</a>
+    <a class="button" (click)="submit(true)">S'inscrire comme remplacant</a>
   </div>
 </div>

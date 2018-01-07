@@ -4,6 +4,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import GlobalService from "./globalService";
 import {AuthenticationService} from "./authentication.service";
+import {Participation} from "../models/participation";
 
 
 @Injectable()
@@ -20,6 +21,18 @@ export class ParticipationService extends GlobalService{
       'http://127.0.0.1:8000/volunteer/participations',
       {headers: headers}
     );
+  }
+
+  createParticipation(event_id:number, standby:boolean): Observable<any> {
+    let headers = this.getHeaders();
+    return this.http.post<any>(
+      'http://127.0.0.1:8000/volunteer/participations',
+      {
+        event: event_id,
+        standby: standby
+      },
+      {headers: headers}
+      );
   }
 
   getMyParticipations(): Observable<any> {
