@@ -48,8 +48,8 @@
           {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
         </td>
         <td>
-          Bénévoles : {{ event.volunteers.length }} / {{ event.nb_volunteers_needed }}<br>
-          Remplacants : #0 / {{ event.nb_volunteers_standby_needed }}<br>
+          Bénévoles : {{ event.nb_volunteers }} / {{ event.nb_volunteers_needed }}<br>
+          Remplacants : {{ event.nb_volunteers_standby }} / {{ event.nb_volunteers_standby_needed }}<br>
           <p *ngIf="event.volunteers.indexOf(user.id) < 0">
             <a routerLink="/confirmation/{{ event.id }}" class="button">
               Voir le detail
