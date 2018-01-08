@@ -1,22 +1,31 @@
 <div class="login-page">
-  <h2 class="login-page__title">
-    Se connecter
-  </h2>
-  <form class="login-page__form" (ngSubmit)="authenticate()">
-    <p *ngIf="error" class="login-page__form__error">
-      {{error}}
-    </p>
-    <p>
-      Nom d'utilisateur
-      <input [(ngModel)]="login" id="login_username" maxlength="40" name="username" placeholder="Nom d'utilisateur" type="text" />
-    </p>
-    <p>
-      Mot de passe
-      <input [(ngModel)]="password" id="login_password" maxlength="40" name="password" placeholder="Password" type="password" />
-    </p>
-    <button class="button">Se connecter</button>
-    <p>
-      <a routerLink='/register'>Pas encore de compte ?</a>
-    </p>
-  </form>
+  <div class="login-page__description">
+    <h2 class="login-page__description__title">
+      Bienvenue sur l’application Volontaria pour le bénévolat NousRire
+    </h2>
+
+    <img src="assets/images/login.jpg" alt="Pictures of NousRire volunteers">
+  </div>
+  <div class="login-page__login">
+    <h2 class="login-page__title">
+      Se connecter
+    </h2>
+    <form class="login-page__form" (ngSubmit)="authenticate()">
+      <p *ngIf="error" class="login-page__form__error">
+        {{error}}
+      </p>
+      <p>
+        Nom d'utilisateur
+        <input [(ngModel)]="login" id="login_username" maxlength="40" name="username" placeholder="Nom d'utilisateur" type="text" />
+      </p>
+      <p>
+        Mot de passe
+        <input [(ngModel)]="password" id="login_password" maxlength="40" name="password" placeholder="Password" type="password" />
+      </p>
+      <button class="button">Se connecter</button>
+      <p>
+        <a routerLink='/register'>Pas encore de compte ?</a>
+      </p>
+    </form>
+  </div>
 </div>

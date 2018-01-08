@@ -1,5 +1,19 @@
 .login-page {
   padding: 1rem;
+  display: flex;
+
+  &__description {
+    width: 55%;
+    text-align: center;
+
+    & > img {
+      width: 80%;
+    }
+  }
+
+  &__login {
+    width: 45%;
+  }
 
   &__title {
     text-align: center;
