@@ -1,0 +1,7 @@
+.pre-footer {
+  &__title{
+    & > img {
+      width: 200px;
+    }
+  }
+}
