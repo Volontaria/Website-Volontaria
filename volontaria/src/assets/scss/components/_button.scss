@@ -1,5 +1,6 @@
 .button {
     display: inline-block;
+    box-sizing: border-box;
     padding: 10px;
 
     background-color: $main-color;

@@ -7,14 +7,14 @@
       </tr>
     </table>
   </div>
-  <div class="activities-page__filter">
-    <select multiple [(ngModel)]="tasktypeFilter" (change)="filter()">
+  <div class="activities-page__filters">
+    <select class="activities-page__filters__filter" multiple [(ngModel)]="tasktypeFilter" (change)="filter()">
       <option disabled>Filter par tache</option>
       <option *ngFor="let tasktype of tasktypes" value="{{ tasktype.id }} ">
         {{ tasktype.name }}
       </option>
     </select>
-    <select multiple [(ngModel)]="cellFilter" (change)="filter()">
+    <select class="activities-page__filters__filter" multiple [(ngModel)]="cellFilter" (change)="filter()">
       <option disabled>Filter par cellule</option>
       <option *ngFor="let cell of cells" value="{{ cell.id }} ">
         {{ cell.name }}

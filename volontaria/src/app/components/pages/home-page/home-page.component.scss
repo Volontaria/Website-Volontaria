@@ -9,7 +9,8 @@
 
   &__content {
     margin: auto;
-    width: 50%;
+    width: 100%;
+    max-width: 600px;
     text-align: center;
   }
 }

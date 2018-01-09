@@ -29,7 +29,7 @@
   </div>
   <div class="activity-confirmation-page__validate" *ngIf="event.volunteers.indexOf(user.id) < 0">
     <p>Voulez-vous vous inscrire à cet evenement ?</p>
-    <a class="button" (click)="submit(false)">S'inscrire comme benevole</a>
-    <a class="button" (click)="submit(true)">S'inscrire comme remplacant</a>
+    <a class="activity-confirmation-page__validate__button button" (click)="submit(false)">S'inscrire comme benevole</a>
+    <a class="activity-confirmation-page__validate__button button" (click)="submit(true)">S'inscrire comme remplacant</a>
   </div>
 </div>

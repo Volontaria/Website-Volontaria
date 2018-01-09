@@ -4,9 +4,12 @@ import {AuthenticationService} from "../../services/authentication.service";
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
+  styleUrls: ['header.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent {
+
+  responsive:boolean = false;
 
   constructor(private authenticationService: AuthenticationService) { }
 
@@ -14,4 +17,7 @@ export class HeaderComponent {
     return this.authenticationService.isAuthenticated()
   }
 
+  toogleResponsiveNavbar() {
+    this.responsive = !this.responsive;
+  }
 }

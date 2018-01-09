@@ -25,3 +25,31 @@
     padding: 1rem;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .myschedule {
+    &__infos {
+      padding: 1rem;
+      width: calc(100% - 2rem);
+      overflow-x: scroll;
+    }
+
+    &__account {
+      width: calc(100% - 2rem);
+      padding: 1rem;
+      overflow-x: scroll;
+    }
+
+    &__volunteer {
+      width: calc(100% - 2rem);
+      padding: 1rem;
+      overflow-x: scroll;
+    }
+
+    &__on-hold {
+      width: calc(100% - 2rem);
+      padding: 1rem;
+      overflow-x: scroll;
+    }
+  }
+}

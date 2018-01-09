@@ -1,13 +1,28 @@
 .activity-confirmation-page {
-  padding: 1rem;
+  margin: 1rem;
 
   &__missions {
     border: 1px solid gray;
     background-color: #F1F1F1;
-    padding: 1rem;
+    margin: 1rem;
   }
   &__validate {
     text-align: center;
     margin: 3rem;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .activity-confirmation-page {
+
+    &__validate {
+      margin: 0;
+
+      &__button {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
