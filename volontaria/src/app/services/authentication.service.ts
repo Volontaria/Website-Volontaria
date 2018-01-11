@@ -14,7 +14,7 @@ export class AuthenticationService {
 
   authenticate(login, password): Observable<AuthenticationResponse> {
     return this.http.post<AuthenticationResponse>(
-      'http://127.0.0.1:8000/authentication',
+      'http://api.nousrire.com/authentication',
       {
         login: login,
         password: password

@@ -17,7 +17,7 @@ export class EventService extends GlobalService{
   getEvents(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'http://127.0.0.1:8000/volunteer/events',
+      'http://api.nousrire.com/volunteer/events',
       {headers: headers}
     );
   }
@@ -25,7 +25,7 @@ export class EventService extends GlobalService{
   getEvent(id:number): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'http://127.0.0.1:8000/volunteer/events/' + id,
+      'http://api.nousrire.com/volunteer/events/' + id,
       {headers: headers}
     );
   }
@@ -36,7 +36,7 @@ export class EventService extends GlobalService{
     let params = new HttpParams().set('volunteers', userId);
 
     return this.http.get<any>(
-      'http://127.0.0.1:8000/volunteer/events',
+      'http://api.nousrire.com/volunteer/events',
       {headers: headers, params:params}
     );
   }

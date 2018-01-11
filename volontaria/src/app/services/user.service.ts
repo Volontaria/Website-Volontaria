@@ -15,7 +15,7 @@ export class UserService extends GlobalService{
 
   createUser(user:User, password:string): Observable<any> {
     return this.http.post<any>(
-      'http://127.0.0.1:8000/users',
+      'http://api.nousrire.com/users',
       {
         username: user.username,
         password: password,
@@ -30,7 +30,7 @@ export class UserService extends GlobalService{
   getUsers(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'http://127.0.0.1:8000/users',
+      'http://api.nousrire.com/users',
       {headers: headers}
     );
   }
@@ -38,7 +38,7 @@ export class UserService extends GlobalService{
   getProfile(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'http://127.0.0.1:8000/profile',
+      'http://api.nousrire.com/profile',
       {headers: headers}
     );
   }
