@@ -17,6 +17,7 @@
     <b>Lieu : </b>
     <span *ngIf="event">{{ event.cell.name }}</span>
   </p>
+  <!---
   <div class="activity-confirmation-page__missions">
     <h3>Les missions des bénévoles sont variés, en voivi un apperçu :</h3>
     <ul>
@@ -27,9 +28,12 @@
       <li>#Integer sagittis metus vehicula vulputate pellentesque.</li>
     </ul>
   </div>
+  --->
   <div class="activity-confirmation-page__validate" *ngIf="event.volunteers.indexOf(user.id) < 0">
-    <p>Voulez-vous vous inscrire à cet evenement ?</p>
-    <a class="activity-confirmation-page__validate__button button" (click)="submit(false)">S'inscrire comme benevole</a>
-    <a class="activity-confirmation-page__validate__button button" (click)="submit(true)">S'inscrire comme remplacant</a>
+    <p *ngIf="event.nb_volunteers < event.nb_volunteers_needed || event.nb_volunteers_standby < event.nb_volunteers_standby_needed">Voulez-vous vous inscrire à cet evenement ?</p>
+    <a *ngIf="event.nb_volunteers < event.nb_volunteers_needed" class="activity-confirmation-page__validate__button button" (click)="submit(false)">M'inscrire comme benevole</a>
+    <a *ngIf="event.nb_volunteers >= event.nb_volunteers_needed && event.nb_volunteers_standby < event.nb_volunteers_standby_needed" class="activity-confirmation-page__validate__button button" (click)="submit(true)">M'inscrire comme remplacant</a>
+
+    <p *ngIf="event.nb_volunteers >= event.nb_volunteers_needed && event.nb_volunteers_standby >= event.nb_volunteers_standby_needed">Cet evenement est deja plein.</p>
   </div>
 </div>

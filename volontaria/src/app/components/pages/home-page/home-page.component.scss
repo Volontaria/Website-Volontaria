@@ -1,5 +1,10 @@
 .page-homepage {
   padding: 1rem;
+  text-align: center;
+
+  &__banner {
+    height: 300px;
+  }
 
   &__title {
     font-size: 30px;
