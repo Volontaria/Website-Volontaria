@@ -4,7 +4,7 @@
     Bonjour {{ user.first_name }}!
   </div>
   <div class="page-homepage__content">
-    <h3>Voici la periode d'emballage à venir :</h3>
+    <h3>Voici la période d'emballage à venir :</h3>
     <div class="card" *ngFor="let cycle of cycles">
       <p>
         <b>{{ cycle.name }}</b>
@@ -13,7 +13,7 @@
         Du {{ cycle.start_date | date:'dd/MM/yyyy'}} au {{ cycle.end_date | date:'dd/MM/yyyy'}}
       </p>
       <a routerLink="/activities" class="button">
-        M'inscrire a une plage horaire
+        M'inscrire à une plage horaire
       </a>
     </div>
   </div>
