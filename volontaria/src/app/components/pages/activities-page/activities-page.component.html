@@ -47,7 +47,7 @@
               M'inscrire
             </a>
             <span *ngIf="event.nb_volunteers >= event.nb_volunteers_needed && event.nb_volunteers_standby >= event.nb_volunteers_standby_needed">
-              Evènement complet
+              Évènement complet
             </span>
           </p>
           <p *ngIf="event.volunteers.indexOf(user.id) >= 0">

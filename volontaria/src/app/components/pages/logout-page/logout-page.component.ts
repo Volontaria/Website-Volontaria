@@ -14,7 +14,7 @@ export class LogoutPageComponent{
               private notificationService:NotificationsService){
     localStorage.removeItem('token');
     localStorage.removeItem('userProfile');
-    this.notificationService.success('Deconnecte', 'A bientot!');
+    this.notificationService.success('Déconnecté', 'À bientôt!');
     this.router.navigate(['/login']);
   }
 }
