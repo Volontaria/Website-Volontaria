@@ -1,13 +1,13 @@
 <div class="activities-page">
   <div class="activities-page__filters">
     <select class="activities-page__filters__filter" multiple [(ngModel)]="tasktypeFilter" (change)="filter()">
-      <option disabled>Filter par tache</option>
+      <option disabled>Filtrer par tâche</option>
       <option *ngFor="let tasktype of tasktypes" value="{{ tasktype.id }} ">
         {{ tasktype.name }}
       </option>
     </select>
     <select class="activities-page__filters__filter" multiple [(ngModel)]="cellFilter" (change)="filter()">
-      <option disabled>Filter par cellule</option>
+      <option disabled>Filtrer par cellule</option>
       <option *ngFor="let cell of cells" value="{{ cell.id }} ">
         {{ cell.name }}
       </option>
@@ -47,7 +47,7 @@
               M'inscrire
             </a>
             <span *ngIf="event.nb_volunteers >= event.nb_volunteers_needed && event.nb_volunteers_standby >= event.nb_volunteers_standby_needed">
-              Évènement complet
+              Plage horaire complète
             </span>
           </p>
           <p *ngIf="event.volunteers.indexOf(user.id) >= 0">
