@@ -31,7 +31,7 @@ export class ManageAccountPageComponent {
     if(this.checkConfirmPassword()){
       this.userService.createUser(this.user, this.password).subscribe(
         data => {
-          this.notificationService.success('Inscription reussis', 'Verifier vos courriels!');
+          this.notificationService.success('Inscription reussis', 'Votre compte est actif');
           this.router.navigate(['/login']);
         },
         error => {
