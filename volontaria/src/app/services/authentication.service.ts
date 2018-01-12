@@ -14,7 +14,7 @@ export class AuthenticationService {
 
   authenticate(login, password): Observable<AuthenticationResponse> {
     return this.http.post<AuthenticationResponse>(
-      'http://api.nousrire.com/authentication',
+      'https://api.nousrire.com/authentication',
       {
         login: login,
         password: password

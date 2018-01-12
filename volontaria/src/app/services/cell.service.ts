@@ -15,7 +15,7 @@ export class CellService extends GlobalService{
   getCells(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'http://api.nousrire.com/volunteer/cells',
+      'https://api.nousrire.com/volunteer/cells',
       {headers: headers}
     );
   }

@@ -15,7 +15,7 @@ export class CycleService extends GlobalService{
   getCycles(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'http://api.nousrire.com/volunteer/cycles',
+      'https://api.nousrire.com/volunteer/cycles',
       {headers: headers}
     );
   }

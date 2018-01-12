@@ -18,7 +18,7 @@ export class ParticipationService extends GlobalService{
   getParticipations(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'http://api.nousrire.com/volunteer/participations',
+      'https://api.nousrire.com/volunteer/participations',
       {headers: headers}
     );
   }
@@ -26,7 +26,7 @@ export class ParticipationService extends GlobalService{
   createParticipation(event_id:number, standby:boolean): Observable<any> {
     let headers = this.getHeaders();
     return this.http.post<any>(
-      'http://api.nousrire.com/volunteer/participations',
+      'https://api.nousrire.com/volunteer/participations',
       {
         event: event_id,
         standby: standby
@@ -41,7 +41,7 @@ export class ParticipationService extends GlobalService{
     let params = new HttpParams().set('username', username);
 
     return this.http.get<any>(
-      'http://api.nousrire.com/volunteer/participations',
+      'https://api.nousrire.com/volunteer/participations',
       {headers: headers, params:params}
     );
   }
@@ -49,7 +49,7 @@ export class ParticipationService extends GlobalService{
   getParticipation(id:number): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'http://api.nousrire.com/volunteer/participations/' + id,
+      'https://api.nousrire.com/volunteer/participations/' + id,
       {headers: headers}
     );
   }

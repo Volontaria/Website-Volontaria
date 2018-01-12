@@ -15,7 +15,7 @@ export class TasktypeService extends GlobalService{
   getTasktypes(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'http://api.nousrire.com/volunteer/tasktypes',
+      'https://api.nousrire.com/volunteer/tasktypes',
       {headers: headers}
     );
   }
