@@ -42,7 +42,7 @@ export class ActivityConfirmationComponent implements OnInit {
     console.log('Call submit to create new participation');
     this.participationService.createParticipation(this.event.id, standby).subscribe(
       data => {
-        this.notificationService.success('Inscription reussis', 'Merci!');
+        this.notificationService.success('Inscription réussie', 'Merci!');
         this.router.navigate(['/schedule']);
       }
     );
