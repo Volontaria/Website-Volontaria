@@ -1,7 +1,8 @@
 .info-page {
-  text-align: center;
+  margin: 1rem;
 
-  &__logo {
-    height: 200px;
+  &__title {
+    font-size: 21px;
+    text-decoration: underline;
   }
 }

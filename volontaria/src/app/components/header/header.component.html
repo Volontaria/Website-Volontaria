@@ -26,6 +26,13 @@
      routerLink="/info"
      routerLinkActive="active"
      class="top-nav__item">
+    Information
+  </a>
+  <a *ngIf="isAuthenticated()"
+     (click)="toogleResponsiveNavbar()"
+     routerLink="/contact"
+     routerLinkActive="active"
+     class="top-nav__item">
     Contact
   </a>
   <a *ngIf="isAuthenticated()"

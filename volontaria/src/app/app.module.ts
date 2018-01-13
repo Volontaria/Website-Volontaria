@@ -23,6 +23,7 @@ import { HomePageComponent } from './components/pages/home-page/home-page.compon
 import { MySchedulePageComponent } from './components/pages/myschedule-page/myschedule-page.component';
 import { ActivitiesPageComponent } from './components/pages/activities-page/activities-page.component';
 import { InfoPageComponent } from './components/pages/info-page/info-page.component';
+import { ContactPageComponent } from './components/pages/contact-page/contact-page.component';
 import { PageNotFoundComponent } from './components/pages/notfound-page/notfound-page.component';
 import { AdminActivityDetailComponent } from './components/pages/admin-activity-detail/admin-activity-detail.component';
 import { AdminActivitiesComponent } from './components/pages/admin-activities/admin-activities.component';
@@ -66,6 +67,13 @@ const appRoutes = [
   {
     path: 'info',
     component: InfoPageComponent,
+    canActivate: [
+      CanActivateViaAuthGuard
+    ]
+  },
+  {
+    path: 'contact',
+    component: ContactPageComponent,
     canActivate: [
       CanActivateViaAuthGuard
     ]
@@ -143,6 +151,7 @@ const appRoutes = [
     AdminActivitiesComponent,
     AdminActivityDetailComponent,
     InfoPageComponent,
+    ContactPageComponent,
     DocumentationComponent,
     PageNotFoundComponent
   ],
