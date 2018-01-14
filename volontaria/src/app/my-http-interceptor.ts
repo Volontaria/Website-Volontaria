@@ -24,7 +24,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
         if(error.status == 401){
           localStorage.removeItem('token');
           localStorage.removeItem('userProfile');
-          this.notificationService.error('Deconnecte', 'Votre session a expire.');
+          this.notificationService.error('Déconnecté', 'Votre session a expiré.');
           this.router.navigate(['/login']);
         }
         //return the error to the method that called it
