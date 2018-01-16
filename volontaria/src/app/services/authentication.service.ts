@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 interface AuthenticationResponse {
   token: string;
@@ -10,11 +11,13 @@ interface AuthenticationResponse {
 @Injectable()
 export class AuthenticationService {
 
+  url_authentication = environment.url_base_api + environment.paths_api.authentication;
+
   constructor(public http:HttpClient) { }
 
   authenticate(login, password): Observable<AuthenticationResponse> {
     return this.http.post<AuthenticationResponse>(
-      'https://api.nousrire.com/authentication',
+      this.url_authentication,
       {
         login: login,
         password: password

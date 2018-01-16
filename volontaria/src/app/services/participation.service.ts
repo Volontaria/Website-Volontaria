@@ -5,10 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import GlobalService from "./globalService";
 import {AuthenticationService} from "./authentication.service";
 import {Participation} from "../models/participation";
+import {environment} from "../../environments/environment";
 
 
 @Injectable()
 export class ParticipationService extends GlobalService{
+
+  url_participations = environment.url_base_api + environment.paths_api.participations;
 
   constructor(public http:HttpClient,
               private authenticationService:AuthenticationService) {
@@ -18,7 +21,7 @@ export class ParticipationService extends GlobalService{
   getParticipations(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'https://api.nousrire.com/volunteer/participations',
+      this.url_participations,
       {headers: headers}
     );
   }
@@ -26,7 +29,7 @@ export class ParticipationService extends GlobalService{
   createParticipation(event_id:number, standby:boolean): Observable<any> {
     let headers = this.getHeaders();
     return this.http.post<any>(
-      'https://api.nousrire.com/volunteer/participations',
+      this.url_participations,
       {
         event: event_id,
         standby: standby
@@ -41,7 +44,7 @@ export class ParticipationService extends GlobalService{
     let params = new HttpParams().set('username', username);
 
     return this.http.get<any>(
-      'https://api.nousrire.com/volunteer/participations',
+      this.url_participations,
       {headers: headers, params:params}
     );
   }
@@ -49,7 +52,7 @@ export class ParticipationService extends GlobalService{
   getParticipation(id:number): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'https://api.nousrire.com/volunteer/participations/' + id,
+      this.url_participations + '/' + id,
       {headers: headers}
     );
   }

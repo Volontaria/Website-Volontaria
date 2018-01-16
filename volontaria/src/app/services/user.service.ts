@@ -4,10 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import GlobalService from "./globalService";
 import {User} from "../models/user";
+import {environment} from "../../environments/environment";
 
 
 @Injectable()
 export class UserService extends GlobalService{
+
+  url_users = environment.url_base_api + environment.paths_api.users;
+  url_profile = environment.url_base_api + environment.paths_api.profile;
 
   constructor(public http:HttpClient) {
     super();
@@ -15,7 +19,7 @@ export class UserService extends GlobalService{
 
   createUser(user:User, password:string): Observable<any> {
     return this.http.post<any>(
-      'https://api.nousrire.com/users',
+      this.url_users,
       {
         username: user.username,
         password: password,
@@ -30,7 +34,7 @@ export class UserService extends GlobalService{
   getUsers(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'https://api.nousrire.com/users',
+      this.url_users,
       {headers: headers}
     );
   }
@@ -38,7 +42,7 @@ export class UserService extends GlobalService{
   getProfile(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'https://api.nousrire.com/profile',
+      this.url_profile,
       {headers: headers}
     );
   }

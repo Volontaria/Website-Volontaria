@@ -4,10 +4,13 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import GlobalService from "./globalService";
 import {AuthenticationService} from "./authentication.service";
+import {environment} from "../../environments/environment";
 
 
 @Injectable()
 export class EventService extends GlobalService{
+
+  url_events = environment.url_base_api + environment.paths_api.events;
 
   constructor(public http:HttpClient,
               private authenticationService:AuthenticationService) {
@@ -17,7 +20,7 @@ export class EventService extends GlobalService{
   getEvents(): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'https://api.nousrire.com/volunteer/events',
+      this.url_events,
       {headers: headers}
     );
   }
@@ -25,7 +28,7 @@ export class EventService extends GlobalService{
   getEvent(id:number): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
-      'https://api.nousrire.com/volunteer/events/' + id,
+      this.url_events + '/' + id,
       {headers: headers}
     );
   }
@@ -36,7 +39,7 @@ export class EventService extends GlobalService{
     let params = new HttpParams().set('volunteers', userId);
 
     return this.http.get<any>(
-      'https://api.nousrire.com/volunteer/events',
+      this.url_events,
       {headers: headers, params:params}
     );
   }
