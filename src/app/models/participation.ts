@@ -1,6 +1,5 @@
-import BaseModel from "./baseModel";
-import {User} from "./user";
-import {Event} from "./event";
+import BaseModel from './baseModel';
+import {User} from './user';
 
 export class Participation extends BaseModel {
   id: number;

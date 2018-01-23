@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {EventService} from "../../../services/event.service";
-import { Event } from "../../../models/event";
-import {TasktypeService} from "../../../services/tasktype.service";
-import {Tasktype} from "../../../models/tasktype";
-import {CellService} from "../../../services/cell.service";
-import {Cell} from "../../../models/cell";
-import {User} from "../../../models/user";
-import {AuthenticationService} from "../../../services/authentication.service";
+import {EventService} from '../../../services/event.service';
+import { Event } from '../../../models/event';
+import {TasktypeService} from '../../../services/tasktype.service';
+import {Tasktype} from '../../../models/tasktype';
+import {CellService} from '../../../services/cell.service';
+import {Cell} from '../../../models/cell';
+import {User} from '../../../models/user';
+import {AuthenticationService} from '../../../services/authentication.service';
 
 
 @Component({

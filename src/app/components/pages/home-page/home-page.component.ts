@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {Cycle} from "../../../models/cycle";
-import {CycleService} from "../../../services/cycle.service";
-import {User} from "../../../models/user";
-import {UserService} from "../../../services/user.service";
+import {Cycle} from '../../../models/cycle';
+import {CycleService} from '../../../services/cycle.service';
+import {User} from '../../../models/user';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'home-page',

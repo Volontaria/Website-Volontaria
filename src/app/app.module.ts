@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MyHttpInterceptor } from './my-http-interceptor'
+import { MyHttpInterceptor } from './my-http-interceptor';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -18,7 +18,7 @@ import { CanActivateViaAuthGuard } from './guards/CanActivateViaAuthGuard';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { DocumentationComponent } from './components/pages/documentation/documentation.component'
+import { DocumentationComponent } from './components/pages/documentation/documentation.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { MySchedulePageComponent } from './components/pages/myschedule-page/myschedule-page.component';
 import { ActivitiesPageComponent } from './components/pages/activities-page/activities-page.component';

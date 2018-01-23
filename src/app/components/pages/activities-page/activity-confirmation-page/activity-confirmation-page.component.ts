@@ -1,12 +1,11 @@
-
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {EventService} from "../../../../services/event.service";
-import { Event } from "../../../../models/event";
-import {ParticipationService} from "../../../../services/participation.service";
-import {NotificationsService} from "angular2-notifications";
-import {User} from "../../../../models/user";
-import {AuthenticationService} from "../../../../services/authentication.service";
+import {EventService} from '../../../../services/event.service';
+import { Event } from '../../../../models/event';
+import {ParticipationService} from '../../../../services/participation.service';
+import {NotificationsService} from 'angular2-notifications';
+import {User} from '../../../../models/user';
+import {AuthenticationService} from '../../../../services/authentication.service';
 
 
 @Component({

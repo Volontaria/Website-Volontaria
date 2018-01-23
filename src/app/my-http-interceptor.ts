@@ -3,8 +3,8 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw'
 import 'rxjs/add/operator/catch';
-import {Router} from "@angular/router";
-import {NotificationsService} from "angular2-notifications";
+import {Router} from '@angular/router';
+import {NotificationsService} from 'angular2-notifications';
 
 @Injectable()
 export class MyHttpInterceptor implements HttpInterceptor {

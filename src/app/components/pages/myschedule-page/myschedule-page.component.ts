@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {UserService} from "../../../services/user.service";
-import {User} from "../../../models/user";
-import {EventService} from "../../../services/event.service";
-import {Event} from "../../../models/event";
-import {ParticipationService} from "../../../services/participation.service";
-import {Participation} from "../../../models/participation";
-import {NotificationsService} from "angular2-notifications";
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../models/user';
+import {EventService} from '../../../services/event.service';
+import {Event} from '../../../models/event';
+import {ParticipationService} from '../../../services/participation.service';
+import {Participation} from '../../../models/participation';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
   selector: 'myschedule-page',

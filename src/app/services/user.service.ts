@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import GlobalService from "./globalService";
-import {User} from "../models/user";
-import {environment} from "../../environments/environment";
+import GlobalService from './globalService';
+import {User} from '../models/user';
+import {environment} from '../../environments/environment';
 
 
 @Injectable()

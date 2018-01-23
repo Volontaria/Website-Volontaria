@@ -7,7 +7,7 @@ export default class GlobalService {
 
     let token = localStorage.getItem('token');
     if(token){
-      options['Authorization'] = "Token " + token;
+      options['Authorization'] = 'Token ' + token;
     }
     let header = new HttpHeaders(options);
     return header;

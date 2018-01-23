@@ -1,10 +1,8 @@
-
-
 import { Component } from '@angular/core';
-import {UserService} from "../../../services/user.service";
-import {Router} from "@angular/router";
-import {User} from "../../../models/user";
-import {NotificationsService} from "angular2-notifications";
+import {UserService} from '../../../services/user.service';
+import {Router} from '@angular/router';
+import {User} from '../../../models/user';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
   selector: 'manage-account-page',
@@ -43,7 +41,7 @@ export class ManageAccountPageComponent {
 
   checkConfirmPassword() {
     if(this.password != this.password_confirmation) {
-      this.errorConfirmationPassword = "La verification de mot de passe est errone.";
+      this.errorConfirmationPassword = 'La verification de mot de passe est errone.';
       return false;
     }
     else {

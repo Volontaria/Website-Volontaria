@@ -1,7 +1,7 @@
-import BaseModel from "./baseModel";
-import {Cell} from "./cell";
-import {Tasktype} from "./tasktype";
-import {Cycle} from "./cycle";
+import BaseModel from './baseModel';
+import {Cell} from './cell';
+import {Tasktype} from './tasktype';
+import {Cycle} from './cycle';
 
 export class Event extends BaseModel {
   id: number;
