@@ -18,12 +18,12 @@ export class ActivityConfirmationComponent implements OnInit {
   event: Event;
   user: User;
 
-  constructor(private activatedRoute:ActivatedRoute,
-              private eventService:EventService,
-              private participationService:ParticipationService,
-              private notificationService:NotificationsService,
-              private authenticationService:AuthenticationService,
-              private router:Router) { }
+  constructor(private activatedRoute: ActivatedRoute,
+              private eventService: EventService,
+              private participationService: ParticipationService,
+              private notificationService: NotificationsService,
+              private authenticationService: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit() {
     this.user = this.authenticationService.getProfile();
@@ -37,7 +37,7 @@ export class ActivityConfirmationComponent implements OnInit {
     });
   }
 
-  submit(standby:boolean) {
+  submit(standby: boolean) {
     console.log('Call submit to create new participation');
     this.participationService.createParticipation(this.event.id, standby).subscribe(
       data => {

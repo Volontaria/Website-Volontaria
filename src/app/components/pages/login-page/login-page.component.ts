@@ -10,7 +10,7 @@ import {NotificationsService} from 'angular2-notifications';
   templateUrl: 'login-page.component.html',
   styleUrls: ['login-page.component.scss']
 })
-export class LoginPageComponent{
+export class LoginPageComponent {
 
   login: string;
   password: string;
@@ -19,9 +19,9 @@ export class LoginPageComponent{
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
-    private userService:UserService,
+    private userService: UserService,
     private notificationService: NotificationsService
-  ){}
+  ) {}
 
   authenticate() {
     this.authenticationService.authenticate(this.login, this.password).subscribe(

@@ -8,10 +8,10 @@ import {NotificationsService} from 'angular2-notifications';
   templateUrl: 'logout-page.component.html',
   styleUrls: ['logout-page.component.scss']
 })
-export class LogoutPageComponent{
+export class LogoutPageComponent {
 
   constructor(private router: Router,
-              private notificationService:NotificationsService){
+              private notificationService: NotificationsService) {
     localStorage.removeItem('token');
     localStorage.removeItem('userProfile');
     this.notificationService.success('Déconnecté', 'À bientôt!');

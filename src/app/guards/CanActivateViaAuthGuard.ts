@@ -10,13 +10,11 @@ export class CanActivateViaAuthGuard implements CanActivate {
 
   canActivate() {
     let isAuthenticated = this.authenticationService.isAuthenticated();
-    if(isAuthenticated){
+    if (isAuthenticated) {
       return true;
-    }
-    else {
+    } else {
       // not logged in so redirect to login page with the return url
       this.router.navigate(['/login']);
-
       return false;
     }
   }

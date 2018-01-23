@@ -8,16 +8,16 @@ import {environment} from '../../environments/environment';
 
 
 @Injectable()
-export class UserService extends GlobalService{
+export class UserService extends GlobalService {
 
   url_users = environment.url_base_api + environment.paths_api.users;
   url_profile = environment.url_base_api + environment.paths_api.profile;
 
-  constructor(public http:HttpClient) {
+  constructor(public http: HttpClient) {
     super();
   }
 
-  createUser(user:User, password:string): Observable<any> {
+  createUser(user: User, password: string): Observable<any> {
     return this.http.post<any>(
       this.url_users,
       {

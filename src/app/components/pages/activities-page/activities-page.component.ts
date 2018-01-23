@@ -25,11 +25,10 @@ export class ActivitiesPageComponent {
   tasktypeFilter: any = [];
   cellFilter: any = [];
 
-  constructor(private eventService:EventService,
-              private tasktypeService:TasktypeService,
-              private cellService:CellService,
-              private authenticationService:AuthenticationService)
-  {
+  constructor(private eventService: EventService,
+              private tasktypeService: TasktypeService,
+              private cellService: CellService,
+              private authenticationService: AuthenticationService) {
     this.user = this.authenticationService.getProfile();
 
     this.eventService.getEvents().subscribe(

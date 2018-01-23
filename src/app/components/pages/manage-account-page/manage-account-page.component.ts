@@ -18,15 +18,14 @@ export class ManageAccountPageComponent {
   error: any;
   errorConfirmationPassword: string;
 
-  constructor(private userService:UserService,
-              private router:Router,
-              private notificationService:NotificationsService)
-  {
+  constructor(private userService: UserService,
+              private router: Router,
+              private notificationService: NotificationsService) {
     this.user = new User();
   }
 
   createAccount() {
-    if(this.checkConfirmPassword()){
+    if (this.checkConfirmPassword()) {
       this.userService.createUser(this.user, this.password).subscribe(
         data => {
           this.notificationService.success('Inscription réussie', 'Votre compte est actif');
@@ -40,11 +39,10 @@ export class ManageAccountPageComponent {
   }
 
   checkConfirmPassword() {
-    if(this.password != this.password_confirmation) {
+    if (this.password != this.password_confirmation) {
       this.errorConfirmationPassword = 'La verification de mot de passe est errone.';
       return false;
-    }
-    else {
+    } else {
       this.errorConfirmationPassword = null;
       return true;
     }

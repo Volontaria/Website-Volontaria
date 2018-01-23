@@ -7,11 +7,11 @@ import {environment} from '../../environments/environment';
 
 
 @Injectable()
-export class TasktypeService extends GlobalService{
+export class TasktypeService extends GlobalService {
 
   url_tasktypes = environment.url_base_api + environment.paths_api.tasktypes;
 
-  constructor(public http:HttpClient) {
+  constructor(public http: HttpClient) {
     super();
   }
 

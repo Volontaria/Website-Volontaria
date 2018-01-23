@@ -7,11 +7,11 @@ import {environment} from '../../environments/environment';
 
 
 @Injectable()
-export class CellService extends GlobalService{
+export class CellService extends GlobalService {
 
   url_cells = environment.url_base_api + environment.paths_api.cells;
 
-  constructor(public http:HttpClient) {
+  constructor(public http: HttpClient) {
     super();
   }
 

@@ -8,16 +8,16 @@ import {environment} from '../../environments/environment';
 
 
 @Injectable()
-export class ParticipationService extends GlobalService{
+export class ParticipationService extends GlobalService {
 
   url_participations = environment.url_base_api + environment.paths_api.participations;
 
-  constructor(public http:HttpClient,
-              private authenticationService:AuthenticationService) {
+  constructor(public http: HttpClient,
+              private authenticationService: AuthenticationService) {
     super();
   }
 
-  createParticipation(event_id:number, standby:boolean): Observable<any> {
+  createParticipation(event_id: number, standby: boolean): Observable<any> {
     let headers = this.getHeaders();
     return this.http.post<any>(
       this.url_participations,
@@ -36,11 +36,11 @@ export class ParticipationService extends GlobalService{
 
     return this.http.get<any>(
       this.url_participations,
-      {headers: headers, params:params}
+      {headers: headers, params: params}
     );
   }
 
-  deleteParticipation(id:number): Observable<any> {
+  deleteParticipation(id: number): Observable<any> {
     let headers = this.getHeaders();
     return this.http.delete<any>(
       this.url_participations + '/' + id,

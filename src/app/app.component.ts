@@ -13,5 +13,5 @@ export class AppComponent {
     preventDuplicates: true,
   };
 
-  constructor(){ }
+  constructor() { }
 }

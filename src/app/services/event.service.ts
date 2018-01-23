@@ -8,12 +8,12 @@ import {environment} from '../../environments/environment';
 
 
 @Injectable()
-export class EventService extends GlobalService{
+export class EventService extends GlobalService {
 
   url_events = environment.url_base_api + environment.paths_api.events;
 
-  constructor(public http:HttpClient,
-              private authenticationService:AuthenticationService) {
+  constructor(public http: HttpClient,
+              private authenticationService: AuthenticationService) {
     super();
   }
 
@@ -25,7 +25,7 @@ export class EventService extends GlobalService{
     );
   }
 
-  getEvent(id:number): Observable<any> {
+  getEvent(id: number): Observable<any> {
     let headers = this.getHeaders();
     return this.http.get<any>(
       this.url_events + '/' + id,
@@ -40,7 +40,7 @@ export class EventService extends GlobalService{
 
     return this.http.get<any>(
       this.url_events,
-      {headers: headers, params:params}
+      {headers: headers, params: params}
     );
   }
 }

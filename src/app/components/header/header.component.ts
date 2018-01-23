@@ -9,7 +9,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 })
 export class HeaderComponent {
 
-  responsive:boolean = false;
+  responsive: boolean = false;
 
   constructor(private authenticationService: AuthenticationService) { }
 

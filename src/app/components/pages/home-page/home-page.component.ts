@@ -15,8 +15,8 @@ export class HomePageComponent {
   cycles: Cycle[];
   user: User;
 
-  constructor(private cycleService:CycleService,
-              private userService:UserService)
+  constructor(private cycleService: CycleService,
+              private userService: UserService)
   {
     this.userService.getProfile().subscribe(
       data => {

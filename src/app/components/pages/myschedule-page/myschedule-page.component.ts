@@ -21,10 +21,10 @@ export class MySchedulePageComponent implements OnInit {
   eventsAsVolunteer: Event[] = [];
   eventsAsOnHold: Event[] = [];
 
-  constructor(private userService:UserService,
-              private eventService:EventService,
-              private participationService:ParticipationService,
-              private notificationService:NotificationsService) {
+  constructor(private userService: UserService,
+              private eventService: EventService,
+              private participationService: ParticipationService,
+              private notificationService: NotificationsService) {
   }
 
   ngOnInit() {
@@ -57,11 +57,10 @@ export class MySchedulePageComponent implements OnInit {
             for (let event in this.events) {
               if ( new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
                 for (let participation in this.participations) {
-                  if( this.events[event].id === this.participations[participation].event ) {
+                  if ( this.events[event].id === this.participations[participation].event ) {
                     if ( this.participations[participation].standby ) {
                       this.eventsAsOnHold.push(this.events[event])
-                    }
-                    else {
+                    } else {
                       this.eventsAsVolunteer.push(this.events[event])
                     }
                   }
