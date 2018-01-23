@@ -4,7 +4,7 @@ import {Event} from "./event";
 
 export class Participation extends BaseModel {
   id: number;
-  event: Event;
+  event: number;
   user: User;
   standby: boolean;
   subscription_date: string;

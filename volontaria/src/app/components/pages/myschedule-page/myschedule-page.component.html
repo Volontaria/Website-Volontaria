@@ -1,7 +1,7 @@
 <div class="myschedule">
   <div class="myschedule__infos">
     <h2>Mes coordonnées</h2>
-    <table class="table">
+    <table class="table" *ngIf="user">
       <tr>
         <th>Prénom</th>
         <td>{{ user.first_name }}</td>
@@ -24,7 +24,7 @@
       </tr>
     </table>
   </div>
-  <div class="myschedule__account">
+  <div class="myschedule__account" *ngIf="user">
     <h2>Mon compte</h2>
     <table class="table">
       <tr>
@@ -41,6 +41,7 @@
         <th>Fin</th>
         <th>Activité</th>
         <th>Lieu</th>
+        <th>Actions</th>
       </tr>
       <tr *ngIf="eventsAsVolunteer.length == 0">
         <td colspan="7">
@@ -63,6 +64,11 @@
           {{ event.cell.address.address_line1 }}<br/>
           {{ event.cell.address.address_line2 }}<br/>
           {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
+        </td>
+        <td>
+          <a (click)="deleteParticipation(event.id)" class="button button--danger">
+            Me désinscrire
+          </a>
         </td>
       </tr>
     </table>

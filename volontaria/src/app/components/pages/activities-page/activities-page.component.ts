@@ -35,7 +35,7 @@ export class ActivitiesPageComponent {
     this.eventService.getEvents().subscribe(
       data => {
         this.events = data.results.map(e => new Event(e) );
-        this.filteredEvents = this.events;
+        this.filter();
       }
     );
 
@@ -57,20 +57,25 @@ export class ActivitiesPageComponent {
     var eventFiltered = [];
 
     for (let event in this.events) {
-      // If no task_type filter or filter is verified
-      if (this.tasktypeFilter.length == 0 || this.events[event].task_type.id in this.tasktypeFilter || this.events[event].task_type.id == this.tasktypeFilter) {
-        // If no cell filter or filter is verified
-        if (this.cellFilter.length == 0 || this.events[event].cell.id in this.cellFilter || this.events[event].cell.id == this.cellFilter) {
-          eventFiltered.push(this.events[event]);
+      if ( new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
+        // If no task_type filter or filter is verified
+        if (this.tasktypeFilter.length == 0 || this.events[event].task_type.id in this.tasktypeFilter || this.events[event].task_type.id == this.tasktypeFilter) {
+          // If no cell filter or filter is verified
+          if (this.cellFilter.length == 0 || this.events[event].cell.id in this.cellFilter || this.events[event].cell.id == this.cellFilter) {
+            eventFiltered.push(this.events[event]);
+          }
         }
       }
     }
 
     // If no filters, we take all events
     if (this.cellFilter.length == 0 && this.tasktypeFilter.length == 0) {
-      this.filteredEvents = this.events;
-    }
-    else{
+      for (let event in this.events) {
+        if (new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
+          this.filteredEvents.push(this.events[event]);
+        }
+      }
+    } else {
       this.filteredEvents = eventFiltered;
     }
   }
