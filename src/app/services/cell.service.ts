@@ -16,7 +16,7 @@ export class CellService extends GlobalService {
   }
 
   getCells(): Observable<any> {
-    let headers = this.getHeaders();
+    const headers = this.getHeaders();
     return this.http.get<any>(
       this.url_cells,
       {headers: headers}

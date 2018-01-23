@@ -54,9 +54,9 @@ export class MySchedulePageComponent implements OnInit {
           data => {
             this.events = data.results.map(e => new Event(e));
 
-            for (let event in this.events) {
+            for (const event in this.events) {
               if ( new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
-                for (let participation in this.participations) {
+                for (const participation in this.participations) {
                   if ( this.events[event].id === this.participations[participation].event ) {
                     if ( this.participations[participation].standby ) {
                       this.eventsAsOnHold.push(this.events[event])
@@ -77,7 +77,7 @@ export class MySchedulePageComponent implements OnInit {
     /**
      * Delete the participation linked to the specific event given in argument
      */
-    for (let participation in this.participations) {
+    for (const participation in this.participations) {
       if (this.participations[participation].event === idEvent) {
         this.participationService.deleteParticipation(this.participations[participation].id).subscribe(
           data => {

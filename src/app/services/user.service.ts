@@ -32,7 +32,7 @@ export class UserService extends GlobalService {
   }
 
   getUsers(): Observable<any> {
-    let headers = this.getHeaders();
+    const headers = this.getHeaders();
     return this.http.get<any>(
       this.url_users,
       {headers: headers}
@@ -40,7 +40,7 @@ export class UserService extends GlobalService {
   }
 
   getProfile(): Observable<any> {
-    let headers = this.getHeaders();
+    const headers = this.getHeaders();
     return this.http.get<any>(
       this.url_profile,
       {headers: headers}

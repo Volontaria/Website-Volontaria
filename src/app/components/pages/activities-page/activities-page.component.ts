@@ -53,9 +53,9 @@ export class ActivitiesPageComponent {
 
   filter() {
     this.filteredEvents = [];
-    var eventFiltered = [];
+    const eventFiltered = [];
 
-    for (let event in this.events) {
+    for (const event in this.events) {
       if ( new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
         // If no task_type filter or filter is verified
         if (this.tasktypeFilter.length == 0 || this.events[event].task_type.id in this.tasktypeFilter || this.events[event].task_type.id == this.tasktypeFilter) {
@@ -69,7 +69,7 @@ export class ActivitiesPageComponent {
 
     // If no filters, we take all events
     if (this.cellFilter.length == 0 && this.tasktypeFilter.length == 0) {
-      for (let event in this.events) {
+      for (const event in this.events) {
         if (new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
           this.filteredEvents.push(this.events[event]);
         }

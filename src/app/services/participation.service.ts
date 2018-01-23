@@ -18,7 +18,7 @@ export class ParticipationService extends GlobalService {
   }
 
   createParticipation(event_id: number, standby: boolean): Observable<any> {
-    let headers = this.getHeaders();
+    const headers = this.getHeaders();
     return this.http.post<any>(
       this.url_participations,
       {
@@ -30,9 +30,9 @@ export class ParticipationService extends GlobalService {
   }
 
   getMyParticipations(): Observable<any> {
-    let headers = this.getHeaders();
-    let username = this.authenticationService.getProfile().username;
-    let params = new HttpParams().set('username', username);
+    const headers = this.getHeaders();
+    const username = this.authenticationService.getProfile().username;
+    const params = new HttpParams().set('username', username);
 
     return this.http.get<any>(
       this.url_participations,
@@ -41,7 +41,7 @@ export class ParticipationService extends GlobalService {
   }
 
   deleteParticipation(id: number): Observable<any> {
-    let headers = this.getHeaders();
+    const headers = this.getHeaders();
     return this.http.delete<any>(
       this.url_participations + '/' + id,
       {headers: headers}

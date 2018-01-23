@@ -9,7 +9,7 @@ export class CanActivateViaAuthGuard implements CanActivate {
               private router: Router) {}
 
   canActivate() {
-    let isAuthenticated = this.authenticationService.isAuthenticated();
+    const isAuthenticated = this.authenticationService.isAuthenticated();
     if (isAuthenticated) {
       return true;
     } else {

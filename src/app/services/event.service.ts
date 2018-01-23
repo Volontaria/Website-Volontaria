@@ -18,7 +18,7 @@ export class EventService extends GlobalService {
   }
 
   getEvents(): Observable<any> {
-    let headers = this.getHeaders();
+    const headers = this.getHeaders();
     return this.http.get<any>(
       this.url_events,
       {headers: headers}
@@ -26,7 +26,7 @@ export class EventService extends GlobalService {
   }
 
   getEvent(id: number): Observable<any> {
-    let headers = this.getHeaders();
+    const headers = this.getHeaders();
     return this.http.get<any>(
       this.url_events + '/' + id,
       {headers: headers}
@@ -34,9 +34,9 @@ export class EventService extends GlobalService {
   }
 
   getEventWhereVolunteer(): Observable<any> {
-    let headers = this.getHeaders();
-    let userId = this.authenticationService.getProfile().id;
-    let params = new HttpParams().set('volunteers', userId);
+    const headers = this.getHeaders();
+    const userId = this.authenticationService.getProfile().id;
+    const params = new HttpParams().set('volunteers', userId);
 
     return this.http.get<any>(
       this.url_events,
