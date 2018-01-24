@@ -35,99 +35,113 @@ import { LoginPageComponent } from './components/pages/login-page/login-page.com
 import { LogoutPageComponent } from './components/pages/logout-page/logout-page.component';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
+import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 
 const appRoutes = [
   {
-    path: 'index',
-    component: HomePageComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  {
-    path: 'activities',
-    component: ActivitiesPageComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  {
-    path: 'confirmation/:eventId',
-    component: ActivityConfirmationComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  {
-    path: 'schedule',
-    component: MySchedulePageComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  {
-    path: 'info',
-    component: InfoPageComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  {
-    path: 'contact',
-    component: ContactPageComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  {
-    path: 'register',
-    component: ManageAccountPageComponent
-  },
-  {
-    path: 'login',
-    component: LoginPageComponent
-  },
-  {
-    path: 'logout',
-    component: LogoutPageComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  {
-    path: 'admin/activities',
-    component: AdminActivitiesComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  {
-    path: 'admin/activity',
-    component: AdminActivityDetailComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  {
-    path: 'docs',
-    component: DocumentationComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  {
-    path: 'admin/volunteers',
-    component: AdminVolunteersComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
+    path: '',
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: 'index',
+        component: HomePageComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'activities',
+        component: ActivitiesPageComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'confirmation/:eventId',
+        component: ActivityConfirmationComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'schedule',
+        component: MySchedulePageComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'info',
+        component: InfoPageComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'contact',
+        component: ContactPageComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'register',
+        component: ManageAccountPageComponent
+      },
+      {
+        path: 'logout',
+        component: LogoutPageComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'admin/activities',
+        component: AdminActivitiesComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'admin/activity',
+        component: AdminActivityDetailComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'docs',
+        component: DocumentationComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'admin/volunteers',
+        component: AdminVolunteersComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: '',
+        redirectTo: '/index',
+        pathMatch: 'full',
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      }
     ]
   },
   {
     path: '',
-    redirectTo: '/index',
-    pathMatch: 'full',
-    canActivate: [
-      CanActivateViaAuthGuard
+    component: LoginLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginPageComponent
+      }
     ]
   },
   {
@@ -154,7 +168,9 @@ const appRoutes = [
     InfoPageComponent,
     ContactPageComponent,
     DocumentationComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DefaultLayoutComponent,
+    LoginLayoutComponent
   ],
   imports: [
     BrowserModule,
