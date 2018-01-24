@@ -5,7 +5,7 @@ import {User} from '../../../models/user';
 import {NotificationsService} from 'angular2-notifications';
 
 @Component({
-  selector: 'manage-account-page',
+  selector: 'app-manage-account',
   templateUrl: 'manage-account-page.component.html',
   styleUrls: ['manage-account-page.component.scss']
 })

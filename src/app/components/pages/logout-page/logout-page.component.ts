@@ -4,7 +4,7 @@ import {NotificationsService} from 'angular2-notifications';
 
 
 @Component({
-  selector: 'logout-page',
+  selector: 'app-logout',
   templateUrl: 'logout-page.component.html',
   styleUrls: ['logout-page.component.scss']
 })

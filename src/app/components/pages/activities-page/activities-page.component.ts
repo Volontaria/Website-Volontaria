@@ -11,7 +11,7 @@ import {AuthenticationService} from '../../../services/authentication.service';
 
 @Component({
   templateUrl: 'activities-page.component.html',
-  selector: 'activities-page',
+  selector: 'app-activities',
   styleUrls: ['activities-page.component.scss']
 })
 export class ActivitiesPageComponent {

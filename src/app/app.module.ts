@@ -28,6 +28,7 @@ import { PageNotFoundComponent } from './components/pages/notfound-page/notfound
 import { AdminActivityDetailComponent } from './components/pages/admin-activity-detail/admin-activity-detail.component';
 import { AdminActivitiesComponent } from './components/pages/admin-activities/admin-activities.component';
 import { AdminVolunteersComponent } from './components/pages/admin-volunteers/admin-volunteers.component';
+// tslint:disable-next-line:max-line-length
 import { ActivityConfirmationComponent } from './components/pages/activities-page/activity-confirmation-page/activity-confirmation-page.component';
 import { ManageAccountPageComponent } from './components/pages/manage-account-page/manage-account-page.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';

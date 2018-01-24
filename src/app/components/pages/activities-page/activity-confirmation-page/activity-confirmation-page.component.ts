@@ -11,7 +11,7 @@ import {AuthenticationService} from '../../../../services/authentication.service
 @Component({
   templateUrl: 'activity-confirmation-page.component.html',
   styleUrls: ['activity-confirmation-page.component.scss'],
-  selector: 'activity-confirmation-page'
+  selector: 'app-activity-confirmation'
 })
 export class ActivityConfirmationComponent implements OnInit {
 

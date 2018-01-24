@@ -6,7 +6,7 @@ import {NotificationsService} from 'angular2-notifications';
 
 
 @Component({
-  selector: 'login-page',
+  selector: 'app-login',
   templateUrl: 'login-page.component.html',
   styleUrls: ['login-page.component.scss']
 })

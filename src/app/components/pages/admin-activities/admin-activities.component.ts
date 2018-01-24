@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 @Component({
-  selector: 'admin-activities-page',
+  selector: 'app-admin-activities',
   templateUrl: './admin-activities.component.html',
   styleUrls: ['admin-activities.component.scss']
 })

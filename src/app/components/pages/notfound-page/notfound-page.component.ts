@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'notfound-page',
+  selector: 'app-notfound',
   templateUrl: './notfound-page.component.html',
   encapsulation: ViewEncapsulation.None
 })

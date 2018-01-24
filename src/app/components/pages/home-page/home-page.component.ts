@@ -5,7 +5,7 @@ import {User} from '../../../models/user';
 import {UserService} from '../../../services/user.service';
 
 @Component({
-  selector: 'home-page',
+  selector: 'app-home',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
   encapsulation: ViewEncapsulation.None

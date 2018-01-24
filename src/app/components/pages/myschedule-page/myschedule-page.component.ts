@@ -8,7 +8,7 @@ import {Participation} from '../../../models/participation';
 import {NotificationsService} from 'angular2-notifications';
 
 @Component({
-  selector: 'myschedule-page',
+  selector: 'app-myschedule',
   templateUrl: './myschedule-page.component.html',
   styleUrls: ['myschedule-page.component.scss'],
   encapsulation: ViewEncapsulation.None

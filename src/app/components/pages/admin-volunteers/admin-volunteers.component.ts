@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 
 @Component({
-  selector: 'admin-volunteers-page',
+  selector: 'app-admin-volunteers',
   templateUrl: './admin-volunteers.component.html',
   styleUrls: ['admin-volunteers.component.scss'],
   encapsulation: ViewEncapsulation.None
