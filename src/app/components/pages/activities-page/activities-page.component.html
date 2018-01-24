@@ -1,0 +1,61 @@
+<div class="activities-page">
+  <div class="activities-page__filters">
+    <select class="activities-page__filters__filter" multiple [(ngModel)]="tasktypeFilter" (change)="filter()">
+      <option disabled>Filtrer par tâche</option>
+      <option *ngFor="let tasktype of tasktypes" value="{{ tasktype.id }}">
+        {{ tasktype.name }}
+      </option>
+    </select>
+    <select class="activities-page__filters__filter" multiple [(ngModel)]="cellFilter" (change)="filter()">
+      <option disabled>Filtrer par cellule</option>
+      <option *ngFor="let cell of cells" value="{{ cell.id }}">
+        {{ cell.name }}
+      </option>
+    </select>
+  </div>
+  <div class="activities-page__activities">
+    <table class="table">
+      <tr>
+        <th>Début</th>
+        <th>Fin</th>
+        <th>Activité</th>
+        <th>Lieu</th>
+        <th>Inscription</th>
+      </tr>
+      <tr *ngFor="let event of filteredEvents">
+        <td>
+          {{ event.start_date | date:'dd/MM/yyyy'}}<br/>
+          {{ event.start_date | date:'HH:mm'}}
+        </td>
+        <td>
+          {{ event.end_date | date:'dd/MM/yyyy'}}<br/>
+          {{ event.end_date | date:'HH:mm'}}
+        </td>
+        <td>
+          {{ event.task_type.name }}
+        </td>
+        <td>
+          {{ event.cell.address.address_line1 }}<br/>
+          {{ event.cell.address.address_line2 }}<br/>
+          {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
+        </td>
+        <td>
+          Bénévoles : {{ event.nb_volunteers }} / {{ event.nb_volunteers_needed }}<br>
+          Remplaçants : {{ event.nb_volunteers_standby }} / {{ event.nb_volunteers_standby_needed }}<br>
+          <p *ngIf="event.volunteers.indexOf(user.id) < 0">
+            <a *ngIf="event.nb_volunteers < event.nb_volunteers_needed || event.nb_volunteers_standby < event.nb_volunteers_standby_needed" routerLink="/confirmation/{{ event.id }}" class="button">
+              M'inscrire
+            </a>
+            <span *ngIf="event.nb_volunteers >= event.nb_volunteers_needed && event.nb_volunteers_standby >= event.nb_volunteers_standby_needed">
+              Plage horaire complète
+            </span>
+          </p>
+          <p *ngIf="event.volunteers.indexOf(user.id) >= 0">
+            Déjà inscrit.
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
