@@ -16,8 +16,7 @@ export class HomePageComponent {
   user: User;
 
   constructor(private cycleService: CycleService,
-              private userService: UserService)
-  {
+              private userService: UserService) {
     this.userService.getProfile().subscribe(
       data => {
         this.user = data;

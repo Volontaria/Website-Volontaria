@@ -39,7 +39,7 @@ export class ManageAccountPageComponent {
   }
 
   checkConfirmPassword() {
-    if (this.password != this.password_confirmation) {
+    if (this.password !== this.password_confirmation) {
       this.errorConfirmationPassword = 'La verification de mot de passe est errone.';
       return false;
     } else {

@@ -9,12 +9,12 @@ import {AuthenticationService} from '../../services/authentication.service';
 })
 export class HeaderComponent {
 
-  responsive: boolean = false;
+  responsive = false;
 
   constructor(private authenticationService: AuthenticationService) { }
 
   isAuthenticated() {
-    return this.authenticationService.isAuthenticated()
+    return this.authenticationService.isAuthenticated();
   }
 
   toogleResponsiveNavbar() {

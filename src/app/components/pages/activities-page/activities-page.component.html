@@ -2,13 +2,13 @@
   <div class="activities-page__filters">
     <select class="activities-page__filters__filter" multiple [(ngModel)]="tasktypeFilter" (change)="filter()">
       <option disabled>Filtrer par tâche</option>
-      <option *ngFor="let tasktype of tasktypes" value="{{ tasktype.id }} ">
+      <option *ngFor="let tasktype of tasktypes" value="{{ tasktype.id }}">
         {{ tasktype.name }}
       </option>
     </select>
     <select class="activities-page__filters__filter" multiple [(ngModel)]="cellFilter" (change)="filter()">
       <option disabled>Filtrer par cellule</option>
-      <option *ngFor="let cell of cells" value="{{ cell.id }} ">
+      <option *ngFor="let cell of cells" value="{{ cell.id }}">
         {{ cell.name }}
       </option>
     </select>

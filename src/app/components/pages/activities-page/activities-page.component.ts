@@ -22,8 +22,8 @@ export class ActivitiesPageComponent {
   cells: Cell[];
 
   filteredEvents: Event[];
-  tasktypeFilter: any = [];
-  cellFilter: any = [];
+  tasktypeFilter: string[] = [];
+  cellFilter: string[] = [];
 
   constructor(private eventService: EventService,
               private tasktypeService: TasktypeService,
@@ -52,15 +52,19 @@ export class ActivitiesPageComponent {
   }
 
   filter() {
+    console.log(this.tasktypeFilter);
+    console.log(this.cellFilter);
     this.filteredEvents = [];
     const eventFiltered = [];
 
     for (const event in this.events) {
       if ( new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
         // If no task_type filter or filter is verified
-        if (this.tasktypeFilter.length == 0 || this.events[event].task_type.id in this.tasktypeFilter || this.events[event].task_type.id == this.tasktypeFilter) {
+        if ( this.tasktypeFilter.length === 0
+          || this.tasktypeFilter.indexOf(this.events[event].task_type.id.toString()) > -1 ) {
           // If no cell filter or filter is verified
-          if (this.cellFilter.length == 0 || this.events[event].cell.id in this.cellFilter || this.events[event].cell.id == this.cellFilter) {
+          if ( this.cellFilter.length === 0
+            || this.cellFilter.indexOf(this.events[event].cell.id.toString()) > -1 ) {
             eventFiltered.push(this.events[event]);
           }
         }
@@ -68,7 +72,7 @@ export class ActivitiesPageComponent {
     }
 
     // If no filters, we take all events
-    if (this.cellFilter.length == 0 && this.tasktypeFilter.length == 0) {
+    if (this.cellFilter.length === 0 && this.tasktypeFilter.length === 0) {
       for (const event in this.events) {
         if (new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
           this.filteredEvents.push(this.events[event]);

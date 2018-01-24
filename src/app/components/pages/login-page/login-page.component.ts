@@ -28,8 +28,8 @@ export class LoginPageComponent {
       data => {
         localStorage.setItem('token', data.token);
         this.userService.getProfile().subscribe(
-          data => {
-            localStorage.setItem('userProfile', JSON.stringify(data));
+          profile => {
+            localStorage.setItem('userProfile', JSON.stringify(profile));
             this.notificationService.success('Connecté', 'Bienvenue!');
             this.router.navigate(['/']);
           }

@@ -47,21 +47,21 @@ export class MySchedulePageComponent implements OnInit {
     this.eventsAsOnHold = [];
 
     this.participationService.getMyParticipations().subscribe(
-      data => {
-        this.participations = data.results.map(p => new Participation(p));
+      participations => {
+        this.participations = participations.results.map(p => new Participation(p));
 
         this.eventService.getEventWhereVolunteer().subscribe(
-          data => {
-            this.events = data.results.map(e => new Event(e));
+          events => {
+            this.events = events.results.map(e => new Event(e));
 
             for (const event in this.events) {
               if ( new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
                 for (const participation in this.participations) {
                   if ( this.events[event].id === this.participations[participation].event ) {
                     if ( this.participations[participation].standby ) {
-                      this.eventsAsOnHold.push(this.events[event])
+                      this.eventsAsOnHold.push(this.events[event]);
                     } else {
-                      this.eventsAsVolunteer.push(this.events[event])
+                      this.eventsAsVolunteer.push(this.events[event]);
                     }
                   }
                 }
