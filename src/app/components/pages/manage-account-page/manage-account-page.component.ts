@@ -28,8 +28,7 @@ export class ManageAccountPageComponent {
     if (this.checkConfirmPassword()) {
       this.userService.createUser(this.user, this.password).subscribe(
         data => {
-          this.notificationService.success('Inscription réussie', 'Votre compte est actif');
-          this.router.navigate(['/login']);
+          this.router.navigate(['/register/validation']);
         },
         error => {
           this.error = error;
