@@ -11,6 +11,7 @@ import {environment} from '../../environments/environment';
 export class UserService extends GlobalService {
 
   url_users = environment.url_base_api + environment.paths_api.users;
+  url_activation = environment.url_base_api + environment.paths_api.activation;
   url_profile = environment.url_base_api + environment.paths_api.profile;
 
   constructor(public http: HttpClient) {
@@ -31,20 +32,20 @@ export class UserService extends GlobalService {
       });
   }
 
-  getUsers(): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.get<any>(
-      this.url_users,
-      {headers: headers}
-    );
-  }
-
   getProfile(): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get<any>(
       this.url_profile,
       {headers: headers}
     );
+  }
+
+  activate(token: string): Observable<any> {
+    return this.http.post<any>(
+      this.url_activation,
+      {
+        activation_token: token
+      });
   }
 
 }

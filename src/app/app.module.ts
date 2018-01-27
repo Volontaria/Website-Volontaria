@@ -33,6 +33,8 @@ import { ActivityConfirmationComponent } from './components/pages/activities-pag
 import { ManageAccountPageComponent } from './components/pages/manage-account-page/manage-account-page.component';
 import { LoginPageComponent } from './components/pages/login-page/login-page.component';
 import { LogoutPageComponent } from './components/pages/logout-page/logout-page.component';
+import { RegisterValidationComponent } from './components/pages/register-validation/register-validation.component';
+import { RegisterActivationComponent } from './components/pages/register-activation/register-activation.component';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
@@ -88,6 +90,14 @@ const appRoutes = [
       {
         path: 'register',
         component: ManageAccountPageComponent
+      },
+      {
+        path: 'register/validation',
+        component: RegisterValidationComponent
+      },
+      {
+        path: 'register/activation/:token',
+        component: RegisterActivationComponent
       },
       {
         path: 'logout',
@@ -159,6 +169,8 @@ const appRoutes = [
     MySchedulePageComponent,
     ActivitiesPageComponent,
     ManageAccountPageComponent,
+    RegisterValidationComponent,
+    RegisterActivationComponent,
     LoginPageComponent,
     LogoutPageComponent,
     ActivityConfirmationComponent,
