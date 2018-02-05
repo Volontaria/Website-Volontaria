@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  default_language: 'en',
   url_base_api: 'http://localhost:8000',
   paths_api: {
     activation: '/users/activate',
