@@ -3,25 +3,31 @@ import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
+import GlobalService from './globalService';
 
 interface AuthenticationResponse {
   token: string;
 }
 
 @Injectable()
-export class AuthenticationService {
+export class AuthenticationService extends GlobalService {
 
   url_authentication = environment.url_base_api + environment.paths_api.authentication;
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {
+    super();
+  }
 
   authenticate(login: string, password: string): Observable<AuthenticationResponse> {
+    const headers = this.getHeaders();
     return this.http.post<AuthenticationResponse>(
       this.url_authentication,
       {
         login: login,
         password: password
-      });
+      },
+      {headers: headers}
+    );
   }
 
   isAuthenticated() {

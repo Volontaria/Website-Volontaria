@@ -19,6 +19,7 @@ export class UserService extends GlobalService {
   }
 
   createUser(user: User, password: string): Observable<any> {
+    const headers = this.getHeaders();
     return this.http.post<any>(
       this.url_users,
       {
@@ -29,7 +30,9 @@ export class UserService extends GlobalService {
         email: user.email,
         phone: user.phone,
         mobile: user.mobile,
-      });
+      },
+      {headers: headers}
+    );
   }
 
   getProfile(): Observable<any> {
@@ -41,11 +44,14 @@ export class UserService extends GlobalService {
   }
 
   activate(token: string): Observable<any> {
+    const headers = this.getHeaders();
     return this.http.post<any>(
       this.url_activation,
       {
         activation_token: token
-      });
+      },
+      {headers: headers}
+  );
   }
 
 }
