@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user';
 
 
 @Component({
@@ -9,10 +11,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class AdminVolunteersComponent implements OnInit {
 
-  constructor() {
-  }
+  users: User[];
+
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
+    this.userService.getUsers().subscribe(
+      data => {
+        this.users = data.results.map(u => new User(u) );
+      }
+    );
   }
-
 }
