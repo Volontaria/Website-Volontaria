@@ -40,6 +40,10 @@ export class AuthenticationService extends GlobalService {
     return false;
   }
 
+  isAdmin() {
+    return this.getProfile().is_superuser;
+  }
+
   getProfile() {
     return JSON.parse(localStorage.getItem('userProfile'));
   }
