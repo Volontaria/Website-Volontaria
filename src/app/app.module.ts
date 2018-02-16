@@ -15,6 +15,7 @@ import { CycleService } from './services/cycle.service';
 import { CellService } from './services/cell.service';
 import { ParticipationService } from './services/participation.service';
 import { CanActivateViaAuthGuard } from './guards/CanActivateViaAuthGuard';
+import { CanActivateViaAdminGuard } from './guards/CanActivateViaAdminGuard';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -131,7 +132,8 @@ const appRoutes = [
         path: 'admin/volunteers',
         component: AdminVolunteersComponent,
         canActivate: [
-          CanActivateViaAuthGuard
+          CanActivateViaAuthGuard,
+          CanActivateViaAdminGuard
         ]
       },
       {
@@ -205,6 +207,7 @@ const appRoutes = [
     CellService,
     ParticipationService,
     CanActivateViaAuthGuard,
+    CanActivateViaAdminGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyHttpInterceptor,
