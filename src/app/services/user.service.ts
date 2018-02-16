@@ -18,6 +18,14 @@ export class UserService extends GlobalService {
     super();
   }
 
+  getUsers(): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get<any>(
+      this.url_users,
+      {headers: headers}
+    );
+  }
+
   createUser(user: User, password: string): Observable<any> {
     const headers = this.getHeaders();
     return this.http.post<any>(
