@@ -17,6 +17,10 @@ export class HeaderComponent {
     return this.authenticationService.isAuthenticated();
   }
 
+  isAdmin() {
+    return this.authenticationService.isAdmin();
+  }
+
   toogleResponsiveNavbar() {
     this.responsive = !this.responsive;
   }
