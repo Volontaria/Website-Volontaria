@@ -16,7 +16,6 @@ export class RegisterActivationComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
-      console.log(params);
       this.userService.activate(params['token']).subscribe(
         data => {
           this.success = true;
