@@ -41,6 +41,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 const appRoutes = [
   {
@@ -198,6 +199,7 @@ const appRoutes = [
     ),
     FormsModule,
     SimpleNotificationsModule.forRoot(),
+    AngularMultiSelectModule,
   ],
   exports: [ RouterModule ],
   providers: [

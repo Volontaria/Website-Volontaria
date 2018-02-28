@@ -1,17 +1,19 @@
 <div class="activities-page">
   <div class="activities-page__filters">
-    <select class="activities-page__filters__filter" multiple [(ngModel)]="tasktypeFilter" (change)="filter()">
-      <option disabled>Filtrer par tâche</option>
-      <option *ngFor="let tasktype of tasktypes" value="{{ tasktype.id }}">
-        {{ tasktype.name }}
-      </option>
-    </select>
-    <select class="activities-page__filters__filter" multiple [(ngModel)]="cellFilter" (change)="filter()">
-      <option disabled>Filtrer par cellule</option>
-      <option *ngFor="let cell of cells" value="{{ cell.id }}">
-        {{ cell.name }}
-      </option>
-    </select>
+    <angular2-multiselect [data]="dropdownCellList" [(ngModel)]="selectedCells"
+                          [settings]="dropdownCellSettings"
+                          (onSelect)="onItemSelect($event)"
+                          (onDeSelect)="OnItemDeSelect($event)"
+                          (onSelectAll)="onSelectAll($event)"
+                          (onDeSelectAll)="onDeSelectAll($event)">
+    </angular2-multiselect>
+    <angular2-multiselect [data]="dropdownTasktypeList" [(ngModel)]="selectedTasktypes"
+                            [settings]="dropdownTasktypeSettings"
+                            (onSelect)="onItemSelect($event)"
+                            (onDeSelect)="OnItemDeSelect($event)"
+                            (onSelectAll)="onSelectAll($event)"
+                            (onDeSelectAll)="onDeSelectAll($event)">
+    </angular2-multiselect>
   </div>
   <div class="activities-page__activities">
     <table class="table">

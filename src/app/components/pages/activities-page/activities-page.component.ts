@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import {EventService} from '../../../services/event.service';
+import { Component, OnInit } from '@angular/core';
+import { EventService } from '../../../services/event.service';
 import { Event } from '../../../models/event';
-import {TasktypeService} from '../../../services/tasktype.service';
-import {Tasktype} from '../../../models/tasktype';
-import {CellService} from '../../../services/cell.service';
-import {Cell} from '../../../models/cell';
-import {User} from '../../../models/user';
-import {AuthenticationService} from '../../../services/authentication.service';
+import { TasktypeService } from '../../../services/tasktype.service';
+import { Tasktype } from '../../../models/tasktype';
+import { CellService } from '../../../services/cell.service';
+import { Cell } from '../../../models/cell';
+import { User } from '../../../models/user';
+import { AuthenticationService } from '../../../services/authentication.service';
 
 
 @Component({
@@ -14,21 +14,27 @@ import {AuthenticationService} from '../../../services/authentication.service';
   selector: 'app-activities',
   styleUrls: ['activities-page.component.scss']
 })
-export class ActivitiesPageComponent {
+export class ActivitiesPageComponent implements OnInit {
 
   user: User;
   events: Event[];
-  tasktypes: Tasktype[];
-  cells: Cell[];
 
   filteredEvents: Event[];
-  tasktypeFilter: string[] = [];
-  cellFilter: string[] = [];
+
+  dropdownTasktypeList = [];
+  selectedTasktypes = [];
+  dropdownTasktypeSettings = {};
+
+  dropdownCellList = [];
+  selectedCells = [];
+  dropdownCellSettings = {};
 
   constructor(private eventService: EventService,
               private tasktypeService: TasktypeService,
               private cellService: CellService,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService) {}
+
+  ngOnInit() {
     this.user = this.authenticationService.getProfile();
 
     this.eventService.getEvents().subscribe(
@@ -40,31 +46,90 @@ export class ActivitiesPageComponent {
 
     this.tasktypeService.getTasktypes().subscribe(
       data => {
-        this.tasktypes = data.results.map(t => new Tasktype(t) );
+        const tasktypes = data.results.map(t => new Tasktype(t) );
+        for (const tasktype of Object.keys(tasktypes)) {
+          this.dropdownTasktypeList.push(this.tasktypeToDict(tasktypes[tasktype]));
+        }
       }
     );
 
     this.cellService.getCells().subscribe(
       data => {
-        this.cells = data.results.map(c => new Cell(c) );
+        const cells = data.results.map(c => new Cell(c) );
+        for (const cell of Object.keys(cells)) {
+          this.dropdownCellList.push(this.cellToDict(cells[cell]));
+        }
       }
     );
+
+    this.dropdownTasktypeSettings = {
+      singleSelection: false,
+      text: 'Filtrer par activité',
+      selectAllText: 'Toutes',
+      unSelectAllText: 'Aucun',
+      classes: 'activities-page__filters__filter',
+    };
+
+    this.dropdownCellSettings = {
+      singleSelection: false,
+      text: 'Filtrer par cellule',
+      selectAllText: 'Toutes',
+      unSelectAllText: 'Aucune',
+      classes: 'activities-page__filters__filter',
+    };
+  }
+
+  onItemSelect(item: any) {
+    this.filter();
+  }
+
+  OnItemDeSelect(item: any) {
+    this.filter();
+  }
+
+  onSelectAll(items: any) {
+    this.filter();
+  }
+
+  onDeSelectAll(items: any) {
+    this.filter();
+  }
+
+  private tasktypeToDict(tasktype: Tasktype) {
+    return {
+      'id': tasktype.id,
+      'itemName': tasktype.name,
+    };
+  }
+
+  private cellToDict(cell: Cell) {
+    return {
+      'id': cell.id,
+      'itemName': cell.name,
+    };
+  }
+
+  private elemIsFiltered(elem, filters) {
+    for (const filter in filters) {
+      if (filters[filter].id === elem.id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   filter() {
-    console.log(this.tasktypeFilter);
-    console.log(this.cellFilter);
     this.filteredEvents = [];
     const eventFiltered = [];
 
     for (const event in this.events) {
       if ( new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
         // If no task_type filter or filter is verified
-        if ( this.tasktypeFilter.length === 0
-          || this.tasktypeFilter.indexOf(this.events[event].task_type.id.toString()) > -1 ) {
+        if ( this.selectedTasktypes.length === 0
+          || this.elemIsFiltered(this.tasktypeToDict(this.events[event].task_type), this.selectedTasktypes)) {
           // If no cell filter or filter is verified
-          if ( this.cellFilter.length === 0
-            || this.cellFilter.indexOf(this.events[event].cell.id.toString()) > -1 ) {
+          if ( this.selectedCells.length === 0
+            || this.elemIsFiltered(this.cellToDict(this.events[event].cell), this.selectedCells)) {
             eventFiltered.push(this.events[event]);
           }
         }
@@ -72,7 +137,7 @@ export class ActivitiesPageComponent {
     }
 
     // If no filters, we take all events
-    if (this.cellFilter.length === 0 && this.tasktypeFilter.length === 0) {
+    if (this.selectedCells.length === 0 && this.selectedTasktypes.length === 0) {
       for (const event in this.events) {
         if (new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
           this.filteredEvents.push(this.events[event]);

@@ -38,7 +38,6 @@ export class ActivityConfirmationComponent implements OnInit {
   }
 
   submit(standby: boolean) {
-    console.log('Call submit to create new participation');
     this.participationService.createParticipation(this.event.id, standby).subscribe(
       data => {
         this.notificationService.success('Inscription réussie', 'Merci!');

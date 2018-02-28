@@ -11,8 +11,9 @@
     padding-bottom: 1rem;
 
     &__filter {
-      max-width: 200px;
-      padding-right: 1rem;
+      width: 300px;
+      box-sizing: border-box;
+      padding-right: 2rem;
     }
   }
 
