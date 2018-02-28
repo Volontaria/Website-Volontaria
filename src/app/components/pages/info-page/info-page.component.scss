@@ -1,8 +1,12 @@
 .info-page {
   margin: 1rem;
+  font-size: 14px;
 
   &__title {
-    font-size: 21px;
-    text-decoration: underline;
+    margin-top: 20px;
+  }
+
+  &__content{
+    margin-left: 20px;
   }
 }
