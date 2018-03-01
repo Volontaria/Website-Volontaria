@@ -1,7 +1,7 @@
 <div class="page-homepage">
   <img class="page-homepage__banner" src="assets/images/home.jpg" alt="Pictures of NousRire volunteers">
   <div class="page-homepage__title">
-    Bonjour {{ user.first_name }}!
+    Bonjour <span *ngIf="user">{{ user.first_name }}</span>!
   </div>
   <div class="page-homepage__content">
     <h3>Voici la période d'emballage à venir :</h3>
