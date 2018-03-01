@@ -40,6 +40,7 @@ import { RegisterActivationComponent } from './components/pages/register-activat
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes = [
   {
@@ -188,6 +189,7 @@ const appRoutes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
     RouterModule.forRoot(
