@@ -76,7 +76,7 @@
     </div>
     <p>
       <label for="form_first_name">
-        Prénom
+        Prénom *
       </label>
       <br/>
       <input [(ngModel)]="user.first_name"
@@ -86,13 +86,16 @@
     </p>
     <p>
       <label for="form_last_name">
-        Nom
+        Nom *
       </label>
       <br/>
       <input [(ngModel)]="user.last_name"
              id="form_last_name"
              name="last_name"
              type="text">
+    </p>
+    <p class="card card--warning">
+      Pour t'inscrire tu dois nous fournir au moins un numéro de téléphone afin qu'on puisse communiquer avec toi.
     </p>
     <div class="manage-account-page__form__input">
       <label for="form_phone_home">
@@ -127,7 +130,7 @@
       </ul>
     </div>
     <button class="button">
-      Creer le compte
+      Créer le compte
     </button>
   </form>
 </div>
