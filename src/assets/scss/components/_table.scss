@@ -6,20 +6,27 @@
     border-collapse: collapse;
 
     tr {
-        background-color: $main-background-dark;
+      background-color: $main-background-dark;
 
-        &:nth-child(odd) {
-            background-color: white;
-        }
+      &:nth-child(odd) {
+        background-color: white;
+      }
 
-        td {
-            padding: 10px;
-        }
+      td {
+        padding: 10px;
+      }
 
-        th {
-            text-align: left;
-            font-weight: bold;
-            padding: 10px;
+      th {
+        text-align: left;
+        font-weight: bold;
+        padding: 10px;
+      }
+
+      &.clickable {
+        &:hover {
+          cursor: pointer;
+          background-color: $main-hover;
         }
+      }
     }
 }

@@ -66,7 +66,7 @@ export class ActivitiesPageComponent implements OnInit {
       singleSelection: false,
       text: 'Filtrer par activité',
       selectAllText: 'Toutes',
-      unSelectAllText: 'Aucun',
+      unSelectAllText: 'Aucune',
       classes: 'activities-page__filters__filter',
     };
 

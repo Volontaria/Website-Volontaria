@@ -1,0 +1,72 @@
+<div class="admin-cell" *ngIf="cell">
+  <h2>Cellule de {{ cell.name }}</h2>
+
+  <p>
+    <b>Adresse : </b>
+    {{ cell.address.address_line1 }},
+    <span *ngIf="cell.address.address_line2">{{ cell.address.address_line2 }},</span>
+    {{ cell.address.city }},
+    {{ cell.address.postal_code }}
+  </p>
+
+  <p>
+    <b>Manageur(s) : </b>
+    <span *ngFor="let manager of cell.managers">
+      {{ manager.first_name }}
+    </span>
+  </p>
+
+  <b>Plages horaires de la cellule :</b>
+  <div class="admin-cell__filters">
+    <angular2-multiselect [data]="dropdownCycleList" [(ngModel)]="selectedCycles"
+                          [settings]="dropdownCycleSettings"
+                          (onSelect)="onItemSelect($event)"
+                          (onDeSelect)="OnItemDeSelect($event)"
+                          (onSelectAll)="onSelectAll($event)"
+                          (onDeSelectAll)="onDeSelectAll($event)">
+    </angular2-multiselect>
+    <angular2-multiselect [data]="dropdownTasktypeList" [(ngModel)]="selectedTasktypes"
+                          [settings]="dropdownTasktypeSettings"
+                          (onSelect)="onItemSelect($event)"
+                          (onDeSelect)="OnItemDeSelect($event)"
+                          (onSelectAll)="onSelectAll($event)"
+                          (onDeSelectAll)="onDeSelectAll($event)">
+    </angular2-multiselect>
+  </div>
+  <table class="table" style="width: 100%">
+    <tr>
+      <th>Début</th>
+      <th>Fin</th>
+      <th>Activité</th>
+      <th>Lieu</th>
+      <th>Inscription</th>
+    </tr>
+    <tr *ngIf="events && filteredEvents.length == 0">
+      <td colspan="5">
+        Aucune plage horaires pour le moment.
+      </td>
+    </tr>
+    <tr *ngFor="let event of filteredEvents" (click)="visitEvent(event.id)" class="clickable">
+      <td>
+        {{ event.start_date | date:'dd MMMM yyyy'}}<br/>
+        {{ event.start_date | date:'HH:mm'}}
+      </td>
+      <td>
+        {{ event.end_date | date:'dd MMMM yyyy'}}<br/>
+        {{ event.end_date | date:'HH:mm'}}
+      </td>
+      <td>
+        {{ event.task_type.name }}
+      </td>
+      <td>
+        {{ event.cell.address.address_line1 }}<br/>
+        {{ event.cell.address.address_line2 }}<br/>
+        {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
+      </td>
+      <td>
+        Bénévoles : {{ event.nb_volunteers }} / {{ event.nb_volunteers_needed }}<br>
+        Remplaçants : {{ event.nb_volunteers_standby }} / {{ event.nb_volunteers_standby_needed }}<br>
+      </td>
+    </tr>
+  </table>
+</div>

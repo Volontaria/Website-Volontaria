@@ -17,3 +17,5 @@ $main-border: lightgrey;
 $background-color-warning: #fdffd5;
 $color-warning: #cd8535;
 $color-danger: #C82333;
+
+$main-hover: lighten($main-color, 30)

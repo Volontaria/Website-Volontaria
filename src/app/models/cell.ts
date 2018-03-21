@@ -1,12 +1,12 @@
 import BaseModel from './baseModel';
+import { Address } from './address';
+import { User } from './user';
 
 export class Cell extends BaseModel {
   id: number;
   name: string;
-  address_line1: string;
-  address_line2: string;
-  postal_code: string;
-  city: string;
+  address: Address;
+  managers: User;
 }
 
 

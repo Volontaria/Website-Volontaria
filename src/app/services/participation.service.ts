@@ -29,6 +29,18 @@ export class ParticipationService extends GlobalService {
       );
   }
 
+  getParticipations(event: number=null): Observable<any> {
+    const headers = this.getHeaders();
+    let params = new HttpParams();
+    if (event != null) {
+      params = params.set('event', event.toString());
+    }
+    return this.http.get<any>(
+      this.url_participations,
+      {headers: headers, params: params}
+    );
+  }
+
   getMyParticipations(): Observable<any> {
     const headers = this.getHeaders();
     const username = this.authenticationService.getProfile().username;

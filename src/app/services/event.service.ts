@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import GlobalService from './globalService';
 import {AuthenticationService} from './authentication.service';
 import {environment} from '../../environments/environment';
+import {Cell} from "../models/cell";
 
 
 @Injectable()
@@ -17,11 +18,15 @@ export class EventService extends GlobalService {
     super();
   }
 
-  getEvents(): Observable<any> {
+  getEvents(cell: number=null): Observable<any> {
     const headers = this.getHeaders();
+    let params = new HttpParams();
+    if (cell != null) {
+      params = params.set('cell', cell.toString());
+    }
     return this.http.get<any>(
       this.url_events,
-      {headers: headers}
+      {headers: headers, params: params}
     );
   }
 
