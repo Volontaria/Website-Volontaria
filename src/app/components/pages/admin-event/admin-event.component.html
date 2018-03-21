@@ -1,0 +1,62 @@
+<div class="admin-event" *ngIf="event">
+  <h2>Événement</h2>
+
+  <p>
+    <b>Début : </b>
+    {{ event.start_date | date:'dd MMMM yyyy' }} à {{ event.start_date | date:'HH:mm' }}
+  </p>
+
+  <p>
+    <b>Fin : </b>
+    {{ event.end_date | date:'dd MMMM yyyy' }} à {{ event.end_date | date:'HH:mm' }}
+  </p>
+
+  <p>
+    <b>Nombre de bénévoles : </b>
+    {{ event.nb_volunteers }} / {{ event.nb_volunteers_needed }}
+  </p>
+
+  <p>
+    <b>Nombre de remplaçants : </b>
+    {{ event.nb_volunteers_standby }} / {{ event.nb_volunteers_standby_needed }}
+  </p>
+
+  <b>Participations : </b>
+  <table class="table" style="width: 100%">
+    <tr>
+      <th>Nom d'utilisateur</th>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Courriel</th>
+      <th>Téléphones</th>
+      <th>Type</th>
+    </tr>
+    <tr *ngIf="participations && participations.length == 0">
+      <td colspan="5">
+        Aucune participations pour le moment.
+      </td>
+    </tr>
+    <tr *ngFor="let participation of participations">
+      <td>
+        {{ participation.user.username }}
+      </td>
+      <td>
+        {{ participation.user.first_name }}
+      </td>
+      <td>
+        {{ participation.user.last_name }}
+      </td>
+      <td>
+        {{ participation.user.email }}
+      </td>
+      <td>
+        <span *ngIf="participation.user.phone">{{ participation.user.phone }}<br/></span>
+        {{ participation.user.mobile }}
+      </td>
+      <td>
+        <span *ngIf="participation.standby">Remplaçant</span>
+        <span *ngIf="!participation.standby">Bénévole</span>
+      </td>
+    </tr>
+  </table>
+</div>

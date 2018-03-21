@@ -1,0 +1,15 @@
+.admin-cell {
+  margin: 1rem;
+
+  &__filters {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+
+    &__filter {
+      width: 300px;
+      box-sizing: border-box;
+      padding-right: 2rem;
+    }
+  }
+}

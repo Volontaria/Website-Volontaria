@@ -1,0 +1,16 @@
+<div class="admin-cycles">
+  <h2>Liste des cycles de commandes</h2>
+
+  <table class="table" style="width: 100%">
+    <tr>
+      <th>Nom</th>
+      <th>Date de début</th>
+      <th>Date de fin</th>
+    </tr>
+    <tr *ngFor="let cycle of cycles">
+      <td>{{ cycle.name }}</td>
+      <td>{{ cycle.start_date | date:'dd MMMM yyyy' }}</td>
+      <td>{{ cycle.end_date | date:'dd MMMM yyyy' }}</td>
+    </tr>
+  </table>
+</div>

@@ -22,4 +22,12 @@ export class CellService extends GlobalService {
       {headers: headers}
     );
   }
+
+  getCell(id: number): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get<any>(
+      this.url_cells + '/' + id,
+      {headers: headers}
+    );
+  }
 }

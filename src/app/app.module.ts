@@ -29,6 +29,10 @@ import { PageNotFoundComponent } from './components/pages/notfound-page/notfound
 import { AdminActivityDetailComponent } from './components/pages/admin-activity-detail/admin-activity-detail.component';
 import { AdminActivitiesComponent } from './components/pages/admin-activities/admin-activities.component';
 import { AdminVolunteersComponent } from './components/pages/admin-volunteers/admin-volunteers.component';
+import { AdminCyclesComponent } from './components/pages/admin-cycles/admin-cycles.component';
+import { AdminCellsComponent } from './components/pages/admin-cells/admin-cells.component';
+import { AdminCellComponent } from './components/pages/admin-cell/admin-cell.component';
+import { AdminEventComponent } from './components/pages/admin-event/admin-event.component';
 // tslint:disable-next-line:max-line-length
 import { ActivityConfirmationComponent } from './components/pages/activities-page/activity-confirmation-page/activity-confirmation-page.component';
 import { ManageAccountPageComponent } from './components/pages/manage-account-page/manage-account-page.component';
@@ -38,6 +42,7 @@ import { RegisterValidationComponent } from './components/pages/register-validat
 import { RegisterActivationComponent } from './components/pages/register-activation/register-activation.component';
 
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -131,6 +136,20 @@ const appRoutes = [
         ]
       },
       {
+        path: '',
+        redirectTo: '/index',
+        pathMatch: 'full',
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      }
+    ]
+  },
+  {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+      {
         path: 'admin/volunteers',
         component: AdminVolunteersComponent,
         canActivate: [
@@ -139,13 +158,37 @@ const appRoutes = [
         ]
       },
       {
-        path: '',
-        redirectTo: '/index',
-        pathMatch: 'full',
+        path: 'admin/cycles',
+        component: AdminCyclesComponent,
         canActivate: [
-          CanActivateViaAuthGuard
+          CanActivateViaAuthGuard,
+          CanActivateViaAdminGuard
         ]
-      }
+      },
+      {
+        path: 'admin/cells',
+        component: AdminCellsComponent,
+        canActivate: [
+          CanActivateViaAuthGuard,
+          CanActivateViaAdminGuard
+        ]
+      },
+      {
+        path: 'admin/cells/:cellId',
+        component: AdminCellComponent,
+        canActivate: [
+          CanActivateViaAuthGuard,
+          CanActivateViaAdminGuard
+        ]
+      },
+      {
+        path: 'admin/events/:eventId',
+        component: AdminEventComponent,
+        canActivate: [
+          CanActivateViaAuthGuard,
+          CanActivateViaAdminGuard
+        ]
+      },
     ]
   },
   {
@@ -179,12 +222,17 @@ const appRoutes = [
     LogoutPageComponent,
     ActivityConfirmationComponent,
     AdminVolunteersComponent,
+    AdminCyclesComponent,
+    AdminCellsComponent,
+    AdminCellComponent,
+    AdminEventComponent,
     AdminActivitiesComponent,
     AdminActivityDetailComponent,
     InfoPageComponent,
     ContactPageComponent,
     DocumentationComponent,
     PageNotFoundComponent,
+    AdminLayoutComponent,
     DefaultLayoutComponent,
     LoginLayoutComponent
   ],

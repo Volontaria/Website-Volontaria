@@ -1,0 +1,12 @@
+<div class="admin-cells">
+  <h2>Liste des cellules</h2>
+
+  <table class="table" style="width: 100%">
+    <tr>
+      <th>Nom</th>
+    </tr>
+    <tr *ngFor="let cell of cells" (click)="visitCell(cell.id)" class="clickable">
+      <td>{{ cell.name }}</td>
+    </tr>
+  </table>
+</div>
