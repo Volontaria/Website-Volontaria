@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import GlobalService from './globalService';
-import {environment} from '../../environments/environment';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
@@ -15,11 +15,17 @@ export class CycleService extends GlobalService {
     super();
   }
 
-  getCycles(): Observable<any> {
+  getCycles(isActive: boolean= null): Observable<any> {
     const headers = this.getHeaders();
+    let params = new HttpParams();
+
+    if (isActive != null) {
+      params = params.set('is_active', isActive.toString());
+    }
+
     return this.http.get<any>(
       this.url_cycles,
-      {headers: headers}
+      {headers: headers, params: params}
     );
   }
 }

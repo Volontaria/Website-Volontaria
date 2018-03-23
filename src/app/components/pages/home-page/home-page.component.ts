@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {Cycle} from '../../../models/cycle';
-import {CycleService} from '../../../services/cycle.service';
-import {User} from '../../../models/user';
-import {UserService} from '../../../services/user.service';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { Cycle } from '../../../models/cycle';
+import { CycleService } from '../../../services/cycle.service';
+import { User } from '../../../models/user';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +22,7 @@ export class HomePageComponent {
         this.user = data;
       }
     );
-    this.cycleService.getCycles().subscribe(
+    this.cycleService.getCycles(true).subscribe(
       data => {
         this.cycles = data.results.map(c => new Cycle(c) );
       }
