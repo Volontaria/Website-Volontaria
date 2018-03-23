@@ -29,7 +29,7 @@ export class ParticipationService extends GlobalService {
       );
   }
 
-  getParticipations(event: number=null): Observable<any> {
+  getParticipations(event: number= null): Observable<any> {
     const headers = this.getHeaders();
     let params = new HttpParams();
     if (event != null) {

@@ -87,7 +87,7 @@ export class AdminCellComponent implements OnInit {
     this.eventService.getEvents(this.cell.id).subscribe(
       data => {
         this.events = data.results.map(e => new Event(e) );
-        this.filter()
+        this.filter();
       }
     );
   }
@@ -154,7 +154,9 @@ export class AdminCellComponent implements OnInit {
     // If no filters, we take all events
     if (this.selectedCycles.length === 0 && this.selectedTasktypes.length === 0) {
       for (const event in this.events) {
-        this.filteredEvents.push(this.events[event]);
+        if (event) {
+          this.filteredEvents.push(this.events[event]);
+        }
       }
     } else {
       this.filteredEvents = eventFiltered;
