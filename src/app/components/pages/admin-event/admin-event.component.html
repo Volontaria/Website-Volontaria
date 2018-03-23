@@ -12,6 +12,19 @@
   </p>
 
   <p>
+    <b>Adresse : </b>
+    {{ event.cell.address.address_line1 }},
+    <span *ngIf="event.cell.address.address_line2">{{ event.cell.address.address_line2 }},</span>
+    {{ event.cell.address.city }},
+    {{ event.cell.address.postal_code }}
+  </p>
+
+  <p>
+    <b>Cycle : </b>
+    {{ event.cycle.name }}
+  </p>
+
+  <p>
     <b>Nombre de bénévoles : </b>
     {{ event.nb_volunteers }} / {{ event.nb_volunteers_needed }}
   </p>
