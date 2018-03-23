@@ -1,6 +1,8 @@
 <div class="admin-volunteers">
   <h2>Liste des bénévoles</h2>
 
+  <input type="text" [(ngModel)]="search" placeholder="Search a volunteer by name or email.." (change)="filter()" />
+
   <table class="table" style="width: 100%">
     <tr>
       <th>Nom d'utilisateur</th>
@@ -12,7 +14,7 @@
       <th>Actif</th>
       <th>Admin</th>
     </tr>
-    <tr *ngFor="let user of users">
+    <tr *ngFor="let user of filteredUsers">
       <td>{{ user.username }}</td>
       <td>{{ user.last_name }}</td>
       <td>{{ user.first_name }}</td>
