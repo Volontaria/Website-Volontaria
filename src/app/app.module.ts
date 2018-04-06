@@ -61,7 +61,7 @@ const appRoutes = [
         ]
       },
       {
-        path: 'activities',
+        path: 'activities/:cycle',
         component: ActivitiesPageComponent,
         canActivate: [
           CanActivateViaAuthGuard

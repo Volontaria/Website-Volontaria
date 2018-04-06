@@ -7,6 +7,7 @@ import { CellService } from '../../../services/cell.service';
 import { Cell } from '../../../models/cell';
 import { User } from '../../../models/user';
 import { AuthenticationService } from '../../../services/authentication.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -32,17 +33,20 @@ export class ActivitiesPageComponent implements OnInit {
   constructor(private eventService: EventService,
               private tasktypeService: TasktypeService,
               private cellService: CellService,
-              private authenticationService: AuthenticationService) {}
+              private authenticationService: AuthenticationService,
+              private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.user = this.authenticationService.getProfile();
 
-    this.eventService.getEvents().subscribe(
-      data => {
-        this.events = data.results.map(e => new Event(e) );
-        this.filter();
-      }
-    );
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.eventService.getEvents(null, params['cycle']).subscribe(
+        data => {
+          this.events = data.results.map(e => new Event(e));
+          this.filter();
+        }
+      );
+    });
 
     this.tasktypeService.getTasktypes().subscribe(
       data => {
