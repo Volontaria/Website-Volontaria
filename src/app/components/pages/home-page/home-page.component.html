@@ -12,7 +12,7 @@
       <p>
         Du {{ cycle.start_date | date:'dd MMMM yyyy'}} au {{ cycle.end_date | date:'dd MMMM yyyy'}}
       </p>
-      <a routerLink="/activities" class="button">
+      <a routerLink="/activities/{{ cycle.id }}" class="button">
         M'inscrire à une plage horaire
       </a>
     </div>

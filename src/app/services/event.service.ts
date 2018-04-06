@@ -17,11 +17,14 @@ export class EventService extends GlobalService {
     super();
   }
 
-  getEvents(cell: number= null): Observable<any> {
+  getEvents(cell: number= null, cycle: number= null): Observable<any> {
     const headers = this.getHeaders();
     let params = new HttpParams();
     if (cell != null) {
       params = params.set('cell', cell.toString());
+    }
+    if (cycle != null) {
+      params = params.set('cycle', cycle.toString());
     }
     return this.http.get<any>(
       this.url_events,
