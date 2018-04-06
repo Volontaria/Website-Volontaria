@@ -1,8 +1,39 @@
 .admin-event {
   margin: 1rem;
 
-  &__search {
-    margin-top: 20px;
-    margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &__details-left {
+    width: calc(50% - 2rem);
+    padding: 1rem;
+  }
+
+  &__details-right {
+    width: calc(50% - 2rem);
+    padding: 1rem;
+  }
+
+  &__participations {
+    width: calc(100% - 2rem);
+    padding: 1rem;
+    overflow-x: scroll;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .admin-event {
+    &__details-left {
+      padding: 1rem;
+      width: calc(100% - 2rem);
+      overflow-x: scroll;
+    }
+
+    &__details-right {
+      width: calc(100% - 2rem);
+      padding: 1rem;
+      overflow-x: scroll;
+    }
   }
 }

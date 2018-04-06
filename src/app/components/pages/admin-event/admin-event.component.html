@@ -1,75 +1,104 @@
 <div class="admin-event" *ngIf="event">
-  <h2>Événement</h2>
+  <div class="admin-event__details-left">
+    <h2>Informations générales: </h2>
+    <table class="table">
+      <tr>
+        <th>Début</th>
+        <td>{{ event.start_date | date:'dd MMMM yyyy' }} à {{ event.start_date | date:'HH:mm' }}</td>
+      </tr>
+      <tr>
+        <th>Fin</th>
+        <td>{{ event.end_date | date:'dd MMMM yyyy' }} à {{ event.end_date | date:'HH:mm' }}</td>
+      </tr>
+      <tr>
+        <th>Nombre de bénévoles</th>
+        <td>{{ event.nb_volunteers }} / {{ event.nb_volunteers_needed }}</td>
+      </tr>
+      <tr>
+        <th>Nombre de remplaçants</th>
+        <td>{{ event.nb_volunteers_standby }} / {{ event.nb_volunteers_standby_needed }}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="admin-event__details-right">
+    <h2>Détails :</h2>
+    <table class="table">
+      <tr>
+        <th>Adresse</th>
+        <td>
+          {{ event.cell.address.address_line1 }},<br/>
+          <span *ngIf="event.cell.address.address_line2">{{ event.cell.address.address_line2 }},<br/></span>
+          {{ event.cell.address.city }}, {{ event.cell.address.postal_code }}
+        </td>
+      </tr>
+      <tr>
+        <th>Cycle</th>
+        <td>{{ event.cycle.name }}</td>
+      </tr>
+      <tr>
+        <th>Cellule</th>
+        <td>{{ event.cell.name }}</td>
+      </tr>
+      <tr>
+        <th>Activité</th>
+        <td>{{ event.task_type.name }}</td>
+      </tr>
+    </table>
+  </div>
 
-  <p>
-    <b>Début : </b>
-    {{ event.start_date | date:'dd MMMM yyyy' }} à {{ event.start_date | date:'HH:mm' }}
-  </p>
-
-  <p>
-    <b>Fin : </b>
-    {{ event.end_date | date:'dd MMMM yyyy' }} à {{ event.end_date | date:'HH:mm' }}
-  </p>
-
-  <p>
-    <b>Adresse : </b>
-    {{ event.cell.address.address_line1 }},
-    <span *ngIf="event.cell.address.address_line2">{{ event.cell.address.address_line2 }},</span>
-    {{ event.cell.address.city }},
-    {{ event.cell.address.postal_code }}
-  </p>
-
-  <p>
-    <b>Cycle : </b>
-    {{ event.cycle.name }}
-  </p>
-
-  <p>
-    <b>Nombre de bénévoles : </b>
-    {{ event.nb_volunteers }} / {{ event.nb_volunteers_needed }}
-  </p>
-
-  <p>
-    <b>Nombre de remplaçants : </b>
-    {{ event.nb_volunteers_standby }} / {{ event.nb_volunteers_standby_needed }}
-  </p>
-
-  <b>Participations : </b>
-  <table class="table" style="width: 100%">
-    <tr>
-      <th>Nom d'utilisateur</th>
-      <th>Prénom</th>
-      <th>Nom</th>
-      <th>Courriel</th>
-      <th>Téléphones</th>
-      <th>Type</th>
-    </tr>
-    <tr *ngIf="participations && participations.length == 0">
-      <td colspan="5">
-        Aucune participations pour le moment.
-      </td>
-    </tr>
-    <tr *ngFor="let participation of participations">
-      <td>
-        {{ participation.user.username }}
-      </td>
-      <td>
-        {{ participation.user.first_name }}
-      </td>
-      <td>
-        {{ participation.user.last_name }}
-      </td>
-      <td>
-        {{ participation.user.email }}
-      </td>
-      <td>
-        <span *ngIf="participation.user.phone">{{ participation.user.phone }}<br/></span>
-        {{ participation.user.mobile }}
-      </td>
-      <td>
-        <span *ngIf="participation.standby">Remplaçant</span>
-        <span *ngIf="!participation.standby">Bénévole</span>
-      </td>
-    </tr>
-  </table>
+  <div class="admin-event__participations">
+    <h2>Participations : </h2>
+    <table class="table">
+      <tr>
+        <th>Nom d'utilisateur</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Courriel</th>
+        <th>Téléphones</th>
+        <th>Type</th>
+        <th>Durée (minutes)</th>
+        <th>Présence</th>
+      </tr>
+      <tr *ngIf="participations && participations.length == 0">
+        <td colspan="5">
+          Aucune participations pour le moment.
+        </td>
+      </tr>
+      <tr *ngFor="let participation of participations">
+        <td>
+          {{ participation.user.username }}
+        </td>
+        <td>
+          {{ participation.user.first_name }}
+        </td>
+        <td>
+          {{ participation.user.last_name }}
+        </td>
+        <td>
+          {{ participation.user.email }}
+        </td>
+        <td>
+          <span *ngIf="participation.user.phone">{{ participation.user.phone }}<br/></span>
+          {{ participation.user.mobile }}
+        </td>
+        <td>
+          <span *ngIf="participation.standby">Remplaçant</span>
+          <span *ngIf="!participation.standby">Bénévole</span>
+        </td>
+        <td>
+          <input (focusout)="save_participation(participation, 'presence_duration_minutes', $event.target.value)"
+                 type="text"
+                 value="{{ participation.presence_duration_minutes }}"
+          />
+        </td>
+        <td>
+          <select (change)="save_participation(participation, 'presence_status', $event.target.value)">
+            <option *ngFor="let option of participationStatusOption" value="{{ option.value }}" [selected]="option.value == participation.presence_status">
+              {{ option.name }}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>

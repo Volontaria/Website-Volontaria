@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { EventService } from '../../../services/event.service';
 import { Participation } from '../../../models/participation';
 import { ParticipationService } from '../../../services/participation.service';
+import { NotificationsService } from 'angular2-notifications';
 
 
 @Component({
@@ -16,10 +17,25 @@ export class AdminEventComponent implements OnInit {
 
   event: Event;
   participations: Participation[];
+  participationStatusOption = [
+    {
+      value: 'I',
+      name: 'Inconnu',
+    },
+    {
+      value: 'A',
+      name: 'Absent',
+    },
+    {
+      value: 'P',
+      name: 'Présent',
+    },
+  ];
 
   constructor(private activatedRoute: ActivatedRoute,
               private eventService: EventService,
-              private participationService: ParticipationService) {}
+              private participationService: ParticipationService,
+              private notificationService: NotificationsService) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -38,5 +54,20 @@ export class AdminEventComponent implements OnInit {
         this.participations = data.results.map(p => new Participation(p) );
       }
     );
+  }
+
+  save_participation(participation, field, value) {
+    if (value && participation[field] !== value) {
+      const buffer = participation[field];
+      participation[field] = value;
+      this.participationService.updateParticipation(participation).subscribe(
+        data => {
+          participation = data;
+        },
+        error => {
+          participation[field] = buffer;
+        }
+      );
+    }
   }
 }
