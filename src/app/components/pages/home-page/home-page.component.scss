@@ -3,7 +3,8 @@
   text-align: center;
 
   &__banner {
-    height: 300px;
+    max-height: 300px;
+    max-width: 100%;
   }
 
   &__title {
