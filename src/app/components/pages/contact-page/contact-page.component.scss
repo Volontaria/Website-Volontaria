@@ -2,6 +2,7 @@
   text-align: center;
 
   &__logo {
-    height: 200px;
+    max-height: 200px;
+    max-width: 100%;
   }
 }
