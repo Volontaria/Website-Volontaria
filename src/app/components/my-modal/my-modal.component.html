@@ -1,0 +1,16 @@
+<div class="modal-component" (click)="clickOverlay($event)" [hidden]="!show">
+  <div class="modal-component__content">
+    <div class="modal-component__content__reveal">
+      <div class="modal-component__content__reveal__header">
+        {{ title }}
+      </div>
+      <div class="modal-component__content__reveal__content" #modalContent>
+        <ng-content></ng-content>
+      </div>
+      <div class="modal-component__content__reveal__action" #modalContent>
+        <a class="modal-component__content__reveal__action__button button" (click)="toggle()">Cancel</a>
+        <a class="modal-component__content__reveal__action__button button button--danger">Supprimer</a>
+      </div>
+    </div>
+  </div>
+</div>
