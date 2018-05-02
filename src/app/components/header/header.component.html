@@ -1,60 +1,19 @@
-<nav class="top-nav"
-     [class.responsive]="responsive">
-
-  <a routerLink=""
-     routerLinkActive="active"
-     class="top-nav__item top-nav__item--brand">
+<nav class="navbar" [class.responsive]="responsive">
+  <a class="navbar__item navbar__item--brand" href="#" (click)="closeResponsiveNavbar()">
     NousRire
   </a>
-  <a *ngIf="isAuthenticated()"
-     (click)="toogleResponsiveNavbar()"
-     routerLink="/index"
-     routerLinkActive="active"
-     class="top-nav__item">
-    Inscription
-  </a>
-  <a *ngIf="isAuthenticated()"
-     (click)="toogleResponsiveNavbar()"
-     routerLink="/schedule"
-     routerLinkActive="active"
-     class="top-nav__item">
-    Mon horaire
-  </a>
-  <a *ngIf="isAuthenticated()"
-     (click)="toogleResponsiveNavbar()"
-     routerLink="/info"
-     routerLinkActive="active"
-     class="top-nav__item">
-    Information
-  </a>
-  <a *ngIf="isAuthenticated()"
-     (click)="toogleResponsiveNavbar()"
-     routerLink="/contact"
-     routerLinkActive="active"
-     class="top-nav__item">
-    Contact
-  </a>
-  <a *ngIf="isAdmin()"
-     (click)="toogleResponsiveNavbar()"
-     routerLink="/admin/volunteers"
-     routerLinkActive="active"
-     class="top-nav__item">
-    Administration
-  </a>
-  <a *ngIf="isAuthenticated()"
-     (click)="toogleResponsiveNavbar()"
-     routerLink="/logout"
-     class="top-nav__item">
-    Déconnexion
-  </a>
-  <a *ngIf="!isAuthenticated()"
-     (click)="toogleResponsiveNavbar()"
-     routerLink="/login"
-     class="top-nav__item">
-    Connexion
-  </a>
-  <span class="top-nav__item top-nav__item--icon"
-        (click)="toogleResponsiveNavbar()">
+  <div class="navbar__left" (click)="closeResponsiveNavbar()">
+    <a class="navbar__item"  *ngIf="isAuthenticated()" routerLink="/index">Inscription</a>
+    <a class="navbar__item" *ngIf="isAuthenticated()" routerLink="/schedule">Mon horaire</a>
+    <a class="navbar__item" *ngIf="isAuthenticated()" routerLink="/info">Information</a>
+    <a class="navbar__item" *ngIf="isAuthenticated()" routerLink="/contact">Contact</a>
+    <a class="navbar__item" *ngIf="isAdmin()" routerLink="/admin/volunteers">Administration</a>
+  </div>
+  <div class="navbar__right" (click)="closeResponsiveNavbar()">
+    <a class="navbar__item" *ngIf="isAuthenticated()" routerLink="/logout">Déconnexion</a>
+    <a class="navbar__item" *ngIf="!isAuthenticated()" routerLink="/login">Connexion</a>
+  </div>
+  <span class="navbar__item navbar__item--icon" (click)="toogleResponsiveNavbar()">
     &#9776;
   </span>
 </nav>

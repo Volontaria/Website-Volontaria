@@ -24,4 +24,8 @@ export class HeaderComponent {
   toogleResponsiveNavbar() {
     this.responsive = !this.responsive;
   }
+
+  closeResponsiveNavbar() {
+    this.responsive = false;
+  }
 }
