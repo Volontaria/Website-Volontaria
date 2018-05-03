@@ -15,7 +15,7 @@ import { CycleService } from './services/cycle.service';
 import { CellService } from './services/cell.service';
 import { ParticipationService } from './services/participation.service';
 import { CanActivateViaAuthGuard } from './guards/CanActivateViaAuthGuard';
-import { CanActivateViaAdminGuard } from './guards/CanActivateViaAdminGuard';
+import { CanAccessAdminPanelGuard } from './guards/CanAccessAdminPanelGuard';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -154,7 +154,7 @@ const appRoutes = [
         component: AdminVolunteersComponent,
         canActivate: [
           CanActivateViaAuthGuard,
-          CanActivateViaAdminGuard
+          CanAccessAdminPanelGuard
         ]
       },
       {
@@ -162,7 +162,7 @@ const appRoutes = [
         component: AdminCyclesComponent,
         canActivate: [
           CanActivateViaAuthGuard,
-          CanActivateViaAdminGuard
+          CanAccessAdminPanelGuard
         ]
       },
       {
@@ -170,7 +170,7 @@ const appRoutes = [
         component: AdminCellsComponent,
         canActivate: [
           CanActivateViaAuthGuard,
-          CanActivateViaAdminGuard
+          CanAccessAdminPanelGuard
         ]
       },
       {
@@ -178,7 +178,7 @@ const appRoutes = [
         component: AdminCellComponent,
         canActivate: [
           CanActivateViaAuthGuard,
-          CanActivateViaAdminGuard
+          CanAccessAdminPanelGuard
         ]
       },
       {
@@ -186,7 +186,7 @@ const appRoutes = [
         component: AdminEventComponent,
         canActivate: [
           CanActivateViaAuthGuard,
-          CanActivateViaAdminGuard
+          CanAccessAdminPanelGuard
         ]
       },
     ]
@@ -259,7 +259,7 @@ const appRoutes = [
     CellService,
     ParticipationService,
     CanActivateViaAuthGuard,
-    CanActivateViaAdminGuard,
+    CanAccessAdminPanelGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyHttpInterceptor,

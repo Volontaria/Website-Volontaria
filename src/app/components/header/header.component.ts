@@ -17,8 +17,8 @@ export class HeaderComponent {
     return this.authenticationService.isAuthenticated();
   }
 
-  isAdmin() {
-    return this.authenticationService.isAdmin();
+  canAccessAdminPanel() {
+    return this.authenticationService.canAccessAdminPanel();
   }
 
   toogleResponsiveNavbar() {
