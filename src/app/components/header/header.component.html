@@ -3,11 +3,11 @@
     NousRire
   </a>
   <div class="navbar__left" (click)="closeResponsiveNavbar()">
-    <a class="navbar__item"  *ngIf="isAuthenticated()" routerLink="/index">Inscription</a>
-    <a class="navbar__item" *ngIf="isAuthenticated()" routerLink="/schedule">Mon horaire</a>
-    <a class="navbar__item" *ngIf="isAuthenticated()" routerLink="/info">Information</a>
-    <a class="navbar__item" *ngIf="isAuthenticated()" routerLink="/contact">Contact</a>
-    <a class="navbar__item" *ngIf="isAdmin()" routerLink="/admin/volunteers">Administration</a>
+    <a class="navbar__item" routerLink="/index">Inscription</a>
+    <a class="navbar__item" routerLink="/schedule">Mon horaire</a>
+    <a class="navbar__item" routerLink="/info">Information</a>
+    <a class="navbar__item" routerLink="/contact">Contact</a>
+    <a class="navbar__item" *ngIf="canAccessAdminPanel()" routerLink="/admin/volunteers">Administration</a>
   </div>
   <div class="navbar__right" (click)="closeResponsiveNavbar()">
     <a class="navbar__item" *ngIf="isAuthenticated()" routerLink="/logout">Déconnexion</a>

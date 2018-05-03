@@ -1,4 +1,5 @@
 import BaseModel from './baseModel';
+import { Cell } from './cell';
 
 export class User extends BaseModel {
   id: number;
@@ -10,6 +11,7 @@ export class User extends BaseModel {
   mobile: string;
   is_active: boolean;
   is_superuser: boolean;
+  managed_cell: Cell[];
 }
 
 
