@@ -1,6 +1,27 @@
 <div class="admin-cycles">
   <h2>Liste des cycles de commandes</h2>
 
+  <my-modal name="create cycle"
+            title="Création d'un cycle"
+            button2Label="Créer"
+            (button2)="createCycle(cycle)"
+            typeModal="">
+    <form #cycle="ngForm">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" ngModel>
+
+      <label for="start_date">Date de début</label>
+      <input type="datetime-local" name="start_date" id="start_date" ngModel>
+
+      <label for="end_date">Date de fin</label>
+      <input type="datetime-local" name="end_date" id="end_date" ngModel>
+    </form>
+  </my-modal>
+  <button *ngIf="isAdmin()" myModalOpen="create cycle"
+          class="button button--danger">
+    Créer un cycle
+  </button>
+
   <table class="table" style="width: 100%">
     <tr>
       <th>Nom</th>
