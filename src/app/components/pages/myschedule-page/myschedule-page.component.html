@@ -66,9 +66,12 @@
           {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
         </td>
         <td>
-          <a (click)="deleteParticipation(event.id)" class="button button--danger">
+          <my-modal name="hello world" title="Desinscription a un evenement">
+            Voulez-vous vraiment supprimer votre participation ?
+          </my-modal>
+          <button myModalOpen="hello world" class="button button--danger">
             Me désinscrire
-          </a>
+          </button>
         </td>
       </tr>
     </table>

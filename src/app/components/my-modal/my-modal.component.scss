@@ -1,0 +1,39 @@
+.modal-component {
+  background: rgba(0,0,0,0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+
+    &__reveal {
+      display: inline-block;
+      background: white;
+      position: relative;
+
+      &__header{
+        padding: 10px;
+        font-weight: 900;
+      }
+
+      &__content {
+        padding: 20px;
+      }
+
+      &__action {
+        display: flex;
+
+        &__button {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
