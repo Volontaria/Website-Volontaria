@@ -12,7 +12,11 @@ import { Component, OnInit } from '@angular/core';
           <span class="left-nav__header">
             Administration
           </span>
-          <a routerLink="/admin/volunteers" class="left-nav__item">
+          <a routerLink="/admin" class="left-nav__item">
+            <i class="fa fa-area-chart"></i>
+            Général
+          </a>
+          <a routerLink="/admin/volunteers" class="left-nav__item" hasPermissions="['list_users']">
             <i class="fa fa-users"></i>
             Bénévoles
           </a>

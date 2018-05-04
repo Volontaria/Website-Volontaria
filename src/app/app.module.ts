@@ -47,6 +47,8 @@ import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { PermissionDirective } from './directives/permission.directive';
+import { AdminComponent } from './components/pages/admin/admin.component';
 
 const appRoutes = [
   {
@@ -150,6 +152,14 @@ const appRoutes = [
     component: AdminLayoutComponent,
     children: [
       {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [
+          CanActivateViaAuthGuard,
+          CanAccessAdminPanelGuard
+        ]
+      },
+      {
         path: 'admin/volunteers',
         component: AdminVolunteersComponent,
         canActivate: [
@@ -234,7 +244,9 @@ const appRoutes = [
     PageNotFoundComponent,
     AdminLayoutComponent,
     DefaultLayoutComponent,
-    LoginLayoutComponent
+    LoginLayoutComponent,
+    PermissionDirective,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
