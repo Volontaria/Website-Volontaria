@@ -8,6 +8,6 @@ export class CanAccessAdminPanelGuard implements CanActivate {
   constructor(private authenticationService: AuthenticationService) {}
 
   canActivate() {
-    return this.authenticationService.canAccessAdminPanel();
+    return this.authenticationService.hasPermissions(['access_admin_panel']);
   }
 }

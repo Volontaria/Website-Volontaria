@@ -45,21 +45,17 @@ export class AuthenticationService extends GlobalService {
     return this.getProfile().is_superuser;
   }
 
-  canAccessAdminPanel() {
-    return this.isManager() || this.isAdmin();
-  }
-
-  isManager(id_cell:number = null) {
-    let cells: Cell[] = this.getProfile().managed_cell.map(c => new Cell(c));
+  isManager(id_cell: number = null) {
+    const cells: Cell[] = this.getProfile().managed_cell.map(c => new Cell(c));
     if (id_cell) {
       for (const cell in cells) {
-        console.log(typeof cell);
-        if (cell['id'] === id_cell) {
-          return true;
+        if (cells.hasOwnProperty(cell)) {
+          if (cell['id'] === id_cell) {
+            return true;
+          }
         }
       }
-    }
-    else {
+    } else {
       return !(cells.length === 0);
     }
     return false;
@@ -67,5 +63,26 @@ export class AuthenticationService extends GlobalService {
 
   getProfile() {
     return JSON.parse(localStorage.getItem('userProfile'));
+  }
+
+  hasPermissions(permissions: string[]) {
+    // Shortcut for admin only
+    if (this.isAdmin()) {
+      return true;
+    }
+
+    // Define here all the default permissions
+    const list_permissions: string[] = [];
+
+    if (this.isManager()) {
+      list_permissions.push('access_admin_panel');
+    }
+
+    for (const permission in permissions) {
+      if (list_permissions.indexOf(permissions[permission]) === -1) {
+        return false;
+      }
+    }
+    return true;
   }
 }
