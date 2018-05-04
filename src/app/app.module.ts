@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyHttpInterceptor } from './my-http-interceptor';
@@ -266,6 +266,7 @@ const appRoutes = [
       { enableTracing: true }
     ),
     FormsModule,
+    ReactiveFormsModule,
     SimpleNotificationsModule.forRoot(),
     AngularMultiSelectModule,
   ],

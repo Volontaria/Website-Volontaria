@@ -8,23 +8,31 @@ import {MyModalService} from '../../services/my-modal/my-modal.service';
   templateUrl: './my-modal.component.html'
 })
 export class MyModalComponent implements OnInit {
+
   @Input() name: string;
   @Input() title: string;
+  @Input() typeModal = 'information';
   @Input() button2Label: string;
-  @Input() typeModal: string;
+  @Input() button2Style = 'button--danger';
+
   @ViewChild('modalContent') modalContent;
 
   @Output() button1: EventEmitter<any> = new EventEmitter();
   @Output() button2: EventEmitter<any> = new EventEmitter();
 
   private show = false;
-  // store elements to notify
-  private notify = [];
+  private isModalInformation: boolean;
+  private isModalForm: boolean;
+
+  private errorMessage: string;
 
   constructor(private myModals: MyModalService) {
   }
 
   ngOnInit() {
+    this.isModalInformation = this.typeModal === 'information';
+    this.isModalForm = this.typeModal === 'form';
+
     this.myModals.set(this.name, this);
   }
 
@@ -36,6 +44,10 @@ export class MyModalComponent implements OnInit {
     }
   }
 
+  setErrorMessage(value: string) {
+    this.errorMessage = value;
+  }
+
   toggle() {
     this.show = !this.show;
 
@@ -43,15 +55,9 @@ export class MyModalComponent implements OnInit {
       document.addEventListener('keyup', this.escapeListener);
     } else {
       document.removeEventListener('keyup', this.escapeListener);
+      this.errorMessage = '';
     }
   }
-
-  private createEvent(name) {
-    const event = document.createEvent('Events');
-    event.initEvent(name, true, true);
-    return event;
-  }
-
 
   private escapeListener = (event: KeyboardEvent) => {
     if (event.which === 27 || event.keyCode === 27) {
@@ -66,7 +72,5 @@ export class MyModalComponent implements OnInit {
 
   private clickButton2(): void {
     this.button2.emit(null);
-    this.toggle();
-
   }
 }
