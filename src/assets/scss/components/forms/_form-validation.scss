@@ -1,0 +1,19 @@
+.form-text {
+  font-size: 80%;
+  margin-top: 5px;
+  &--right {
+    text-align: right;
+  }
+
+  &--danger {
+    color: $color-danger;
+  }
+
+  &--success {
+    color: $color-success
+  }
+
+  &--warning {
+    color: $color-warning;
+  }
+}

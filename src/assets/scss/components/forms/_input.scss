@@ -10,4 +10,18 @@ input {
   &--error {
     box-shadow: 0 0 5px $color-danger;
   }
+
+  &.ng-invalid {
+    border-color: $color-danger;
+    box-shadow: 0 0 5px $color-danger;
+    margin-top: 5px;
+  }
+
+  &.ng-valid.ng-touched {
+    border-color: $color-success;
+    box-shadow: 0 0 5px $color-success;
+    margin-top: 5px;
+  }
 }
+
+

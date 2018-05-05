@@ -37,4 +37,13 @@
             box-shadow: 0 3px 6px $color-danger;
         }
     }
+
+  &--success {
+    background-color: $color-success;
+
+    &:hover {
+      color: $color-success;
+      box-shadow: 0 3px 6px $color-success;
+    }
+  }
 }

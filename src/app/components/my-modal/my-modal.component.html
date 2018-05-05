@@ -7,10 +7,10 @@
       <div class="modal-component__content__reveal__content" #modalContent>
         <ng-content></ng-content>
       </div>
-      <div *ngIf="errorMessage" class="modal-component__content__reveal__content" #modalContent>
+      <div *ngIf="errorMessage" class="modal-component__content__reveal__content">
         {{ errorMessage }}
       </div>
-      <div class="modal-component__content__reveal__action" #modalContent>
+      <div class="modal-component__content__reveal__action">
         <a class="modal-component__content__reveal__action__button button button--warning"
            (click)="clickButton1()">Cancel</a>
         <a *ngIf="!isModalInformation"
