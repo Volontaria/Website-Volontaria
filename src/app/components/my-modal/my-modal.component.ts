@@ -3,7 +3,7 @@ import {MyModalService} from '../../services/my-modal/my-modal.service';
 
 
 @Component({
-  selector: 'my-modal',
+  selector: 'app-my-modal',
   styleUrls: ['my-modal.component.scss'],
   templateUrl: './my-modal.component.html'
 })
@@ -20,11 +20,11 @@ export class MyModalComponent implements OnInit {
   @Output() button1: EventEmitter<any> = new EventEmitter();
   @Output() button2: EventEmitter<any> = new EventEmitter();
 
-  private show = false;
-  private isModalInformation: boolean;
-  private isModalForm: boolean;
+  show = false;
+  isModalInformation: boolean;
+  isModalForm: boolean;
 
-  private errorMessage: string;
+  errorMessage: string;
 
   constructor(private myModals: MyModalService) {
   }
@@ -65,12 +65,12 @@ export class MyModalComponent implements OnInit {
     }
   }
 
-  private clickButton1(): void {
+  clickButton1(): void {
     this.button1.emit(null);
     this.toggle();
   }
 
-  private clickButton2(): void {
+  clickButton2(): void {
     this.button2.emit(null);
   }
 }

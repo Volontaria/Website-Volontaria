@@ -2,7 +2,7 @@ import { Directive, HostListener, Input } from '@angular/core';
 import { MyModalService } from '../services/my-modal/my-modal.service';
 
 @Directive({
-  selector: '[myModalOpen]'
+  selector: '[appMyModalOpen]'
 })
 export class MyModalOpenDirective {
   @Input() myModalOpen: string;

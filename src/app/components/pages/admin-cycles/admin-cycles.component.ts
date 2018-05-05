@@ -19,6 +19,12 @@ export class AdminCyclesComponent implements OnInit {
 
   cycleForm: FormGroup;
 
+  /*= new FormGroup({
+    name: new FormControl(),
+    start_date: new FormControl(),
+    end_date: new FormControl(),
+  });*/
+
   constructor(private cycleService: CycleService,
               private myModals: MyModalService,
               private authenticationService: AuthenticationService,
@@ -74,9 +80,12 @@ export class AdminCyclesComponent implements OnInit {
   }
 
   createCycle(form: FormGroup) {
+    console.log(form.value);
     if ( form.valid ) {
       this.cycleService.createCycle(form.value).subscribe(
         data => {
+          console.log('sucess');
+          console.log(data);
           this.myModals.get('create cycle').toggle();
           form.reset();
           this.notificationService.success('Création réussie',
@@ -89,6 +98,7 @@ export class AdminCyclesComponent implements OnInit {
           );
         },
         err => {
+          console.log(err);
 
           let errorMessage = '';
           if (err.error.name) {
