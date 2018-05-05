@@ -2,19 +2,19 @@ import { Directive, HostListener, Input } from '@angular/core';
 import { MyModalService } from '../services/my-modal/my-modal.service';
 
 @Directive({
-  selector: '[appMyModalOpen]'
+  selector: '[myModalOpen]'
 })
 export class MyModalOpenDirective {
-  @Input() appMyModalOpen: string;
+  @Input() myModalOpen: string;
 
   constructor(private myModals: MyModalService) {
   }
 
   @HostListener('click') onClick() {
-    const modal = this.myModals.get(this.appMyModalOpen);
+    const modal = this.myModals.get(this.myModalOpen);
 
     if (!modal) {
-      console.error('No modal named %s', this.appMyModalOpen);
+      console.error('No modal named %s', this.myModalOpen);
       return;
     }
 

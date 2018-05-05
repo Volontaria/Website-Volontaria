@@ -3,7 +3,7 @@ import {MyModalService} from '../../services/my-modal/my-modal.service';
 
 
 @Component({
-  selector: 'app-my-modal',
+  selector: 'my-modal',
   styleUrls: ['my-modal.component.scss'],
   templateUrl: './my-modal.component.html'
 })
@@ -20,11 +20,11 @@ export class MyModalComponent implements OnInit {
   @Output() button1: EventEmitter<any> = new EventEmitter();
   @Output() button2: EventEmitter<any> = new EventEmitter();
 
-  show = false;
-  isModalInformation: boolean;
-  isModalForm: boolean;
+  private show = false;
+  private isModalInformation: boolean;
+  private isModalForm: boolean;
 
-  errorMessage: string;
+  private errorMessage: string;
 
   constructor(private myModals: MyModalService) {
   }
@@ -39,7 +39,7 @@ export class MyModalComponent implements OnInit {
   clickOverlay(event: Event) {
     const target = (event.target as HTMLElement);
 
-    if (target.classList.contains('modal-component__content')) {
+    if (target.classList.contains('modal-component')) {
       this.toggle();
     }
   }
@@ -53,7 +53,6 @@ export class MyModalComponent implements OnInit {
 
     if (this.show) {
       document.addEventListener('keyup', this.escapeListener);
-       this.modalContent.nativeElement.getElementsByTagName('input')[0].focus();
     } else {
       document.removeEventListener('keyup', this.escapeListener);
       this.errorMessage = '';
@@ -66,12 +65,12 @@ export class MyModalComponent implements OnInit {
     }
   }
 
-  clickButton1(): void {
+  private clickButton1(): void {
     this.button1.emit(null);
     this.toggle();
   }
 
-  clickButton2(): void {
+  private clickButton2(): void {
     this.button2.emit(null);
   }
 }

@@ -53,8 +53,6 @@ import { MyModalOpenDirective } from './directives/my-modal-open-directive.direc
 import { MyModalComponent } from './components/my-modal/my-modal.component';
 import { MyModalService } from './services/my-modal/my-modal.service';
 
-import {OwlDateTimeModule, OwlNativeDateTimeModule, OwlDateTimeIntl, OWL_DATE_TIME_LOCALE} from 'ng-pick-datetime';
-
 const appRoutes = [
   {
     path: '',
@@ -222,49 +220,6 @@ const appRoutes = [
   }
 ];
 
-export class DatePickerFr  {
-  /** A label for the up second button (used by screen readers).  */
-  upSecondLabel = 'Ajouter une seconde';
-  /** A label for the down second button (used by screen readers).  */
-  downSecondLabel = 'Enlever une seconde';
-  /** A label for the up minute button (used by screen readers).  */
-  upMinuteLabel = 'Ajouter une minute';
-  /** A label for the down minute button (used by screen readers).  */
-  downMinuteLabel = 'Enlever une minute';
-  /** A label for the up hour button (used by screen readers).  */
-  upHourLabel = 'Ajouter une heure';
-  /** A label for the down hour button (used by screen readers).  */
-  downHourLabel = 'Enlever une heure';
-  /** A label for the previous month button (used by screen readers). */
-  prevMonthLabel = 'Mois précédant';
-  /** A label for the next month button (used by screen readers). */
-  nextMonthLabel = 'Mois prochain';
-  /** A label for the previous year button (used by screen readers). */
-  prevYearLabel = 'Année précédante';
-  /** A label for the next year button (used by screen readers). */
-  nextYearLabel = 'Année prochaine';
-  /** A label for the previous multi-year button (used by screen readers). */
-  prevMultiYearLabel = 'Les pécédantes 21 années';
-  /** A label for the next multi-year button (used by screen readers). */
-  nextMultiYearLabel = 'Les prochaines 21 années';
-  /** A label for the 'switch to month view' button (used by screen readers). */
-  switchToMonthViewLabel = 'Changer pour la vue par mois';
-  /** A label for the 'switch to year view' button (used by screen readers). */
-  switchToMultiYearViewLabel = 'Choisir un mois et une année';
-  /** A label for the cancel button */
-  cancelBtnLabel = 'Annuler';
-  /** A label for the set button */
-  setBtnLabel = 'Valider';
-  /** A label for the range 'from' in picker info */
-  rangeFromLabel = 'Depuis';
-  /** A label for the range 'to' in picker info */
-  rangeToLabel = 'jusqu\'au';
-  /** A label for the hour12 button (AM) */
-  hour12AMLabel = 'AM';
-  /** A label for the hour12 button (PM) */
-  hour12PMLabel = 'PM';
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -295,6 +250,7 @@ export class DatePickerFr  {
     LoginLayoutComponent,
     PermissionDirective,
     AdminComponent,
+    LoginLayoutComponent,
     MyModalOpenDirective,
     MyModalComponent
   ],
@@ -311,8 +267,6 @@ export class DatePickerFr  {
     ReactiveFormsModule,
     SimpleNotificationsModule.forRoot(),
     AngularMultiSelectModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule
   ],
   exports: [ RouterModule ],
   providers: [
@@ -330,10 +284,7 @@ export class DatePickerFr  {
       useClass: MyHttpInterceptor,
       multi: true,
     },
-    MyModalService,
-    // use french locale
-    {provide: OWL_DATE_TIME_LOCALE, useValue: 'fr'},
-    {provide: OwlDateTimeIntl, useClass: DatePickerFr},
+    MyModalService
   ],
   bootstrap: [AppComponent]
 })
