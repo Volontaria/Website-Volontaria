@@ -5,16 +5,16 @@ import { MyModalService } from '../services/my-modal/my-modal.service';
   selector: '[appMyModalOpen]'
 })
 export class MyModalOpenDirective {
-  @Input() myModalOpen: string;
+  @Input() appMyModalOpen: string;
 
   constructor(private myModals: MyModalService) {
   }
 
   @HostListener('click') onClick() {
-    const modal = this.myModals.get(this.myModalOpen);
+    const modal = this.myModals.get(this.appMyModalOpen);
 
     if (!modal) {
-      console.error('No modal named %s', this.myModalOpen);
+      console.error('No modal named %s', this.appMyModalOpen);
       return;
     }
 

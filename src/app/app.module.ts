@@ -250,7 +250,6 @@ const appRoutes = [
     LoginLayoutComponent,
     PermissionDirective,
     AdminComponent,
-    LoginLayoutComponent,
     MyModalOpenDirective,
     MyModalComponent
   ],

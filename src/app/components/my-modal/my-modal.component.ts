@@ -53,6 +53,7 @@ export class MyModalComponent implements OnInit {
 
     if (this.show) {
       document.addEventListener('keyup', this.escapeListener);
+       this.modalContent.nativeElement.getElementsByTagName('input')[0].focus();
     } else {
       document.removeEventListener('keyup', this.escapeListener);
       this.errorMessage = '';

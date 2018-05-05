@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import GlobalService from './globalService';
 import { environment } from '../../environments/environment';
+import {Cycle} from '../models/cycle';
 
 
 @Injectable()
@@ -26,6 +27,15 @@ export class CycleService extends GlobalService {
     return this.http.get<any>(
       this.url_cycles,
       {headers: headers, params: params}
+    );
+  }
+
+  createCycle(cycle: Cycle): Observable<any>  {
+    const headers = this.getHeaders();
+    return this.http.post<any>(
+      this.url_cycles,
+      cycle,
+      {headers: headers}
     );
   }
 }
