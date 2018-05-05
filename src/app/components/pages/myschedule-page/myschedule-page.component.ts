@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {UserService} from '../../../services/user.service';
-import {User} from '../../../models/user';
-import {EventService} from '../../../services/event.service';
-import {Event} from '../../../models/event';
-import {ParticipationService} from '../../../services/participation.service';
-import {Participation} from '../../../models/participation';
-import {NotificationsService} from 'angular2-notifications';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user';
+import { EventService } from '../../../services/event.service';
+import { Event } from '../../../models/event';
+import { ParticipationService } from '../../../services/participation.service';
+import { Participation } from '../../../models/participation';
+import { NotificationsService } from 'angular2-notifications';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MyModalService } from '../../../services/my-modal/my-modal.service';
 
 @Component({
   selector: 'app-myschedule',
@@ -20,11 +22,65 @@ export class MySchedulePageComponent implements OnInit {
   events: Event[];
   eventsAsVolunteer: Event[] = [];
   eventsAsOnHold: Event[] = [];
+  changePasswordForm: FormGroup;
 
   constructor(private userService: UserService,
               private eventService: EventService,
               private participationService: ParticipationService,
-              private notificationService: NotificationsService) {
+              private notificationService: NotificationsService,
+              private formBuilder: FormBuilder,
+              private myModals: MyModalService) {
+    this.changePasswordForm = this.formBuilder.group(
+      {
+        oldPassword: [null, Validators.required],
+        newPassword: [null, Validators.required],
+        confirmation: [null, Validators.required]
+      },
+      {validator: this.passwordValidator()}
+    )
+    ;
+  }
+
+  passwordValidator() {
+    return (group: FormGroup) => {
+
+      const newPassword = group.controls['newPassword'];
+      const confirmation = group.controls['confirmation'];
+
+      if (newPassword.value && confirmation.value && newPassword.value !== confirmation.value) {
+        return confirmation.setErrors({
+          confirmationError: true
+        });
+      }
+    };
+  }
+
+  changePassword(form: FormGroup) {
+    if ( form.valid ) {
+      this.userService.changePassword(
+        this.user.id,
+        form.controls['oldPassword'].value,
+        form.controls['newPassword'].value).subscribe(
+        data => {
+          this.myModals.get('change password').toggle();
+          form.reset();
+          this.notificationService.success('Changement réussi',
+            `Le mot de passe a été changé`);
+        },
+        err => {
+          if (err.error[0] === 'Bad password') {
+            this.changePasswordForm.controls['oldPassword'].setErrors({
+              badPassword: true
+            });
+          }
+          if (err.error.password) {
+            this.changePasswordForm.controls['newPassword'].setErrors({
+              apiError: err.error.password
+            });
+          }
+        }
+      );
+    }
   }
 
   ngOnInit() {
