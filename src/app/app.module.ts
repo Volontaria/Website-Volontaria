@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyHttpInterceptor } from './my-http-interceptor';
@@ -49,6 +49,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { PermissionDirective } from './directives/permission.directive';
 import { AdminComponent } from './components/pages/admin/admin.component';
+import { MyModalOpenDirective } from './directives/my-modal-open-directive.directive';
+import { MyModalComponent } from './components/my-modal/my-modal.component';
+import { MyModalService } from './services/my-modal/my-modal.service';
 
 const appRoutes = [
   {
@@ -246,7 +249,10 @@ const appRoutes = [
     DefaultLayoutComponent,
     LoginLayoutComponent,
     PermissionDirective,
-    AdminComponent
+    AdminComponent,
+    LoginLayoutComponent,
+    MyModalOpenDirective,
+    MyModalComponent
   ],
   imports: [
     BrowserModule,
@@ -258,6 +264,7 @@ const appRoutes = [
       { enableTracing: true }
     ),
     FormsModule,
+    ReactiveFormsModule,
     SimpleNotificationsModule.forRoot(),
     AngularMultiSelectModule,
   ],
@@ -276,7 +283,8 @@ const appRoutes = [
       provide: HTTP_INTERCEPTORS,
       useClass: MyHttpInterceptor,
       multi: true,
-    }
+    },
+    MyModalService
   ],
   bootstrap: [AppComponent]
 })
