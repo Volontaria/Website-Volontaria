@@ -43,6 +43,18 @@ export class UserService extends GlobalService {
     );
   }
 
+  changePassword(id: number, password: string, new_password: string): Observable<any>  {
+    const headers = this.getHeaders();
+    return this.http.patch<any>(
+      this.url_profile,
+      {
+        password: password,
+        new_password: new_password
+      },
+      {headers: headers}
+    );
+  }
+
   getProfile(): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get<any>(
