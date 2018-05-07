@@ -4,7 +4,8 @@
     Bonjour <span *ngIf="user">{{ user.first_name }}</span>!
   </div>
   <div class="page-homepage__content">
-    <h3>Voici la période d'emballage à venir :</h3>
+    <h3 *ngIf="cycles.length <= 1">Voici la période d'emballage à venir :</h3>
+    <h3 *ngIf="cycles.length > 1">Voici les périodes d'emballage à venir :</h3>
     <div class="card" *ngFor="let cycle of cycles">
       <p>
         <b>{{ cycle.name }}</b>
