@@ -56,6 +56,8 @@
         <th>Courriel</th>
         <th>Téléphones</th>
         <th>Type</th>
+        <th>Heure Arrivée</th>
+        <th>Heure Départ</th>
         <th>Durée (minutes)</th>
         <th>Présence</th>
       </tr>
@@ -86,9 +88,33 @@
           <span *ngIf="!participation.standby">Bénévole</span>
         </td>
         <td>
+            <input
+              (focusout)="set_in_time(participation, $event.target.value)"
+              type="number"
+              name="in_time"
+              ng-model="in_time"
+              min="0.00"
+              max="24.00"
+              value="{{ event.start_date | date:'HH'}}"
+              >
+        </td>
+
+        <td>
+          <input
+          (focusout)="set_out_time(participation, $event.target.value)"
+            type="number"
+            name="out_time"
+            ng-model="out_time"
+            min="0.00"
+            max="24.00"
+          >
+        </td>
+        <td>
+          {{ participation.presence_duration_minutes }}
           <input (focusout)="save_participation(participation, 'presence_duration_minutes', $event.target.value)"
                  type="text"
                  value="{{ participation.presence_duration_minutes }}"
+                 hidden
           />
         </td>
         <td>
