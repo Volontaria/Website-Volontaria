@@ -1,5 +1,7 @@
 select {
+  width: 100%;
   border: 2px solid lightgrey;
   border-radius: 0;
   padding: 10px;
+  box-sizing: border-box;
 }

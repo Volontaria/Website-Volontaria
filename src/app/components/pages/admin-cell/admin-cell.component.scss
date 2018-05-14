@@ -1,15 +1,25 @@
 .admin-cell {
   margin: 1rem;
 
-  &__filters {
+  &__actions {
     display: flex;
-    flex-wrap: wrap;
-    padding: 1rem 0;
+    justify-content: space-between;
+    align-items: center;
 
-    &__filter {
-      width: 300px;
-      box-sizing: border-box;
-      padding-right: 2rem;
+    &__filters {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+
+      &__filter {
+        width: 300px;
+        box-sizing: border-box;
+        padding-right: 2rem;
+      }
     }
+  }
+
+  &__table {
+    margin-top: 10px;
   }
 }
