@@ -1,5 +1,5 @@
-<div class="modal-component" (click)="clickOverlay($event)" [hidden]="!show">
-  <div class="modal-component__content">
+<div class="modal-component" [hidden]="!show">
+  <div class="modal-component__content" (click)="clickOverlay($event)">
     <div class="modal-component__content__reveal">
       <div class="modal-component__content__reveal__header">
         {{ title }}
@@ -8,7 +8,7 @@
         <ng-content></ng-content>
       </div>
       <div *ngIf="errorMessage" class="modal-component__content__reveal__content">
-        {{ errorMessage }}
+        {{ errorMessage | json }}
       </div>
       <div class="modal-component__content__reveal__action">
         <a class="modal-component__content__reveal__action__button button button--warning"

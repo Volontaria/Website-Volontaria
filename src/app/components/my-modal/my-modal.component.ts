@@ -39,7 +39,7 @@ export class MyModalComponent implements OnInit {
   clickOverlay(event: Event) {
     const target = (event.target as HTMLElement);
 
-    if (target.classList.contains('modal-component')) {
+    if (target.classList.contains('modal-component__content')) {
       this.toggle();
     }
   }

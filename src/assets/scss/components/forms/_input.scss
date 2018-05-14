@@ -11,7 +11,7 @@ input {
     box-shadow: 0 0 5px $color-danger;
   }
 
-  &.ng-invalid {
+  &.ng-invalid.ng-touched {
     border-color: $color-danger;
     box-shadow: 0 0 5px $color-danger;
     margin-top: 5px;
