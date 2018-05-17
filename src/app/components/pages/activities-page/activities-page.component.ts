@@ -68,7 +68,7 @@ export class ActivitiesPageComponent implements OnInit {
 
     this.dropdownTasktypeSettings = {
       singleSelection: false,
-      text: 'Filtrer par activité',
+      text: 'Choisi ton(tes) activité(s)',
       selectAllText: 'Toutes',
       unSelectAllText: 'Aucune',
       classes: 'activities-page__filters__filter',
@@ -76,7 +76,7 @@ export class ActivitiesPageComponent implements OnInit {
 
     this.dropdownCellSettings = {
       singleSelection: false,
-      text: 'Filtrer par cellule',
+      text: 'Choisis ta(tes) ville(s)',
       selectAllText: 'Toutes',
       unSelectAllText: 'Aucune',
       classes: 'activities-page__filters__filter',
