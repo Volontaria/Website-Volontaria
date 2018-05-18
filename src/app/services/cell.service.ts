@@ -30,4 +30,16 @@ export class CellService extends GlobalService {
       {headers: headers}
     );
   }
+
+  getExportCell(id: number): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get<any>(
+      this.url_cells + '/' + id + '/export',
+      {headers: headers}
+    );
+  }
+
+  getExportCellLink(url: string) {
+    return environment.url_base_api + url;
+  }
 }

@@ -162,4 +162,14 @@ export class AdminCellComponent implements OnInit {
       this.filteredEvents = eventFiltered;
     }
   }
+
+  export_link_pressed(event: any) {
+    event.preventDefault();
+
+    this.cellService.getExportCell(this.cell.id).subscribe(
+        data => {
+          window.location.assign(this.cellService.getExportCellLink(data.export_link));
+        }
+      );
+  }
 }

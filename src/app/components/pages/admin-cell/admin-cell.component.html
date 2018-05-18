@@ -1,6 +1,8 @@
 <div class="admin-cell" *ngIf="cell">
   <h2>Cellule de {{ cell.name }}</h2>
 
+  <a class="button" (click)="export_link_pressed($event)">Télécharger la liste des Participations</a>
+
   <p>
     <b>Adresse : </b>
     {{ cell.address.address_line1 }},
