@@ -1,0 +1,23 @@
+.alert {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid $color-neutral-border;
+  color: $color-neutral-text;
+  background-color: $color-neutral-background;
+  border-radius: 2px;
+
+  &--info {
+    background-color: $color-info-background;
+    border-color: $color-info-border;
+    color: $color-info-text;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+}

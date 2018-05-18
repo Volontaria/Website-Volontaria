@@ -1,12 +1,53 @@
+@import '../../../../assets/scss/theme';
+
 .info-page {
   margin: 1rem;
   font-size: 14px;
+  counter-reset: title-counter;
 
   &__title {
     margin-top: 20px;
+    text-decoration: none;
+    counter-reset: sub-title-counter;
+    border: 2px solid $main-color;
+    color: white;
+    background-color: $main-color;
+
+    &:before {
+      content: counter(title-counter);
+      counter-increment: title-counter;
+      background-color: $main-color;
+      color: white;
+      padding: 0 10px;
+      margin-right: 15px;
+    }
+  }
+
+  &__sub-title {
+    font-size: 18px;
+    border: 2px solid $main-color;
+
+    &:before {
+      content: counters(title-counter, ".") "." counters(sub-title-counter, ".");
+      counter-increment: sub-title-counter;
+      background-color: $main-color;
+      color: white;
+      padding: 0 10px;
+      margin-right: 10px;
+    }
   }
 
   &__content{
-    margin-left: 20px;
+    // margin-left: 20px;
+  }
+
+  &__address {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    & .card {
+      width: 300px;
+    }
   }
 }

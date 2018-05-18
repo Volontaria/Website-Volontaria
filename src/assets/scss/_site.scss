@@ -12,6 +12,10 @@ html, body {
   background-color: $main-background;
 }
 
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
 h2, h3, h4 {
     font-weight: 400;
     margin: 10px 0;
