@@ -17,6 +17,7 @@ export class ActivityConfirmationComponent implements OnInit {
 
   event: Event;
   user: User;
+  infoPageCheck = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private eventService: EventService,
