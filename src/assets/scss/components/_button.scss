@@ -46,4 +46,16 @@
       box-shadow: 0 3px 6px $color-success;
     }
   }
+
+  &:disabled {
+    background-color: lightgrey;
+    color: white;
+
+    &:hover {
+      box-shadow: none;
+      background-color: lightgrey;
+      color: white;
+      cursor: inherit;
+    }
+  }
 }
