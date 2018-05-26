@@ -1,5 +1,7 @@
 <div class="admin-cell" *ngIf="cell">
-  <h2>Cellule de {{ cell.name }}</h2>
+  <div class="admin-cell__title">
+    <h2>Cellule de {{ cell.name }}</h2>
+  </div>
 
   <a class="button" (click)="export_link_pressed($event)">Télécharger la liste des Participations</a>
 
@@ -19,21 +21,29 @@
   </p>
 
   <b>Plages horaires de la cellule :</b>
-  <div class="admin-cell__filters">
-    <angular2-multiselect [data]="dropdownCycleList" [(ngModel)]="selectedCycles"
-                          [settings]="dropdownCycleSettings"
-                          (onSelect)="onItemSelect($event)"
-                          (onDeSelect)="OnItemDeSelect($event)"
-                          (onSelectAll)="onSelectAll($event)"
-                          (onDeSelectAll)="onDeSelectAll($event)">
-    </angular2-multiselect>
-    <angular2-multiselect [data]="dropdownTasktypeList" [(ngModel)]="selectedTasktypes"
-                          [settings]="dropdownTasktypeSettings"
-                          (onSelect)="onItemSelect($event)"
-                          (onDeSelect)="OnItemDeSelect($event)"
-                          (onSelectAll)="onSelectAll($event)"
-                          (onDeSelectAll)="onDeSelectAll($event)">
-    </angular2-multiselect>
+  <div class="admin-cell__actions">
+    <div class="admin-cell__actions__filters">
+      <angular2-multiselect [data]="dropdownCycleList" [(ngModel)]="selectedCycles"
+                            [settings]="dropdownCycleSettings"
+                            (onSelect)="onItemSelect($event)"
+                            (onDeSelect)="OnItemDeSelect($event)"
+                            (onSelectAll)="onSelectAll($event)"
+                            (onDeSelectAll)="onDeSelectAll($event)">
+      </angular2-multiselect>
+      <angular2-multiselect [data]="dropdownTasktypeList" [(ngModel)]="selectedTasktypes"
+                            [settings]="dropdownTasktypeSettings"
+                            (onSelect)="onItemSelect($event)"
+                            (onDeSelect)="OnItemDeSelect($event)"
+                            (onSelectAll)="onSelectAll($event)"
+                            (onDeSelectAll)="onDeSelectAll($event)">
+      </angular2-multiselect>
+    </div>
+    <div class="admin-cell__actions__buttons">
+      <button hasPermissions="['can_create_event']" appMyModalOpen="create event"
+              class="button button--success">
+        Créer une plage horaire
+      </button>
+    </div>
   </div>
   <table class="table" style="width: 100%">
     <tr>
@@ -72,3 +82,117 @@
     </tr>
   </table>
 </div>
+
+
+<app-my-modal name="create event"
+              title="Création d'une plage horaire"
+              button2Label="Créer"
+              (button1)="resetForm()"
+              (button2)="createEvent()"
+              typeModal="form"
+              button2Style="button--success">
+
+  <form [formGroup]="eventForm">
+
+    <input type="hidden" formControlName="cell_id">
+
+    <div class="form-group">
+      <label for="nb_volunteers_needed" class="form-label">Nombre de bénévoles requis:</label>
+      <input class="input" formControlName="nb_volunteers_needed" id="nb_volunteers_needed" type="number" min="0" autofocus>
+      <div *ngIf="eventForm.controls['nb_volunteers_needed'].hasError('required')"
+           class="form-text form-text--right form-text--danger">Le nombre de bénévoles est obligatoire.
+      </div>
+      <div *ngIf="eventForm.controls['nb_volunteers_needed'].hasError('min')"
+           class="form-text form-text--right form-text--danger">Un nombre négatif de bénévoles n'est point possible.
+      </div>
+      <div class="form-text form-text--right form-text--danger"
+           *ngFor="let errorMessage of eventForm.controls['nb_volunteers_needed'].getError('apiError')">
+        {{ errorMessage}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nb_volunteers_standby_needed" class="form-label">Nombre de remplaçants requis:</label>
+      <input class="input" formControlName="nb_volunteers_standby_needed" id="nb_volunteers_standby_needed" type="number" min="0">
+      <div *ngIf="eventForm.controls['nb_volunteers_standby_needed'].hasError('min')"
+           class="form-text form-text--right form-text--danger">Un nombre négatif de remplaçants n'est point possible.
+      </div>
+      <div class="form-text form-text--right form-text--danger"
+           *ngFor="let errorMessage of eventForm.controls['nb_volunteers_standby_needed'].getError('apiError')">
+        {{ errorMessage}}
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="tasktypes">
+      <label for="task_type_id" class="form-label">Type d'activité:</label>
+      <select formControlName="task_type_id" id="task_type_id" class="input">
+        <option value="" disabled>Choisis une activité</option>
+        <option *ngFor="let taskType of tasktypes" [value]="taskType.id">{{ taskType.name }}</option>
+      </select>
+      <div class="form-text form-text--right form-text--danger"
+           *ngFor="let errorMessage of eventForm.controls['task_type_id'].getError('apiError')">
+        {{ errorMessage}}
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="cycles">
+      <label for="cycle_id" class="form-label">Cycle:</label>
+      <select formControlName="cycle_id" id="cycle_id" class="input" (change)="setSelectedCycle()">
+        <option value="" disabled>Choisis un cycle</option>
+        <option *ngFor="let cycle of cycles" [ngValue]="cycle.id">{{ cycle.name }}</option>
+      </select>
+      <div class="form-text form-text--right form-text--danger"
+           *ngFor="let errorMessage of eventForm.controls['cycle_id'].getError('apiError')">
+        {{ errorMessage}}
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="selectedCycle">
+
+      <label for="start_date" class="form-label">Début de la plage horaire:</label>
+      <input [owlDateTimeTrigger]="dt12" [owlDateTime]="dt12"
+             [min]="selectedCycle.start_date" [max]="selectedCycle.end_date"
+             formControlName="start_date"  class="input"
+             id="start_date">
+      <owl-date-time #dt12 [firstDayOfWeek]="1"></owl-date-time>
+
+      <div class="form-text form-text--right form-text--danger"
+           *ngIf="eventForm.controls['start_date'].hasError('dateStartMissing')">Début de la plage horaire nécessaire.
+      </div>
+      <div class="form-text form-text--right form-text--danger"
+           *ngFor="let errorMessage of eventForm.controls['start_date'].getError('apiError')">
+        {{ errorMessage}}
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="selectedCycle">
+
+      <label for="end_date" class="form-label">Fin de la plage horaire:</label>
+      <input [owlDateTimeTrigger]="dt13" [owlDateTime]="dt13"
+             [min]="selectedCycle.start_date" [max]="selectedCycle.end_date"
+             formControlName="end_date" class="input"
+             id="end_date">
+      <owl-date-time #dt13 [firstDayOfWeek]="1" [startAt]="this.eventForm.controls['start_date'].value"></owl-date-time>
+
+      <div class="form-text form-text--right form-text--danger"
+           *ngIf="eventForm.controls['end_date'].hasError('dateEndMissing')">Fin de la plage horaire nécessaire.
+      </div>
+      <div class="form-text form-text--right form-text--danger"
+           *ngIf="eventForm.controls['end_date'].hasError('dateEndBeforeDateStart')">La fin de la plage horaire doit être après le début de la plage horaire.
+      </div>
+      <div class="form-text form-text--right form-text--danger"
+           *ngFor="let errorMessage of eventForm.controls['end_date'].getError('apiError')">
+        {{ errorMessage}}
+      </div>
+    </div>
+
+    <div class="alert alert--danger" *ngIf="eventForm.hasError('apiError')">
+      <ul>
+        <li *ngFor="let error of eventForm.getError('apiError')">
+          {{error}}
+        </li>
+      </ul>
+    </div>
+
+  </form>
+</app-my-modal>

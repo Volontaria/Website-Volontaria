@@ -12,6 +12,12 @@
     color: $color-info-text;
   }
 
+  &--danger{
+    background-color: $color-danger-background;
+    border-color: $color-danger-border;
+    color: $color-danger-text;
+  }
+
   &--center {
     text-align: center;
   }
