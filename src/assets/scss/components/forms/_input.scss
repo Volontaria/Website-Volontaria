@@ -13,13 +13,13 @@ input {
 
   &.ng-invalid {
     border-color: $color-danger;
-    box-shadow: 0 0 5px $color-danger;
+    box-shadow: 0 0 5px $color-danger; /* red */
     margin-top: 5px;
   }
 
   &.ng-valid.ng-touched {
     border-color: $color-success;
-    box-shadow: 0 0 5px $color-success;
+    box-shadow: 0 0 5px $color-success; /* green */
     margin-top: 5px;
   }
 }

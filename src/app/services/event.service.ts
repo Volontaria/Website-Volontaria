@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 import GlobalService from './globalService';
 import {AuthenticationService} from './authentication.service';
 import {environment} from '../../environments/environment';
+import {User} from '../models/user';
 
 
 @Injectable()
@@ -17,7 +18,7 @@ export class EventService extends GlobalService {
     super();
   }
 
-  getEvents(cell: number= null, cycle: number= null): Observable<any> {
+  getEvents(cell: number = null, cycle: number = null): Observable<any> {
     const headers = this.getHeaders();
     let params = new HttpParams();
     if (cell != null) {
@@ -50,4 +51,13 @@ export class EventService extends GlobalService {
       {headers: headers, params: params}
     );
   }
+
+  createEvent(body: string): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.post<any>(
+      this.url_events,
+      body,
+      {headers: headers}    );
+  }
+
 }
