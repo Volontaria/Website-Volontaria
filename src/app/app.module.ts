@@ -53,6 +53,9 @@ import { MyModalOpenDirective } from './directives/my-modal-open-directive.direc
 import { MyModalComponent } from './components/my-modal/my-modal.component';
 import { MyModalService } from './services/my-modal/my-modal.service';
 
+import {OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
+
+
 const appRoutes = [
   {
     path: '',
@@ -220,6 +223,29 @@ const appRoutes = [
   }
 ];
 
+export class DefaultIntl {
+  upSecondLabel= 'Ajouter une seconde';
+  downSecondLabel= 'Retirer une seconde';
+  upMinuteLabel= 'Ajouter une minute';
+  downMinuteLabel= 'Retirer une minute';
+  upHourLabel= 'Ajouter une heure';
+  downHourLabel= 'Retirer une heure';
+  prevMonthLabel= 'Mois précédent';
+  nextMonthLabel= 'Mois suivant';
+  prevYearLabel= 'Année précédente';
+  nextYearLabel= 'Année suivante';
+  prevMultiYearLabel= 'Les 21 années précédentes';
+  nextMultiYearLabel= 'Les 21 prochaines années';
+  switchToMonthViewLabel= 'Changer pour la vue par mois';
+  switchToMultiYearViewLabel= 'Changer la vue pour l\'année et le mois';
+  cancelBtnLabel= 'Annuler';
+  setBtnLabel= 'Confirmer';
+  rangeFromLabel= 'Depuis';
+  rangeToLabel= 'Jusqu\'au';
+  hour12AMLabel= 'AM';
+  hour12PMLabel= 'PM';
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -266,6 +292,8 @@ const appRoutes = [
     ReactiveFormsModule,
     SimpleNotificationsModule.forRoot(),
     AngularMultiSelectModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   exports: [ RouterModule ],
   providers: [
@@ -283,6 +311,7 @@ const appRoutes = [
       useClass: MyHttpInterceptor,
       multi: true,
     },
+    {provide: OwlDateTimeIntl, useClass: DefaultIntl},
     MyModalService
   ],
   bootstrap: [AppComponent]

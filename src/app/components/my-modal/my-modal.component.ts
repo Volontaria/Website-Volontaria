@@ -39,7 +39,7 @@ export class MyModalComponent implements OnInit {
   clickOverlay(event: Event) {
     const target = (event.target as HTMLElement);
 
-    if (target.classList.contains('modal-component')) {
+    if (target.classList.contains('modal-component__content')) {
       this.toggle();
     }
   }
@@ -53,7 +53,6 @@ export class MyModalComponent implements OnInit {
 
     if (this.show) {
       document.addEventListener('keyup', this.escapeListener);
-       this.modalContent.nativeElement.getElementsByTagName('input')[0].focus();
     } else {
       document.removeEventListener('keyup', this.escapeListener);
       this.errorMessage = '';

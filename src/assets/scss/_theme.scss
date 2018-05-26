@@ -28,3 +28,9 @@ $color-neutral-text: #393E42;
 $color-info-border: #B8DAFF;
 $color-info-background: #CCE5FF;
 $color-info-text: #034386;
+
+$color-danger-border: #f5c6cb;
+$color-danger-background: #F8D7DA;
+$color-danger-background-hover: darken($color-danger-background, 50%);
+$color-danger-text: #975057;
+$color-danger-text-hover: white;
