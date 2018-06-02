@@ -11,6 +11,8 @@ export const environment = {
     participations: '/volunteer/participations',
     profile: '/profile',
     tasktypes: '/volunteer/tasktypes',
-    users: '/users'
+    users: '/users',
+    reset_password: '/reset_password',
+    change_password: '/change_password'
   }
 };

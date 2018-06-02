@@ -53,7 +53,11 @@ import { MyModalOpenDirective } from './directives/my-modal-open-directive.direc
 import { MyModalComponent } from './components/my-modal/my-modal.component';
 import { MyModalService } from './services/my-modal/my-modal.service';
 
-import {OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
+import { OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { ForgotPasswordComponent } from './components/pages/forgot-password/forgot-password.component';
+// tslint:disable-next-line:max-line-length
+import { ForgotPasswordConfirmationComponent } from './components/pages/forgot-password-confirmation/forgot-password-confirmation.component';
+import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 
 
 const appRoutes = [
@@ -67,6 +71,10 @@ const appRoutes = [
         canActivate: [
           CanActivateViaAuthGuard
         ]
+      },
+      {
+        path: 'forgot-password/confirmation',
+        component: ForgotPasswordConfirmationComponent,
       },
       {
         path: 'activities/:cycle',
@@ -214,7 +222,15 @@ const appRoutes = [
       {
         path: 'login',
         component: LoginPageComponent
-      }
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+      },
+      {
+        path: 'reset-password/:token',
+        component: ResetPasswordComponent,
+      },
     ]
   },
   {
@@ -277,7 +293,10 @@ export class DefaultIntl {
     PermissionDirective,
     AdminComponent,
     MyModalOpenDirective,
-    MyModalComponent
+    MyModalComponent,
+    ForgotPasswordComponent,
+    ForgotPasswordConfirmationComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
