@@ -14,6 +14,8 @@ interface AuthenticationResponse {
 export class AuthenticationService extends GlobalService {
 
   url_authentication = environment.url_base_api + environment.paths_api.authentication;
+  url_change_password = environment.url_base_api + environment.paths_api.change_password;
+  url_reset_password = environment.url_base_api + environment.paths_api.reset_password;
 
   constructor(public http: HttpClient) {
     super();
@@ -26,6 +28,29 @@ export class AuthenticationService extends GlobalService {
       {
         login: login,
         password: password
+      },
+      {headers: headers}
+    );
+  }
+
+  resetPassword(email: string): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.post<any>(
+      this.url_reset_password,
+      {
+        username: email
+      },
+      {headers: headers}
+    );
+  }
+
+  changePassword(token: string, password: string): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.post<any>(
+      this.url_change_password,
+      {
+        token: token,
+        new_password: password
       },
       {headers: headers}
     );
