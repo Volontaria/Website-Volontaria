@@ -6,7 +6,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class PermissionDirective implements OnInit {
 
-  @Input() hasPermissions: string[];
+  @Input() appHasPermissions: string[];
   element: ElementRef = null;
 
   constructor(element: ElementRef,
@@ -15,7 +15,7 @@ export class PermissionDirective implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.authenticationService.hasPermissions(this.hasPermissions)) {
+    if (!this.authenticationService.hasPermissions(this.appHasPermissions)) {
       this.element.nativeElement.style.display = 'none';
     }
   }

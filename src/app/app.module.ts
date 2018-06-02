@@ -92,16 +92,12 @@ const appRoutes = [
       {
         path: 'info',
         component: InfoPageComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        canActivate: []
       },
       {
         path: 'contact',
         component: ContactPageComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        canActivate: []
       },
       {
         path: 'register',
