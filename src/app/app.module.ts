@@ -58,6 +58,7 @@ import { ForgotPasswordComponent } from './components/pages/forgot-password/forg
 // tslint:disable-next-line:max-line-length
 import { ForgotPasswordConfirmationComponent } from './components/pages/forgot-password-confirmation/forgot-password-confirmation.component';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
+import { MyTableComponent } from './components/my-table/my-table.component';
 
 
 const appRoutes = [
@@ -290,6 +291,7 @@ export class DefaultIntl {
     AdminComponent,
     MyModalOpenDirective,
     MyModalComponent,
+    MyTableComponent,
     ForgotPasswordComponent,
     ForgotPasswordConfirmationComponent,
     ResetPasswordComponent
