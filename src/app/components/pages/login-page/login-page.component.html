@@ -3,10 +3,6 @@
   <h2 class="login-page__title">
     Se connecter
   </h2>
-  <p class="card card--warning">
-    Tous les bénévoles, anciens et nouveaux,
-    doivent se créer un nouveau compte!
-  </p>
   <form class="login-page__form" (ngSubmit)="authenticate()">
     <p *ngIf="error" class="login-page__form__error">
       {{error}}
