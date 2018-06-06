@@ -1,22 +1,11 @@
 <div class="page-homepage">
-  <img class="page-homepage__banner" src="assets/images/home.jpg" alt="Pictures of NousRire volunteers">
   <div class="page-homepage__title">
-    Bonjour <span *ngIf="user">{{ user.first_name }}</span>!
+    Dans quel lieu souhaites-tu faire du bénévolat?
   </div>
   <div class="page-homepage__content">
-    <h3 *ngIf="cycles.length <= 1">Voici la période d'emballage à venir :</h3>
-    <h3 *ngIf="cycles.length > 1">Voici les périodes d'emballage à venir :</h3>
-    <div class="card" *ngFor="let cycle of cycles">
-      <p>
-        <b>{{ cycle.name }}</b>
-      </p>
-      <p>
-        Du {{ cycle.start_date | date:'dd MMMM yyyy'}} au {{ cycle.end_date | date:'dd MMMM yyyy'}}
-      </p>
-      <a routerLink="/activities/{{ cycle.id }}" class="button">
-        M'inscrire à une plage horaire
-      </a>
-    </div>
+    <app-my-table [settings]="settings"
+                  [data]="cells"
+                  (selectItem)="selectUser($event)">
+    </app-my-table>
   </div>
-
 </div>

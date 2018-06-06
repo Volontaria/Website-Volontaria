@@ -3,12 +3,11 @@ import { EventService } from '../../../services/event.service';
 import { Event } from '../../../models/event';
 import { TasktypeService } from '../../../services/tasktype.service';
 import { Tasktype } from '../../../models/tasktype';
-import { CellService } from '../../../services/cell.service';
-import { Cell } from '../../../models/cell';
+import { CycleService } from '../../../services/cycle.service';
+import { Cycle } from '../../../models/cycle';
 import { User } from '../../../models/user';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { ActivatedRoute, Params } from '@angular/router';
-
 
 @Component({
   templateUrl: 'activities-page.component.html',
@@ -26,13 +25,13 @@ export class ActivitiesPageComponent implements OnInit {
   selectedTasktypes = [];
   dropdownTasktypeSettings = {};
 
-  dropdownCellList = [];
-  selectedCells = [];
-  dropdownCellSettings = {};
+  dropdownCycleList = [];
+  selectedCycles = [];
+  dropdownCycleSettings = {};
 
   constructor(private eventService: EventService,
               private tasktypeService: TasktypeService,
-              private cellService: CellService,
+              private cycleService: CycleService,
               private authenticationService: AuthenticationService,
               private activatedRoute: ActivatedRoute) {}
 
@@ -40,7 +39,7 @@ export class ActivitiesPageComponent implements OnInit {
     this.user = this.authenticationService.getProfile();
 
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.eventService.getEvents(null, params['cycle']).subscribe(
+      this.eventService.getEvents(params['cell']).subscribe(
         data => {
           this.events = data.results.map(e => new Event(e));
           this.filter();
@@ -57,11 +56,11 @@ export class ActivitiesPageComponent implements OnInit {
       }
     );
 
-    this.cellService.getCells().subscribe(
+    this.cycleService.getCycles().subscribe(
       data => {
-        const cells = data.results.map(c => new Cell(c) );
-        for (const cell of Object.keys(cells)) {
-          this.dropdownCellList.push(this.cellToDict(cells[cell]));
+        const cycles = data.results.map(c => new Cycle(c) );
+        for (const cycle of Object.keys(cycles)) {
+          this.dropdownCycleList.push(this.cycleToDict(cycles[cycle]));
         }
       }
     );
@@ -74,9 +73,9 @@ export class ActivitiesPageComponent implements OnInit {
       classes: 'activities-page__filters__filter',
     };
 
-    this.dropdownCellSettings = {
+    this.dropdownCycleSettings = {
       singleSelection: false,
-      text: 'Choisis ta(tes) ville(s)',
+      text: 'Choisis ta(tes) période(s)',
       selectAllText: 'Toutes',
       unSelectAllText: 'Aucune',
       classes: 'activities-page__filters__filter',
@@ -106,10 +105,10 @@ export class ActivitiesPageComponent implements OnInit {
     };
   }
 
-  private cellToDict(cell: Cell) {
+  private cycleToDict(cycle: Cycle) {
     return {
-      'id': cell.id,
-      'itemName': cell.name,
+      'id': cycle.id,
+      'itemName': cycle.name,
     };
   }
 
@@ -131,9 +130,9 @@ export class ActivitiesPageComponent implements OnInit {
         // If no task_type filter or filter is verified
         if ( this.selectedTasktypes.length === 0
           || this.elemIsFiltered(this.tasktypeToDict(this.events[event].task_type), this.selectedTasktypes)) {
-          // If no cell filter or filter is verified
-          if ( this.selectedCells.length === 0
-            || this.elemIsFiltered(this.cellToDict(this.events[event].cell), this.selectedCells)) {
+          // If no cycle filter or filter is verified
+          if ( this.selectedCycles.length === 0
+            || this.elemIsFiltered(this.cycleToDict(this.events[event].cycle), this.selectedCycles)) {
             eventFiltered.push(this.events[event]);
           }
         }
@@ -141,7 +140,7 @@ export class ActivitiesPageComponent implements OnInit {
     }
 
     // If no filters, we take all events
-    if (this.selectedCells.length === 0 && this.selectedTasktypes.length === 0) {
+    if (this.selectedCycles.length === 0 && this.selectedTasktypes.length === 0) {
       for (const event in this.events) {
         if (new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
           this.filteredEvents.push(this.events[event]);
