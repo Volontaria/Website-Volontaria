@@ -78,7 +78,7 @@ const appRoutes = [
         component: ForgotPasswordConfirmationComponent,
       },
       {
-        path: 'activities/:cycle',
+        path: 'activities/:cell',
         component: ActivitiesPageComponent,
         canActivate: [
           CanActivateViaAuthGuard

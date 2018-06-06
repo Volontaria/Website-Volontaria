@@ -1,8 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Cycle } from '../../../models/cycle';
-import { CycleService } from '../../../services/cycle.service';
 import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
+import { CellService } from '../../../services/cell.service';
+import { Cell } from '../../../models/cell';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,21 +13,36 @@ import { UserService } from '../../../services/user.service';
 })
 export class HomePageComponent {
 
-  cycles: Cycle[];
+  cells: Cell[];
   user: User;
 
-  constructor(private cycleService: CycleService,
-              private userService: UserService) {
+  settings = {
+    clickable: true,
+    columns: [
+      {
+        name: 'name',
+        title: 'Nom'
+      }
+    ]
+  };
+
+  constructor(private cellService: CellService,
+              private userService: UserService,
+              private router: Router) {
     this.userService.getProfile().subscribe(
       data => {
         this.user = data;
       }
     );
-    this.cycleService.getCycles(true).subscribe(
+    this.cellService.getCells().subscribe(
       data => {
-        this.cycles = data.results.map(c => new Cycle(c) );
+        this.cells = data.results.map(c => new Cell(c) );
       }
     );
+  }
+
+  selectUser(cell) {
+    this.router.navigate(['/activities/' + cell.id]);
   }
 
 }
