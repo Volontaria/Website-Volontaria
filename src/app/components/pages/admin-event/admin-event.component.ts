@@ -70,4 +70,23 @@ export class AdminEventComponent implements OnInit {
       );
     }
   }
+
+  calculate_minutes(participation) {
+    if (participation.in_time && participation.out_time) {
+      participation.presence_duration_minutes = (participation.out_time - participation.in_time) * 60.0;
+      participation.presence_duration_minutes.toFixed(2);
+    }
+  }
+
+  set_in_time(participation, value) {
+    participation.in_time = value;
+    this.calculate_minutes(participation);
+  }
+
+  set_out_time(participation, value) {
+    participation.out_time = value;
+    this.calculate_minutes(participation);
+  }
+
+
 }
