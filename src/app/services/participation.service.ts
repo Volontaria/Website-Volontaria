@@ -30,11 +30,11 @@ export class ParticipationService extends GlobalService {
       );
   }
 
-  updateParticipation(participation: Participation) {
+  updateParticipation(id: number, data: any) {
     const headers = this.getHeaders();
     return this.http.patch<any>(
-      this.url_participations + '/' + participation.id,
-      participation.serialize(),
+      this.url_participations + '/' + id,
+      data,
       {headers: headers}
     );
   }

@@ -48,57 +48,64 @@
 
   <div class="admin-event__participations">
     <h2>Participations : </h2>
-    <table class="table">
-      <tr>
-        <th>Nom d'utilisateur</th>
-        <th>Prénom</th>
-        <th>Nom</th>
-        <th>Courriel</th>
-        <th>Téléphones</th>
-        <th>Type</th>
-        <th>Durée (minutes)</th>
-        <th>Présence</th>
-      </tr>
-      <tr *ngIf="participations && participations.length == 0">
-        <td colspan="5">
-          Aucune participations pour le moment.
-        </td>
-      </tr>
-      <tr *ngFor="let participation of participations">
-        <td>
-          {{ participation.user.username }}
-        </td>
-        <td>
-          {{ participation.user.first_name }}
-        </td>
-        <td>
-          {{ participation.user.last_name }}
-        </td>
-        <td>
-          {{ participation.user.email }}
-        </td>
-        <td>
-          <span *ngIf="participation.user.phone">{{ participation.user.phone }}<br/></span>
-          {{ participation.user.mobile }}
-        </td>
-        <td>
-          <span *ngIf="participation.standby">Remplaçant</span>
-          <span *ngIf="!participation.standby">Bénévole</span>
-        </td>
-        <td>
-          <input (focusout)="save_participation(participation, 'presence_duration_minutes', $event.target.value)"
-                 type="text"
-                 value="{{ participation.presence_duration_minutes }}"
-          />
-        </td>
-        <td>
-          <select (change)="save_participation(participation, 'presence_status', $event.target.value)">
-            <option *ngFor="let option of participationStatusOption" value="{{ option.value }}" [selected]="option.value == participation.presence_status">
-              {{ option.name }}
-            </option>
-          </select>
-        </td>
-      </tr>
-    </table>
+    <app-my-table [settings]="settings"
+                  [data]="participationsAdapted"
+                  (editItem)="OpenModalEditParticipation($event)">
+    </app-my-table>
   </div>
 </div>
+
+<app-my-modal name="update participation"
+              title="Modification d'une participation"
+              button2Label="Modifier"
+              (button2)="updateParticipation()"
+              typeModal="form"
+              button2Style="button--success">
+
+  <form [formGroup]="participationForm">
+    <div class="form-group">
+      <label for="presence_status" class="form-label">Présence:</label>
+      <select formControlName="presence_status" id="presence_status" class="input">
+        <option value="" disabled>Choisis un status</option>
+        <option *ngFor="let status of participationStatusOption" [value]="status.value">{{ status.name }}</option>
+      </select>
+      <div class="form-text form-text--right form-text--danger"
+           *ngFor="let errorMessage of participationForm.controls['presence_status'].getError('apiError')">
+        {{ errorMessage}}
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="event && participationForm.controls['presence_status'].value === 'P'">
+      <label for="start_date" class="form-label">Heure d'arrivée:</label>
+      <input [owlDateTimeTrigger]="dt12" [owlDateTime]="dt12"
+             [max]="event.end_date" formControlName="start_date"
+             class="input" id="start_date">
+      <owl-date-time #dt12 [firstDayOfWeek]="1" [startAt]="event.start_date"></owl-date-time>
+      <div class="form-text form-text--right form-text--danger"
+           *ngFor="let errorMessage of participationForm.controls['start_date'].getError('apiError')">
+        {{ errorMessage}}
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="event && participationForm.controls['presence_status'].value === 'P'">
+      <label for="end_date" class="form-label">Heure de départ:</label>
+      <input [owlDateTimeTrigger]="dt13" [owlDateTime]="dt13"
+             [min]="event.start_date" formControlName="end_date"
+             class="input" id="end_date">
+      <owl-date-time #dt13 [firstDayOfWeek]="1" [startAt]="event.end_date"></owl-date-time>
+      <div class="form-text form-text--right form-text--danger"
+           *ngFor="let errorMessage of participationForm.controls['end_date'].getError('apiError')">
+        {{ errorMessage}}
+      </div>
+    </div>
+
+    <div class="alert alert--danger" *ngIf="participationForm.hasError('apiError')">
+      <ul>
+        <li *ngFor="let error of participationForm.getError('apiError')">
+          {{error}}
+        </li>participationStatusOption
+      </ul>
+    </div>
+
+  </form>
+</app-my-modal>

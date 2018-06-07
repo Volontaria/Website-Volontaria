@@ -1,5 +1,5 @@
 import BaseModel from './baseModel';
-import {User} from './user';
+import { User } from './user';
 
 export class Participation extends BaseModel {
   id: number;
@@ -21,18 +21,6 @@ export class Participation extends BaseModel {
       return 'Présent';
     }
     return '';
-  }
-
-  serialize() {
-    const data = {
-      presence_status: this.presence_status,
-    };
-
-    if (this.presence_duration_minutes) {
-      data['presence_duration_minutes'] = this.presence_duration_minutes;
-    }
-
-    return data;
   }
 }
 
