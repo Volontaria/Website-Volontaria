@@ -1,11 +1,25 @@
-.activities-page {
-  padding: 1rem;
+@import '../../../../assets/scss/theme';
 
-  &__upcoming-events {
-    padding-bottom: 1rem;
+.activities-page {
+  &__header {
+    padding: 30px;
+    background-color: $main-background-dark;
+    min-height: 150px;
+    border-bottom: 1px solid $main-border;
+
+    &__title {
+      font-size: 30px;
+      margin: 5px 0;
+    }
+
+    &__address {
+      font-size: 12px;
+    }
   }
 
   &__filters {
+    margin-top: 10px;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 1rem;
@@ -18,11 +32,69 @@
   }
 
   &__activities {
-    overflow-x: scroll;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    &__calendar {
+      width: 100%;
+
+      &__actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__date {
+          text-align: center;
+        }
+      }
+
+      &__details {
+        &__title {
+          margin-top: 10px;
+          font-weight: 900;
+        }
+
+        &__table {
+          overflow: auto;
+        }
+      }
+    }
+
+    &__infos {
+      padding: 20px;
+      display: flex;
+      justify-items: flex-start;
+      flex-direction: column;
+
+      &__explanation {
+        width: 80%;
+        padding: 100px 0;
+        display: flex;
+        flex-direction: column;
+
+        &__title {
+          font-size: 22px;
+          text-align: center;
+        }
+
+        &__icon {
+          height: 70px;
+          transform: scale(-1, 1);
+        }
+      }
+
+      &__benevolometre {
+        &__title {
+          margin-bottom: 10px;
+          font-size: 22px;
+        }
+      }
+    }
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 800px) {
   .activities-page__filters {
     justify-content: center;
 
@@ -30,5 +102,9 @@
       width: 100%;
       max-width: 100%;
     }
+  }
+
+  .activities-page__activities__infos{
+    display: none;
   }
 }

@@ -18,6 +18,11 @@
       Actions
     </th>
   </tr>
+  <tr *ngIf="data && data.length === 0" class="my-table__table__no-data">
+    <td [colSpan]="settings.columns.length" class="my-table__table__no-data__cell">
+      {{settings.noDataText}}
+    </td>
+  </tr>
   <tr *ngFor="let item of data"
       [ngClass]="{'my-table__table__line--clickable' : settings.clickable}"
       (click)="clickItem(item)"
@@ -54,5 +59,5 @@
               title="Supprimer ?"
               button2Label="Supprimer"
               (button2)="remove()">
-  Etes-vous vraiment sur de vouloir supprimer ?
+  Êtes-vous vraiment sûr de vouloir supprimer ?
 </app-my-modal>
