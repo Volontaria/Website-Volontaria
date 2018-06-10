@@ -1,4 +1,13 @@
 <div class="activities-page">
+  <div class="activities-page__header" *ngIf="cell">
+    <div class="activities-page__header__title">
+      {{ cell.name }}
+    </div>
+    <div class="activities-page__header__address">
+      {{ cell.address.address_line1 }}, {{ cell.address.address_line2 }}<br/>
+      {{ cell.address.city }}, {{ cell.address.postal_code }}
+    </div>
+  </div>
   <div class="activities-page__filters">
     <angular2-multiselect [data]="dropdownCycleList" [(ngModel)]="selectedCycles"
                           [settings]="dropdownCycleSettings"
@@ -16,48 +25,64 @@
     </angular2-multiselect>
   </div>
   <div class="activities-page__activities">
-    <table class="table">
-      <tr>
-        <th>Début</th>
-        <th>Fin</th>
-        <th>Activité</th>
-        <th>Lieu</th>
-        <th>Inscription</th>
-      </tr>
-      <tr *ngFor="let event of filteredEvents">
-        <td>
-          {{ event.start_date | date:'dd MMMM yyyy'}}<br/>
-          {{ event.start_date | date:'HH:mm'}}
-        </td>
-        <td>
-          {{ event.end_date | date:'dd MMMM yyyy'}}<br/>
-          {{ event.end_date | date:'HH:mm'}}
-        </td>
-        <td>
-          {{ event.task_type.name }}
-        </td>
-        <td>
-          {{ event.cell.address.address_line1 }}<br/>
-          {{ event.cell.address.address_line2 }}<br/>
-          {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
-        </td>
-        <td>
-          Bénévoles : {{ event.nb_volunteers }} / {{ event.nb_volunteers_needed }}<br>
-          Remplaçants : {{ event.nb_volunteers_standby }} / {{ event.nb_volunteers_standby_needed }}<br>
-          <p *ngIf="event.volunteers.indexOf(user.id) < 0">
-            <a *ngIf="event.nb_volunteers < event.nb_volunteers_needed || event.nb_volunteers_standby < event.nb_volunteers_standby_needed" routerLink="/confirmation/{{ event.id }}" class="button">
-              M'inscrire
-            </a>
-            <span *ngIf="event.nb_volunteers >= event.nb_volunteers_needed && event.nb_volunteers_standby >= event.nb_volunteers_standby_needed">
-              Plage horaire complète
-            </span>
-          </p>
-          <p *ngIf="event.volunteers.indexOf(user.id) >= 0">
-            Déjà inscrit.
-          </p>
-        </td>
-      </tr>
-    </table>
+    <div class="activities-page__activities__calendar">
+      <div class="activities-page__activities__calendar__actions">
+        <a class="button"
+           mwlCalendarPreviousView
+           [view]="view"
+           [(viewDate)]="viewDate"
+           (viewDateChange)="activeDayIsOpen = false">
+          Précédent
+        </a>
+        <h3 class="activities-page__activities__calendar__actions__date">
+          {{ viewDate | calendarDate:(view + 'ViewTitle'):locale }}
+        </h3>
+        <a class="button"
+           mwlCalendarNextView
+           [view]="view"
+           [(viewDate)]="viewDate"
+           (viewDateChange)="activeDayIsOpen = false">
+          Suivant
+        </a>
+      </div>
+      <div class="activities-page__activities__calendar__calendar">
+        <mwl-calendar-month-view
+          [viewDate]="viewDate"
+          [events]="calendarEvents"
+          [weekStartsOn]="weekStartsOn"
+          [locale]="locale"
+          [activeDayIsOpen]="activeDayIsOpen"
+          (dayClicked)="dayClicked($event.day)">
+        </mwl-calendar-month-view>
+      </div>
+      <div *ngIf="clickedDay" class="activities-page__activities__calendar__details">
+        <div class="activities-page__activities__calendar__details__title">
+          Liste des plages horaires du {{ clickedDay | date:"dd MMMM yyyy"}}:
+        </div>
+        <div class="activities-page__activities__calendar__details__table">
+          <app-my-table [settings]="settings"
+                        [data]="eventsOfDay"
+                        (selectItem)="eventClicked($event)">
+          </app-my-table>
+        </div>
+      </div>
+    </div>
+    <div class="activities-page__activities__infos">
+      <div class="activities-page__activities__infos__explanation">
+        <div>
+          <div class="activities-page__activities__infos__explanation__title">
+            Trouve une plage horaire de bénévolat en quelques clics à l'aide du calendrier!
+          </div>
+          <img class="activities-page__activities__infos__explanation__icon" src="../../../../assets/images/right-drawn-arrow.svg"/>
+        </div>
+      </div>
+      <div class="activities-page__activities__infos__benevolometre">
+        <div class="activities-page__activities__infos__benevolometre__title">
+          Tu souhaites maximiser ton implication?<br/>
+          Laisse-toi guider par notre bénévolomètre :
+        </div>
+        <app-my-benevolometre [parts]="benevolometre"></app-my-benevolometre>
+      </div>
+    </div>
   </div>
-
 </div>

@@ -12,6 +12,20 @@ export class Event extends BaseModel {
   end_date: string;
   volunteers: number[];
   volunteers_standby: number[];
+  nb_volunteers: number;
+  nb_volunteers_needed: number;
+  nb_volunteers_standby: number;
+  nb_volunteers_standby_needed: number;
+
+  getStartTime() {
+    const date = new Date(this.start_date);
+    return date.toLocaleTimeString();
+  }
+
+  getEndTime() {
+    const date = new Date(this.end_date);
+    return date.toLocaleTimeString();
+  }
 }
 
 

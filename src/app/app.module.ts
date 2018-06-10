@@ -59,7 +59,12 @@ import { ForgotPasswordComponent } from './components/pages/forgot-password/forg
 import { ForgotPasswordConfirmationComponent } from './components/pages/forgot-password-confirmation/forgot-password-confirmation.component';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 import { MyTableComponent } from './components/my-table/my-table.component';
+import { CalendarModule } from 'angular-calendar';
+import localeFr from '@angular/common/locales/fr';
+import { registerLocaleData } from '@angular/common';
+import { MyBenevolometreComponent } from './components/my-benevolometre/my-benevolometre.component';
 
+registerLocaleData(localeFr);
 
 const appRoutes = [
   {
@@ -294,7 +299,8 @@ export class DefaultIntl {
     MyTableComponent,
     ForgotPasswordComponent,
     ForgotPasswordConfirmationComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    MyBenevolometreComponent
   ],
   imports: [
     BrowserModule,
@@ -311,6 +317,7 @@ export class DefaultIntl {
     AngularMultiSelectModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    CalendarModule.forRoot()
   ],
   exports: [ RouterModule ],
   providers: [
