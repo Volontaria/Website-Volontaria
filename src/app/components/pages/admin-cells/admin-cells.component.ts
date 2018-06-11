@@ -18,7 +18,7 @@ export class AdminCellsComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    this.cellService.getCells().subscribe(
+    this.cellService.getCells('name').subscribe(
       data => {
         this.cells = data.results.map(c => new Cell(c) );
       }
