@@ -34,7 +34,7 @@ export class HomePageComponent {
         this.user = data;
       }
     );
-    this.cellService.getCells().subscribe(
+    this.cellService.getCells('name').subscribe(
       data => {
         this.cells = data.results.map(c => new Cell(c) );
       }

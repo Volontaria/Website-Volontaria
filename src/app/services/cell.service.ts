@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import GlobalService from './globalService';
 import {environment} from '../../environments/environment';
+import {HttpParams} from '@angular/common/http';
 
 
 @Injectable()
@@ -15,11 +16,17 @@ export class CellService extends GlobalService {
     super();
   }
 
-  getCells(): Observable<any> {
+  getCells(orderedBy: string= null): Observable<any> {
     const headers = this.getHeaders();
+    let params = new HttpParams();
+
+    if (orderedBy !== null) {
+      params = params.set('ordering', orderedBy);
+    }
+
     return this.http.get<any>(
       this.url_cells,
-      {headers: headers}
+      {headers: headers, params: params}
     );
   }
 
