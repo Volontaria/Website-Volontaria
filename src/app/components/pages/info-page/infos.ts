@@ -1,0 +1,282 @@
+export const
+  DATA = {
+    'titles': [
+      {
+        'value': 'Informations importantes à lire concernant Volontaria',
+        'state': 'inactive',
+        'sub_titles': [
+          {
+            'value': 'Inscription',
+            'state': 'inactive',
+            'content':
+              `<p>
+        Pour t'inscrire à une plage de bénévolat :
+      </p>
+      <ul>
+        <li>Clique sur M’inscrire à une plage horaire, selon la période d’emballage de ton choix.</li>
+        <li>Clique sur Filtrer par cellule et choisis la ville de ton choix.</li>
+        <li>Choisis la ou les plages horaires qui te conviennent et clique sur M’inscrire.</li>
+        <li>Révise les informations concernant la ou les plages horaires que tu as choisies et
+        clique sur M’inscrire comme bénévole.</li>
+      </ul>
+      <p>
+        Attention : Aucune autre confirmation ne te sera envoyée!
+        Dès que tu es inscrit(e), ta participation est confirmée.
+        Tu peux en tous temps aller voir ton horaire dans l’onglet Mon horaire.
+        <br/>Tu peux nous informer par courriel si tu as des problèmes de santé,
+        des restrictions ou des allergies et nous nous adapterons à tes besoins!
+      </p>
+    </div>`
+          },
+          {
+            'value': 'Désinscription',
+            'state': 'inactive',
+            'content':
+              `<p>Il est possible de te désinscrire toi-même d\'une plage horaire.Il te suffit d\'aller dans l\'onglet
+              Mon horaire et de cliquer sur le bouton rouge Me désinscrire! </p>`
+          },
+          {
+            'value': 'Le bénévolat c’est du sérieux! :)',
+            'state': 'inactive',
+            'content':
+              `<p>
+        Comme le succès d’une journée d’emballage dépend du nombre suffisant de bénévoles, nous comptons sur ta
+        présence.
+        Cependant, si un changement t’empêche de te présenter, tu peux te désinscrire toi-même.
+        Si c'est possible pour toi de le faire deux ou trois jours à l'avance, c'est très apprécié!
+        <br/><br/>
+        Sinon, désinscris-toi et appelle ou écris au responsable de ta ville de bénévolat afin que nous trouvions un(e)
+        autre bénévole pour combler ton poste dans l'équipe.
+        Merci d'inclure dans ton message ton nom et la plage horaire concernée.
+      </p>
+<div class="info-page__address">
+      <div class="card">
+        Abitibi-LaSarre<br/>
+        Marilyn Coulombe<br/>
+        abitibi@nousrire.com<br/>
+        819-797-1297
+      </div>
+      <div class="card">
+        Gatineau<br/>
+        Charlène Brassard<br/>
+        gatineau@nousrire.com<br/>
+        819-328-2427<br/>
+      </div>
+      <div class="card">
+        Joliette<br/>
+        Carmen Bruda<br/>
+        joliette@nousrire.com<br/>
+        514-570-3443
+      </div>
+      <div class="card">
+        Kamouraska<br/>
+        Cindy Garneau<br/>
+        kamouraska@nousrire.com<br/>
+        418-551-4802
+      </div>
+      <div class="card">
+        Laval<br/>
+        Carmen Bruda<br/>
+        laval@nousrire.com<br/>
+        514-570-3443
+      </div>
+      <div class="card">
+        Mascouche/Terrebonne<br/>
+        Carmen Bruda<br/>
+        mascouche-terrebonne@nousrire.com<br/>
+        514-570-3443
+      </div>
+      <div class="card">
+        Montréal<br/>
+        Amélie Vadeboncoeur<br/>
+        benevoles@nousrire.com<br/>
+        514-817-0728
+      </div>
+      <div class="card">
+        Québec<br/>
+        Maude Lavoie<br/>
+        quebec@nousrire.com<br/>
+        418-576-5172
+      </div>
+      <div class="card">
+        Sherbrooke<br/>
+        Marie-Laurence Marcoux<br/>
+        sherbrooke@nousrire.com<br/>
+        819-575-2276
+      </div>
+      <div class="card">
+        St-Hubert<br/>
+        Marie-Ève Bédard<br/>
+        st-hubert@nousrire.com<br/>
+        514-531-5186<br/>
+      </div>
+      <div class="card">
+        Sutton<br/>
+        Jessica Martin<br/>
+        sutton@nousrire.com<br/>
+        579-436-8255
+      </div>
+      <div class="card">
+        Val-David<br/>
+        Carmen Bruda<br/>
+        val-david@nousrire.com<br/>
+        514-570-3443
+      </div>
+      <div class="card">
+        Victoriaville<br/>
+        Caroline Mercier<br/>
+        victoriaville@nousrire.com<br/>
+        819-990-1886
+      </div>
+      <div class="card">
+        Ville Saguenay<br/>
+        Caroline Laflamme<br/>
+        villesaguenay@nousrire.com<br/>
+        514-771-5496
+      </div>
+    </div>`
+          }
+        ]
+      }, {
+        'value': 'Description des différentes missions proposées',
+        'state': 'inactive',
+        'sub_titles': [
+          {
+            'value': 'Emballage',
+            'state': 'inactive',
+            'content':
+              `<p>
+        Cette mission concerne toutes les cellules et consiste à être assigné(e) à une station et à remplir les
+        contenants des participants avec les aliments commandés sur la facture, à l’aide d’une balance.
+      </p>`
+          }, {
+            'value': 'Réception de la marchandise et aménagement de la salle',
+            'state': 'inactive',
+            'content':
+              `<p>
+        Cette mission ne concerne que certaines cellules.
+        Regarde si des plages horaires sont ouvertes pour ta ville.
+        Cette mission requiert des personnes qui sont habiles avec le multitâches et les tâches seront adaptées aux
+        capacités de chaque bénévole!
+        Tu pourrais être appelé(e) à écrire des informations sur des sacs, à coller des étiquettes, à monter des
+        stations ou à transporter des poches d’aliments.
+        Cette mission a lieu sans la présence des participants et tu seras guidé(e) par les membres d’équipe.
+      </p>`
+          }, {
+            'value': 'Préparation des sacs',
+            'state': 'inactive',
+            'content':
+              `<p>
+        Cette mission ne concerne que la cellule de Montréal.
+        Il s’agit d’estamper des sacs ou d’écrire des informations sur des sacs.
+        Cette mission a lieu sans la présence des participants et tu seras guidé(e) par les membres d’équipe.
+      </p>`
+          }, {
+            'value': 'Emballage de l’huile de coco et du miso',
+            'state': 'inactive',
+            'content':
+              `<p>
+        Cette mission ne concerne que la cellule de Montréal!
+        Il s’agit de faire fondre l’huile de coco et de la transvaser dans des pots Mason.
+        Pour le miso, il s’agit de le répartir dans des pots Mason.
+        Cette mission a lieu sans la présence des participants et tu seras guidé(e) par les membres d’équipe.
+      </p>`
+          }
+        ]
+      }, {
+        'value': 'Informations importantes à lire avant de te présenter pour le bénévolat',
+        'state': 'inactive',
+        'sub_titles': [
+          {
+            'value': 'Ponctualité',
+            'state': 'inactive',
+            'content':
+              `<p>
+        Merci de te présenter dix minutes plus tôt que l'heure du début de ton quart de bénévolat! Ta ponctualité est
+        importante pour le bon fonctionnement de la journée d'emballage! Il est aussi important que tu assistes à la
+        formation qui a lieu avant de commencer à œuvrer sur le plancher.
+      </p>
+      <p>
+        Si tu arrives en voiture, prévois assez de temps pour te trouver un stationnement. Si tu veux emballer ta
+        commande avant de commencer le bénévolat, prévois une bonne heure d’avance ou emballe-la après tes heures de
+        bénévolat.
+      </p>`
+          }, {
+            'value': 'Quoi apporter et les normes d’habillement',
+            'state': 'inactive',
+            'content':
+              `<p>
+        Ces normes ont été établies dans une optique d'hygiène, afin de respecter les normes du MAPAQ.
+      </p>
+      <ul>
+        <li>Porter des chaussures complètement fermées.</li>
+        <li>Porter un chandail qui couvre les aisselles (pas de camisole).</li>
+        <li>Porter un chapeau ou un foulard qui couvre entièrement les cheveux (idéal pour le zéro déchet!). Si tu n’en
+          as pas, des filets pour les cheveux et la barbe sont disponibles sur place.
+        </li>
+        <li>Enlever tous les bijoux et autres objets pouvant tomber dans les aliments.</li>
+        <li>Ne pas porter de vêtements qui peuvent perdre des fibres facilement (exemple: laine à poil long).</li>
+        <li>Porter des vêtements propres, utilisés exclusivement pour le travail en question (Il fait chaud dans le
+          local, c’est bien de miser sur le multicouches!).
+        </li>
+        <li>Une bouteille d’eau et une collation ou un dîner au besoin (Du chocolat ou des petites grignotines santé te
+          seront aussi offertes!).
+        </li>
+      </ul>`
+          }, {
+            'value': 'Quand emballer ta commande',
+            'state': 'inactive',
+            'content':
+              `<ul>
+        <li>Afin d'assurer un fonctionnement optimal dans la salle d'emballage, tu dois emballer ta commande avant ou
+          après ton quart de bénévolat!
+        </li>
+        <li>Si tu veux l'emballer avant, tu dois prévoir au moins une heure, afin d'arriver à l'heure pour le début de
+          la formation!
+        </li>
+      </ul>`
+          }, {
+            'value': 'Avant de quitter et suite à ton implication',
+            'state': 'inactive',
+            'content':
+              ` <p>
+        Il est important d’aller voir une des personnes responsables des bénévoles avant de partir, pour qu'on note tes
+        heures et qu'on puisse t'envoyer ton code promotionnel! Tu le recevras par courriel, après la période
+        d'emballage!
+      </p>
+<p>N'oublie pas de vérifier ton courrier indésirable, car les courriels de NousRire s'y retrouvent parfois!</p>
+<p><ul>
+        <li>
+          <p>Pour la commande 16 (période d’emballage du 1er au 26 mai)</p>
+          <ul>
+            <li>Réception de ton code au plus tard le 1er juin pour l’ouverture des commandes</li>
+            <li>Applicable à partir de la période de commandes du 1er au 17 juin</li>
+          </ul>
+        </li>
+
+        <li>
+          <p>Pour la commande 17 (période d’emballage du 29 mai au 23 juin)</p>
+          <ul>
+            <li>Réception de ton code au plus tard le 29 juin pour l’ouverture des commandes</li>
+            <li>Applicable à partir de la période de commande du 29 juin au 15 juillet</li>
+          </ul>
+        </li>
+      </ul>
+    </div></p>
+<p><p>
+        Tu recevras aussi par courriel un court questionnaire à remplir, pour nous partager tes suggestions et tes
+        commentaires. Ta vision est très précieuse pour nous et on est ouvert à tout ce qui pourrait contribuer à rendre
+        ton expérience de bénévolat plus agréable!
+      </p>
+      <p>
+        Si tu as des questions ou besoin de support technique, contacte Amélie Vadeboncoeur à cette adresse :
+        benevoles@nousrire.com ou par téléphone au 514-817-0728.
+      </p>
+      <br/>
+      <p>Au plaisir de te compter parmi nous et de changer le monde ensemble! ☺</p></p>`
+          }
+        ]
+      }
+    ]
+  };
+
