@@ -39,7 +39,11 @@ export class AdminEventComponent implements OnInit {
       },
       {
         name: 'phone',
-        title: 'Téléphones'
+        title: 'Téléphone'
+      },
+      {
+        name: 'mobile',
+        title: 'Mobile'
       },
       {
         name: 'standby',
@@ -123,8 +127,6 @@ export class AdminEventComponent implements OnInit {
       data['presence_duration_minutes'] = (end - start) / 60000;
     }
 
-    console.log(data);
-
     if (this.participationForm.valid) {
       this.participationService.updateParticipation(this.selectedParticipation.id, data).subscribe(
         success => {
@@ -206,6 +208,7 @@ export class AdminEventComponent implements OnInit {
         last_name: participation.user.last_name,
         email: participation.user.email,
         phone: participation.user.phone,
+        mobile: participation.user.mobile,
         standby: participation.standby,
         presence_duration_minutes: participation.presence_duration_minutes,
       };
