@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class ForgotPasswordComponent {
 
   forgotForm: FormGroup;
-  errors: string;
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -27,13 +26,13 @@ export class ForgotPasswordComponent {
     if ( form.valid ) {
       this.authenticationService.resetPassword(form.value['username']).subscribe(
         data => {
-          console.log('success');
           this.router.navigate(['/forgot-password/confirmation']);
         },
         err => {
           if (err.error.non_field_errors) {
-            this.errors = err.error.non_field_errors;
-            console.log(this.errors);
+            this.forgotForm.setErrors({
+              apiError: err.error.non_field_errors
+            });
           }
           if (err.error.username) {
             this.forgotForm.controls['username'].setErrors({

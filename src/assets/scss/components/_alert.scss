@@ -5,6 +5,24 @@
   color: $color-neutral-text;
   background-color: $color-neutral-background;
   border-radius: 2px;
+  font-size: 12px;
+
+  & ul {
+    padding-left: 0;
+    list-style-type: none;
+
+    & li {
+      padding-left: 1.3em;
+
+      &:before {
+        content: "\f071"; /* FontAwesome Unicode */
+        font-family: FontAwesome;
+        display: inline-block;
+        margin-left: -1.3em; /* same as padding-left set on li */
+        width: 1.3em; /* same as padding-left set on li */
+      }
+    }
+  }
 
   &--info {
     background-color: $color-info-background;

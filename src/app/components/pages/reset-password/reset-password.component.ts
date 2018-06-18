@@ -60,6 +60,8 @@ export class ResetPasswordComponent implements OnInit {
           }
         }
       );
+    } else {
+      this.errors = ['Veuillez remplir tout les champs obligatoires'];
     }
   }
 
