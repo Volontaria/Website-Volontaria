@@ -18,13 +18,14 @@ export class ParticipationService extends GlobalService {
     super();
   }
 
-  createParticipation(event_id: number, standby: boolean): Observable<any> {
+  createParticipation(event_id: number, standby: boolean, send_ics: boolean): Observable<any> {
     const headers = this.getHeaders();
     return this.http.post<any>(
       this.url_participations,
       {
         event: event_id,
-        standby: standby
+        standby: standby,
+        send_ics: send_ics
       },
       {headers: headers}
       );
