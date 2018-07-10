@@ -81,7 +81,7 @@ export class ActivitiesPageComponent implements OnInit {
   ];
 
   eventsOfDay = [];
-  clickedDay = null;
+  clickedDay = new Date();
   settings = {
     noDataText: 'Aucune plage horaire pour ce jour.',
     clickable: true,
@@ -312,6 +312,7 @@ export class ActivitiesPageComponent implements OnInit {
         }
       }
     }
+    this.onAnchorClick();
   }
 
   eventClicked(eventClicked) {
@@ -332,5 +333,12 @@ export class ActivitiesPageComponent implements OnInit {
       nb_standby: event.nb_volunteers_standby + '/' + event.nb_volunteers_standby_needed
     };
     return newEvent;
+  }
+
+  onAnchorClick() {
+    const x = document.querySelector('#anchor_list_events');
+    if (x) {
+      x.scrollIntoView();
+    }
   }
 }

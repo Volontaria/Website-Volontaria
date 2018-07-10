@@ -55,7 +55,7 @@
           (dayClicked)="dayClicked($event.day)">
         </mwl-calendar-month-view>
       </div>
-      <div *ngIf="clickedDay" class="activities-page__activities__calendar__details">
+      <div *ngIf="clickedDay" class="activities-page__activities__calendar__details" id="anchor_list_events">
         <div class="activities-page__activities__calendar__details__title">
           Liste des plages horaires du {{ clickedDay | date:"dd MMMM yyyy"}}:
         </div>
