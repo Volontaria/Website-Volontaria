@@ -12,6 +12,8 @@ import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
 import {NotificationsService} from 'angular2-notifications';
 import {AuthenticationService} from '../../../services/authentication.service';
+import {DateUtil} from '../../../utils/date';
+import {isUndefined} from 'util';
 
 
 @Component({
@@ -24,8 +26,8 @@ export class AdminCellComponent implements OnInit {
 
   cell: Cell;
   events: Event[];
-
-  filteredEvents: Event[];
+  eventsAdapted: any[];
+  eventsAdaptedFiltered: Event[];
 
   dropdownTasktypeList = [];
   selectedTasktypes = [];
@@ -41,7 +43,39 @@ export class AdminCellComponent implements OnInit {
 
   selectedCycle: Cycle;
 
-  saveForm;
+  settings = {
+    title: 'Liste des plages horaires',
+    noDataText: 'Aucune plage horaire',
+    clickable: true,
+    addButton: true,
+    editButton: true,
+    columns: [
+      {
+        name: 'start_date',
+        title: 'Début'
+      },
+      {
+        name: 'end_date',
+        title: 'Fin'
+      },
+      {
+        name: 'task_type',
+        title: 'Activité'
+      },
+      {
+        name: 'volunteers',
+        title: 'Bénévoles'
+      },
+      {
+        name: 'stand_by',
+        title: 'Remplaçants'
+      }
+    ]
+  };
+
+  modalTitle: string;
+  modalButton: string;
+  modalEventId: number;
 
   constructor(private activatedRoute: ActivatedRoute,
               private eventService: EventService,
@@ -52,19 +86,21 @@ export class AdminCellComponent implements OnInit {
               private notificationService: NotificationsService,
               private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
-              private myModals: MyModalService) {
+              private myModalService: MyModalService) {
   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.cellService.getCell(params['cellId']).subscribe(
         data => {
-          this.cell = data;
+          this.cell = new Cell(data);
           this.get_events();
+          this.initForm();
         }
       );
 
-      this.createForm(params['cellId']);
+      this.getCycles();
+      this.getTaskTypes();
     });
 
     this.cycleService.getCycles().subscribe(
@@ -106,13 +142,14 @@ export class AdminCellComponent implements OnInit {
     this.eventService.getEvents([{name: 'cell', value: this.cell.id}]).subscribe(
       data => {
         this.events = data.results.map(e => new Event(e));
+        this.eventsAdapted = this.eventsAdapter();
         this.filter();
       }
     );
   }
 
-  visitEvent(idEvent) {
-    this.router.navigate(['/admin/events/' + idEvent]);
+  visitEvent(event: Event) {
+    this.router.navigate(['/admin/events/' + event.id]);
   }
 
   private cycleToDict(cycle: Cycle) {
@@ -155,30 +192,30 @@ export class AdminCellComponent implements OnInit {
   }
 
   filter() {
-    this.filteredEvents = [];
+    this.eventsAdaptedFiltered = [];
     const eventFiltered = [];
 
-    for (const event in this.events) {
+    for (const event in this.eventsAdapted) {
       // If no task_type filter or filter is verified
       if (this.selectedTasktypes.length === 0
-        || this.elemIsFiltered(this.tasktypeToDict(this.events[event].task_type), this.selectedTasktypes)) {
+        || this.elemIsFiltered(this.tasktypeToDict(this.eventsAdapted[event].model.task_type), this.selectedTasktypes)) {
         // If no cycle filter or filter is verified
         if (this.selectedCycles.length === 0
-          || this.elemIsFiltered(this.cycleToDict(this.events[event].cycle), this.selectedCycles)) {
-          eventFiltered.push(this.events[event]);
+          || this.elemIsFiltered(this.cycleToDict(this.eventsAdapted[event].model.cycle), this.selectedCycles)) {
+          eventFiltered.push(this.eventsAdapted[event]);
         }
       }
     }
 
     // If no filters, we take all events
     if (this.selectedCycles.length === 0 && this.selectedTasktypes.length === 0) {
-      for (const event in this.events) {
+      for (const event in this.eventsAdapted) {
         if (event) {
-          this.filteredEvents.push(this.events[event]);
+          this.eventsAdaptedFiltered.push(this.eventsAdapted[event]);
         }
       }
     } else {
-      this.filteredEvents = eventFiltered;
+      this.eventsAdaptedFiltered = eventFiltered;
     }
   }
 
@@ -192,34 +229,21 @@ export class AdminCellComponent implements OnInit {
     );
   }
 
-  createForm(cellId: number) {
-
-    this.getCycles();
-    this.getTaskTypes();
+  initForm() {
     this.eventForm = this.formBuilder.group(
       {
-        nb_volunteers_needed: [0, [Validators.required, Validators.min(0)]],
-        nb_volunteers_standby_needed: [0, [Validators.min(0)]],
-        cell_id: [cellId, Validators.required],
-        cycle_id: [null, Validators.required],
-        task_type_id: [null, Validators.required],
-        start_date: [null, Validators.required],
-        end_date: [null, Validators.required]
+        nb_volunteers_needed: [null, [Validators.min(0)]],
+        nb_volunteers_standby_needed: [null, [Validators.min(0)]],
+        cell_id: [this.cell.id],
+        cycle_id: [null],
+        task_type_id: [null],
+        start_date: [null],
+        end_date: [null]
       },
       {
         validator: this.dateValidator()
       }
     );
-
-    this.saveForm = this.eventForm.value;
-  }
-
-  resetForm() {
-    this.eventForm.reset(this.saveForm);
-    for (const controlKey of Object.keys(this.eventForm.controls)) {
-      this.eventForm.controls[controlKey].markAsUntouched();
-    }
-    this.selectedCycle = null;
   }
 
   setSelectedCycle() {
@@ -229,7 +253,6 @@ export class AdminCellComponent implements OnInit {
         this.selectedCycle = cycle;
       }
     }
-    console.log(this.selectedCycle);
   }
 
   getCycles(): void {
@@ -269,16 +292,10 @@ export class AdminCellComponent implements OnInit {
   }
 
   createEvent() {
-
-    if (this.eventForm.valid) {
-
-      this.eventService.createEvent(this.eventForm.value).subscribe(
+    this.eventService.createEvent(this.eventForm.value).subscribe(
         data => {
-          this.myModals.get('create event').toggle();
-          this.resetForm();
-          this.notificationService.success('Création réussie',
-            `La plage horaire a été créé`);
-
+          this.myModalService.get('event modal').toggle();
+          this.notificationService.success('Création réussie', `La plage horaire a été créé`);
           this.get_events();
         },
         err => {
@@ -286,6 +303,11 @@ export class AdminCellComponent implements OnInit {
           if (err.error.nb_volunteers_needed) {
             this.eventForm.controls['nb_volunteers_needed'].setErrors({
               apiError: err.error.nb_volunteers_needed
+            });
+          }
+          if (err.error.nb_volunteers_standby_needed) {
+            this.eventForm.controls['nb_volunteers_standby_needed'].setErrors({
+              apiError: err.error.nb_volunteers_standby_needed
             });
           }
           if (err.error.cycle_id) {
@@ -315,10 +337,114 @@ export class AdminCellComponent implements OnInit {
           }
         }
       );
+  }
+
+  updateEvent(eventId: number) {
+    this.eventService.updateEvent(eventId, this.eventForm.value).subscribe(
+        data => {
+          this.myModalService.get('event modal').toggle();
+          this.notificationService.success('Modification réussie',
+            `La plage horaire a été modifiée`);
+
+          this.get_events();
+        },
+        err => {
+          if (err.error.nb_volunteers_needed) {
+            this.eventForm.controls['nb_volunteers_needed'].setErrors({
+              apiError: err.error.nb_volunteers_needed
+            });
+          }
+          if (err.error.nb_volunteers_standby_needed) {
+            this.eventForm.controls['nb_volunteers_standby_needed'].setErrors({
+              apiError: err.error.nb_volunteers_standby_needed
+            });
+          }
+          if (err.error.cycle_id) {
+            this.eventForm.controls['cycle_id'].setErrors({
+              apiError: err.error.cycle_id
+            });
+          }
+          if (err.error.task_type_id) {
+            this.eventForm.controls['task_type_id'].setErrors({
+              apiError: err.error.task_type_id
+            });
+          }
+          if (err.error.start_date) {
+            this.eventForm.controls['start_date'].setErrors({
+              apiError: err.error.start_date
+            });
+          }
+          if (err.error.end_date) {
+            this.eventForm.controls['end_date'].setErrors({
+              apiError: err.error.end_date
+            });
+          }
+          if (err.error.non_field_errors) {
+            this.eventForm.setErrors({
+              apiError: err.error.non_field_errors
+            });
+          }
+        }
+      );
+  }
+
+  submitFormEvent() {
+    if (isUndefined(this.modalEventId)) {
+      this.createEvent();
     } else {
-      for (const controlKey of Object.keys(this.eventForm.controls)) {
-        this.eventForm.controls[controlKey].markAsTouched();
-      }
+      this.updateEvent(this.modalEventId);
     }
+  }
+
+  eventsAdapter() {
+    const eventsAdapted = [];
+    for (const event of this.events) {
+      const newEvent = {
+        id: event.id,
+        start_date: DateUtil.completeDate(event.start_date),
+        end_date: DateUtil.completeDate(event.end_date),
+        task_type: event.task_type.name,
+        volunteers: event.getVolunteersField(),
+        stand_by: event.getStandByField(),
+        model: event
+      };
+      eventsAdapted.push(newEvent);
+    }
+    return eventsAdapted;
+  }
+
+  openModalCreateEvent() {
+    this.modalTitle = 'Création d\'une plage horaire';
+    this.modalButton = 'Créer la plage horaire';
+    this.modalEventId = undefined;
+    this.initForm();
+    this.toogleModal();
+  }
+
+  openModalEditEvent(event) {
+    this.modalTitle = 'Modification d\'une plage horaire';
+    this.modalButton = 'Modifier la plage horaire';
+    this.modalEventId = event.model.id;
+    this.initForm();
+
+    this.eventForm.controls['nb_volunteers_needed'].setValue(event.model.nb_volunteers_needed);
+    this.eventForm.controls['nb_volunteers_standby_needed'].setValue(event.model.nb_volunteers_standby_needed);
+    this.eventForm.controls['cycle_id'].setValue(event.model.cycle.id);
+    this.eventForm.controls['task_type_id'].setValue(event.model.task_type.id);
+    this.eventForm.controls['start_date'].setValue(event.model.start_date);
+    this.eventForm.controls['end_date'].setValue(event.model.end_date);
+    this.selectedCycle = event.model.cycle.id;
+
+    this.toogleModal();
+  }
+
+  toogleModal() {
+    const modal = this.myModalService.get('event modal');
+
+    if (!modal) {
+      console.error('No modal named %s', 'event modal');
+      return;
+    }
+    modal.toggle();
   }
 }

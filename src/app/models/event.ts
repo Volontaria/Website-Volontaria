@@ -26,6 +26,15 @@ export class Event extends BaseModel {
     const date = new Date(this.end_date);
     return date.toLocaleTimeString();
   }
+
+  getVolunteersField() {
+    return this.nb_volunteers + ' / ' + this.nb_volunteers_needed;
+  }
+  getStandByField() {
+    return this.nb_volunteers_standby + ' / ' + this.nb_volunteers_standby_needed;
+  }
+
+
 }
 
 

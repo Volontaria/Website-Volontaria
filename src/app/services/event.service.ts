@@ -56,4 +56,12 @@ export class EventService extends GlobalService {
       {headers: headers}    );
   }
 
+  updateEvent(id: number, data: any) {
+    const headers = this.getHeaders();
+    return this.http.patch<any>(
+      this.url_events + '/' + id,
+      data,
+      {headers: headers}    );
+  }
 }
+

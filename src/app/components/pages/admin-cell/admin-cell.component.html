@@ -38,73 +38,28 @@
                             (onDeSelectAll)="onDeSelectAll($event)">
       </angular2-multiselect>
     </div>
-    <div class="admin-cell__actions__buttons">
-      <button hasPermissions="['can_create_event']" appMyModalOpen="create event"
-              class="button button--success">
-        Créer une plage horaire
-      </button>
-    </div>
   </div>
-  <table class="table" style="width: 100%">
-    <tr>
-      <th>Début</th>
-      <th>Fin</th>
-      <th>Activité</th>
-      <th>Lieu</th>
-      <th>Inscription</th>
-    </tr>
-    <tr *ngIf="events && filteredEvents.length == 0">
-      <td colspan="5">
-        Aucune plage horaires pour le moment.
-      </td>
-    </tr>
-    <tr *ngFor="let event of filteredEvents" (click)="visitEvent(event.id)" class="clickable">
-      <td>
-        {{ event.start_date | date:'dd MMMM yyyy'}}<br/>
-        {{ event.start_date | date:'HH:mm'}}
-      </td>
-      <td>
-        {{ event.end_date | date:'dd MMMM yyyy'}}<br/>
-        {{ event.end_date | date:'HH:mm'}}
-      </td>
-      <td>
-        {{ event.task_type.name }}
-      </td>
-      <td>
-        {{ event.cell.address.address_line1 }}<br/>
-        {{ event.cell.address.address_line2 }}<br/>
-        {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
-      </td>
-      <td>
-        Bénévoles : {{ event.nb_volunteers }} / {{ event.nb_volunteers_needed }}<br>
-        Remplaçants : {{ event.nb_volunteers_standby }} / {{ event.nb_volunteers_standby_needed }}<br>
-      </td>
-    </tr>
-  </table>
+
+  <app-my-table [settings]="settings"
+                [data]="eventsAdaptedFiltered"
+                (addButton)="openModalCreateEvent()"
+                (selectItem)="visitEvent($event)"
+                (editItem)="openModalEditEvent($event)">
+  </app-my-table>
 </div>
 
 
-<app-my-modal name="create event"
-              title="Création d'une plage horaire"
-              button2Label="Créer"
-              (button1)="resetForm()"
-              (button2)="createEvent()"
+<app-my-modal name="event modal"
+              [title]="modalTitle"
+              [button2Label]="modalButton"
+              (button2)="submitFormEvent()"
               typeModal="form"
               maxWidth="600px">
 
-  <form [formGroup]="eventForm">
-
-    <input type="hidden" formControlName="cell_id">
-
+  <form [formGroup]="eventForm" *ngIf="eventForm">
     <div class="form-group">
       <label for="nb_volunteers_needed" class="form-label">Nombre de bénévoles requis:</label>
-      <input class="input" formControlName="nb_volunteers_needed" id="nb_volunteers_needed" type="number" min="0" autofocus>
-      <div *ngIf="eventForm.controls['nb_volunteers_needed'].hasError('required')"
-           class="form-text form-text--right form-text--danger">Le nombre de bénévoles est obligatoire.
-      </div>
-      <div *ngIf="eventForm.controls['nb_volunteers_needed'].hasError('min')"
-           class="form-text form-text--right form-text--danger">Un nombre négatif de bénévoles n'est point possible.
-      </div>
+      <input class="input" formControlName="nb_volunteers_needed" id="nb_volunteers_needed" type="number" autofocus>
       <div class="form-text form-text--right form-text--danger"
            *ngFor="let errorMessage of eventForm.controls['nb_volunteers_needed'].getError('apiError')">
         {{ errorMessage}}
@@ -114,9 +69,6 @@
     <div class="form-group">
       <label for="nb_volunteers_standby_needed" class="form-label">Nombre de remplaçants requis:</label>
       <input class="input" formControlName="nb_volunteers_standby_needed" id="nb_volunteers_standby_needed" type="number" min="0">
-      <div *ngIf="eventForm.controls['nb_volunteers_standby_needed'].hasError('min')"
-           class="form-text form-text--right form-text--danger">Un nombre négatif de remplaçants n'est point possible.
-      </div>
       <div class="form-text form-text--right form-text--danger"
            *ngFor="let errorMessage of eventForm.controls['nb_volunteers_standby_needed'].getError('apiError')">
         {{ errorMessage}}
@@ -155,10 +107,6 @@
              formControlName="start_date"  class="input"
              id="start_date">
       <owl-date-time #dt12 [firstDayOfWeek]="1"></owl-date-time>
-
-      <div class="form-text form-text--right form-text--danger"
-           *ngIf="eventForm.controls['start_date'].hasError('dateStartMissing')">Début de la plage horaire nécessaire.
-      </div>
       <div class="form-text form-text--right form-text--danger"
            *ngFor="let errorMessage of eventForm.controls['start_date'].getError('apiError')">
         {{ errorMessage}}
@@ -173,13 +121,6 @@
              formControlName="end_date" class="input"
              id="end_date">
       <owl-date-time #dt13 [firstDayOfWeek]="1" [startAt]="this.eventForm.controls['start_date'].value"></owl-date-time>
-
-      <div class="form-text form-text--right form-text--danger"
-           *ngIf="eventForm.controls['end_date'].hasError('dateEndMissing')">Fin de la plage horaire nécessaire.
-      </div>
-      <div class="form-text form-text--right form-text--danger"
-           *ngIf="eventForm.controls['end_date'].hasError('dateEndBeforeDateStart')">La fin de la plage horaire doit être après le début de la plage horaire.
-      </div>
       <div class="form-text form-text--right form-text--danger"
            *ngFor="let errorMessage of eventForm.controls['end_date'].getError('apiError')">
         {{ errorMessage}}
@@ -187,11 +128,9 @@
     </div>
 
     <div class="alert alert--danger" *ngIf="eventForm.hasError('apiError')">
-      <ul>
-        <li *ngFor="let error of eventForm.getError('apiError')">
-          {{error}}
-        </li>
-      </ul>
+      <div *ngFor="let error of eventForm.getError('apiError')">
+        {{error}}
+      </div>
     </div>
 
   </form>
