@@ -39,56 +39,25 @@
       </angular2-multiselect>
     </div>
     <div class="admin-cell__actions__buttons">
-      <button hasPermissions="['can_create_event']" appMyModalOpen="create event"
+      <button hasPermissions="['can_create_event']" (click)="openModalCreateEvent()"
               class="button button--success">
         Créer une plage horaire
       </button>
     </div>
   </div>
-  <table class="table" style="width: 100%">
-    <tr>
-      <th>Début</th>
-      <th>Fin</th>
-      <th>Activité</th>
-      <th>Lieu</th>
-      <th>Inscription</th>
-    </tr>
-    <tr *ngIf="events && filteredEvents.length == 0">
-      <td colspan="5">
-        Aucune plage horaires pour le moment.
-      </td>
-    </tr>
-    <tr *ngFor="let event of filteredEvents" (click)="visitEvent(event.id)" class="clickable">
-      <td>
-        {{ event.start_date | date:'dd MMMM yyyy'}}<br/>
-        {{ event.start_date | date:'HH:mm'}}
-      </td>
-      <td>
-        {{ event.end_date | date:'dd MMMM yyyy'}}<br/>
-        {{ event.end_date | date:'HH:mm'}}
-      </td>
-      <td>
-        {{ event.task_type.name }}
-      </td>
-      <td>
-        {{ event.cell.address.address_line1 }}<br/>
-        {{ event.cell.address.address_line2 }}<br/>
-        {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
-      </td>
-      <td>
-        Bénévoles : {{ event.nb_volunteers }} / {{ event.nb_volunteers_needed }}<br>
-        Remplaçants : {{ event.nb_volunteers_standby }} / {{ event.nb_volunteers_standby_needed }}<br>
-      </td>
-    </tr>
-  </table>
+
+  <app-my-table [settings]="settings"
+                [data]="eventsAdaptedFiltered"
+                (editItem)="openModalEditEvent($event)">
+  </app-my-table>
 </div>
 
 
-<app-my-modal name="create event"
-              title="Création d'une plage horaire"
-              button2Label="Créer"
+<app-my-modal name="event modal"
+              [title]="modalTitle"
+              button2Label="Envoyer"
               (button1)="resetForm()"
-              (button2)="createEvent()"
+              (button2)="operationsEvent()"
               typeModal="form"
               maxWidth="600px">
 

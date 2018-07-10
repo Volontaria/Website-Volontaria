@@ -19,4 +19,17 @@ export class DateUtil {
     };
     return date.toLocaleString('fr-CA', options);
   }
+
+  static completeDate(date){
+    const formatedDate = new Date(date);
+
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric' };
+
+    return formatedDate.toLocaleDateString('fr', options) + ' ' +
+      ('0' + formatedDate.getHours()).slice(-2) + ':' +
+      ('0' + formatedDate.getMinutes()).slice(-2);
+  }
 }
