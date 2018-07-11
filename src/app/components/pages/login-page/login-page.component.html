@@ -3,6 +3,10 @@
   <h2 class="login-page__title">
     Se connecter
   </h2>
+  <p class="card card--warning">
+    Il faut ouvrir un nouveau compte sur Volontaria
+    même si tu as déjà un compte sur le site web de <i>NousRire</i>.
+  </p>
   <form class="login-page__form" (ngSubmit)="authenticate()">
     <p *ngIf="error" class="alert alert--danger">
       {{error}}
