@@ -1,7 +1,12 @@
 .card {
-    margin-top: 10px;
-    padding: 10px;
+  margin-top: 10px;
+  padding: 10px;
 
-    background-color: #F1F1F1;
-    border: 1px solid $main-border;
+  background-color: #F1F1F1;
+  border: 1px solid $main-border;
+
+  &--warning {
+    background-color: $main-color;
+    color: white;
+  }
 }
