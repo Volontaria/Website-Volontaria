@@ -7,6 +7,9 @@ import { ParticipationService } from '../../../services/participation.service';
 import { NotificationsService } from 'angular2-notifications';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyModalService } from '../../../services/my-modal/my-modal.service';
+import { User } from '../../../models/user';
+import { UserService } from '../../../services/user.service';
+import {CompleterService, CompleterData, CompleterItem} from 'ng2-completer';
 
 
 @Component({
@@ -79,12 +82,26 @@ export class AdminEventComponent implements OnInit {
   participationForm: FormGroup;
   selectedParticipation: Participation;
 
+  modalTitle: string;
+  modalCreate: boolean;
+
+  users: User[];
+  searchUsers: any[];
+  selectedUser: User;
+
+  protected searchStr: string;
+  protected dataServiceUser: CompleterData;
+
   constructor(private activatedRoute: ActivatedRoute,
               private eventService: EventService,
               private participationService: ParticipationService,
               private notificationService: NotificationsService,
               private formBuilder: FormBuilder,
-              private myModalService: MyModalService) {}
+              private myModalService: MyModalService,
+              private userService: UserService,
+              private completerService: CompleterService) {
+      this.getUserList(completerService);
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -101,6 +118,7 @@ export class AdminEventComponent implements OnInit {
         presence_status: [0, [Validators.required]],
         start_date: [0],
         end_date: [0],
+        user: [0]
       },
       {
         validator: this.dateValidator()
@@ -117,7 +135,7 @@ export class AdminEventComponent implements OnInit {
     );
   }
 
-  updateParticipation() {
+  opParticipation() {
     const data = {};
     data['presence_status'] = this.participationForm.value['presence_status'];
 
@@ -127,7 +145,48 @@ export class AdminEventComponent implements OnInit {
       data['presence_duration_minutes'] = (end - start) / 60000;
     }
 
+    data['event'] = this.event.id;
+    data['standby'] = false;
+
     if (this.participationForm.valid) {
+      if (this.modalCreate) {
+        data['user_id'] = this.selectedUser.id;
+        this.createParticipation(data);
+      } else {
+        this.updateParticipation(data);
+      }
+    } else {
+      for (const controlKey of Object.keys(this.participationForm.controls)) {
+        this.participationForm.controls[controlKey].markAsTouched();
+      }
+    }
+  }
+
+  createParticipation(data) {
+    this.participationService.createParticipation(data).subscribe(
+        success => {
+          this.toogleModal();
+          this.notificationService.success('Création réussie',
+            `La participation a été créé`);
+
+          this.get_participations();
+        },
+        err => {
+          if (err.error.presence_status) {
+            this.participationForm.controls['presence_status'].setErrors({
+              apiError: err.error.presence_status
+            });
+          }
+          if (err.error.non_field_errors) {
+            this.participationForm.setErrors({
+              apiError: err.error.non_field_errors
+            });
+          }
+        }
+      );
+  }
+
+  updateParticipation(data) {
       this.participationService.updateParticipation(this.selectedParticipation.id, data).subscribe(
         success => {
           this.toogleModal();
@@ -149,11 +208,6 @@ export class AdminEventComponent implements OnInit {
           }
         }
       );
-    } else {
-      for (const controlKey of Object.keys(this.participationForm.controls)) {
-        this.participationForm.controls[controlKey].markAsTouched();
-      }
-    }
   }
 
   dateValidator() {
@@ -178,22 +232,61 @@ export class AdminEventComponent implements OnInit {
     };
   }
 
+  setSearchTools() {
+    this.users.map((user) => {
+      const searchUser = user as any;
+      searchUser.display_search_field = user.first_name + ' ' + user.last_name + ' <' + user.email + '>';
+      searchUser.search_field = user.first_name + ' ' + user.last_name + ' ' + user.email + ' ' + user.username;
+      this.searchUsers.push(searchUser);
+    });
+  }
+
+  getUserList(completerService) {
+    this.users = [];
+    this.searchUsers = [];
+
+    this.userService.getUsers().subscribe(
+      data => {
+        this.users = data.results.map(u => new User(u));
+
+        // We set here an easier way to search the users
+        this.setSearchTools();
+
+        this.dataServiceUser = completerService.local(
+          this.searchUsers,
+          'search_field',
+          'display_search_field');
+      }
+    );
+  }
+
   OpenModalEditParticipation(event) {
     this.participationForm.reset();
     for (const participation of this.participations) {
       if (participation.id === event.id) {
         this.selectedParticipation = participation;
         this.participationForm.controls['presence_status'].setValue(participation.presence_status);
+
+        this.modalCreate = false;
+        this.modalTitle = 'Modification d\'une participation';
         this.toogleModal();
       }
     }
   }
 
+  OpenModalCreateParticipation() {
+    this.participationForm.reset();
+    this.modalCreate = true;
+    this.modalTitle = 'Création d\'une participation';
+
+    this.toogleModal();
+  }
+
   toogleModal() {
-    const modal = this.myModalService.get('update participation');
+    const modal = this.myModalService.get('participation modal');
 
     if (!modal) {
-      console.error('No modal named %s', 'update participation');
+      console.error('No modal named %s', 'participation modal');
       return;
     }
     modal.toggle();
@@ -220,5 +313,9 @@ export class AdminEventComponent implements OnInit {
       participationsAdapted.push(newParticipation);
     }
     return participationsAdapted;
+  }
+
+  onUserSelected(item: CompleterItem) {
+    this.selectedUser = item ? item.originalObject : null;
   }
 }

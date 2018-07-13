@@ -63,6 +63,7 @@ import { CalendarModule } from 'angular-calendar';
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { MyBenevolometreComponent } from './components/my-benevolometre/my-benevolometre.component';
+import { Ng2CompleterModule } from 'ng2-completer';
 
 registerLocaleData(localeFr);
 
@@ -317,7 +318,8 @@ export class DefaultIntl {
     AngularMultiSelectModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    Ng2CompleterModule,
   ],
   exports: [ RouterModule ],
   providers: [

@@ -1,6 +1,6 @@
 <div class="admin-event" *ngIf="event">
   <div class="admin-event__details-left">
-    <h2>Informations générales: </h2>
+    <h2>Informations générales : </h2>
     <table class="table">
       <tr>
         <th>Début</th>
@@ -48,6 +48,14 @@
 
   <div class="admin-event__participations">
     <h2>Participations : </h2>
+    <div class="admin-event__actions__buttons">
+      <button
+        hasPermissions="['can_create_participation']"
+        (click)="OpenModalCreateParticipation()"
+        class="button button--success">
+        Créer une participation
+      </button>
+  </div>
     <app-my-table [settings]="settings"
                   [data]="participationsAdapted"
                   (editItem)="OpenModalEditParticipation($event)">
@@ -55,14 +63,27 @@
   </div>
 </div>
 
-<app-my-modal name="update participation"
-              title="Modification d'une participation"
-              button2Label="Modifier"
-              (button2)="updateParticipation()"
+<app-my-modal name="participation modal"
+              title="{{ modalTitle }}"
+              button2Label="Envoyer"
+              (button2)="opParticipation()"
               typeModal="form"
               button2Style="button--success">
 
   <form [formGroup]="participationForm">
+    <div class="form-group" *ngIf="modalCreate">
+      <label for="user" class="form-label">Bénévoles:</label>
+      <ng2-completer
+        id="user"
+        formControlName="user"
+        [(ngModel)]="searchStr"
+        [datasource]="dataServiceUser"
+        [minSearchLength]="3"
+        (selected)="onUserSelected($event)"
+      >
+      </ng2-completer>
+    </div>
+
     <div class="form-group">
       <label for="presence_status" class="form-label">Présence:</label>
       <select formControlName="presence_status" id="presence_status" class="input">
@@ -103,7 +124,7 @@
       <ul>
         <li *ngFor="let error of participationForm.getError('apiError')">
           {{error}}
-        </li>participationStatusOption
+        </li>
       </ul>
     </div>
 

@@ -22,6 +22,20 @@
   }
 }
 
+.modal-component {
+  &__content {
+    overflow: hidden;
+
+    &__reveal {
+      width: 30rem;
+    }
+  }
+}
+
+.completer-dropdown-holder {
+  width: 30rem;
+}
+
 @media only screen and (max-width: 500px) {
   .admin-event {
     &__details-left {

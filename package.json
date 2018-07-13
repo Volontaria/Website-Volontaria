@@ -34,7 +34,8 @@
     "roboto-fontface": "^0.8.0",
     "rxjs": "^5.5.2",
     "sass-loader": "^6.0.6",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "ng2-completer": "^2.0.8"
   },
   "devDependencies": {
     "@angular/cli": "^1.6.6",
