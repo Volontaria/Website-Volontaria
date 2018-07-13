@@ -39,7 +39,11 @@ export class ActivityConfirmationComponent implements OnInit {
   }
 
   submit(standby: boolean) {
-    this.participationService.createParticipation(this.event.id, standby).subscribe(
+    const dataPost = {
+      'event': this.event.id,
+      'standby': standby
+    };
+    this.participationService.createParticipation(dataPost).subscribe(
       data => {
         this.notificationService.success('Inscription réussie', 'Merci!');
         this.router.navigate(['/schedule']);
