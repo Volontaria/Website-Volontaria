@@ -9,13 +9,6 @@
     </div>
   </div>
   <div class="activities-page__filters">
-    <angular2-multiselect [data]="dropdownCycleList" [(ngModel)]="selectedCycles"
-                          [settings]="dropdownCycleSettings"
-                          (onSelect)="onItemSelect($event)"
-                          (onDeSelect)="OnItemDeSelect($event)"
-                          (onSelectAll)="onSelectAll($event)"
-                          (onDeSelectAll)="onDeSelectAll($event)">
-    </angular2-multiselect>
     <angular2-multiselect [data]="dropdownTasktypeList" [(ngModel)]="selectedTasktypes"
                             [settings]="dropdownTasktypeSettings"
                             (onSelect)="onItemSelect($event)"

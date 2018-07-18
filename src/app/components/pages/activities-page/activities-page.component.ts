@@ -63,7 +63,6 @@ export class ActivitiesPageComponent implements OnInit {
 
   dropdownCycleList = [];
   selectedCycles = [];
-  dropdownCycleSettings = {};
 
   view = 'month';
   viewDate: Date = new Date();
@@ -178,14 +177,6 @@ export class ActivitiesPageComponent implements OnInit {
     this.dropdownTasktypeSettings = {
       singleSelection: false,
       text: 'Choisis ton(tes) activité(s)',
-      selectAllText: 'Toutes',
-      unSelectAllText: 'Aucune',
-      classes: 'activities-page__filters__filter',
-    };
-
-    this.dropdownCycleSettings = {
-      singleSelection: false,
-      text: 'Choisis ta(tes) période(s)',
       selectAllText: 'Toutes',
       unSelectAllText: 'Aucune',
       classes: 'activities-page__filters__filter',
