@@ -73,6 +73,9 @@
             }
           }
         }
+        &__button--register {
+          background-color: $main-color;
+        }
       }
 
       &--clickable {

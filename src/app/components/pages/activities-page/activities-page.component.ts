@@ -105,6 +105,10 @@ export class ActivitiesPageComponent implements OnInit {
       {
         name: 'nb_standby',
         title: 'Nombre de remplaçants'
+      },
+      {
+        name: 'M\'inscrire',
+        type: 'button'
       }
     ]
   };

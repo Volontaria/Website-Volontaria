@@ -38,6 +38,12 @@
       <span *ngIf="column.type !== 'boolean'">
         {{ item[column.name] }}
       </span>
+      <span *ngIf="column.type === 'button'">
+        <button
+          (click)="clickItem(item)"
+          class="button my-table__line__cell__button--register">{{ column.name }}
+        </button>
+      </span>
     </td>
     <td class="my-table__table__line__cell my-table__table__line__cell--actions" *ngIf="settings.editButton || settings.deleteButton">
       <a *ngIf="settings.editButton"
