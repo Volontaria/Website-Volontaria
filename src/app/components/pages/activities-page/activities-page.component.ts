@@ -3,8 +3,6 @@ import { EventService } from '../../../services/event.service';
 import { Event } from '../../../models/event';
 import { TasktypeService } from '../../../services/tasktype.service';
 import { Tasktype } from '../../../models/tasktype';
-import { CycleService } from '../../../services/cycle.service';
-import { Cycle } from '../../../models/cycle';
 import { User } from '../../../models/user';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -60,10 +58,6 @@ export class ActivitiesPageComponent implements OnInit {
   dropdownTasktypeList = [];
   selectedTasktypes = [];
   dropdownTasktypeSettings = {};
-
-  dropdownCycleList = [];
-  selectedCycles = [];
-  dropdownCycleSettings = {};
 
   view = 'month';
   viewDate: Date = new Date();
@@ -134,7 +128,6 @@ export class ActivitiesPageComponent implements OnInit {
 
   constructor(private eventService: EventService,
               private tasktypeService: TasktypeService,
-              private cycleService: CycleService,
               private authenticationService: AuthenticationService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -166,29 +159,12 @@ export class ActivitiesPageComponent implements OnInit {
       }
     );
 
-    this.cycleService.getCycles().subscribe(
-      data => {
-        const cycles = data.results.map(c => new Cycle(c) );
-        for (const cycle of Object.keys(cycles)) {
-          this.dropdownCycleList.push(this.cycleToDict(cycles[cycle]));
-        }
-      }
-    );
-
     this.dropdownTasktypeSettings = {
       singleSelection: false,
       text: 'Choisis ton(tes) activité(s)',
       selectAllText: 'Toutes',
       unSelectAllText: 'Aucune',
-      classes: 'activities-page__filters__filter',
-    };
-
-    this.dropdownCycleSettings = {
-      singleSelection: false,
-      text: 'Choisis ta(tes) période(s)',
-      selectAllText: 'Toutes',
-      unSelectAllText: 'Aucune',
-      classes: 'activities-page__filters__filter',
+      classes: 'activities-page__header__filters__filter',
     };
   }
 
@@ -212,13 +188,6 @@ export class ActivitiesPageComponent implements OnInit {
     return {
       'id': tasktype.id,
       'itemName': tasktype.name,
-    };
-  }
-
-  private cycleToDict(cycle: Cycle) {
-    return {
-      'id': cycle.id,
-      'itemName': cycle.name,
     };
   }
 
@@ -262,16 +231,12 @@ export class ActivitiesPageComponent implements OnInit {
       // If no task_type filter or filter is verified
       if ( this.selectedTasktypes.length === 0
         || this.elemIsFiltered(this.tasktypeToDict(event.task_type), this.selectedTasktypes)) {
-        // If no cycle filter or filter is verified
-        if ( this.selectedCycles.length === 0
-          || this.elemIsFiltered(this.cycleToDict(event.cycle), this.selectedCycles)) {
-          eventFiltered.push(event);
-        }
+        eventFiltered.push(event);
       }
     }
 
     // If no filters, we take all events
-    if (this.selectedCycles.length === 0 && this.selectedTasktypes.length === 0) {
+    if (this.selectedTasktypes.length === 0) {
       return eventInFuture;
     } else {
       return eventFiltered;

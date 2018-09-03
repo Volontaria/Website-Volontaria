@@ -13,30 +13,29 @@
     }
 
     &__address {
-      font-size: 12px;
+      font-size: 1em;
     }
-  }
 
-  &__filters {
-    margin-top: 10px;
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    padding-bottom: 1rem;
+    &__filters {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      padding-bottom: 1rem;
 
-    &__filter {
-      width: 300px;
-      box-sizing: border-box;
-      padding-right: 2rem;
+      &__filter {
+        width: 300px;
+        box-sizing: border-box;
+        padding-right: 2rem;
+      }
     }
   }
 
   &__activities {
-    padding: 10px;
+    padding: 30px;
     display: flex;
-    justify-content: space-between;
 
     &__calendar {
+      max-width: 700px;
       width: 100%;
 
       &__actions {
@@ -59,23 +58,26 @@
           overflow: auto;
         }
       }
+
+      &__benevolometre {
+        &__title {
+          margin-bottom: 10px;
+          font-size: 1.2em;
+        }
+      }
     }
 
     &__infos {
-      padding: 20px;
-      display: flex;
-      justify-items: flex-start;
-      flex-direction: column;
+      padding: 0 20px;
+      flex: 1;
 
       &__explanation {
-        width: 80%;
-        padding: 100px 0;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
 
         &__title {
-          font-size: 22px;
-          text-align: center;
+          font-size: 1.5em;
         }
 
         &__icon {
@@ -83,28 +85,35 @@
           transform: scale(-1, 1);
         }
       }
+    }
+  }
+}
 
-      &__benevolometre {
-        &__title {
-          margin-bottom: 10px;
-          font-size: 22px;
-        }
+
+@media only screen and (max-width: 1500px) {
+  .activities-page__activities__calendar {
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .activities-page__activities {
+    flex-direction: column;
+    align-items: center;
+
+    &__calendar {
+      width: 100%;
+      max-width: none;
+    }
+
+    &__infos {
+      width: 100%;
+      padding: 60px 0;
+
+      &__explanation {
+        display: none;
       }
     }
   }
 }
 
-@media only screen and (max-width: 800px) {
-  .activities-page__filters {
-    justify-content: center;
-
-    &__filter {
-      width: 100%;
-      max-width: 100%;
-    }
-  }
-
-  .activities-page__activities__infos{
-    display: none;
-  }
-}

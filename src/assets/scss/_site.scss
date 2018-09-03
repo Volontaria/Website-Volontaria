@@ -4,12 +4,13 @@ paragraph (p) or list (ul, ol)
 *****/
 
 html, body {
-  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Titillium Web', sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 100vh;
   background-color: $main-background;
+  font-size: 14px;
 }
 
 *, ::after, ::before {

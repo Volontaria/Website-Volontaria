@@ -1,9 +1,6 @@
-<div class="my-table__actions">
+<div class="my-table__actions" *ngIf="settings.addButton">
   <div>
-    <!-- Space for some filters -->
-  </div>
-  <div>
-    <a class="button" *ngIf="settings.addButton" (click)="add()">
+    <a class="button" (click)="add()">
       Ajouter
       <i class="fa fa-plus"></i>
     </a>

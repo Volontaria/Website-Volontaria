@@ -5,6 +5,7 @@ Import all basic file
 @import "_theme.scss";
 @import "_site.scss";
 @import "_layout.scss";
+@import "_fonts.scss";
 
 /*****
 Import components
@@ -15,8 +16,8 @@ example:
 @import "components/_button.scss";
 @import "components/_card.scss";
 @import "components/_table.scss";
-@import "components/_navbar.scss";
 @import "components/_alert.scss";
+@import "components/_title.scss";
 
 @import "components/forms/_textarea.scss";
 @import "components/forms/_input.scss";

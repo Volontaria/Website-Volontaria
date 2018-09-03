@@ -7,22 +7,15 @@
       {{ cell.address.address_line1 }}, {{ cell.address.address_line2 }}<br/>
       {{ cell.address.city }}, {{ cell.address.postal_code }}
     </div>
-  </div>
-  <div class="activities-page__filters">
-    <angular2-multiselect [data]="dropdownCycleList" [(ngModel)]="selectedCycles"
-                          [settings]="dropdownCycleSettings"
-                          (onSelect)="onItemSelect($event)"
-                          (onDeSelect)="OnItemDeSelect($event)"
-                          (onSelectAll)="onSelectAll($event)"
-                          (onDeSelectAll)="onDeSelectAll($event)">
-    </angular2-multiselect>
-    <angular2-multiselect [data]="dropdownTasktypeList" [(ngModel)]="selectedTasktypes"
+    <div class="activities-page__header__filters">
+      <angular2-multiselect [data]="dropdownTasktypeList" [(ngModel)]="selectedTasktypes"
                             [settings]="dropdownTasktypeSettings"
                             (onSelect)="onItemSelect($event)"
                             (onDeSelect)="OnItemDeSelect($event)"
                             (onSelectAll)="onSelectAll($event)"
                             (onDeSelectAll)="onDeSelectAll($event)">
-    </angular2-multiselect>
+      </angular2-multiselect>
+    </div>
   </div>
   <div class="activities-page__activities">
     <div class="activities-page__activities__calendar">
@@ -55,10 +48,18 @@
           (dayClicked)="dayClicked($event.day)">
         </mwl-calendar-month-view>
       </div>
-      <div *ngIf="clickedDay" class="activities-page__activities__calendar__details">
-        <div class="activities-page__activities__calendar__details__title">
-          Liste des plages horaires du {{ clickedDay | date:"dd MMMM yyyy"}}:
+      <div class="activities-page__activities__calendar__benevolometre">
+        <div class="activities-page__activities__calendar__benevolometre__title">
+          Tu souhaites maximiser ton implication? Laisse-toi guider par notre bénévolomètre :
         </div>
+        <app-my-benevolometre [parts]="benevolometre"></app-my-benevolometre>
+      </div>
+    </div>
+    <div class="activities-page__activities__infos">
+      <div *ngIf="clickedDay" class="activities-page__activities__infos__details">
+        <h2 class="title title--secondary">
+          Liste des plages horaires du {{ clickedDay | date:"dd MMMM yyyy"}}:
+        </h2>
         <div class="activities-page__activities__calendar__details__table">
           <app-my-table [settings]="settings"
                         [data]="eventsOfDay"
@@ -66,22 +67,12 @@
           </app-my-table>
         </div>
       </div>
-    </div>
-    <div class="activities-page__activities__infos">
-      <div class="activities-page__activities__infos__explanation">
-        <div>
-          <div class="activities-page__activities__infos__explanation__title">
-            Trouve une plage horaire de bénévolat en quelques clics à l'aide du calendrier!
-          </div>
-          <img class="activities-page__activities__infos__explanation__icon" src="../../../../assets/images/right-drawn-arrow.svg"/>
+      <div *ngIf="!clickedDay" class="activities-page__activities__infos__explanation">
+        <div class="activities-page__activities__infos__explanation__title">
+          Trouve une plage horaire de bénévolat<br/>
+          en quelques clics à l'aide du calendrier!
         </div>
-      </div>
-      <div class="activities-page__activities__infos__benevolometre">
-        <div class="activities-page__activities__infos__benevolometre__title">
-          Tu souhaites maximiser ton implication?<br/>
-          Laisse-toi guider par notre bénévolomètre :
-        </div>
-        <app-my-benevolometre [parts]="benevolometre"></app-my-benevolometre>
+        <img class="activities-page__activities__infos__explanation__icon" src="../../../../assets/images/right-drawn-arrow.svg"/>
       </div>
     </div>
   </div>
