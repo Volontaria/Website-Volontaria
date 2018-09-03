@@ -68,14 +68,12 @@ export class AdminVolunteerComponent implements OnInit {
             const listEvents = events.results.map(e => new Event(e));
 
             for (const event in listEvents) {
-              if ( new Date(listEvents[event].start_date).getTime() > new Date().getTime()) {
-                for (const participation in listParticipations) {
-                  if ( listEvents[event].id === listParticipations[participation].event ) {
-                    if ( listParticipations[participation].standby ) {
-                      this.eventsAsOnHold.push(this.eventAdapter(listEvents[event]));
-                    } else {
-                      this.eventsAsVolunteer.push(this.eventAdapter(listEvents[event]));
-                    }
+              for (const participation in listParticipations) {
+                if ( listEvents[event].id === listParticipations[participation].event ) {
+                  if ( listParticipations[participation].standby ) {
+                    this.eventsAsOnHold.push(this.eventAdapter(listEvents[event]));
+                  } else {
+                    this.eventsAsVolunteer.push(this.eventAdapter(listEvents[event]));
                   }
                 }
               }
