@@ -1,6 +1,6 @@
 <div class="admin-event" *ngIf="event">
   <div class="admin-event__details-left">
-    <h2>Informations générales: </h2>
+    <h1 class="title title--main">Informations générales: </h1>
     <table class="table">
       <tr>
         <th>Début</th>
@@ -21,7 +21,7 @@
     </table>
   </div>
   <div class="admin-event__details-right">
-    <h2>Détails :</h2>
+    <h1 class="title title--main">Détails:</h1>
     <table class="table">
       <tr>
         <th>Adresse</th>
@@ -47,7 +47,7 @@
   </div>
 
   <div class="admin-event__participations">
-    <h2>Participations : </h2>
+    <h1 class="title title--main">Participations: </h1>
     <app-my-table [settings]="settings"
                   [data]="participationsAdapted"
                   (editItem)="OpenModalEditParticipation($event)">

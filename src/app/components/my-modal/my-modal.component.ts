@@ -1,19 +1,19 @@
-import {Component, OnInit, Input, ViewChild, EventEmitter, Output} from '@angular/core';
-import {MyModalService} from '../../services/my-modal/my-modal.service';
-
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MyModalService } from '../../services/my-modal/my-modal.service';
 
 @Component({
   selector: 'app-my-modal',
-  styleUrls: ['my-modal.component.scss'],
-  templateUrl: './my-modal.component.html'
+  templateUrl: './my-modal.component.html',
+  styleUrls: ['./my-modal.component.scss']
 })
 export class MyModalComponent implements OnInit {
 
   @Input() name: string;
   @Input() title: string;
-  @Input() typeModal = 'information';
+  @Input() typeModal: string;
   @Input() button2Label: string;
-  @Input() button2Style = 'button--danger';
+  @Input() maxWidth = '95%';
+  @Input() activated = true;
 
   @ViewChild('modalContent') modalContent;
 
@@ -39,7 +39,7 @@ export class MyModalComponent implements OnInit {
   clickOverlay(event: Event) {
     const target = (event.target as HTMLElement);
 
-    if (target.classList.contains('modal-component__content')) {
+    if (target.classList.contains('modal-component')) {
       this.toggle();
     }
   }
@@ -73,4 +73,5 @@ export class MyModalComponent implements OnInit {
   clickButton2(): void {
     this.button2.emit(null);
   }
+
 }

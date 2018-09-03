@@ -1,8 +1,8 @@
 <div class="activities-page">
   <div class="activities-page__header" *ngIf="cell">
-    <div class="activities-page__header__title">
+    <h1 class="activities-page__header__title title title--main">
       {{ cell.name }}
-    </div>
+    </h1>
     <div class="activities-page__header__address">
       {{ cell.address.address_line1 }}, {{ cell.address.address_line2 }}<br/>
       {{ cell.address.city }}, {{ cell.address.postal_code }}

@@ -1,15 +1,13 @@
 .activity-confirmation-page {
-  margin: 1rem;
+  padding: 30px;
   text-align: center;
 
   &__missions {
-    border: 1px solid gray;
-    background-color: #F1F1F1;
-    margin: 1rem;
+    margin: 30px 0;
   }
   &__validate {
     text-align: center;
-    margin: 3rem;
+    margin: 30px 0;
   }
 }
 

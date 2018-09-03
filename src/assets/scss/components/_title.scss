@@ -1,8 +1,8 @@
 .title {
-  display: inline-block;
+  display: block;
   color: $main-color;
   font-size: 25px;
-  font-weight: 900;
+  font-weight: 700;
   border-bottom: 2px solid $main-color;
 
   &--main {
@@ -10,6 +10,7 @@
     font-family: 'Merienda', cursive;
     border: none;
     padding: 0;
+    margin: 0;
   }
 
   &--secondary {

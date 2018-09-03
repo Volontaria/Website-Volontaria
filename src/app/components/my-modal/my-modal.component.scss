@@ -1,3 +1,5 @@
+@import "../../../assets/scss/_theme.scss";
+
 .modal-component {
   background: rgba(0,0,0,0.6);
   position: fixed;
@@ -9,32 +11,51 @@
 
   &__content {
     display: flex;
+    align-items: center;
     justify-content: center;
     width: 100%;
-    max-height: 100%;
-    padding: 20px 0;
+    height: 100vh;
 
     &__reveal {
-      display: inline-block;
-      background: white;
+      background: $main-background;
       position: relative;
-      max-height: 100%;
-      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      max-width: 90%;
+      min-height: 150px;
 
       &__header{
         padding: 10px;
         font-weight: 900;
+        color: $main-color;
+        background-color: $secondary-color;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row-reverse;
+
+        &__cancel {
+          font-size: 30px;
+          font-weight: 600;
+
+          &:hover {
+            cursor: pointer;
+            font-weight: 400;
+          }
+        }
       }
 
       &__content {
-        padding: 20px;
-      }
+        padding: 20px 40px;
+        flex: 1;
 
-      &__action {
-        display: flex;
+        max-height: 80vh;
+        overflow: auto;
 
         &__button {
-          flex: 1;
+          text-align: center;
+          margin: 20px 0;
+          width: 100%;
         }
       }
     }

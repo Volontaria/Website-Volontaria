@@ -1,7 +1,9 @@
 <div class="admin-volunteers">
-  <h2>Liste des bénévoles</h2>
+  <h1 class="title title--main">
+    Liste des bénévoles
+  </h1>
 
-  <input type="text" [(ngModel)]="search" placeholder="Rechercher un bénévole par nom ou courriel..." (change)="filter()" />
+  <input type="text" class="input" [(ngModel)]="search" placeholder="Rechercher un bénévole par nom ou courriel..." (change)="filter()" />
 
   <table class="table" style="width: 100%">
     <tr>

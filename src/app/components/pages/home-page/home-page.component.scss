@@ -1,9 +1,10 @@
 .page-homepage {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__title {
-    font-size: 30px;
-    text-align: center;
     margin: 30px;
   }
 

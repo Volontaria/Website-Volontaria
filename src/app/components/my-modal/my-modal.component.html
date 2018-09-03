@@ -1,21 +1,17 @@
-<div class="modal-component" [hidden]="!show">
-  <div class="modal-component__content" (click)="clickOverlay($event)">
-    <div class="modal-component__content__reveal">
+<div class="modal-component" (click)="clickOverlay($event)" [hidden]="!show">
+  <div class="modal-component__content">
+    <div class="modal-component__content__reveal" [style.width]="maxWidth">
       <div class="modal-component__content__reveal__header">
-        {{ title }}
+        <div class="modal-component__content__reveal__header__cancel" (click)="toggle()">
+          X
+        </div>
+        <h1 class="title title--main">{{ title }}</h1>
       </div>
       <div class="modal-component__content__reveal__content" #modalContent>
         <ng-content></ng-content>
-      </div>
-      <div *ngIf="errorMessage" class="modal-component__content__reveal__content">
-        {{ errorMessage }}
-      </div>
-      <div class="modal-component__content__reveal__action">
-        <a class="modal-component__content__reveal__action__button button button--warning"
-           (click)="clickButton1()">Cancel</a>
-        <a *ngIf="!isModalInformation"
-           class="modal-component__content__reveal__action__button button {{ button2Style }}"
-           (click)="clickButton2()">{{ button2Label }}</a>
+        <button *ngIf="!isModalInformation" [disabled]="!activated" class="modal-component__content__reveal__content__button button" (click)="clickButton2()">
+          {{ button2Label }}
+        </button>
       </div>
     </div>
   </div>

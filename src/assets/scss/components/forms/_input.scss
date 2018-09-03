@@ -1,37 +1,66 @@
-input {
-  width: 100%;
-  border: 2px solid lightgrey;
-  border-radius: 0;
-  padding: 10px;
-  box-sizing: border-box;
-}
-
 .input {
+  border: none;
+  border-bottom: 1px solid grey;
   width: 100%;
-  border: 2px solid lightgrey;
-  border-radius: 0;
-  padding: 10px;
-  box-sizing: border-box;
+  height: 30px;
+  padding: 1px 0 0 5px;
+  background-color: transparent;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  color: $main-color;
+  transition: all $ease-inout-sine 300ms;
 
-  &[type='checkbox']{
-    width: inherit;
+  &[type='radio']{
+    border-radius: 50%;
+    border: 1px solid $main-color;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+    &:checked {
+      background-color: $main-color;
+    }
   }
 
-  &--error {
-    box-shadow: 0 0 5px $color-danger;
+  &[type='checkbox']{
+    border-radius: 50%;
+    border: 1px solid $main-color;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+    &:checked {
+      background-color: $main-color;
+    }
+  }
+
+  &--textarea {
+    height: 200px;
+    max-width: 100%;
+    padding: 5px;
+    border: 1px solid $main-color;
+    border-radius: 3px;
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+  }
+
+  &:disabled {
+    border-color: lightgrey;
+  }
+
+  &:focus {
+    border-width: 3px;
+  }
+
+  &.ng-touched {
+    border-width: 3px;
   }
 
   &.ng-invalid.ng-touched  {
     border-color: $color-danger;
-    box-shadow: 0 0 5px $color-danger;
-    margin-top: 5px;
-  }
-
-  &.ng-valid.ng-touched {
-    border-color: $color-success;
-    box-shadow: 0 0 5px $color-success;
-    margin-top: 5px;
   }
 }
-
-
