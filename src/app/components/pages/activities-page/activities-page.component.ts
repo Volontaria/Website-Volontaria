@@ -142,7 +142,7 @@ export class ActivitiesPageComponent implements OnInit {
           this.cell = new Cell(data);
         }
       );
-      this.eventService.getEvents(params['cell']).subscribe(
+      this.eventService.getEvents([{name: 'cell', value: params['cell']}]).subscribe(
         data => {
           this.events = data.results.map(e => new Event(e));
           this.filter();

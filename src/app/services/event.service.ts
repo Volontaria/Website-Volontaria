@@ -18,14 +18,21 @@ export class EventService extends GlobalService {
     super();
   }
 
-  getEvents(cell: number = null, cycle: number = null): Observable<any> {
+  getEvents(filters: {name: string, value: any}[] = null): Observable<any> {
     const headers = this.getHeaders();
     let params = new HttpParams();
-    if (cell != null) {
-      params = params.set('cell', cell.toString());
-    }
-    if (cycle != null) {
-      params = params.set('cycle', cycle.toString());
+    if (filters != null) {
+      for (const filter of filters) {
+        if (filter.name === 'cell') {
+          params = params.set('cell', filter.value);
+        }
+        if (filter.name === 'cycle') {
+          params = params.set('cycle', filter.value);
+        }
+        if (filter.name === 'volunteers') {
+          params = params.set('volunteers', filter.value);
+        }
+      }
     }
     return this.http.get<any>(
       this.url_events,
@@ -38,17 +45,6 @@ export class EventService extends GlobalService {
     return this.http.get<any>(
       this.url_events + '/' + id,
       {headers: headers}
-    );
-  }
-
-  getEventWhereVolunteer(): Observable<any> {
-    const headers = this.getHeaders();
-    const userId = this.authenticationService.getProfile().id;
-    const params = new HttpParams().set('volunteers', userId);
-
-    return this.http.get<any>(
-      this.url_events,
-      {headers: headers, params: params}
     );
   }
 

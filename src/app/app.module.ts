@@ -63,6 +63,7 @@ import { CalendarModule } from 'angular-calendar';
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { MyBenevolometreComponent } from './components/my-benevolometre/my-benevolometre.component';
+import { AdminVolunteerComponent } from './components/pages/admin-volunteer/admin-volunteer.component';
 
 registerLocaleData(localeFr);
 
@@ -178,6 +179,14 @@ const appRoutes = [
       {
         path: 'admin/volunteers',
         component: AdminVolunteersComponent,
+        canActivate: [
+          CanActivateViaAuthGuard,
+          CanAccessAdminPanelGuard
+        ]
+      },
+      {
+        path: 'admin/volunteer/:volunteerId',
+        component: AdminVolunteerComponent,
         canActivate: [
           CanActivateViaAuthGuard,
           CanAccessAdminPanelGuard
@@ -300,7 +309,8 @@ export class DefaultIntl {
     ForgotPasswordComponent,
     ForgotPasswordConfirmationComponent,
     ResetPasswordComponent,
-    MyBenevolometreComponent
+    MyBenevolometreComponent,
+    AdminVolunteerComponent,
   ],
   imports: [
     BrowserModule,

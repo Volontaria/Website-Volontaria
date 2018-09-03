@@ -106,7 +106,7 @@ export class MySchedulePageComponent implements OnInit {
       participations => {
         this.participations = participations.results.map(p => new Participation(p));
 
-        this.eventService.getEventWhereVolunteer().subscribe(
+        this.eventService.getEvents([{name: 'volunteers', value: this.user.id}]).subscribe(
           events => {
             this.events = events.results.map(e => new Event(e));
 

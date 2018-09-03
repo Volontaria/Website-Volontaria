@@ -5,32 +5,8 @@
 
   <input type="text" class="input" [(ngModel)]="search" placeholder="Rechercher un bénévole par nom ou courriel..." (change)="filter()" />
 
-  <table class="table" style="width: 100%">
-    <tr>
-      <th>Nom d'utilisateur</th>
-      <th>Nom</th>
-      <th>Prénom</th>
-      <th>Courriel</th>
-      <th>Cellulaire</th>
-      <th>Téléphone</th>
-      <th>Actif</th>
-      <th>Admin</th>
-    </tr>
-    <tr *ngFor="let user of filteredUsers">
-      <td>{{ user.username }}</td>
-      <td>{{ user.last_name }}</td>
-      <td>{{ user.first_name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.mobile }}</td>
-      <td>{{ user.phone }}</td>
-      <td>
-        <i class="fa fa-check" *ngIf="user.is_active"></i>
-        <i class="fa fa-times" *ngIf="!user.is_active"></i>
-      </td>
-      <td>
-        <i class="fa fa-check" *ngIf="user.is_superuser"></i>
-        <i class="fa fa-times" *ngIf="!user.is_superuser"></i>
-      </td>
-    </tr>
-  </table>
+  <app-my-table [settings]="settings"
+                [data]="users"
+                (selectItem)="userClicked($event)">
+  </app-my-table>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Event } from '../../../models/event';
-import { ActivatedRoute, Params } from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import { EventService } from '../../../services/event.service';
 import { Participation } from '../../../models/participation';
 import { ParticipationService } from '../../../services/participation.service';
@@ -24,6 +24,7 @@ export class AdminEventComponent implements OnInit {
 
   settings = {
     editButton: true,
+    clickable: true,
     columns: [
       {
         name: 'first_name',
@@ -32,18 +33,6 @@ export class AdminEventComponent implements OnInit {
       {
         name: 'last_name',
         title: 'Nom'
-      },
-      {
-        name: 'email',
-        title: 'Courriel'
-      },
-      {
-        name: 'phone',
-        title: 'Téléphone'
-      },
-      {
-        name: 'mobile',
-        title: 'Mobile'
       },
       {
         name: 'standby',
@@ -84,7 +73,8 @@ export class AdminEventComponent implements OnInit {
               private participationService: ParticipationService,
               private notificationService: NotificationsService,
               private formBuilder: FormBuilder,
-              private myModalService: MyModalService) {}
+              private myModalService: MyModalService,
+              private router: Router) {}
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -109,7 +99,7 @@ export class AdminEventComponent implements OnInit {
   }
 
   get_participations() {
-    this.participationService.getParticipations(this.event.id).subscribe(
+    this.participationService.getParticipations([{name: 'event', value: this.event.id}]).subscribe(
       data => {
         this.participations = data.results.map(p => new Participation(p));
         this.participationsAdapted = this.participationAdapter(this.participations);
@@ -206,11 +196,9 @@ export class AdminEventComponent implements OnInit {
         id: participation.id,
         first_name: participation.user.first_name,
         last_name: participation.user.last_name,
-        email: participation.user.email,
-        phone: participation.user.phone,
-        mobile: participation.user.mobile,
         standby: participation.standby,
         presence_duration_minutes: participation.presence_duration_minutes,
+        user: participation.user
       };
       for (const status of this.participationStatusOption) {
         if (status.value === participation.presence_status) {
@@ -220,5 +208,9 @@ export class AdminEventComponent implements OnInit {
       participationsAdapted.push(newParticipation);
     }
     return participationsAdapted;
+  }
+
+  userClicked(participation) {
+    this.router.navigate(['/admin/volunteer/' + participation.user.id]);
   }
 }

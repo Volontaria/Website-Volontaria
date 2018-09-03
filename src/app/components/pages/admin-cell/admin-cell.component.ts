@@ -103,7 +103,7 @@ export class AdminCellComponent implements OnInit {
   }
 
   get_events() {
-    this.eventService.getEvents(this.cell.id).subscribe(
+    this.eventService.getEvents([{name: 'cell', value: this.cell.id}]).subscribe(
       data => {
         this.events = data.results.map(e => new Event(e));
         this.filter();

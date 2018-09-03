@@ -39,11 +39,19 @@ export class ParticipationService extends GlobalService {
     );
   }
 
-  getParticipations(event: number= null): Observable<any> {
+  getParticipations(filters: {name: string, value: any}[] = null): Observable<any> {
     const headers = this.getHeaders();
     let params = new HttpParams();
-    if (event != null) {
-      params = params.set('event', event.toString());
+
+    if (filters != null) {
+      for (const filter of filters) {
+        if (filter.name === 'event') {
+          params = params.set('event', filter.value);
+        }
+        if (filter.name === 'username') {
+          params = params.set('username', filter.value);
+        }
+      }
     }
     return this.http.get<any>(
       this.url_participations,
