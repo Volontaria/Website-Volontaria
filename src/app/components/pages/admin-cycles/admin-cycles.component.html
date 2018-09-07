@@ -1,57 +1,42 @@
 <div class="admin-cycles">
-  <div class="admin-cycles__title">
-    <h1 class="title title--main">Liste des cycles de commandes</h1>
+  <h1 class="title title--main admin-cycles__title">Liste des cycles de commandes</h1>
 
-    <button hasPermissions="['can_create_cycle']" appMyModalOpen="create cycle"
-            class="button button--success">
-      Créer un cycle
-    </button>
-  </div>
-
-  <app-my-modal name="create cycle"
-                title="Création d'un cycle"
-                button2Label="Créer"
-                (button1)="cycleForm.reset()"
-                (button2)="createCycle(cycleForm)"
-                typeModal="form"
-                button2Style="button--success">
-
-    <form [formGroup]="cycleForm">
-      <div class="form-group">
-        <label for="name" class="form-label">Nom: </label>
-        <input class="input" formControlName="name" id="name" required>
-        <div *ngIf="cycleForm.controls['name'].invalid"
-             class="form-text form-text--right form-text--danger">Le nom est obligatoire.
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="start_date" class="form-label">Date de début</label>
-        <input type="datetime-local" formControlName="start_date" id="start_date" class="input">
-        <div class="form-text form-text--right form-text--danger"
-          *ngIf="cycleForm.controls['start_date'].hasError('dateStartMissing')">Date de début nécessaire.</div>
-      </div>
-
-      <div class="form-group">
-        <label for="end_date" class="form-label">Date de fin</label>
-        <input type="datetime-local" formControlName="end_date" id="end_date" class="input">
-        <div class="form-text form-text--right form-text--danger"
-          *ngIf="cycleForm.controls['end_date'].hasError('dateEndMissing')">Date de fin nécessaire.</div>
-        <div class="form-text form-text--right form-text--danger"
-             *ngIf="cycleForm.controls['end_date'].hasError('dateEndBeforeDateStart')">La date de fin doit être après la date de début.</div>
-      </div>
-    </form>
-  </app-my-modal>
-
-  <table class="table admin-cycles__table" style="width: 100%">
-    <tr>
-      <th>Nom</th>
-      <th>Date de début</th>
-      <th>Date de fin</th>
-    </tr>
-    <tr *ngFor="let cycle of cycles">
-      <td>{{ cycle.name }}</td>
-      <td>{{ cycle.start_date | date:'dd MMMM yyyy' }}</td>
-      <td>{{ cycle.end_date | date:'dd MMMM yyyy' }}</td>
-    </tr>
-  </table>
+  <app-my-table [settings]="settings"
+                [data]="cycles"
+                (addButton)="toggleModal()">
+  </app-my-table>
 </div>
+
+<app-my-modal name="create cycle"
+              title="Création d'un cycle"
+              button2Label="Créer"
+              (button1)="cycleForm.reset()"
+              (button2)="createCycle(cycleForm)"
+              typeModal="form"
+              maxWidth="600px">
+
+  <form [formGroup]="cycleForm">
+    <div class="form-group">
+      <label for="name" class="form-label">Nom: </label>
+      <input class="input" formControlName="name" id="name" required>
+      <div *ngIf="cycleForm.controls['name'].invalid"
+           class="form-text form-text--right form-text--danger">Le nom est obligatoire.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="start_date" class="form-label">Date de début</label>
+      <input type="datetime-local" formControlName="start_date" id="start_date" class="input">
+      <div class="form-text form-text--right form-text--danger"
+           *ngIf="cycleForm.controls['start_date'].hasError('dateStartMissing')">Date de début nécessaire.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="end_date" class="form-label">Date de fin</label>
+      <input type="datetime-local" formControlName="end_date" id="end_date" class="input">
+      <div class="form-text form-text--right form-text--danger"
+           *ngIf="cycleForm.controls['end_date'].hasError('dateEndMissing')">Date de fin nécessaire.</div>
+      <div class="form-text form-text--right form-text--danger"
+           *ngIf="cycleForm.controls['end_date'].hasError('dateEndBeforeDateStart')">La date de fin doit être après la date de début.</div>
+    </div>
+  </form>
+</app-my-modal>

@@ -17,7 +17,7 @@ export class HeaderComponent {
     return this.authenticationService.isAuthenticated();
   }
 
-  toogleResponsiveNavbar() {
+  toggleResponsiveNavbar() {
     this.responsive = !this.responsive;
   }
 

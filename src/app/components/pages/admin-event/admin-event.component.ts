@@ -120,7 +120,7 @@ export class AdminEventComponent implements OnInit {
     if (this.participationForm.valid) {
       this.participationService.updateParticipation(this.selectedParticipation.id, data).subscribe(
         success => {
-          this.toogleModal();
+          this.toggleModal();
           this.notificationService.success('Modification réussie',
             `La participation a été modifié`);
 
@@ -174,12 +174,12 @@ export class AdminEventComponent implements OnInit {
       if (participation.id === event.id) {
         this.selectedParticipation = participation;
         this.participationForm.controls['presence_status'].setValue(participation.presence_status);
-        this.toogleModal();
+        this.toggleModal();
       }
     }
   }
 
-  toogleModal() {
+  toggleModal() {
     const modal = this.myModalService.get('update participation');
 
     if (!modal) {

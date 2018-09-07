@@ -13,7 +13,7 @@
     <a class="navbar__item" *ngIf="isAuthenticated()" routerLink="/logout">Déconnexion</a>
     <a class="navbar__item" *ngIf="!isAuthenticated()" routerLink="/login">Connexion</a>
   </div>
-  <span class="navbar__item navbar__item--icon" (click)="toogleResponsiveNavbar()">
+  <span class="navbar__item navbar__item--icon" (click)="toggleResponsiveNavbar()">
     &#9776;
   </span>
 </nav>

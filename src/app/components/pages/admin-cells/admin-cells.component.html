@@ -1,12 +1,8 @@
 <div class="admin-cells">
-  <h1 class="title title--main">Liste des cellules</h1>
+  <h1 class="title title--main admin-cells__title">Liste des cellules</h1>
 
-  <table class="table" style="width: 100%">
-    <tr>
-      <th>Nom</th>
-    </tr>
-    <tr *ngFor="let cell of cells" (click)="visitCell(cell.id)" class="clickable">
-      <td>{{ cell.name }}</td>
-    </tr>
-  </table>
+  <app-my-table [settings]="settings"
+                [data]="cells"
+                (selectItem)="visitCell($event)">
+  </app-my-table>
 </div>

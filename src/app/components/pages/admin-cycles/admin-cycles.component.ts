@@ -5,7 +5,7 @@ import {FormGroup, FormBuilder, NgForm, Validators} from '@angular/forms';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {NotificationsService} from 'angular2-notifications';
-
+import {DateUtil} from '../../../utils/date';
 
 @Component({
   selector: 'app-admin-cycles',
@@ -17,20 +17,40 @@ export class AdminCyclesComponent implements OnInit {
 
   cycles: Cycle[];
 
+  settings = {
+    noDataText: 'Aucun cycle  pour le moment.',
+    addButton: true,
+    columns: [
+      {
+        name: 'name',
+        title: 'Nom du cycle'
+      },
+      {
+        name: 'start_date',
+        title: 'Date de début'
+      },
+      {
+        name: 'end_date',
+        title: 'Date de début'
+      }
+    ]
+  };
+
   cycleForm: FormGroup;
 
   constructor(private cycleService: CycleService,
               private myModals: MyModalService,
               private authenticationService: AuthenticationService,
               private notificationService: NotificationsService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private myModalService: MyModalService) {
     this.createForm();
   }
 
   ngOnInit() {
     this.cycleService.getCycles().subscribe(
       data => {
-        this.cycles = data.results.map(c => new Cycle(c));
+        this.cycles = data.results.map(c => this.cycleAdapter(new Cycle(c)));
       }
     );
   }
@@ -107,12 +127,22 @@ export class AdminCyclesComponent implements OnInit {
     }
   }
 
-  initFormCycle(form: NgForm) {
-    form.resetForm();
+  cycleAdapter(cycle: Cycle) {
+    return {
+      id: cycle.id,
+      name: cycle.name,
+      start_date: DateUtil.formatDay(cycle.start_date),
+      end_date: DateUtil.formatDay(cycle.end_date)
+    };
   }
 
-  isAdmin(): boolean {
-    return this.authenticationService.isAdmin();
+  toggleModal() {
+    const modal = this.myModalService.get('create cycle');
 
+    if (!modal) {
+      console.error('No modal named %s', 'create cycle');
+      return;
+    }
+    modal.toggle();
   }
 }

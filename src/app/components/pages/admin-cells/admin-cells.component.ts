@@ -14,6 +14,17 @@ export class AdminCellsComponent implements OnInit {
 
   cells: Cell[];
 
+  settings = {
+    noDataText: 'Aucune cellule  pour le moment.',
+    clickable: true,
+    columns: [
+      {
+        name: 'name',
+        title: 'Nom de la cellule'
+      }
+    ]
+  };
+
   constructor(private cellService: CellService,
               private router: Router) {}
 
@@ -25,7 +36,7 @@ export class AdminCellsComponent implements OnInit {
     );
   }
 
-  visitCell(idCell) {
-    this.router.navigate(['/admin/cells/' + idCell]);
+  visitCell(cell) {
+    this.router.navigate(['/admin/cells/' + cell.id]);
   }
 }
