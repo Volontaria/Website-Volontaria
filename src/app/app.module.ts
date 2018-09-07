@@ -19,7 +19,6 @@ import { CanAccessAdminPanelGuard } from './guards/CanAccessAdminPanelGuard';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { DocumentationComponent } from './components/pages/documentation/documentation.component';
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { MySchedulePageComponent } from './components/pages/myschedule-page/myschedule-page.component';
 import { ActivitiesPageComponent } from './components/pages/activities-page/activities-page.component';
@@ -143,13 +142,6 @@ const appRoutes = [
       {
         path: 'admin/activity',
         component: AdminActivityDetailComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
-      },
-      {
-        path: 'docs',
-        component: DocumentationComponent,
         canActivate: [
           CanActivateViaAuthGuard
         ]
@@ -296,7 +288,6 @@ export class DefaultIntl {
     AdminActivityDetailComponent,
     InfoPageComponent,
     ContactPageComponent,
-    DocumentationComponent,
     PageNotFoundComponent,
     AdminLayoutComponent,
     DefaultLayoutComponent,
