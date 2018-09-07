@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-layout',
@@ -12,22 +13,18 @@ import { Component, OnInit } from '@angular/core';
           <span class="left-nav__header">
             Administration
           </span>
-          <a routerLink="/admin" class="left-nav__item">
-            <i class="fa fa-area-chart"></i>
-            Général
+          <a *ngFor="let item of menu" [routerLink]="item.link" class="left-nav__item">
+            <i [class]="item.icon"></i>
+            {{ item.title }}
           </a>
-          <a routerLink="/admin/volunteers" class="left-nav__item" hasPermissions="['list_users']">
-            <i class="fa fa-users"></i>
-            Bénévoles
-          </a>
-          <a routerLink="/admin/cells" class="left-nav__item">
-            <i class="fa fa-map-marker"></i>
-            Cellules
-          </a>
-          <a routerLink="/admin/cycles" class="left-nav__item">
-            <i class="fa fa-calendar"></i>
-            Cycles de commande
-          </a>
+        </div>
+        <div class="left-nav-responsive">
+          <div class="left-nav-responsive__header title title--secondary">
+            Administration
+          </div>
+          <select class="left-nav-responsive__select" (change)="changePage($event)">
+            <option *ngFor="let item of menu" [value]="item.link">{{ item.title }}</option>
+          </select>
         </div>
         <div id="main">
           <router-outlet></router-outlet>
@@ -42,9 +39,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLayoutComponent implements OnInit {
 
-  constructor() { }
+  menu = [
+    {
+      'title': 'Général',
+      'link': '/admin',
+      'icon': 'fa fa-area-chart'
+    },
+    {
+      'title': 'Bénévoles',
+      'link': '/admin/volunteers',
+      'icon': 'fa fa-users'
+    },
+    {
+      'title': 'Cellules',
+      'link': '/admin/cells',
+      'icon': 'fa fa-map-marker'
+    },
+    {
+      'title': 'Cycles de commande',
+      'link': '/admin/cycles',
+      'icon': 'fa fa-calendar'
+    }
+  ];
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  changePage(event) {
+    console.log(event.target.value);
+    this.router.navigate([event.target.value]);
+  }
 }
