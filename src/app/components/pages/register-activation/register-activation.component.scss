@@ -1,12 +1,20 @@
+@import '../../../../assets/scss/theme';
+
 .register-activation {
   height: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 
   &__content {
     text-align: center;
-    max-width: 600px;
+    background-color: $main-background-dark;
+    padding: 40px;
+    font-size: 1.2em;
+
+    &__icon {
+      color: $main-color;
+    }
   }
 }

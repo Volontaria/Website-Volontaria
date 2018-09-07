@@ -39,8 +39,7 @@ hr {
 }
 
 a {
-  color: orange;
   text-decoration: none;
-  cursor: pointer;
-  font-weight: 700;
+  color: $main-color;
+  font-weight: 600;
 }

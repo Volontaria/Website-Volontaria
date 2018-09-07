@@ -153,7 +153,25 @@ const appRoutes = [
         canActivate: [
           CanActivateViaAuthGuard
         ]
-      }
+      },
+    ]
+  },
+  {
+    path: '',
+    component: LoginLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginPageComponent
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+      },
+      {
+        path: 'reset-password/:token',
+        component: ResetPasswordComponent,
+      },
     ]
   },
   {
@@ -220,25 +238,13 @@ const appRoutes = [
   },
   {
     path: '',
-    component: LoginLayoutComponent,
+    component: DefaultLayoutComponent,
     children: [
       {
-        path: 'login',
-        component: LoginPageComponent
-      },
-      {
-        path: 'forgot-password',
-        component: ForgotPasswordComponent,
-      },
-      {
-        path: 'reset-password/:token',
-        component: ResetPasswordComponent,
-      },
-    ]
-  },
-  {
-    path: '**',
-    component: PageNotFoundComponent
+        path: '**',
+        component: PageNotFoundComponent
+      }
+    ],
   }
 ];
 

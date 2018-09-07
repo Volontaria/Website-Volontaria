@@ -2,6 +2,7 @@
 
 .login-page {
   max-width: 350px;
+  padding: 20px;
 
   &__logo{
     height: 70px;
@@ -15,10 +16,6 @@
   &__form {
     text-align: left;
 
-    width: 80%;
-    max-width: 300px;
-    margin: auto;
-
     &__error {
       color: red;
       text-align: center;
@@ -26,13 +23,12 @@
   }
 
   &__thanks {
-    font-size: 12px;
-    display: none;
+    margin-top: 20px;
   }
 }
 
 @media only screen and (max-width: 500px) {
-  .login-page__thanks {
-    display: block;
+  .login-page {
+    max-width: 100%;
   }
 }

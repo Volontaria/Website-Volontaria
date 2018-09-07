@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-notfound',
   templateUrl: './notfound-page.component.html',
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['notfound-page.component.scss']
 })
 export class PageNotFoundComponent implements OnInit {
 

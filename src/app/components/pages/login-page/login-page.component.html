@@ -4,7 +4,7 @@
     Se connecter
   </h2>
   <form class="login-page__form" (ngSubmit)="authenticate()">
-    <p *ngIf="error" class="login-page__form__error">
+    <p *ngIf="error" class="alert alert--danger">
       {{error}}
     </p>
     <div class="form-group">
@@ -20,10 +20,10 @@
     </div>
     <button class="button">Se connecter</button>
     <p>
-      <a routerLink='/register'>Pas encore de compte?</a>
+      <a routerLink='/register' class="link">Pas encore de compte?</a>
     </p>
   </form>
   <p class="login-page__thanks">
-    Propulsé par Volontaria.
+    Volontaria est un projet en logiciel libre maintenu bénévolement par <a href="http://fjnr.ca" target="_blank">FJNR</a>
   </p>
 </div>

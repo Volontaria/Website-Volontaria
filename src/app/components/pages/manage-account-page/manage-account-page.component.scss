@@ -1,5 +1,7 @@
+@import '../../../../assets/scss/theme';
+
 .manage-account-page {
-  padding: 1rem;
+  padding: 30px;
 
   &__title {
     text-align: center;
@@ -7,13 +9,11 @@
 
   &__form {
     background-color: #dfdfdf;
-    padding: 2rem;
-
-    width: 80%;
+    width: 100%;
     max-width: 450px;
     margin: auto;
-
-    text-align: left;
+    margin-top: 30px;
+    padding: 20px;
 
     &__info {
       text-align: center;

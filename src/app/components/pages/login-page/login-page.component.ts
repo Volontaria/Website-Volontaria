@@ -31,7 +31,7 @@ export class LoginPageComponent {
           profile => {
             localStorage.setItem('userProfile', JSON.stringify(profile));
             this.notificationService.success('Connecté', 'Bienvenue!');
-            this.router.navigate(['/']);
+            this.router.navigate(['/index']);
           }
         );
       },
