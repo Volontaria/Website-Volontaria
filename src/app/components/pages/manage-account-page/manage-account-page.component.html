@@ -7,17 +7,17 @@
       Tu as déjà un compte?
       <a routerLink="/login">
         Connecte-toi!
-      </a>!
+      </a>
     </p>
     <div class="manage-account-page__form__input">
-      <label for="form_username">
-        Nom d'utilisateur *
+      <label for="form_username" class="form-label">
+        Nom d'utilisateur: *
       </label>
-      <br/>
       <input [(ngModel)]="user.username"
              id="form_username"
              name="username"
              type="text"
+             class="input"
              [ngClass]="{'input--error': error && error.error.username}">
       <ul *ngIf="error && error.error.username">
         <li *ngFor="let message of error.error.username">
@@ -26,14 +26,14 @@
       </ul>
     </div>
     <div class="manage-account-page__form__input">
-      <label for="form_password">
-        Mot de passe *
+      <label for="form_password" class="form-label">
+        Mot de passe: *
       </label>
-      <br/>
       <input [(ngModel)]="password"
              id="form_password"
              name="password"
              type="password"
+             class="input"
              [ngClass]="{'input--error': error && error.error.password}">
       <ul *ngIf="error && error.error.password">
         <li *ngFor="let message of error.error.password">
@@ -42,13 +42,13 @@
       </ul>
     </div>
     <div class="manage-account-page__form__input">
-      <label for="form_password_confirmation">
-        Confirmation du mot de passe *
+      <label for="form_password_confirmation" class="form-label">
+        Confirmation du mot de passe: *
       </label>
-      <br/>
       <input [(ngModel)]="password_confirmation"
              id="form_password_confirmation"
              name="password_confirmation"
+             class="input"
              type="password"
              (change)="checkConfirmPassword()"
              [ngClass]="{'input--error': errorConfirmationPassword}">
@@ -58,15 +58,15 @@
         </li>
       </ul>
     </div>
-    <div class="manage-account-page__form__input">
+    <div class="manage-account-page__form__input" class="form-label">
       <label for="form_email">
-        Courriel *
+        Courriel: *
       </label>
-      <br/>
       <input [(ngModel)]="user.email"
              id="form_email"
              name="email"
              type="email"
+             class="input"
              [ngClass]="{'input--error': error && error.error.email}">
       <ul *ngIf="error && error.error.email">
         <li *ngFor="let message of error.error.email">
@@ -75,36 +75,36 @@
       </ul>
     </div>
     <p>
-      <label for="form_first_name">
-        Prénom *
+      <label for="form_first_name" class="form-label">
+        Prénom: *
       </label>
-      <br/>
       <input [(ngModel)]="user.first_name"
              id="form_first_name"
              name="fisrt_name"
+             class="input"
              type="text">
     </p>
     <p>
-      <label for="form_last_name">
-        Nom *
+      <label for="form_last_name" class="form-label">
+        Nom: *
       </label>
-      <br/>
       <input [(ngModel)]="user.last_name"
              id="form_last_name"
              name="last_name"
+             class="input"
              type="text">
     </p>
-    <p class="card card--warning">
+    <p class="alert alert--warning">
       Pour t'inscrire tu dois nous fournir au moins un numéro de téléphone afin qu'on puisse communiquer avec toi.
     </p>
     <div class="manage-account-page__form__input">
-      <label for="form_phone_home">
-        Téléphone maison
+      <label for="form_phone_home" class="form-label">
+        Téléphone maison:
       </label>
-      <br/>
       <input [(ngModel)]="user.phone"
              id="form_phone_home"
              name="phone_home"
+             class="input"
              type="tel"
              [ngClass]="{'input--error': error && error.error.phone}">
       <ul *ngIf="error && error.error.phone">
@@ -114,14 +114,14 @@
       </ul>
     </div>
     <div class="manage-account-page__form__input">
-      <label for="form_phone_mobile">
-        Téléphone cellulaire
+      <label for="form_phone_mobile" class="form-label">
+        Téléphone cellulaire:
       </label>
-      <br/>
       <input [(ngModel)]="user.mobile"
              id="form_phone_mobile"
              name="phone_mobile"
              type="tel"
+             class="input"
              [ngClass]="{'input--error': error && error.error.mobile}">
       <ul *ngIf="error && error.error.mobile">
         <li *ngFor="let message of error.error.mobile">
