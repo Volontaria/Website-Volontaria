@@ -23,6 +23,10 @@ import {
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
 
 const colors: any = {
+  grey: {
+    primary: '#a2a2a2',
+    secondary: '#eff1ea'
+  },
   green: {
     primary: '#42A948',
     secondary: '#bdffc7'
@@ -257,12 +261,16 @@ export class ActivitiesPageComponent implements OnInit {
       };
 
       const percentageVolunteers = event.nb_volunteers / event.nb_volunteers_needed;
-      if (percentageVolunteers >= 0.8) {
-        newEvent['color'] = colors.green;
-      } else if (percentageVolunteers >= 0.5) {
-        newEvent['color'] = colors.yellow;
+      if (event.volunteers.lastIndexOf(this.user.id) >= 0) {
+        newEvent['color'] = colors.grey;
       } else {
-        newEvent['color'] = colors.red;
+        if (percentageVolunteers >= 0.8) {
+          newEvent['color'] = colors.green;
+        } else if (percentageVolunteers >= 0.5) {
+          newEvent['color'] = colors.yellow;
+        } else {
+          newEvent['color'] = colors.red;
+        }
       }
       this.calendarEvents.push(newEvent);
     }
