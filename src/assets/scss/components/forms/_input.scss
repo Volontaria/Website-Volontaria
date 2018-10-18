@@ -38,6 +38,14 @@
     }
   }
 
+  &--select {
+    background-image: url('assets/images/icons/icon_down_arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+    border-width: 1px 1px 1px 1px;
+  }
+
   &--textarea {
     height: 200px;
     max-width: 100%;

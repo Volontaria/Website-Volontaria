@@ -120,11 +120,11 @@
 
 <app-my-modal name="change password"
               title="Changement du mot de passe"
-              button2Label="Changer"
+              button2Label="Changer mon mot de passe"
               (button1)="changePasswordForm.reset()"
               (button2)="changePassword(changePasswordForm)"
               typeModal="form"
-              button2Style="button--success">
+              maxWidth="600px">
 
   <form [formGroup]="changePasswordForm">
     <div class="form-group">

@@ -90,7 +90,7 @@
               (button1)="resetForm()"
               (button2)="createEvent()"
               typeModal="form"
-              button2Style="button--success">
+              maxWidth="600px">
 
   <form [formGroup]="eventForm">
 
@@ -125,7 +125,7 @@
 
     <div class="form-group" *ngIf="tasktypes">
       <label for="task_type_id" class="form-label">Type d'activité:</label>
-      <select formControlName="task_type_id" id="task_type_id" class="input">
+      <select formControlName="task_type_id" id="task_type_id" class="input input--select">
         <option value="" disabled>Choisis une activité</option>
         <option *ngFor="let taskType of tasktypes" [value]="taskType.id">{{ taskType.name }}</option>
       </select>
@@ -137,7 +137,7 @@
 
     <div class="form-group" *ngIf="cycles">
       <label for="cycle_id" class="form-label">Cycle:</label>
-      <select formControlName="cycle_id" id="cycle_id" class="input" (change)="setSelectedCycle()">
+      <select formControlName="cycle_id" id="cycle_id" class="input input--select" (change)="setSelectedCycle()">
         <option value="" disabled>Choisis un cycle</option>
         <option *ngFor="let cycle of cycles" [ngValue]="cycle.id">{{ cycle.name }}</option>
       </select>
