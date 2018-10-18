@@ -7,6 +7,7 @@
 
   <app-my-table [settings]="settings"
                 [data]="users"
-                (selectItem)="userClicked($event)">
+                (selectItem)="userClicked($event)"
+                (changePage)="changePage($event)">
   </app-my-table>
 </div>

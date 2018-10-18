@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import GlobalService from './globalService';
 import {User} from '../models/user';
@@ -16,6 +16,18 @@ export class UserService extends GlobalService {
 
   constructor(public http: HttpClient) {
     super();
+  }
+
+  list(filters: {name: string, comparator: string, value: any}[] = null, limit = 100, offset = 0, order: string = null): Observable<any> {
+    const headers = this.getHeaders();
+    let params = new HttpParams();
+    params = params.set('limit', limit.toString());
+    params = params.set('offset', offset.toString());
+
+    return this.http.get<any>(
+      this.url_users,
+      {headers: headers, params: params}
+    );
   }
 
   getUsers(): Observable<any> {

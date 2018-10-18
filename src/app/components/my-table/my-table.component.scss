@@ -4,15 +4,40 @@
 
   &__actions {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-bottom: 15px;
+
+    &__title {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &__filters {
+    padding: 5px 0;
+    text-align: right;
+
+    &__filter {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      &> div {
+        padding: 5px;
+      }
+    }
+
+    &__actions {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 
   &__table {
     font-size: 14px;
     width: 100%;
 
-    border: 1px solid $main-color;
+    border: 1px solid lightgrey;
     border-collapse: collapse;
 
     &--full-width {
@@ -39,11 +64,15 @@
 
       &__cell {
         padding: 10px;
+
+        &__image {
+          height: 75px;
+        }
       }
     }
 
     &__line {
-      background-color: $main-background;
+      background-color: lighten(lightgrey, 10);
 
       &:nth-child(odd) {
         background-color: white;
@@ -57,6 +86,7 @@
 
           &__edit {
             margin: 0 5px;
+            text-decoration: none;
 
             &:hover {
               color: $color-warning-text;
@@ -66,6 +96,7 @@
 
           &__remove {
             margin: 0 5px;
+            text-decoration: none;
 
             &:hover {
               color: $color-danger-text;
@@ -78,9 +109,62 @@
       &--clickable {
         &:hover {
           cursor: pointer;
-          background-color: $main-hover;
+          background-color: lighten($main-color, 20);
         }
       }
     }
+  }
+
+  &__pagination {
+    text-align: right;
+
+    &__page {
+      background-color: $main-color;
+      border: 1px solid $main-color;
+      padding: 5px;
+      color: white;
+      margin-left: 5px;
+      position: relative;
+      top: 10px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+
+      &.active {
+        color: $main-color;
+        background-color: white;
+        border: 1px solid $main-color;
+      }
+
+      &.disabled {
+        background-color: inherit;
+        border: none;
+        padding: 5px;
+        color: inherit;
+        margin-right: 5px;
+        position: relative;
+        top: 10px;
+        text-align: center;
+        cursor: inherit;
+      }
+    }
+  }
+}
+
+input {
+  border: 1px solid lightgrey;
+  height: 25px;
+}
+
+select {
+  border: 1px solid lightgrey;
+  height: 25px;
+}
+
+button {
+  border: 1px solid lightgrey;
+
+  &:hover {
+    cursor: pointer;
   }
 }
