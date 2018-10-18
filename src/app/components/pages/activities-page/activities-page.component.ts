@@ -20,6 +20,7 @@ import {
   isSameMonth,
   addHours
 } from 'date-fns';
+import {MyModalService} from '../../../services/my-modal/my-modal.service';
 
 const colors: any = {
   green: {
@@ -131,7 +132,8 @@ export class ActivitiesPageComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private cellService: CellService) {}
+              private cellService: CellService,
+              private myModalService: MyModalService) {}
 
   ngOnInit() {
     this.user = this.authenticationService.getProfile();
@@ -282,7 +284,11 @@ export class ActivitiesPageComponent implements OnInit {
   eventClicked(eventClicked) {
     for (const event of this.filteredEvents) {
       if (event.id === eventClicked.id) {
-        this.router.navigate(['/confirmation/' + event.id]);
+        if (event.volunteers.lastIndexOf(this.user.id) >= 0) {
+          this.toggleModal('already_volunteer');
+        } else {
+          this.router.navigate(['/confirmation/' + event.id]);
+        }
       }
     }
   }
@@ -297,5 +303,15 @@ export class ActivitiesPageComponent implements OnInit {
       nb_standby: event.nb_volunteers_standby + '/' + event.nb_volunteers_standby_needed
     };
     return newEvent;
+  }
+
+  toggleModal(name) {
+    const modal = this.myModalService.get(name);
+
+    if (!modal) {
+      console.error('No modal named %s', name);
+      return;
+    }
+    modal.toggle();
   }
 }

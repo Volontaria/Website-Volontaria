@@ -77,3 +77,17 @@
     </div>
   </div>
 </div>
+
+<app-my-modal name="already_volunteer"
+              title="Oups..."
+              button2Label="J'ai compris!"
+              (button2)="toggleModal('already_volunteer')"
+              typeModal="form"
+              maxWidth="600px">
+  <p>
+    Nul besoin de t'inscrire à cette plage horaire puisque tu es déjà inscrit!
+  </p>
+  <p>
+    Si tu ne te souviens plus de tes dates de bénévolat n'hésite pas à vsitier <a routerLink="/schedule">ton horaire</a>.
+  </p>
+</app-my-modal>
