@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
 import {Router} from '@angular/router';
+import {isNull} from "util";
 
 
 @Component({
@@ -21,6 +22,10 @@ export class AdminVolunteersComponent implements OnInit {
   settings = {
     noDataText: 'Aucun utilisateur pour le moment.',
     clickable: true,
+    previous: false,
+    next: false,
+    numberOfPage: 0,
+    page: 0,
     columns: [
       {
         name: 'username',
@@ -55,9 +60,21 @@ export class AdminVolunteersComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(
-      data => {
-        this.users = data.results.map(u => new User(u) );
+    this.refreshUserList();
+  }
+
+  changePage(index: number) {
+    this.refreshUserList(index);
+  }
+
+  refreshUserList(page = 1, limit = 50) {
+    this.userService.list(null, limit, limit * (page - 1)).subscribe(
+      users => {
+        this.settings.numberOfPage = Math.ceil(users.count / limit);
+        this.settings.page = page;
+        this.settings.previous = !isNull(users.previous);
+        this.settings.next = !isNull(users.next);
+        this.users = users.results.map(u => new User(u) );
         this.filteredUsers = this.users;
       }
     );
