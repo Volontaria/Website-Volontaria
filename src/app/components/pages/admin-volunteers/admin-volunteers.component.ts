@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
-import {Router} from '@angular/router';
-import {isNull} from "util";
+import { Router } from '@angular/router';
+import { isNull } from 'util';
 
 
 @Component({
