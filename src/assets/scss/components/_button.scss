@@ -14,9 +14,7 @@
     border: none;
 
     &:hover {
-        box-shadow: 0 3px 6px $main-color;
-        color: $main-color;
-        background-color: white;
+        background-color: lighten($main-color, 10);
         cursor: pointer;
     }
 
@@ -24,8 +22,7 @@
         background-color: $color-warning;
 
         &:hover {
-            color: $color-warning;
-            box-shadow: 0 3px 6px $color-warning;
+          background-color: lighten($color-warning, 10);
         }
     }
 
@@ -33,8 +30,7 @@
         background-color: $color-danger;
 
         &:hover {
-            color: $color-danger;
-            box-shadow: 0 3px 6px $color-danger;
+          background-color: lighten($color-danger, 10);
         }
     }
 
@@ -42,8 +38,7 @@
     background-color: $color-success;
 
     &:hover {
-      color: $color-success;
-      box-shadow: 0 3px 6px $color-success;
+      background-color: lighten($color-success, 10);
     }
   }
 

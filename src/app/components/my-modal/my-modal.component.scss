@@ -27,8 +27,8 @@
       &__header{
         padding: 10px;
         font-weight: 900;
-        color: $main-color;
-        background-color: $secondary-color;
+        color: white;
+        background-color: $main-color;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -46,6 +46,7 @@
 
         &__title {
           font-size: 16px;
+          color: white;
         }
       }
 

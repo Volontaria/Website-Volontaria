@@ -66,7 +66,7 @@
   <form [formGroup]="participationForm">
     <div class="form-group">
       <label for="presence_status" class="form-label">Présence:</label>
-      <select formControlName="presence_status" id="presence_status" class="input">
+      <select formControlName="presence_status" id="presence_status" class="input input--select">
         <option value="" disabled>Choisis un status</option>
         <option *ngFor="let status of participationStatusOption" [value]="status.value">{{ status.name }}</option>
       </select>
