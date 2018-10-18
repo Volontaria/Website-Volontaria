@@ -90,6 +90,7 @@
         <th>Fin</th>
         <th>Activité</th>
         <th>Lieu</th>
+        <th>Actions</th>
       </tr>
       <tr *ngIf="eventsAsOnHold.length == 0">
         <td colspan="7">
@@ -112,6 +113,11 @@
           {{ event.cell.address.address_line1 }}<br/>
           {{ event.cell.address.address_line2 }}<br/>
           {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
+        </td>
+        <td>
+          <a (click)="askToDeleteParticipation(event.id)" class="button button--danger">
+            Me désinscrire
+          </a>
         </td>
       </tr>
     </table>
