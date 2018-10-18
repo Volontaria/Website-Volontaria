@@ -23,13 +23,14 @@ export class MySchedulePageComponent implements OnInit {
   eventsAsVolunteer: Event[] = [];
   eventsAsOnHold: Event[] = [];
   changePasswordForm: FormGroup;
+  idEventInDeletion: number;
 
   constructor(private userService: UserService,
               private eventService: EventService,
               private participationService: ParticipationService,
               private notificationService: NotificationsService,
               private formBuilder: FormBuilder,
-              private myModals: MyModalService) {
+              private myModalService: MyModalService) {
     this.changePasswordForm = this.formBuilder.group(
       {
         oldPassword: [null, Validators.required],
@@ -62,7 +63,7 @@ export class MySchedulePageComponent implements OnInit {
         form.controls['oldPassword'].value,
         form.controls['newPassword'].value).subscribe(
         data => {
-          this.myModals.get('change password').toggle();
+          this.myModalService.get('change password').toggle();
           form.reset();
           this.notificationService.success('Changement réussi',
             `Le mot de passe a été changé`);
@@ -87,9 +88,9 @@ export class MySchedulePageComponent implements OnInit {
     this.userService.getProfile().subscribe(
       data => {
         this.user = data;
+        this.updateParticipations();
       }
     );
-    this.updateParticipations();
   }
 
   updateParticipations() {
@@ -129,20 +130,46 @@ export class MySchedulePageComponent implements OnInit {
     );
   }
 
-  deleteParticipation(idEvent: number) {
+  askToDeleteParticipation(idEvent: number) {
+    /**
+     * Open a modal to valid if user want to delete the participation
+      */
+    this.idEventInDeletion = idEvent;
+    this.toggleModal('delete_participation');
+  }
+
+  deleteParticipation() {
     /**
      * Delete the participation linked to the specific event given in argument
      */
+    this.toggleModal('delete_participation');
+    let error = false;
     for (const participation in this.participations) {
-      if (this.participations[participation].event === idEvent) {
+      if (this.participations[participation].event === this.idEventInDeletion) {
         this.participationService.deleteParticipation(this.participations[participation].id).subscribe(
           data => {
             this.updateParticipations();
             this.notificationService.success('Désinscription réussie', 'Merci!');
+          }, errors => {
+            error = true;
           }
         );
+      } else {
+        error = true;
       }
+    }
+    if (error) {
+      this.notificationService.error('Erreur', 'L\'annulation a échoué');
     }
   }
 
+  toggleModal(name) {
+    const modal = this.myModalService.get(name);
+
+    if (!modal) {
+      console.error('No modal named %s', name);
+      return;
+    }
+    modal.toggle();
+  }
 }

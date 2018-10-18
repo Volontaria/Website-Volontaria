@@ -75,7 +75,7 @@
           {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
         </td>
         <td>
-          <a (click)="deleteParticipation(event.id)" class="button button--danger">
+          <a (click)="askToDeleteParticipation(event.id)" class="button button--danger">
             Me désinscrire
           </a>
         </td>
@@ -151,4 +151,19 @@
            *ngIf="changePasswordForm.controls['confirmation'].hasError('confirmationError')">La confirmation est erronée.</div>
     </div>
   </form>
+</app-my-modal>
+
+<app-my-modal name="delete_participation"
+              title="Annuler une participation"
+              button2Label="Annuler ma participation"
+              (button1)="toggleModal('delete_participation')"
+              (button2)="deleteParticipation()"
+              typeModal="form"
+              maxWidth="600px">
+  <p>
+    L'annulation de ta participation est un acte important puisque les autres bénévoles compte sur ta présence.
+  </p>
+  <p>
+    Es-tu vraiment sûr de vouloir annuler ta participation ?
+  </p>
 </app-my-modal>

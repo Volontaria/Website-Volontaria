@@ -21,7 +21,7 @@
   <div class="activity-confirmation-page__validate" *ngIf="event.volunteers.indexOf(user.id) < 0">
     <p *ngIf="event.nb_volunteers < event.nb_volunteers_needed || event.nb_volunteers_standby < event.nb_volunteers_standby_needed">Veux-tu t'inscrire à cette plage horaire ?</p>
     <p>
-      <input class="input" id="info-page" type="checkbox" [(ngModel)]="infoPageCheck"/>
+      <input id="info-page" type="checkbox" [(ngModel)]="infoPageCheck"/>
       <label for="info-page">J'ai bien lu la <a routerLink="/info" target="_blank">page d'informations.</a></label>
     </p>
     <button [disabled]="!infoPageCheck" *ngIf="event.nb_volunteers < event.nb_volunteers_needed" class="activity-confirmation-page__validate__button button" (click)="submit(false)">M'inscrire comme bénévole</button>
