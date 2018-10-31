@@ -19,7 +19,7 @@ export class AdminCyclesComponent implements OnInit {
 
   settings = {
     noDataText: 'Aucun cycle  pour le moment.',
-    addButton: true,
+    addButton: this.authenticationService.isAdmin(),
     columns: [
       {
         name: 'name',
