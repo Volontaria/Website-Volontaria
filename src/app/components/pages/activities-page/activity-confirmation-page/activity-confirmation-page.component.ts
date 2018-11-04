@@ -18,6 +18,7 @@ export class ActivityConfirmationComponent implements OnInit {
   event: Event;
   user: User;
   infoPageCheck = false;
+  invit_icalendar = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private eventService: EventService,
@@ -39,7 +40,7 @@ export class ActivityConfirmationComponent implements OnInit {
   }
 
   submit(standby: boolean) {
-    this.participationService.createParticipation(this.event.id, standby).subscribe(
+    this.participationService.createParticipation(this.event.id, standby, this.invit_icalendar).subscribe(
       data => {
         this.notificationService.success('Inscription réussie', 'Merci!');
         this.router.navigate(['/schedule']);
