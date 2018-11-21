@@ -3,10 +3,10 @@
     Liste des bénévoles
   </h1>
 
-  <input type="text" class="input" [(ngModel)]="search" placeholder="Rechercher un bénévole par nom ou courriel..." (change)="filter()" />
+  <input type="text" class="input" placeholder="Rechercher un bénévole par nom ou courriel..." (input)="filter($event.target.value)" />
 
   <app-my-table [settings]="settings"
-                [data]="users"
+                [data]="listUsers"
                 (selectItem)="userClicked($event)"
                 (changePage)="changePage($event)">
   </app-my-table>

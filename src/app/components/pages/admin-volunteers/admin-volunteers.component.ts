@@ -13,11 +13,10 @@ import { isNull } from 'util';
 })
 export class AdminVolunteersComponent implements OnInit {
 
-  users: User[];
-  filteredUsers: User[];
-
-  search: string;
-
+  listUsers: User[];
+  userFilters = [];
+  typingTimer;
+  doneTypingInterval = 500;
 
   settings = {
     noDataText: 'Aucun utilisateur pour le moment.',
@@ -68,38 +67,44 @@ export class AdminVolunteersComponent implements OnInit {
   }
 
   refreshUserList(page = 1, limit = 50) {
-    this.userService.list(null, limit, limit * (page - 1)).subscribe(
+
+    this.userService.list(this.userFilters, limit, limit * (page - 1)).subscribe(
       users => {
         this.settings.numberOfPage = Math.ceil(users.count / limit);
         this.settings.page = page;
         this.settings.previous = !isNull(users.previous);
         this.settings.next = !isNull(users.next);
-        this.users = users.results.map(u => new User(u) );
-        this.filteredUsers = this.users;
+        this.listUsers = users.results.map(u => new User(u) );
       }
     );
   }
 
-  filter() {
-    this.filteredUsers = [];
-    const userFiltered = [];
+  filter(value) {
+    clearTimeout(this.typingTimer);
+    this.typingTimer = setTimeout(
+      () => {
+        this.updateFilter(value);
+        },
+      this.doneTypingInterval
+    );
+  }
 
-    for (const user in this.users) {
-      if ( user ) {
-        if (this.users[user].first_name.indexOf(this.search) >= 0
-          || this.users[user].last_name.indexOf(this.search) >= 0
-          || this.users[user].email.indexOf(this.search) >= 0
-          || this.users[user].username.indexOf(this.search) >= 0) {
-          userFiltered.push(this.users[user]);
-        }
+  updateFilter(value, name= 'search') {
+    let update = false;
+    for (const filter of this.userFilters) {
+      if (filter.name === name) {
+        filter.value = value;
+        update = true;
       }
     }
-
-    if (this.search === '') {
-      this.filteredUsers = this.users;
-    } else {
-      this.filteredUsers = userFiltered;
+    if (!update) {
+      const newFilter = {
+        name: name,
+        value: value
+      };
+      this.userFilters.push(newFilter);
     }
+    this.refreshUserList();
   }
 
   userClicked(user) {
