@@ -18,11 +18,17 @@ export class UserService extends GlobalService {
     super();
   }
 
-  list(filters: {name: string, comparator: string, value: any}[] = null, limit = 100, offset = 0, order: string = null): Observable<any> {
+  list(filters: {name: string, value: any}[] = null, limit = 100, offset = 0, order: string = null): Observable<any> {
     const headers = this.getHeaders();
     let params = new HttpParams();
     params = params.set('limit', limit.toString());
     params = params.set('offset', offset.toString());
+
+    for (const filter of filters) {
+      if (filter.name === 'search') {
+        params = params.set('search', filter.value);
+      }
+    }
 
     return this.http.get<any>(
       this.url_users,
