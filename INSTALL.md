@@ -1,23 +1,23 @@
 # How to install
 
-## Init the repository
+## Requirements
 
-Init the repo with npm
+**Warning:** To have a fully functional project you will need to configure 
+the API locally and to run it in the same time as this project.
+
+Please check [How to install the API](https://volontaria.readthedocs.io/en/latest/Tutorial/Quickstart/).
+
+## Install dependencies
+
+Install project's dependencies with NPM.
 
 ```
 npm install
 ``` 
 
-## Init the design
-
-2. Launch gulp to generate the CSS
-
-```
-gulp sass
-```
-
 ## Test the setup
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Run `ng serve` for a dev server.
+2. Navigate to `http://localhost:4200/`.
 
-If you want automatically reload the design if you change any of the source files you can use `gulp watch` in the same time.  
+The app will automatically reload if you change any of the source files.  
