@@ -1,15 +1,20 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {HttpClient} from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 
 import { TasktypeService } from './tasktype.service';
 
 describe('TasktypeService', () => {
   beforeEach(() => {
+    const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
     TestBed.configureTestingModule({
-      providers: [TasktypeService]
+      providers: [
+        TasktypeService,
+        { provide: HttpClient, useValue: httpClientSpy }
+      ]
     });
   });
 
-  it('should be created', inject([TasktypeService], (service: TasktypeService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', () => {
+    TestBed.get(TasktypeService);
+  });
 });

@@ -1,17 +1,22 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { MyModalOpenDirective } from './my-modal-open-directive.directive';
 import { MyModalService } from '../services/my-modal/my-modal.service';
 
 describe('MyModalOpenDirective', () => {
   beforeEach(() => {
+    const myModalServiceSpy = jasmine.createSpyObj('MyModalService', ['get']);
+    myModalServiceSpy.get.and.returnValue({});
     TestBed.configureTestingModule({
-      providers: [MyModalService]
+      providers: [
+        MyModalOpenDirective,
+        { provide: MyModalService, useValue: myModalServiceSpy }
+      ]
     });
   });
 
-  it('should create an instance', inject([MyModalService], (MyModalService: MyModalService) => {
-    const directive = new MyModalOpenDirective(MyModalService);
+  it('should create an instance', () => {
+    const directive = TestBed.get(MyModalOpenDirective);
     expect(directive).toBeTruthy();
-  }));
+  });
 });

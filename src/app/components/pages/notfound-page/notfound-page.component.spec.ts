@@ -28,6 +28,6 @@ describe('NotFoundPageComponent', () => {
 
   it('Should display 404', () => {
     fixture.detectChanges();
-    expect(el.textContent).toEqual('404 - Page not found');
+    expect(el.textContent.trim()).toEqual('Erreur 404');
   });
 });
