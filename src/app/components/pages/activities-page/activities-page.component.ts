@@ -9,17 +9,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CalendarDateFormatter, CalendarEvent, CalendarEventAction, DAYS_OF_WEEK } from 'angular-calendar';
 import { Cell } from '../../../models/cell';
 import { CellService } from '../../../services/cell.service';
-
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
-} from 'date-fns';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
 
 const colors: any = {

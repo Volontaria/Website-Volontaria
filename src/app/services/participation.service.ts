@@ -5,8 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import GlobalService from './globalService';
 import { AuthenticationService } from './authentication.service';
 import { environment } from '../../environments/environment';
-import { Participation } from '../models/participation';
-
 
 @Injectable()
 export class ParticipationService extends GlobalService {

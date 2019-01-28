@@ -8,10 +8,9 @@ import {CycleService} from '../../../services/cycle.service';
 import {Cycle} from '../../../models/cycle';
 import {TasktypeService} from '../../../services/tasktype.service';
 import {Tasktype} from '../../../models/tasktype';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
 import {NotificationsService} from 'angular2-notifications';
-import {AuthenticationService} from '../../../services/authentication.service';
 import {DateUtil} from '../../../utils/date';
 import {isUndefined} from 'util';
 
@@ -85,7 +84,6 @@ export class AdminCellComponent implements OnInit {
               private router: Router,
               private notificationService: NotificationsService,
               private formBuilder: FormBuilder,
-              private authenticationService: AuthenticationService,
               private myModalService: MyModalService) {
   }
 

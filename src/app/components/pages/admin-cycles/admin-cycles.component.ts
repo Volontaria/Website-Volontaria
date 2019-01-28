@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CycleService} from '../../../services/cycle.service';
 import {Cycle} from '../../../models/cycle';
-import {FormGroup, FormBuilder, NgForm, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {NotificationsService} from 'angular2-notifications';
