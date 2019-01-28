@@ -18,7 +18,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
 
     // send the newly created request
     return next.handle(authReq)
-      .catch((error, caught) => {
+      .catch((error, _caught) => {
         // intercept the response error
         if (error.status === 401) {
           localStorage.removeItem('token');

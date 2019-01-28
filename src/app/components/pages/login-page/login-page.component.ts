@@ -35,7 +35,7 @@ export class LoginPageComponent {
           }
         );
       },
-      err => {
+      _err => {
         this.error = 'Ces identifiants sont incorrects!';
       }
     );

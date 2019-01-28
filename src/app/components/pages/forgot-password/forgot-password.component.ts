@@ -26,7 +26,7 @@ export class ForgotPasswordComponent {
   resetPassword(form: FormGroup) {
     if ( form.valid ) {
       this.authenticationService.resetPassword(form.value['username']).subscribe(
-        data => {
+        _data => {
           console.log('success');
           this.router.navigate(['/forgot-password/confirmation']);
         },

@@ -45,7 +45,7 @@ export class ResetPasswordComponent implements OnInit {
   changePassword(form: FormGroup) {
     if ( form.valid ) {
       this.authenticationService.changePassword(this.token, form.value['password']).subscribe(
-        data => {
+        _data => {
           this.notificationService.success('Mot de passe réinitialiser', 'Vous pouvez maintenant vous connecter.');
           this.router.navigate(['/']);
         },

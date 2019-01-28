@@ -73,11 +73,9 @@ export class AuthenticationService extends GlobalService {
   isManager(id_cell: number = null) {
     const cells: Cell[] = this.getProfile().managed_cell.map(c => new Cell(c));
     if (id_cell) {
-      for (const cell in cells) {
-        if (cells.hasOwnProperty(cell)) {
-          if (cell['id'] === id_cell) {
-            return true;
-          }
+      for (const cell of cells) {
+        if (cell['id'] === id_cell) {
+          return true;
         }
       }
     } else {
@@ -103,8 +101,8 @@ export class AuthenticationService extends GlobalService {
       list_permissions.push('access_admin_panel');
     }
 
-    for (const permission in permissions) {
-      if (list_permissions.indexOf(permissions[permission]) === -1) {
+    for (const permission of permissions) {
+      if (list_permissions.indexOf(permission) === -1) {
         return false;
       }
     }

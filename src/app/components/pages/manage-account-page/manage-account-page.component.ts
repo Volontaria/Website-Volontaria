@@ -52,7 +52,7 @@ export class ManageAccountPageComponent {
 
   createAccount() {
     this.userService.createUser(this.registerForm.value, this.registerForm.controls['password'].value).subscribe(
-      data => {
+      _data => {
         this.router.navigate(['/register/validation']);
       },
       err => {

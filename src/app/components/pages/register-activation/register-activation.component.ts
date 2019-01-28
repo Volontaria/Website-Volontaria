@@ -17,10 +17,10 @@ export class RegisterActivationComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userService.activate(params['token']).subscribe(
-        data => {
+        _data => {
           this.success = true;
         },
-        error => {
+        _error => {
           this.success = false;
         }
       );

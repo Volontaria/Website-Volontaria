@@ -119,7 +119,7 @@ export class AdminEventComponent implements OnInit {
 
     if (this.participationForm.valid) {
       this.participationService.updateParticipation(this.selectedParticipation.id, data).subscribe(
-        success => {
+        _success => {
           this.toggleModal();
           this.notificationService.success('Modification réussie',
             `La participation a été modifié`);

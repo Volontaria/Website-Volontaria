@@ -174,19 +174,19 @@ export class ActivitiesPageComponent implements OnInit {
     };
   }
 
-  onItemSelect(item: any) {
+  onItemSelect(_item: any) {
     this.filter();
   }
 
-  OnItemDeSelect(item: any) {
+  OnItemDeSelect(_item: any) {
     this.filter();
   }
 
-  onSelectAll(items: any) {
+  onSelectAll(_items: any) {
     this.filter();
   }
 
-  onDeSelectAll(items: any) {
+  onDeSelectAll(_items: any) {
     this.filter();
   }
 

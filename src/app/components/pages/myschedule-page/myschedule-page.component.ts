@@ -62,7 +62,7 @@ export class MySchedulePageComponent implements OnInit {
         this.user.id,
         form.controls['oldPassword'].value,
         form.controls['newPassword'].value).subscribe(
-        data => {
+        _data => {
           this.myModalService.get('change password').toggle();
           form.reset();
           this.notificationService.success('Changement réussi',
@@ -111,14 +111,14 @@ export class MySchedulePageComponent implements OnInit {
           events => {
             this.events = events.results.map(e => new Event(e));
 
-            for (const event in this.events) {
-              if ( new Date(this.events[event].start_date).getTime() > new Date().getTime()) {
-                for (const participation in this.participations) {
-                  if ( this.events[event].id === this.participations[participation].event ) {
-                    if ( this.participations[participation].standby ) {
-                      this.eventsAsOnHold.push(this.events[event]);
+            for (const event of this.events) {
+              if ( new Date(event.start_date).getTime() > new Date().getTime()) {
+                for (const participation of this.participations) {
+                  if ( event.id === participation.event ) {
+                    if ( participation.standby ) {
+                      this.eventsAsOnHold.push(event);
                     } else {
-                      this.eventsAsVolunteer.push(this.events[event]);
+                      this.eventsAsVolunteer.push(event);
                     }
                   }
                 }
@@ -144,13 +144,13 @@ export class MySchedulePageComponent implements OnInit {
      */
     this.toggleModal('delete_participation');
     let error = false;
-    for (const participation in this.participations) {
-      if (this.participations[participation].event === this.idEventInDeletion) {
-        this.participationService.deleteParticipation(this.participations[participation].id).subscribe(
-          data => {
+    for (const participation of this.participations) {
+      if (participation.event === this.idEventInDeletion) {
+        this.participationService.deleteParticipation(participation.id).subscribe(
+          _data => {
             this.updateParticipations();
             this.notificationService.success('Désinscription réussie', 'Merci!');
-          }, errors => {
+          }, _errors => {
             error = true;
           }
         );
