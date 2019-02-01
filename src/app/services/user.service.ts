@@ -24,9 +24,11 @@ export class UserService extends GlobalService {
     params = params.set('limit', limit.toString());
     params = params.set('offset', offset.toString());
 
-    for (const filter of filters) {
-      if (filter.name === 'search') {
-        params = params.set('search', filter.value);
+    if (filters) {
+      for (const filter of filters) {
+        if (filter.name === 'search') {
+          params = params.set('search', filter.value);
+        }
       }
     }
 
