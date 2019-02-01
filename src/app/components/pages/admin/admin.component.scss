@@ -7,7 +7,7 @@
     flex-wrap: wrap;
 
     &__item {
-      background-color: #E27795;
+      background-color: $pink;
       flex: 1;
       margin: 15px;
       padding: 30px;
@@ -18,32 +18,32 @@
       color: white;
 
       &--green {
-        background-color: #69CAB6;
+        background-color: $green;
 
         .admin-page__stats__item__icon {
-          background-color: #57a897;
+          background-color: darken($green, 20);
         }
       }
 
       &--purple {
-        background-color: #A285C5;
+        background-color: $purple;
 
         .admin-page__stats__item__icon {
-          background-color: #846da1;
+          background-color: darken($purple, 20);
         }
       }
 
       &--dark-purple {
-        background-color: #8689a7;
+        background-color: $dark-purple;
 
         .admin-page__stats__item__icon {
-          background-color: #676980;
+          background-color: darken($dark-purple, 20);
         }
       }
 
       &__icon {
         margin-right: 20px;
-        background-color: #ba627b;
+        background-color: darken($pink, 20);
         border-radius: 50%;
         color: white;
         width: 80px;
@@ -83,10 +83,11 @@
 
     &__left {
       flex: 1;
-      background-color: #e0e0e0;
+      background-color: white;
       border-radius: 3px;
       padding: 30px;
       margin: 15px;
+      border-top: 4px solid $dark-purple;
 
       &__logo {
         background-image: url('../../../../assets/images/logo.png');
@@ -102,10 +103,11 @@
       flex: 1;
       font-size: 20px;
       color: #525d69;
-      background-color: #e0e0e0;
+      background-color: white;
       border-radius: 3px;
       padding: 30px;
       margin: 15px;
+      border-top: 4px solid $pink;
 
       &__title {
         font-size: 50px;

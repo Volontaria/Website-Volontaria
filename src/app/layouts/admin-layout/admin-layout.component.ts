@@ -10,11 +10,10 @@ import {Router} from '@angular/router';
       </div>
       <div id="content">
         <div class="left-nav">
-          <span class="left-nav__header">
-            Administration
-          </span>
+          <div class="left-nav__logo">
+          </div>
           <a *ngFor="let item of menu" [routerLink]="item.link" class="left-nav__item">
-            <i [class]="item.icon"></i>
+            <i class="left-nav__item__icon {{item.icon}}"></i>
             {{ item.title }}
           </a>
         </div>
@@ -29,9 +28,6 @@ import {Router} from '@angular/router';
         <div id="main">
           <router-outlet></router-outlet>
         </div>
-      </div>
-      <div id="footer">
-        <app-footer></app-footer>
       </div>
     </div>
   `,
