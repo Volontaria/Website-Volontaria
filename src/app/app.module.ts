@@ -58,7 +58,8 @@ import { ForgotPasswordComponent } from './components/pages/forgot-password/forg
 import { ForgotPasswordConfirmationComponent } from './components/pages/forgot-password-confirmation/forgot-password-confirmation.component';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 import { MyTableComponent } from './components/my-table/my-table.component';
-import { CalendarModule } from 'angular-calendar';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { MyBenevolometreComponent } from './components/my-benevolometre/my-benevolometre.component';
@@ -248,7 +249,7 @@ const appRoutes = [
   }
 ];
 
-export class DefaultIntl {
+export class DefaultIntl extends OwlDateTimeIntl {
   upSecondLabel = 'Ajouter une seconde';
   downSecondLabel = 'Retirer une seconde';
   upMinuteLabel = 'Ajouter une minute';
@@ -324,7 +325,10 @@ export class DefaultIntl {
     AngularMultiSelectModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    CalendarModule.forRoot()
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   exports: [ RouterModule ],
   providers: [
