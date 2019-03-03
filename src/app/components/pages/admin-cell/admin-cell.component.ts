@@ -12,7 +12,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
 import {NotificationsService} from 'angular2-notifications';
 import {DateUtil} from '../../../utils/date';
-import {isUndefined} from 'util';
 
 
 @Component({
@@ -387,7 +386,7 @@ export class AdminCellComponent implements OnInit {
   }
 
   submitFormEvent() {
-    if (isUndefined(this.modalEventId)) {
+    if (this.modalEventId === undefined) {
       this.createEvent();
     } else {
       this.updateEvent(this.modalEventId);

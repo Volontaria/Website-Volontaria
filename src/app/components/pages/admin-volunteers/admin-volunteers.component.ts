@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
 import { Router } from '@angular/router';
-import { isNull } from 'util';
 
 
 @Component({
@@ -72,8 +71,8 @@ export class AdminVolunteersComponent implements OnInit {
       users => {
         this.settings.numberOfPage = Math.ceil(users.count / limit);
         this.settings.page = page;
-        this.settings.previous = !isNull(users.previous);
-        this.settings.next = !isNull(users.next);
+        this.settings.previous = users.previous !== null;
+        this.settings.next = users.next !== null;
         this.listUsers = users.results.map(u => new User(u) );
       }
     );
