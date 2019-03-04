@@ -1,5 +1,4 @@
 import BaseModel from './baseModel';
-import { Cell } from './cell';
 
 export class Cycle extends BaseModel {
   id: number;

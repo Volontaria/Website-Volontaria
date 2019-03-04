@@ -1,6 +1,13 @@
+import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomePageComponent } from './home-page.component';
+
+@Component({selector: 'app-my-table', template: ''})
+class MyTableStubComponent {
+  @Input() data: any;
+  @Input() settings: any;
+}
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
@@ -8,7 +15,10 @@ describe('HomePageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomePageComponent ]
+      declarations: [
+        HomePageComponent,
+        MyTableStubComponent
+      ]
     })
     .compileComponents();
   }));

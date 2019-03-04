@@ -1,8 +1,11 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+
+import {catchError} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/catch';
+
+
 import {Router} from '@angular/router';
 import {NotificationsService} from 'angular2-notifications';
 
@@ -17,8 +20,8 @@ export class MyHttpInterceptor implements HttpInterceptor {
     const authReq = req.clone();
 
     // send the newly created request
-    return next.handle(authReq)
-      .catch((error, caught) => {
+    return next.handle(authReq).pipe(
+      catchError((error, _caught) => {
         // intercept the response error
         if (error.status === 401) {
           localStorage.removeItem('token');
@@ -27,7 +30,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
           this.router.navigate(['/login']);
         }
         // return the error to the method that called it
-        return Observable.throw(error);
-      }) as any;
+        return observableThrowError(error);
+      })) as any;
   }
 }

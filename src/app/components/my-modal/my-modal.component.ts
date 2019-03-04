@@ -60,7 +60,7 @@ export class MyModalComponent implements OnInit {
   }
 
   private escapeListener = (event: KeyboardEvent) => {
-    if (event.which === 27 || event.keyCode === 27) {
+    if (event.key === 'Escape' || event.key === 'Esc' /* IE 11 */ ) {
       this.show = false;
     }
   }

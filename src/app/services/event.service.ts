@@ -1,20 +1,16 @@
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/map';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import GlobalService from './globalService';
-import {AuthenticationService} from './authentication.service';
-import {environment} from '../../environments/environment';
-import {User} from '../models/user';
 
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import GlobalService from './globalService';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class EventService extends GlobalService {
 
   url_events = environment.url_base_api + environment.paths_api.events;
 
-  constructor(public http: HttpClient,
-              private authenticationService: AuthenticationService) {
+  constructor(public http: HttpClient) {
     super();
   }
 

@@ -13,10 +13,14 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      providers: [RouterOutlet, HeaderComponent, FooterComponent],
+      providers: [
+        RouterOutlet,
+        HeaderComponent,
+        FooterComponent
+      ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA
-      ],
+      ]
     }).compileComponents();
   });
 
@@ -24,12 +28,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'app'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
   });
 
   it('Should render Header', () => {

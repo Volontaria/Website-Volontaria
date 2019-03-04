@@ -9,17 +9,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CalendarDateFormatter, CalendarEvent, CalendarEventAction, DAYS_OF_WEEK } from 'angular-calendar';
 import { Cell } from '../../../models/cell';
 import { CellService } from '../../../services/cell.service';
-
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
-} from 'date-fns';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
 
 const colors: any = {
@@ -174,19 +163,19 @@ export class ActivitiesPageComponent implements OnInit {
     };
   }
 
-  onItemSelect(item: any) {
+  onItemSelect(_item: any) {
     this.filter();
   }
 
-  OnItemDeSelect(item: any) {
+  OnItemDeSelect(_item: any) {
     this.filter();
   }
 
-  onSelectAll(items: any) {
+  onSelectAll(_items: any) {
     this.filter();
   }
 
-  onDeSelectAll(items: any) {
+  onDeSelectAll(_items: any) {
     this.filter();
   }
 

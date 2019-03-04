@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map';
+
 import {HttpClient, HttpParams} from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import GlobalService from './globalService';
 import {User} from '../models/user';
 import {environment} from '../../environments/environment';
@@ -18,7 +18,7 @@ export class UserService extends GlobalService {
     super();
   }
 
-  list(filters: {name: string, value: any}[] = null, limit = 100, offset = 0, order: string = null): Observable<any> {
+  list(filters: {name: string, value: any}[] = null, limit = 100, offset = 0, _order: string = null): Observable<any> {
     const headers = this.getHeaders();
     let params = new HttpParams();
     params = params.set('limit', limit.toString());
@@ -71,7 +71,7 @@ export class UserService extends GlobalService {
     );
   }
 
-  changePassword(id: number, password: string, new_password: string): Observable<any>  {
+  changePassword(_id: number, password: string, new_password: string): Observable<any>  {
     const headers = this.getHeaders();
     return this.http.patch<any>(
       this.url_profile,

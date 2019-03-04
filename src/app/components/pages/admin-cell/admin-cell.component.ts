@@ -8,12 +8,10 @@ import {CycleService} from '../../../services/cycle.service';
 import {Cycle} from '../../../models/cycle';
 import {TasktypeService} from '../../../services/tasktype.service';
 import {Tasktype} from '../../../models/tasktype';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
 import {NotificationsService} from 'angular2-notifications';
-import {AuthenticationService} from '../../../services/authentication.service';
 import {DateUtil} from '../../../utils/date';
-import {isUndefined} from 'util';
 
 
 @Component({
@@ -85,7 +83,6 @@ export class AdminCellComponent implements OnInit {
               private router: Router,
               private notificationService: NotificationsService,
               private formBuilder: FormBuilder,
-              private authenticationService: AuthenticationService,
               private myModalService: MyModalService) {
   }
 
@@ -166,19 +163,19 @@ export class AdminCellComponent implements OnInit {
     };
   }
 
-  onItemSelect(item: any) {
+  onItemSelect(_item: any) {
     this.filter();
   }
 
-  OnItemDeSelect(item: any) {
+  OnItemDeSelect(_item: any) {
     this.filter();
   }
 
-  onSelectAll(items: any) {
+  onSelectAll(_items: any) {
     this.filter();
   }
 
-  onDeSelectAll(items: any) {
+  onDeSelectAll(_items: any) {
     this.filter();
   }
 
@@ -195,23 +192,23 @@ export class AdminCellComponent implements OnInit {
     this.eventsAdaptedFiltered = [];
     const eventFiltered = [];
 
-    for (const event in this.eventsAdapted) {
+    for (const event of this.eventsAdapted) {
       // If no task_type filter or filter is verified
       if (this.selectedTasktypes.length === 0
-        || this.elemIsFiltered(this.tasktypeToDict(this.eventsAdapted[event].model.task_type), this.selectedTasktypes)) {
+        || this.elemIsFiltered(this.tasktypeToDict(event.model.task_type), this.selectedTasktypes)) {
         // If no cycle filter or filter is verified
         if (this.selectedCycles.length === 0
-          || this.elemIsFiltered(this.cycleToDict(this.eventsAdapted[event].model.cycle), this.selectedCycles)) {
-          eventFiltered.push(this.eventsAdapted[event]);
+          || this.elemIsFiltered(this.cycleToDict(event.model.cycle), this.selectedCycles)) {
+          eventFiltered.push(event);
         }
       }
     }
 
     // If no filters, we take all events
     if (this.selectedCycles.length === 0 && this.selectedTasktypes.length === 0) {
-      for (const event in this.eventsAdapted) {
+      for (const event of this.eventsAdapted) {
         if (event) {
-          this.eventsAdaptedFiltered.push(this.eventsAdapted[event]);
+          this.eventsAdaptedFiltered.push(event);
         }
       }
     } else {
@@ -293,7 +290,7 @@ export class AdminCellComponent implements OnInit {
 
   createEvent() {
     this.eventService.createEvent(this.eventForm.value).subscribe(
-        data => {
+        _data => {
           this.myModalService.get('event modal').toggle();
           this.notificationService.success('Création réussie', `La plage horaire a été créé`);
           this.get_events();
@@ -341,7 +338,7 @@ export class AdminCellComponent implements OnInit {
 
   updateEvent(eventId: number) {
     this.eventService.updateEvent(eventId, this.eventForm.value).subscribe(
-        data => {
+        _data => {
           this.myModalService.get('event modal').toggle();
           this.notificationService.success('Modification réussie',
             `La plage horaire a été modifiée`);
@@ -389,7 +386,7 @@ export class AdminCellComponent implements OnInit {
   }
 
   submitFormEvent() {
-    if (isUndefined(this.modalEventId)) {
+    if (this.modalEventId === undefined) {
       this.createEvent();
     } else {
       this.updateEvent(this.modalEventId);

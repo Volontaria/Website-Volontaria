@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import {UserService} from '../../../services/user.service';
 import {Router} from '@angular/router';
-import {User} from '../../../models/user';
-import {NotificationsService} from 'angular2-notifications';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -17,8 +15,7 @@ export class ManageAccountPageComponent {
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
-              private router: Router,
-              private notificationService: NotificationsService) {
+              private router: Router) {
     this.registerForm = this.formBuilder.group(
       {
         email: [null, Validators.required],
@@ -52,7 +49,7 @@ export class ManageAccountPageComponent {
 
   createAccount() {
     this.userService.createUser(this.registerForm.value, this.registerForm.controls['password'].value).subscribe(
-      data => {
+      _data => {
         this.router.navigate(['/register/validation']);
       },
       err => {
