@@ -2,3 +2,10 @@
 @import "~ng-pick-datetime/assets/style/picker.min.css";
 @import "assets/scss/app";
 @import "~flexboxgrid-sass";
+
+/* Fixes misaligned angular2-multiselect-dropdown checkbox label line wrapping */
+.pure-checkbox {
+  input[type="checkbox"] + label {
+    display: inline-block;
+  }
+}
