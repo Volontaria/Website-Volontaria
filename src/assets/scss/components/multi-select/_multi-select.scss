@@ -1,0 +1,6 @@
+/* Fixes misaligned angular2-multiselect-dropdown checkbox label line wrapping */
+.pure-checkbox {
+  input[type="checkbox"] + label {
+    display: inline-block;
+  }
+}
