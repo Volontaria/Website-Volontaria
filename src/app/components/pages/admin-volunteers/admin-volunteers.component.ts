@@ -43,6 +43,14 @@ export class AdminVolunteersComponent implements OnInit {
         title: 'Courriel'
       },
       {
+        name: 'phone',
+        title: 'Téléphone'
+      },
+      {
+        name: 'mobile',
+        title: 'Mobile'
+      },
+      {
         name: 'is_active',
         title: 'Actif',
         type: 'boolean'
