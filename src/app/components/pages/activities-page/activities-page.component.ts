@@ -111,7 +111,7 @@ export class ActivitiesPageComponent implements OnInit {
   benevolometre = [
     {
       color: '#C82333',
-      percentage: 50,
+      percentage: 60,
       title: 'La plage horaire ne contient pas assez de bénévoles ' +
       'et le déroulement de l\'événement en sera impacté directement.'
     },
@@ -124,7 +124,7 @@ export class ActivitiesPageComponent implements OnInit {
     },
     {
       color: '#42A948',
-      percentage: 20,
+      percentage: 10,
       title: 'La plage horaire dispose d\'assez de bénévoles pour ' +
       'que tout le monde puisse s\'épanouir durant l\'événement, ' +
       'c\'est le rythme de croisière!'
@@ -264,9 +264,9 @@ export class ActivitiesPageComponent implements OnInit {
       if (event.volunteers.lastIndexOf(this.user.id) >= 0) {
         newEvent['color'] = colors.grey;
       } else {
-        if (percentageVolunteers >= 0.8) {
+        if (percentageVolunteers >= 0.9) {
           newEvent['color'] = colors.green;
-        } else if (percentageVolunteers >= 0.5) {
+        } else if (percentageVolunteers >= 0.6) {
           newEvent['color'] = colors.yellow;
         } else {
           newEvent['color'] = colors.red;
