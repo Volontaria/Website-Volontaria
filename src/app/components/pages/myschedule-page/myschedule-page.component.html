@@ -42,6 +42,20 @@
       </tr>
     </table>
   </div>
+  <div class="myschedule__account" *ngIf="user && user.coupon">
+    <h1 class="title title--main">Mon coupon</h1>
+    <table class="table">
+      <tr>
+        <th>Code</th>
+        <td>{{ user.coupon.code }}</td>
+      </tr>
+      <tr>
+        <th>Solde</th>
+        <td>{{ user.coupon.balance }} $</td>
+      </tr>
+    </table>
+  </div>
+
   <div class="myschedule__volunteer">
     <h1 class="title title--main">Mon horaire - Bénévole</h1>
     <table class="table">

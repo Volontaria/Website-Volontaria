@@ -1,6 +1,11 @@
 import BaseModel from './baseModel';
 import { Cell } from './cell';
 
+export class Coupon extends BaseModel {
+  code: string;
+  balance: string;
+}
+
 export class User extends BaseModel {
   id: number;
   username: string;
@@ -12,6 +17,7 @@ export class User extends BaseModel {
   is_active: boolean;
   is_superuser: boolean;
   managed_cell: Cell[];
+  coupon: Coupon;
 }
 
 
