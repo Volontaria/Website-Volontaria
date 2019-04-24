@@ -42,7 +42,7 @@
       </tr>
     </table>
   </div>
-  <div class="myschedule__account" *ngIf="user && user.coupon">
+  <div class="myschedule__account" *ngIf="user && user.coupon.code">
     <h1 class="title title--main">Mon coupon</h1>
     <table class="table">
       <tr>
@@ -51,7 +51,7 @@
       </tr>
       <tr>
         <th>Solde</th>
-        <td>{{ user.coupon.balance }} $</td>
+        <td>{{ user.coupon.balance }}</td>
       </tr>
     </table>
   </div>
