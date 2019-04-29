@@ -1,5 +1,6 @@
 .contact-page {
   text-align: center;
+  padding: 20px;
 
   &__logo {
     max-height: 200px;
@@ -13,6 +14,48 @@
       display: flex;
       flex-direction: column;
       margin: 15px 0;
+    }
+  }
+}
+
+.info-page {
+  font-size: 14px;
+  counter-reset: title-counter;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+
+  &__title {
+    counter-reset: sub-title-counter;
+    margin-top: 30px;
+
+    &:before {
+      content: counter(title-counter) '. ';
+      counter-increment: title-counter;
+    }
+  }
+
+  &__sub-title {
+    display: block;
+    margin-top: 15px;
+
+    &:before {
+      content: counter(title-counter) "." counter(sub-title-counter) '. ';
+      counter-increment: sub-title-counter;
+    }
+  }
+
+  &__content{
+    padding-left: 20px;
+  }
+
+  &__address {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    & .card {
+      width: 300px;
     }
   }
 }
