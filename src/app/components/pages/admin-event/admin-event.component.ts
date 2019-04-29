@@ -91,8 +91,8 @@ export class AdminEventComponent implements OnInit {
   searchUsers: any[];
   selectedUser: User;
 
-  protected searchStr: string;
-  protected dataServiceUser: CompleterData;
+  public searchStr: string;
+  public dataServiceUser: CompleterData;
 
   constructor(private activatedRoute: ActivatedRoute,
               private eventService: EventService,
