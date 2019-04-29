@@ -27,6 +27,7 @@ export class AdminEventComponent implements OnInit {
 
   settings = {
     editButton: true,
+    removeButton: true,
     clickable: true,
     columns: [
       {
@@ -151,8 +152,9 @@ export class AdminEventComponent implements OnInit {
     data['standby'] = false;
 
     if (this.participationForm.valid) {
+      data['user_id'] = this.selectedUser.id;
+
       if (this.modalCreate) {
-        data['user_id'] = this.selectedUser.id;
         this.createParticipation(data);
       } else {
         this.updateParticipation(data);
@@ -234,11 +236,14 @@ export class AdminEventComponent implements OnInit {
     };
   }
 
+  getSearchString(user) {
+    return user.first_name + ' ' + user.last_name + ' ' + user.username + ' <' + user.email + '>';
+  }
+
   setSearchTools() {
     this.users.map((user) => {
       const searchUser = user as any;
-      searchUser.display_search_field = user.first_name + ' ' + user.last_name + ' <' + user.email + '>';
-      searchUser.search_field = user.first_name + ' ' + user.last_name + ' ' + user.email + ' ' + user.username;
+      searchUser.search_field = searchUser.display_search_field = this.getSearchString(user);
       this.searchUsers.push(searchUser);
     });
   }
@@ -268,7 +273,9 @@ export class AdminEventComponent implements OnInit {
       if (participation.id === event.id) {
         this.selectedParticipation = participation;
         this.participationForm.controls['presence_status'].setValue(participation.presence_status);
-        this.toggleModal();
+
+        this.selectedUser = participation.user;
+        this.participationForm.controls['user'].setValue(this.getSearchString(participation.user));
 
         this.modalCreate = false;
         this.modalTitle = 'Modification d\'une participation';
@@ -281,6 +288,7 @@ export class AdminEventComponent implements OnInit {
     this.participationForm.reset();
     this.modalCreate = true;
     this.modalTitle = 'Création d\'une participation';
+    this.participationForm.controls['presence_status'].setValue('P');
 
     this.toggleModal();
   }
@@ -325,5 +333,19 @@ export class AdminEventComponent implements OnInit {
 
   userClicked(participation) {
     this.router.navigate(['/admin/volunteer/' + participation.user.id]);
+  }
+
+  removeField(item) {
+    this.participationService.deleteParticipation(item.id).subscribe(
+      data => {
+        this.notificationService.success('Suppression réussie',
+            `La participation a été supprimé`);
+        this.get_participations();
+      },
+      err => {
+        this.notificationService.error('Suppression échoué',
+            `La participation n'a pas été supprimé`);
+      }
+    );
   }
 }

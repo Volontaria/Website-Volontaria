@@ -60,8 +60,9 @@
     <app-my-table [settings]="settings"
                   [data]="participationsAdapted"
                   (editItem)="OpenModalEditParticipation($event)"
-                  (selectItem)="userClicked($event)">
-    </app-my-table>
+                  (selectItem)="userClicked($event)"
+                  (removeItem)="removeField($event)"
+    ></app-my-table>
   </div>
 </div>
 
@@ -73,17 +74,23 @@
               maxWidth="600px">
 
   <form [formGroup]="participationForm">
-    <div class="form-group" *ngIf="modalCreate">
-      <label for="user" class="form-label">Bénévoles:</label>
+    <div class="form-group">
+      <label for="user" class="form-label">Bénévole:</label>
       <ng2-completer
         id="user"
         formControlName="user"
         [(ngModel)]="searchStr"
         [datasource]="dataServiceUser"
-        [minSearchLength]="3"
         (selected)="onUserSelected($event)"
-      >
-      </ng2-completer>
+        [minSearchLength]="3"
+        [fillHighlighted]="false"
+        [autofocus]="true"
+        [pause]="500"
+        [placeholder]="'Entrez prénom, nom, nom d\'utilisateur ou courriel'"
+        [textSearching]="'Recherche en cours...'"
+        [textNoResults]="'Aucun résultat.'"
+        [clearUnselected]="true"
+      ></ng2-completer>
     </div>
 
     <div class="form-group">
