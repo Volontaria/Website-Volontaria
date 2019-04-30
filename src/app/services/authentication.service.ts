@@ -73,12 +73,11 @@ export class AuthenticationService extends GlobalService {
   isManager(id_cell: number = null) {
     const cells: Cell[] = this.getProfile().managed_cell.map(c => new Cell(c));
     if (id_cell) {
-      for (const cell in cells) {
-        if (cells.hasOwnProperty(cell)) {
+      for (let i= 0; i != cells.length; ++i) {
+          let cell = cells[i];
           if (cell['id'] === id_cell) {
             return true;
           }
-        }
       }
     } else {
       return !(cells.length === 0);

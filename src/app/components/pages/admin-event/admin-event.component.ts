@@ -10,6 +10,7 @@ import { MyModalService } from '../../../services/my-modal/my-modal.service';
 import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
 import {CompleterService, CompleterData, CompleterItem} from 'ng2-completer';
+import {AuthenticationService} from "../../../services/authentication.service";
 
 
 @Component({
@@ -102,7 +103,8 @@ export class AdminEventComponent implements OnInit {
               private myModalService: MyModalService,
               private userService: UserService,
               private completerService: CompleterService,
-              private router: Router) {
+              private router: Router,
+              private authenticationService: AuthenticationService) {
       this.getUserList(completerService);
   }
 
@@ -127,6 +129,10 @@ export class AdminEventComponent implements OnInit {
         validator: this.dateValidator()
       }
     );
+  }
+
+  isManager() {
+    return this.authenticationService.isAdmin() || this.authenticationService.isManager(this.event.cell.id);
   }
 
   get_participations() {
