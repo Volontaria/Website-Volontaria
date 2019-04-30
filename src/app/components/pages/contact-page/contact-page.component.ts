@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthenticationService} from "../../../services/authentication.service";
 
 @Component({
   templateUrl: 'contact-page.component.html',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['contact-page.component.scss'],
 })
 export class ContactPageComponent {
+  constructor(private authenticationService: AuthenticationService) { }
 
-  constructor() {
-
+  isAuthenticated() {
+    return this.authenticationService.isAuthenticated();
   }
 }
