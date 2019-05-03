@@ -64,6 +64,7 @@ import { registerLocaleData } from '@angular/common';
 import { MyBenevolometreComponent } from './components/my-benevolometre/my-benevolometre.component';
 import { AdminVolunteerComponent } from './components/pages/admin-volunteer/admin-volunteer.component';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { InfoPageService } from "./services/info.service";
 
 registerLocaleData(localeFr);
 
@@ -336,6 +337,7 @@ export class DefaultIntl {
     TasktypeService,
     CycleService,
     CellService,
+    InfoPageService,
     ParticipationService,
     CanActivateViaAuthGuard,
     CanAccessAdminPanelGuard,
