@@ -9,8 +9,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyModalService } from '../../../services/my-modal/my-modal.service';
 import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
-import {CompleterService, CompleterData, CompleterItem} from 'ng2-completer';
-import {AuthenticationService} from "../../../services/authentication.service";
+import { CompleterItem } from 'ng2-completer';
+import { AuthenticationService } from "../../../services/authentication.service";
+import { CustomCompleterUserData } from "../../../utils/custom-completer-user-data.component";
+
 
 
 @Component({
@@ -88,12 +90,13 @@ export class AdminEventComponent implements OnInit {
   modalTitle: string;
   modalCreate: boolean;
 
-  users: User[];
-  searchUsers: any[];
   selectedUser: User;
 
+  typingTimer;
+  doneTypingInterval = 500;
+
   public searchStr: string;
-  public dataServiceUser: CompleterData;
+  public dataServiceUser: CustomCompleterUserData;
 
   constructor(private activatedRoute: ActivatedRoute,
               private eventService: EventService,
@@ -102,10 +105,9 @@ export class AdminEventComponent implements OnInit {
               private formBuilder: FormBuilder,
               private myModalService: MyModalService,
               private userService: UserService,
-              private completerService: CompleterService,
               private router: Router,
               private authenticationService: AuthenticationService) {
-      this.getUserList(completerService);
+      this.dataServiceUser = new CustomCompleterUserData(userService);
   }
 
   ngOnInit() {
@@ -174,50 +176,50 @@ export class AdminEventComponent implements OnInit {
 
   createParticipation(data) {
     this.participationService.createParticipation(data).subscribe(
-        success => {
-          this.toggleModal();
-          this.notificationService.success('Création réussie',
-            `La participation a été créé`);
+      success => {
+        this.toggleModal();
+        this.notificationService.success('Création réussie',
+          `La participation a été créé`);
 
-          this.get_participations();
-        },
-        err => {
-          if (err.error.presence_status) {
-            this.participationForm.controls['presence_status'].setErrors({
-              apiError: err.error.presence_status
-            });
-          }
-          if (err.error.non_field_errors) {
-            this.participationForm.setErrors({
-              apiError: err.error.non_field_errors
-            });
-          }
+        this.get_participations();
+      },
+      err => {
+        if (err.error.presence_status) {
+          this.participationForm.controls['presence_status'].setErrors({
+            apiError: err.error.presence_status
+          });
         }
-      );
+        if (err.error.non_field_errors) {
+          this.participationForm.setErrors({
+            apiError: err.error.non_field_errors
+          });
+        }
+      }
+    );
   }
 
   updateParticipation(data) {
-      this.participationService.updateParticipation(this.selectedParticipation.id, data).subscribe(
-        success => {
-          this.toggleModal();
-          this.notificationService.success('Modification réussie',
-            `La participation a été modifié`);
+    this.participationService.updateParticipation(this.selectedParticipation.id, data).subscribe(
+      success => {
+        this.toggleModal();
+        this.notificationService.success('Modification réussie',
+          `La participation a été modifié`);
 
-          this.get_participations();
-        },
-        err => {
-          if (err.error.presence_status) {
-            this.participationForm.controls['presence_status'].setErrors({
-              apiError: err.error.presence_status
-            });
-          }
-          if (err.error.non_field_errors) {
-            this.participationForm.setErrors({
-              apiError: err.error.non_field_errors
-            });
-          }
+        this.get_participations();
+      },
+      err => {
+        if (err.error.presence_status) {
+          this.participationForm.controls['presence_status'].setErrors({
+            apiError: err.error.presence_status
+          });
         }
-      );
+        if (err.error.non_field_errors) {
+          this.participationForm.setErrors({
+            apiError: err.error.non_field_errors
+          });
+        }
+      }
+    );
   }
 
   dateValidator() {
@@ -244,33 +246,6 @@ export class AdminEventComponent implements OnInit {
 
   getSearchString(user) {
     return user.first_name + ' ' + user.last_name + ' ' + user.username + ' <' + user.email + '>';
-  }
-
-  setSearchTools() {
-    this.users.map((user) => {
-      const searchUser = user as any;
-      searchUser.search_field = searchUser.display_search_field = this.getSearchString(user);
-      this.searchUsers.push(searchUser);
-    });
-  }
-
-  getUserList(completerService) {
-    this.users = [];
-    this.searchUsers = [];
-
-    this.userService.getUsers().subscribe(
-      data => {
-        this.users = data.results.map(u => new User(u));
-
-        // We set here an easier way to search the users
-        this.setSearchTools();
-
-        this.dataServiceUser = completerService.local(
-          this.searchUsers,
-          'search_field',
-          'display_search_field');
-      }
-    );
   }
 
   OpenModalEditParticipation(event) {
@@ -345,13 +320,25 @@ export class AdminEventComponent implements OnInit {
     this.participationService.deleteParticipation(item.id).subscribe(
       data => {
         this.notificationService.success('Suppression réussie',
-            `La participation a été supprimé`);
+          `La participation a été supprimé`);
         this.get_participations();
       },
       err => {
         this.notificationService.error('Suppression échoué',
-            `La participation n'a pas été supprimé`);
+          `La participation n'a pas été supprimé`);
       }
+    );
+  }
+
+  filter(event) {
+    clearTimeout(this.typingTimer);
+    this.typingTimer = setTimeout(
+      () => {
+        if (this.searchStr && this.searchStr.length >= 3) {
+          this.dataServiceUser.search(this.searchStr);
+          }
+        },
+      this.doneTypingInterval
     );
   }
 }
