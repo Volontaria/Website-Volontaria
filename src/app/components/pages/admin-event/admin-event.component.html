@@ -79,7 +79,6 @@
         formControlName="user"
         [(ngModel)]="searchStr"
         [datasource]="dataServiceUser"
-        (ngModelChange)="filter($event)"
         (selected)="onUserSelected($event)"
         [minSearchLength]="3"
         [fillHighlighted]="false"

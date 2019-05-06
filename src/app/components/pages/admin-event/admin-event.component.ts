@@ -92,9 +92,6 @@ export class AdminEventComponent implements OnInit {
 
   selectedUser: User;
 
-  typingTimer;
-  doneTypingInterval = 500;
-
   public searchStr: string;
   public dataServiceUser: CustomCompleterUserData;
 
@@ -327,18 +324,6 @@ export class AdminEventComponent implements OnInit {
         this.notificationService.error('Suppression échoué',
           `La participation n'a pas été supprimé`);
       }
-    );
-  }
-
-  filter(event) {
-    clearTimeout(this.typingTimer);
-    this.typingTimer = setTimeout(
-      () => {
-        if (this.searchStr && this.searchStr.length >= 3) {
-          this.dataServiceUser.search(this.searchStr);
-          }
-        },
-      this.doneTypingInterval
     );
   }
 }
