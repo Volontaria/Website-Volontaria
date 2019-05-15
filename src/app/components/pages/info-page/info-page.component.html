@@ -1,5 +1,18 @@
 <div class="info-page">
-  <div *ngFor="let section of sections">
-    <div [innerHTML]="section.content"></div>
-  </div>
+  <accordion [showArrows]="true">
+    <div *ngFor="let section of sections">
+      <div *ngIf="section.is_accordion; then AccTemplate else NotAccTemplate">
+      </div>
+
+      <ng-template #AccTemplate>
+          <accordion-group heading={{section.title}} >
+            <div [innerHTML]="section.content"></div>
+          </accordion-group>
+      </ng-template>
+
+      <ng-template #NotAccTemplate>
+          <div [innerHTML]="section.content"></div>
+      </ng-template>
+    </div>
+  </accordion>
 </div>

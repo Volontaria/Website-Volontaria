@@ -1,0 +1,19 @@
+@import "../../../assets/scss/theme";
+
+  .panel-title {
+
+    span.my-caret::after {
+      font-weight: bold;
+      float: right;
+      margin-left: 5px;
+      color: $main-color;
+    }
+
+    span.true::after {
+      content: "\2212";
+    }
+
+    span.false::after {
+      content: '\002B';
+    }
+  }

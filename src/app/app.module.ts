@@ -65,6 +65,7 @@ import { MyBenevolometreComponent } from './components/my-benevolometre/my-benev
 import { AdminVolunteerComponent } from './components/pages/admin-volunteer/admin-volunteer.component';
 import { Ng2CompleterModule } from 'ng2-completer';
 import { InfoPageService } from "./services/info.service";
+import { AccordionModule } from "./components/my-accordion/";
 
 registerLocaleData(localeFr);
 
@@ -328,6 +329,7 @@ export class DefaultIntl {
     OwlNativeDateTimeModule,
     CalendarModule.forRoot(),
     Ng2CompleterModule,
+    AccordionModule,
   ],
   exports: [ RouterModule ],
   providers: [
