@@ -22,6 +22,13 @@
         <th>Courriel</th>
         <td>{{ user.email }}</td>
       </tr>
+      <tr>
+        <th><button appMyModalOpen="change profile"
+                  class="button button--success">
+            Changer mes informations
+          </button></th>
+        <td></td>
+      </tr>
     </table>
   </div>
   <div class="myschedule__account" *ngIf="user">
@@ -137,6 +144,67 @@
     </table>
   </div>
 </div>
+
+<app-my-modal name="change profile"
+              title="Changement de mes informations"
+              button2Label="Changer mes informations"
+              (button1)="changeProfileForm.reset()"
+              (button2)="changeProfile(changeProfileForm)"
+              typeModal="form"
+              maxWidth="600px">
+
+    <form [formGroup]="changeProfileForm">
+      <div class="form-group">
+        <label for="first_name" class="form-label">Prénom: </label>
+        <input type="input" class="input" formControlName="first_name" id="first_name" required autofocus>
+        <div class="form-text form-text--right form-text--danger">
+          <span *ngIf="changeProfileForm.controls.first_name.errors?.required">Ce champ ne peut être nul.</span>
+
+          <div class="form-text form-text--right form-text--danger"
+               *ngFor="let errorMessage of changeProfileForm.controls['first_name'].getError('apiError')">
+            {{ errorMessage }}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="last_name" class="form-label">Nom: </label>
+        <input type="input" class="input" formControlName="last_name" id="last_name" required autofocus>
+        <div class="form-text form-text--right form-text--danger">
+            <span *ngIf="changeProfileForm.controls.last_name.errors?.required">Ce champ ne peut être nul.</span>
+            <div *ngFor="let errorMessage of changeProfileForm.controls['last_name'].getError('apiError')">
+              {{ errorMessage }}
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="phone" class="form-label">Téléphone (Maison): </label>
+        <input type="input" class="input" formControlName="phone" id="phone" autofocus>
+        <div class="form-text form-text--right form-text--danger">
+          <div *ngFor="let errorMessage of changeProfileForm.controls['phone'].getError('apiError')">
+            {{ errorMessage }}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="mobile" class="form-label">Téléphone (Cellulaire): </label>
+        <input type="input" class="input" formControlName="mobile" id="mobile" autofocus>
+        <div class="form-text form-text--right form-text--danger"
+             *ngFor="let errorMessage of changeProfileForm.controls['mobile'].getError('apiError')">
+          {{ errorMessage }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">Courriel: </label>
+        <input type="email" class="input" formControlName="email" id="email" required autofocus>
+        <div class="form-text form-text--right form-text--danger">
+            <span *ngIf="changeProfileForm.controls.email.errors?.required">Ce champ ne peut être nul.</span>
+            <div *ngFor="let errorMessage of changeProfileForm.controls['email'].getError('apiError')">
+              {{ errorMessage }}
+            </div>
+          </div>
+      </div>
+    </form>
+</app-my-modal>
 
 <app-my-modal name="change password"
               title="Changement du mot de passe"

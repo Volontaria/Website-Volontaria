@@ -6,7 +6,7 @@ import { Event } from '../../../models/event';
 import { ParticipationService } from '../../../services/participation.service';
 import { Participation } from '../../../models/participation';
 import { NotificationsService } from 'angular2-notifications';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { MyModalService } from '../../../services/my-modal/my-modal.service';
 
 @Component({
@@ -23,7 +23,10 @@ export class MySchedulePageComponent implements OnInit {
   eventsAsVolunteer: Event[] = [];
   eventsAsOnHold: Event[] = [];
   changePasswordForm: FormGroup;
+  changeProfileForm: FormGroup;
   idEventInDeletion: number;
+
+  errors: string[];
 
   constructor(private userService: UserService,
               private eventService: EventService,
@@ -38,8 +41,93 @@ export class MySchedulePageComponent implements OnInit {
         confirmation: [null, Validators.required]
       },
       {validator: this.passwordValidator()}
-    )
-    ;
+    );
+
+    this.changeProfileForm = this.formBuilder.group(
+      {
+        first_name: [null, Validators.required],
+        last_name: [null, Validators.required],
+        phone: [null],
+        mobile: [null],
+        email: [null, Validators.required],
+      },
+    );
+  }
+
+    ngOnInit() {
+    this.userService.getProfile().subscribe(
+      data => {
+        this.user = data;
+        this.updateParticipations();
+
+        this.changeProfileForm.reset({
+            'first_name': this.user.first_name,
+            'last_name': this.user.last_name,
+            'phone': this.user.phone,
+            'mobile': this.user.mobile,
+            'email': this.user.email
+        });
+      }
+    );
+  }
+
+  changeProfile(form: FormGroup) {
+    if ( form.valid ) {
+      this.userService.changeProfile(
+        this.user.id,
+        {
+          'first_name': form.controls['first_name'].value,
+          'last_name': form.controls['last_name'].value,
+          'phone': form.controls['phone'].value,
+          'mobile': form.controls['mobile'].value,
+          'email': form.controls['email'].value
+        }
+      ).subscribe(
+        data => {
+          this.myModalService.get('change profile').toggle();
+
+          // Update the User local instance
+          this.user.first_name = form.controls['first_name'].value;
+          this.user.last_name = form.controls['last_name'].value;
+          this.user.phone =form.controls['phone'].value;
+          this.user.mobile =form.controls['mobile'].value;
+          this.user.email =form.controls['email'].value;
+
+          this.notificationService.success('Changement réussi',
+            `Les informations ont été changé`);
+        },
+        err => {
+          if (err.error.non_field_errors) {
+            this.errors = err.error.non_field_errors;
+          }
+          if (err.error.first_name) {
+            this.changeProfileForm.controls['first_name'].setErrors({
+              apiError: err.error.first_name
+            });
+          }
+          if (err.error.last_name) {
+            this.changeProfileForm.controls['last_name'].setErrors({
+              apiError: err.error.last_name
+            });
+          }
+          if (err.error.phone) {
+            this.changeProfileForm.controls['phone'].setErrors({
+              apiError: err.error.phone
+            });
+          }
+          if (err.error.mobile) {
+            this.changeProfileForm.controls['mobile'].setErrors({
+              apiError: err.error.mobile
+            });
+          }
+          if (err.error.email) {
+            this.changeProfileForm.controls['email'].setErrors({
+              apiError: err.error.email
+            });
+          }
+        }
+      );
+    }
   }
 
   passwordValidator() {
@@ -82,15 +170,6 @@ export class MySchedulePageComponent implements OnInit {
         }
       );
     }
-  }
-
-  ngOnInit() {
-    this.userService.getProfile().subscribe(
-      data => {
-        this.user = data;
-        this.updateParticipations();
-      }
-    );
   }
 
   updateParticipations() {

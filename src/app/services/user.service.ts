@@ -83,6 +83,15 @@ export class UserService extends GlobalService {
     );
   }
 
+  changeProfile(id: number, data: {}){
+    const headers = this.getHeaders();
+    return this.http.patch<any>(
+      this.url_profile,
+      data,
+      {headers: headers}
+    );
+  }
+
   getProfile(): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get<any>(
