@@ -146,12 +146,7 @@ export class ActivitiesPageComponent implements OnInit {
       this.cellService.getCell(params['cell']).subscribe(
         data => {
           this.cell = new Cell(data);
-        }
-      );
-      this.eventService.getEvents([{name: 'cell', value: params['cell']}]).subscribe(
-        data => {
-          this.events = data.results.map(e => new Event(e));
-          this.filter();
+          this.getEventFromDateRange();
         }
       );
     });
@@ -172,6 +167,39 @@ export class ActivitiesPageComponent implements OnInit {
       unSelectAllText: 'Aucune',
       classes: 'activities-page__header__filters__filter',
     };
+  }
+
+  onPreviousView(event) {
+    this.activeDayIsOpen = false;
+    this.getEventFromDateRange();
+  }
+
+  onNextView(event) {
+    this.activeDayIsOpen = false;
+    this.getEventFromDateRange();
+  }
+
+  daysInMonth(anyDateInMonth) {
+    return new Date(anyDateInMonth.getFullYear(),
+                    anyDateInMonth.getMonth()+1,
+                    0).getDate();}
+
+  getEventFromDateRange() {
+    if(this.cell) {
+     const start_date =  this.viewDate.getFullYear() + '-' + (this.viewDate.getMonth()+1) + '-01T00:00:00Z';
+     const end_date = this.viewDate.getFullYear() + '-' + (this.viewDate.getMonth()+1) + '-' + this.daysInMonth(this.viewDate) + 'T00:00:00Z';
+
+      this.eventService.getEvents([
+        {name: 'cell', value: this.cell.id,},
+        {name: 'start_date', value: start_date,},
+        {name: 'end_date', value: end_date,}
+      ]).subscribe(
+        data => {
+          this.events = data.results.map(e => new Event(e));
+          this.filter();
+        }
+      );
+    }
   }
 
   onItemSelect(item: any) {
