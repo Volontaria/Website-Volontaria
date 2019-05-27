@@ -20,4 +20,6 @@ export class User extends BaseModel {
   coupon: Coupon;
 }
 
-
+export class AdminUser extends User {
+  volunteer_note: string;
+}

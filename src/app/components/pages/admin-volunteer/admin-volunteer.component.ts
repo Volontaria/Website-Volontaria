@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {UserService} from '../../../services/user.service';
-import {User} from '../../../models/user';
+import {AdminUser} from '../../../models/user';
 import {Participation} from '../../../models/participation';
 import {Event} from '../../../models/event';
 import {ParticipationService} from '../../../services/participation.service';
@@ -14,7 +14,7 @@ import {EventService} from '../../../services/event.service';
 })
 export class AdminVolunteerComponent implements OnInit {
 
-  user: User = null;
+  user: AdminUser = null;
   eventsAsOnHold: any[] = [];
   eventsAsVolunteer: any[] = [];
 
