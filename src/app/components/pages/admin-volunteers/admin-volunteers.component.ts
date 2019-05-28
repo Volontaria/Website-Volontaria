@@ -16,13 +16,13 @@ export class AdminVolunteersComponent implements OnInit {
   listUsers: AdminUser[];
   userFilters = [];
   typingTimer;
-  doneTypingInterval = 500;
+  doneTypingInterval = 250;
 
   settings = {
     noDataText: 'Aucun utilisateur pour le moment.',
     clickable: true,
-    previous: false,
-    next: false,
+    //previous: false,
+    //next: false,
     numberOfPage: 0,
     page: 0,
     columns: [
@@ -76,21 +76,21 @@ export class AdminVolunteersComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    this.refreshUserList();
+    this.listUsers = [];
   }
 
-  changePage(index: number) {
-    this.refreshUserList(index);
-  }
+  // changePage(index: number) {
+  //   this.refreshUserList(index);
+  // }
 
-  refreshUserList(page = 1, limit = 50) {
+  refreshUserList(page = 1, limit = 25) {
 
     this.userService.list(this.userFilters, limit, limit * (page - 1)).subscribe(
       users => {
-        this.settings.numberOfPage = Math.ceil(users.count / limit);
-        this.settings.page = page;
-        this.settings.previous = !isNull(users.previous);
-        this.settings.next = !isNull(users.next);
+        //this.settings.numberOfPage = Math.ceil(users.count / limit);
+        //this.settings.page = page;
+        //this.settings.previous = !isNull(users.previous);
+        //this.settings.next = !isNull(users.next);
         this.listUsers = users.results.map(u => new AdminUser(u) );
       }
     );
@@ -100,7 +100,11 @@ export class AdminVolunteersComponent implements OnInit {
     clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout(
       () => {
-        this.updateFilter(value);
+          if (value == '') {
+            this.listUsers = [];
+          } else {
+            this.updateFilter(value);
+          }
         },
       this.doneTypingInterval
     );
