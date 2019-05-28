@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { User } from '../../../models/user';
+import { AdminUser } from '../../../models/user';
 import { Router } from '@angular/router';
 import { isNull } from 'util';
 
@@ -13,7 +13,7 @@ import { isNull } from 'util';
 })
 export class AdminVolunteersComponent implements OnInit {
 
-  listUsers: User[];
+  listUsers: AdminUser[];
   userFilters = [];
   typingTimer;
   doneTypingInterval = 500;
@@ -59,6 +59,15 @@ export class AdminVolunteersComponent implements OnInit {
         name: 'is_superuser',
         title: 'Admin',
         type: 'boolean'
+      },
+      {
+        name: 'last_participation',
+        title: 'Dernière participation',
+        type: 'date'
+      },
+      {
+        name: 'volunteer_note',
+        title: 'Note'
       }
     ]
   };
@@ -82,7 +91,7 @@ export class AdminVolunteersComponent implements OnInit {
         this.settings.page = page;
         this.settings.previous = !isNull(users.previous);
         this.settings.next = !isNull(users.next);
-        this.listUsers = users.results.map(u => new User(u) );
+        this.listUsers = users.results.map(u => new AdminUser(u) );
       }
     );
   }

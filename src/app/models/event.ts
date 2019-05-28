@@ -22,6 +22,11 @@ export class Event extends BaseModel {
     return date.toLocaleTimeString();
   }
 
+  getStartDate() {
+    const date = new Date(this.start_date);
+    return date.toLocaleString();
+  }
+
   getEndTime() {
     const date = new Date(this.end_date);
     return date.toLocaleTimeString();

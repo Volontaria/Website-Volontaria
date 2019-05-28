@@ -70,8 +70,11 @@
       <span *ngIf="column.type === 'boolean' && item[column.name] === false">
         <i class="fa fa-times" style="color: darkred;"></i>
       </span>
-      <span *ngIf="column.type !== 'boolean'">
+      <span *ngIf="column.type !== 'boolean' && column.type !== 'date'">
         {{ item[column.name] }}
+      </span>
+      <span *ngIf="column.type === 'date'">
+        {{ item[column.name] | date:"dd MMMM yyyy" }}
       </span>
     </td>
     <td class="my-table__table__line__cell my-table__table__line__cell--actions"

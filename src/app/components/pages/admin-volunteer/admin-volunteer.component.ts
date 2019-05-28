@@ -23,6 +23,14 @@ export class AdminVolunteerComponent implements OnInit {
     clickable: true,
     columns: [
       {
+        name: 'presence',
+        title: 'Presence'
+      },
+      {
+        name: 'cycle',
+        title: 'Cycle'
+      },
+      {
         name: 'start_date',
         title: 'Début'
       },
@@ -58,6 +66,13 @@ export class AdminVolunteerComponent implements OnInit {
     });
   }
 
+  getPresenceTxt(status) {
+    if (status == 'A') return 'Absent';
+    else if (status == 'P') return 'Présent';
+    else return 'Initialisation';
+  }
+
+
   refreshParticipations() {
     this.participationService.getParticipations([{name: 'username', value: this.user.username}]).subscribe(
       participations => {
@@ -71,6 +86,7 @@ export class AdminVolunteerComponent implements OnInit {
               if (event) {
                 for (const participation in listParticipations) {
                   if ( listEvents[event].id === listParticipations[participation].event ) {
+                    listEvents[event].presence = this.getPresenceTxt(listParticipations[participation].presence_status);
                     if ( listParticipations[participation].standby ) {
                       this.eventsAsOnHold.push(this.eventAdapter(listEvents[event]));
                     } else {
@@ -89,7 +105,9 @@ export class AdminVolunteerComponent implements OnInit {
   eventAdapter(event) {
     return {
       id: event.id,
-      start_date: event.getStartTime(),
+      presence: event.presence,
+      cycle: event.cycle.name,
+      start_date: event.getStartDate(),
       end_date: event.getEndTime(),
       tasktype: event.task_type.name,
       location: event.cell.name

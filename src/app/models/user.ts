@@ -22,4 +22,5 @@ export class User extends BaseModel {
 
 export class AdminUser extends User {
   volunteer_note: string;
+  last_participation: Date;
 }
