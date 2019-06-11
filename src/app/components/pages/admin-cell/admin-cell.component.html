@@ -1,27 +1,44 @@
-<div class="admin-cell" *ngIf="cell">
-  <div class="admin-cell__title">
-    <h1 class="title title--main">Cellule de {{ cell.name }}</h1>
+<div class="admin-cell">
+  <div class="admin-cell__infos" *ngIf="cell">
+    <div class="admin-cell__title">
+      <h1 class="title title--main">Cellule de {{ cell.name }}</h1>
+    </div>
+
+    <p>
+      <b>Adresse : </b>
+      {{ cell.address.address_line1 }},
+      <span *ngIf="cell.address.address_line2">{{ cell.address.address_line2 }},</span>
+      {{ cell.address.city }},
+      {{ cell.address.postal_code }}
+    </p>
+
+    <p>
+      <b>Courriel : </b>
+      {{ cell.email }}
+    </p>
+
+    <p>
+      <b>Manageur(s) : </b>
+      <span *ngFor="let manager of cell.managers">
+        {{ manager.first_name }}
+      </span>
+    </p>
+  </div>
+  <div class="admin-cell__buttons" *ngIf="cell">
+    <button class="button button-op" (click)="export_link_pressed($event)" [disabled]="!this.nbVolunteerSelected">
+      Télécharger la liste des Participations
+    </button>
+
+    <br><br>
+    <button class="button button-op" (click)="openEmailForm($event)" [disabled]="!this.nbVolunteerSelected">
+      Envoyer un courriel aux Participants
+    </button><br><br>
+
+    <p><i>Tu peux maintenant filtrer par cycle ou par activité pour modifier la liste des participants des 2 boutons d'action ci-haut.</i></p>
+
   </div>
 
-  <a class="button" (click)="export_link_pressed($event)">Télécharger la liste des Participations</a>
-
-  <p>
-    <b>Adresse : </b>
-    {{ cell.address.address_line1 }},
-    <span *ngIf="cell.address.address_line2">{{ cell.address.address_line2 }},</span>
-    {{ cell.address.city }},
-    {{ cell.address.postal_code }}
-  </p>
-
-  <p>
-    <b>Manageur(s) : </b>
-    <span *ngFor="let manager of cell.managers">
-      {{ manager.first_name }}
-    </span>
-  </p>
-
-  <b>Plages horaires de la cellule :</b>
-  <div class="admin-cell__actions">
+  <div class="admin-cell">
     <div class="admin-cell__actions__filters">
       <angular2-multiselect [data]="dropdownCycleList" [(ngModel)]="selectedCycles"
                             [settings]="dropdownCycleSettings"
@@ -38,16 +55,97 @@
                             (onDeSelectAll)="onDeSelectAll($event)">
       </angular2-multiselect>
     </div>
-  </div>
 
-  <app-my-table [settings]="settings"
-                [data]="eventsAdaptedFiltered"
-                (addButton)="openModalCreateEvent()"
-                (selectItem)="visitEvent($event)"
-                (editItem)="openModalEditEvent($event)">
-  </app-my-table>
+
+    <app-my-table [settings]="settings"
+                  [data]="eventsAdaptedFiltered"
+                  (addButton)="openModalCreateEvent()"
+                  (selectItem)="visitEvent($event)"
+                  (editItem)="openModalEditEvent($event)"
+                  class="admin-cell__table">
+    </app-my-table>
+  </div>
 </div>
 
+<app-my-modal name="custom_email"
+              title="Envoyer un courriel"
+              (button2)="sendEmail(emailForm)"
+              button2Label="Envoyer"
+              typeModal="form"
+              >
+
+    <div><b>Destinataire(s): {{ this.nbVolunteerSelected }} Participants</b></div>
+
+    <div *ngIf="this.nbVolunteerSelected">
+      <div *ngIf="this.selectedCycles.length == 0">
+        Ceux qui sont actuellement inscrit
+      </div>
+      <div *ngIf="this.selectedCycles.length > 0">
+        Ceux qui sont inscrit au(x) cycle(s) choisi:
+      </div>
+    </div>
+
+    <div class="form-text form-text--left form-text--danger">
+      <span *ngIf="this.nbVolunteerSelected == 0">Il n'y a pas de participants avec la/les sélection(s) actuelle(s).</span>
+    </div>
+
+    <angular2-multiselect [data]="dropdownCycleList" [(ngModel)]="selectedCycles"
+                            [settings]="dropdownCycleSettings"
+                            (onSelect)="onItemSelect($event)"
+                            (onDeSelect)="OnItemDeSelect($event)"
+                            (onSelectAll)="onSelectAll($event)"
+                            (onDeSelectAll)="onDeSelectAll($event)">
+    </angular2-multiselect>
+
+    <div *ngIf="this.selectedTasktypes.length">
+      <div>Parmis le(s) activité(s) : </div>
+    </div>
+
+    <angular2-multiselect [data]="dropdownTasktypeList" [(ngModel)]="selectedTasktypes"
+                          [settings]="dropdownTasktypeSettings"
+                          (onSelect)="onItemSelect($event)"
+                          (onDeSelect)="OnItemDeSelect($event)"
+                          (onSelectAll)="onSelectAll($event)"
+                          (onDeSelectAll)="onDeSelectAll($event)">
+    </angular2-multiselect>
+
+
+    <br>
+
+    <form [formGroup]="emailForm" *ngIf="emailForm">
+      <div class="form-group">
+        <label for="nbVolunteers" class="form-label" hidden>Nombre de destinataire(s):</label>
+        <input class="input" formControlName="nbVolunteers" id="nbVolunteers" type="number" readonly hidden>
+        <div class="form-text form-text--right form-text--danger" hidden>
+             <span *ngIf="emailFormSubmitted && emailForm.controls.nbVolunteers.errors?.min">Il n'y a pas de participants avec la/les sélection(s) actuelle(s).</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="subject" class="form-label">Sujet du courriel:</label>
+        <input class="input" formControlName="subject" id="subject" type="text" autofocus>
+        <div class="form-text form-text--right form-text--danger">
+             <span *ngIf="emailFormSubmitted && emailForm.controls.subject.errors?.required">Ce champ ne peut être nul.</span>
+        </div>
+      </div>
+
+    <div class="form-group">
+      <label for="content" class="form-label">Contenu:</label>
+      <ckeditor
+        id="content"
+        class="input"
+        formControlName="content"
+        [editor]="Editor"
+        [config]="{ toolbar: ['heading', '|', 'bold', 'italic', 'NumberedList', 'BulletedList', 'Link'] }"
+      autofocus>
+      </ckeditor>
+      <div class="form-text form-text--right form-text--danger">
+        <span *ngIf="emailFormSubmitted && emailForm.controls.content.errors?.required">Ce champ ne peut être nul.</span>
+      </div>
+    </div>
+  </form>
+
+</app-my-modal>
 
 <app-my-modal name="event modal"
               [title]="modalTitle"

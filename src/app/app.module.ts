@@ -66,6 +66,7 @@ import { AdminVolunteerComponent } from './components/pages/admin-volunteer/admi
 import { Ng2CompleterModule } from 'ng2-completer';
 import { InfoPageService } from "./services/info.service";
 import { AccordionModule } from "./components/my-accordion/";
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 registerLocaleData(localeFr);
 
@@ -330,6 +331,7 @@ export class DefaultIntl {
     CalendarModule.forRoot(),
     Ng2CompleterModule,
     AccordionModule,
+    CKEditorModule,
   ],
   exports: [ RouterModule ],
   providers: [

@@ -21,6 +21,8 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "@ckeditor/ckeditor5-angular": "^1.1.0",
+    "@ckeditor/ckeditor5-build-classic": "^12.1.0",
     "angular-calendar": "^0.24.1",
     "angular2-multiselect-dropdown": "^2.5.0",
     "angular2-notifications": "^0.9.7",
@@ -29,13 +31,13 @@
     "flexboxgrid-sass": "^8.0.5",
     "font-awesome": "^4.7.0",
     "font-awesome-sass": "^4.7.0",
-    "node-sass": "^4.9.0",
     "ng-pick-datetime": "^5.2.6",
+    "ng2-completer": "^2.0.8",
+    "node-sass": "^4.9.0",
     "roboto-fontface": "^0.8.0",
     "rxjs": "^5.5.2",
     "sass-loader": "^6.0.6",
-    "zone.js": "^0.8.14",
-    "ng2-completer": "^2.0.8"
+    "zone.js": "^0.8.14"
   },
   "devDependencies": {
     "@angular/cli": "^1.6.6",

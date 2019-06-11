@@ -8,12 +8,13 @@ import {CycleService} from '../../../services/cycle.service';
 import {Cycle} from '../../../models/cycle';
 import {TasktypeService} from '../../../services/tasktype.service';
 import {Tasktype} from '../../../models/tasktype';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, RequiredValidator, Validators} from '@angular/forms';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
 import {NotificationsService} from 'angular2-notifications';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {DateUtil} from '../../../utils/date';
 import {isUndefined} from 'util';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 @Component({
@@ -38,6 +39,11 @@ export class AdminCellComponent implements OnInit {
   dropdownCycleSettings = {};
 
   eventForm: FormGroup;
+  emailForm: FormGroup;
+  emailFormSubmitted: boolean;
+
+  nbVolunteerSelected: number;
+
   cycles: Cycle[];
   tasktypes: Tasktype[];
 
@@ -77,6 +83,8 @@ export class AdminCellComponent implements OnInit {
   modalButton: string;
   modalEventId: number;
 
+  public Editor = ClassicEditor;
+
   constructor(private activatedRoute: ActivatedRoute,
               private eventService: EventService,
               private cellService: CellService,
@@ -90,6 +98,7 @@ export class AdminCellComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.activatedRoute.params.subscribe((params: Params) => {
       this.cellService.getCell(params['cellId']).subscribe(
         data => {
@@ -136,6 +145,8 @@ export class AdminCellComponent implements OnInit {
       unSelectAllText: 'Aucunes',
       classes: 'admin-cell__actions__filters__filter',
     };
+
+    this.initEmailForm();
   }
 
   get_events() {
@@ -192,6 +203,9 @@ export class AdminCellComponent implements OnInit {
   }
 
   filter() {
+    this.nbVolunteerSelected = 0;
+    let volunteerSelected = [];
+
     this.eventsAdaptedFiltered = [];
     const eventFiltered = [];
 
@@ -217,12 +231,31 @@ export class AdminCellComponent implements OnInit {
     } else {
       this.eventsAdaptedFiltered = eventFiltered;
     }
+
+    // find the number of selected volunteers for validations
+    for (const event in this.eventsAdaptedFiltered) {
+        if (event) {
+          volunteerSelected = volunteerSelected.concat(this.eventsAdapted[event].model.volunteers);
+        }
+      }
+    this.nbVolunteerSelected = new Set(volunteerSelected).size;
+    this.emailForm.controls['nbVolunteers'].setValue(this.nbVolunteerSelected);
   }
 
   export_link_pressed(event: any) {
     event.preventDefault();
 
-    this.cellService.getExportCell(this.cell.id).subscribe(
+    let cycles = [];
+    for (let i=0; i!= this.selectedCycles.length; ++i) {
+      cycles.push(this.selectedCycles[i]['id']);
+    }
+
+    let tasks = [];
+    for (let i=0; i!= this.selectedTasktypes.length; ++i) {
+      tasks.push(this.selectedTasktypes[i]['id']);
+    }
+
+    this.cellService.getExportCell(this.cell.id, cycles, tasks).subscribe(
       data => {
         window.location.assign(this.cellService.getExportCellLink(data.export_link));
       }
@@ -244,6 +277,67 @@ export class AdminCellComponent implements OnInit {
         validator: this.dateValidator()
       }
     );
+  }
+
+  initEmailForm() {
+    this.emailFormSubmitted = false;
+
+    this.emailForm = this.formBuilder.group(
+      {
+        nbVolunteers: [null, Validators.min(1)],
+        subject: [null, Validators.required],
+        content: [null, Validators.required]
+      }
+    );
+
+    this.emailForm.controls['nbVolunteers'].setValue(0);
+  }
+
+  openEmailForm(event: any) {
+    this.toggleModal('custom_email');
+    this.emailForm.controls['nbVolunteers'].setValue(this.nbVolunteerSelected);
+  }
+
+  sendEmail(event: any) {
+    //event.preventDefault();
+
+    this.emailFormSubmitted = true;
+
+    // if (this.nbVolunteerSelected == 0) {
+    //   this.eventForm.setErrors({
+    //     apiError: "Il n'y a Pas de participants avec la sélection actuelle"
+    //   });
+    //   return;
+    // }
+
+    if (this.emailForm.controls['subject'].value &&
+        this.emailForm.controls['content'].value &&
+        this.emailForm.controls['nbVolunteers'].value > 0) {
+
+      let cycles = [];
+      for (let i = 0; i != this.selectedCycles.length; ++i) {
+        cycles.push(this.selectedCycles[i]['id']);
+      }
+
+      let tasks = [];
+      for (let i = 0; i != this.selectedTasktypes.length; ++i) {
+        tasks.push(this.selectedTasktypes[i]['id']);
+      }
+
+      this.cellService.getEmailCell(
+        this.cell.id,
+        this.emailForm.controls['subject'].value,
+        this.emailForm.controls['content'].value,
+        cycles, tasks).subscribe(
+        data => {
+          this.notificationService.success('Succès !', "L'envoi d'un courriel au(x) Participant(s) à fonctionné");
+        },
+      err => {
+        this.notificationService.error('Échec',
+          `L'envoi d'un courriel au(x) Participant(s) à échoué`);
+      }
+      );
+    }
   }
 
   setSelectedCycle() {
@@ -418,7 +512,7 @@ export class AdminCellComponent implements OnInit {
     this.modalButton = 'Créer la plage horaire';
     this.modalEventId = undefined;
     this.initForm();
-    this.toogleModal();
+    this.toggleModal('event modal');
   }
 
   openModalEditEvent(event) {
@@ -435,11 +529,11 @@ export class AdminCellComponent implements OnInit {
     this.eventForm.controls['end_date'].setValue(event.model.end_date);
     this.selectedCycle = event.model.cycle.id;
 
-    this.toogleModal();
+    this.toggleModal('event modal');
   }
 
-  toogleModal() {
-    const modal = this.myModalService.get('event modal');
+  toggleModal(name) {
+    const modal = this.myModalService.get(name);
 
     if (!modal) {
       console.error('No modal named %s', 'event modal');
