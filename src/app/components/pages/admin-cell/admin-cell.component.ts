@@ -291,6 +291,8 @@ export class AdminCellComponent implements OnInit {
     );
 
     this.emailForm.controls['nbVolunteers'].setValue(0);
+    this.emailForm.controls['subject'].setValue('');
+    this.emailForm.controls['content'].setValue('');
   }
 
   openEmailForm(event: any) {
@@ -302,13 +304,6 @@ export class AdminCellComponent implements OnInit {
     //event.preventDefault();
 
     this.emailFormSubmitted = true;
-
-    // if (this.nbVolunteerSelected == 0) {
-    //   this.eventForm.setErrors({
-    //     apiError: "Il n'y a Pas de participants avec la sélection actuelle"
-    //   });
-    //   return;
-    // }
 
     if (this.emailForm.controls['subject'].value &&
         this.emailForm.controls['content'].value &&
@@ -330,6 +325,11 @@ export class AdminCellComponent implements OnInit {
         this.emailForm.controls['content'].value,
         cycles, tasks).subscribe(
         data => {
+          this.toggleModal('custom_email');
+          this.emailForm.controls['subject'].setValue('');
+          this.emailForm.controls['content'].setValue('');
+          this.emailFormSubmitted = false;
+
           this.notificationService.success('Succès !', "L'envoi d'un courriel au(x) Participant(s) à fonctionné");
         },
       err => {
