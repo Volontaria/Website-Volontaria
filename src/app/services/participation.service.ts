@@ -46,7 +46,7 @@ export class ParticipationService extends GlobalService {
           params = params.set('event', filter.value);
         }
         if (filter.name === 'username') {
-          params = params.set('username', filter.value);
+          params = params.set('username', encodeURIComponent(filter.value));
         }
       }
     }
