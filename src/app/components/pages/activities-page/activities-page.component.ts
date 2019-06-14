@@ -336,8 +336,8 @@ export class ActivitiesPageComponent implements OnInit {
       tasktype: event.task_type.name,
       start_date: event.getStartTime(),
       end_date: event.getEndTime(),
-      nb_volunteers: event.nb_volunteers + '/' + event.nb_volunteers_needed,
-      nb_standby: event.nb_volunteers_standby + '/' + event.nb_volunteers_standby_needed
+      nb_volunteers: event.getVolunteersField(),
+      nb_standby: event.getStandByField()
     };
     return newEvent;
   }

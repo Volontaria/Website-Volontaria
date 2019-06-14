@@ -36,6 +36,9 @@ export class Event extends BaseModel {
     return this.nb_volunteers + ' / ' + this.nb_volunteers_needed;
   }
   getStandByField() {
+    if (this.nb_volunteers_standby_needed === 0) {
+      return '-';
+    }
     return this.nb_volunteers_standby + ' / ' + this.nb_volunteers_standby_needed;
   }
 
