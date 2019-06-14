@@ -18,26 +18,24 @@ export class ForgotPasswordComponent {
               private router: Router) {
     this.forgotForm = this.formBuilder.group(
       {
-        username: null,
+        username_email: null,
       }
     );
   }
 
   resetPassword(form: FormGroup) {
     if ( form.valid ) {
-      this.authenticationService.resetPassword(form.value['username']).subscribe(
+      this.authenticationService.resetPassword(form.value['username_email']).subscribe(
         data => {
-          console.log('success');
           this.router.navigate(['/forgot-password/confirmation']);
         },
         err => {
           if (err.error.non_field_errors) {
             this.errors = err.error.non_field_errors;
-            console.log(this.errors);
           }
-          if (err.error.username) {
-            this.forgotForm.controls['username'].setErrors({
-              apiError: err.error.username
+          if (err.error.username_email) {
+            this.forgotForm.controls['username_email'].setErrors({
+              apiError: err.error.username_email
             });
           }
         }

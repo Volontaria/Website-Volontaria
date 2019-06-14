@@ -33,12 +33,12 @@ export class AuthenticationService extends GlobalService {
     );
   }
 
-  resetPassword(email: string): Observable<any> {
+  resetPassword(username_email: string): Observable<any> {
     const headers = this.getHeaders();
     return this.http.post<any>(
       this.url_reset_password,
       {
-        username: email
+        username_email: username_email
       },
       {headers: headers}
     );
