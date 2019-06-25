@@ -233,12 +233,16 @@ export class AdminCellComponent implements OnInit {
     }
 
     // find the number of selected volunteers for validations
-    for (const event in this.eventsAdaptedFiltered) {
-        if (event) {
-          volunteerSelected = volunteerSelected.concat(this.eventsAdapted[event].model.volunteers);
-        }
+    if (this.eventsAdaptedFiltered.length == 1) {
+      this.nbVolunteerSelected = this.eventsAdaptedFiltered[0].volunteers.length;
+    } else {
+      for (const event in this.eventsAdaptedFiltered) {
+        volunteerSelected = volunteerSelected.concat(this.eventsAdapted[event].model.volunteers);
       }
-    this.nbVolunteerSelected = new Set(volunteerSelected).size;
+
+      this.nbVolunteerSelected = new Set(volunteerSelected).size;
+    }
+
     this.emailForm.controls['nbVolunteers'].setValue(this.nbVolunteerSelected);
   }
 
