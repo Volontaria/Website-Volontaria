@@ -22,6 +22,29 @@
   }
 }
 
+.completer-input {
+  width: 100%;
+  max-width: 515px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}
+
+.completer-dropdown {
+  max-height: 400px !important;
+  width: 100% !important;
+  max-width: 515px !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  top: 130px !important;
+}
+
+.completer-list-item {
+  width: 100%;
+  max-width: 515px;
+  white-space: nowrap;
+}
+
 @media only screen and (max-width: 1100px) {
   .admin-event {
     flex-direction: column;

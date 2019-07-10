@@ -103,10 +103,9 @@ export class MyTableComponent implements OnInit, OnChanges {
       this.selectedItem = item;
     }
 
+    const modal = this.myModalService.get(this.deleteModalName);
+
     if (this.confirmationOnDeletion && !force) {
-
-      const modal = this.myModalService.get(this.deleteModalName);
-
       if (!modal) {
         console.error('No modal named %s', this.deleteModalName);
         return;
@@ -115,6 +114,7 @@ export class MyTableComponent implements OnInit, OnChanges {
       modal.toggle();
     } else {
       this.removeItem.emit(this.selectedItem);
+      modal.toggle();
     }
   }
 
