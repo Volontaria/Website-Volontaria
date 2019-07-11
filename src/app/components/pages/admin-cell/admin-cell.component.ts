@@ -222,7 +222,17 @@ export class AdminCellComponent implements OnInit {
   export_link_pressed(event: any) {
     event.preventDefault();
 
-    this.cellService.getExportCell(this.cell.id).subscribe(
+    let cycles = [];
+    for (let i = 0; i !== this.selectedCycles.length; ++i) {
+      cycles.push(this.selectedCycles[i]['id']);
+    }
+
+    let tasks = [];
+    for (let i = 0; i !== this.selectedTasktypes.length; ++i) {
+      tasks.push(this.selectedTasktypes[i]['id']);
+    }
+
+    this.cellService.getExportCell(this.cell.id, cycles, tasks).subscribe(
       data => {
         window.location.assign(this.cellService.getExportCellLink(data.export_link));
       }

@@ -38,11 +38,26 @@ export class CellService extends GlobalService {
     );
   }
 
-  getExportCell(id: number): Observable<any> {
+  getExportCell(id: number, cycles: number[], tasks: number[]): Observable<any> {
     const headers = this.getHeaders();
+
+    let urlstring = '';
+    if (cycles.length) {
+      urlstring = '?cycle=' + cycles.join('&cycle=');
+    }
+
+    if (tasks.length) {
+      if (!urlstring.length) {
+        urlstring = '?';
+      } else {
+        urlstring += '&';
+      }
+      urlstring += 'task=' + tasks.join('&task=');
+    }
+
     return this.http.get<any>(
-      this.url_cells + '/' + id + '/export',
-      {headers: headers}
+      this.url_cells + '/' + id + '/export' + urlstring,
+      {headers: headers},
     );
   }
 
