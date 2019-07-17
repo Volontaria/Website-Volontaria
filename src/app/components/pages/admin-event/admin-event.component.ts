@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Event } from '../../../models/event';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import { EventService } from '../../../services/event.service';
-import { Participation } from '../../../models/participation';
+import { AdminParticipation } from '../../../models/participation';
 import { ParticipationService } from '../../../services/participation.service';
 import { NotificationsService } from 'angular2-notifications';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -19,8 +19,8 @@ export class AdminEventComponent implements OnInit {
 
   event: Event;
 
-  participations: Participation[];
-  participationsAdapted: Participation[];
+  participations: AdminParticipation[];
+  participationsAdapted: AdminParticipation[];
 
   settings = {
     editButton: true,
@@ -33,6 +33,23 @@ export class AdminEventComponent implements OnInit {
       {
         name: 'last_name',
         title: 'Nom'
+      },
+      {
+        name: 'email',
+        title: 'Courriel'
+      },
+      {
+        name: 'phone',
+        title: 'Téléphone'
+      },
+      {
+        name: 'mobile',
+        title: 'Mobile'
+      },
+      {
+        name: 'last_participation',
+        title: 'Dernière participation',
+        type: 'date'
       },
       {
         name: 'standby',
@@ -66,7 +83,8 @@ export class AdminEventComponent implements OnInit {
   ];
 
   participationForm: FormGroup;
-  selectedParticipation: Participation;
+
+  selectedParticipation: AdminParticipation;
 
   constructor(private activatedRoute: ActivatedRoute,
               private eventService: EventService,
@@ -101,7 +119,7 @@ export class AdminEventComponent implements OnInit {
   get_participations() {
     this.participationService.getParticipations([{name: 'event', value: this.event.id}]).subscribe(
       data => {
-        this.participations = data.results.map(p => new Participation(p));
+        this.participations = data.results.map(p => new AdminParticipation(p));
         this.participationsAdapted = this.participationAdapter(this.participations);
       }
     );
@@ -196,9 +214,13 @@ export class AdminEventComponent implements OnInit {
         id: participation.id,
         first_name: participation.user.first_name,
         last_name: participation.user.last_name,
+        email: participation.user.email,
+        phone: participation.user.phone,
+        mobile: participation.user.mobile,
         standby: participation.standby,
         presence_duration_minutes: participation.presence_duration_minutes,
-        user: participation.user
+        user: participation.user,
+        last_participation: participation.user.last_participation
       };
       for (const status of this.participationStatusOption) {
         if (status.value === participation.presence_status) {

@@ -14,4 +14,6 @@ export class User extends BaseModel {
   managed_cell: Cell[];
 }
 
-
+export class AdminUser extends User {
+  last_participation: Date;
+}
