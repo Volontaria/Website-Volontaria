@@ -23,7 +23,16 @@
       <li *ngIf="user.mobile">
         <i class="fas fa-mobile-alt admin-volunteer-page__header__infos__icon"></i>
         {{ user.mobile }}
-      </li>
+      </li><br/>
+      <li >
+        <div>Dernière participation:</div>
+          <div *ngIf="user.last_participation">
+            {{ user.last_participation | date:"dd MMMM yyyy" }}
+          </div>
+          <div *ngIf="!user.last_participation">
+            Aucune
+          </div>
+      </li><br/>
     </ul>
   </div>
   <div class="admin-volunteer-page__section">

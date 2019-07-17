@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {UserService} from '../../../services/user.service';
-import {User} from '../../../models/user';
+import {AdminUser} from '../../../models/user';
 import {Participation} from '../../../models/participation';
 import {Event} from '../../../models/event';
 import {ParticipationService} from '../../../services/participation.service';
@@ -14,7 +14,7 @@ import {EventService} from '../../../services/event.service';
 })
 export class AdminVolunteerComponent implements OnInit {
 
-  user: User = null;
+  user: AdminUser = null;
   eventsAsOnHold: any[] = [];
   eventsAsVolunteer: any[] = [];
 
@@ -58,6 +58,17 @@ export class AdminVolunteerComponent implements OnInit {
     });
   }
 
+  getPresenceTxt(status) {
+    if (status === 'A') {
+      return 'Absent';
+    } else if (status === 'P') {
+      return 'Présent';
+    } else {
+      return 'Initialisation';
+    }
+  }
+
+
   refreshParticipations() {
     this.participationService.getParticipations([{name: 'username', value: this.user.username}]).subscribe(
       participations => {
@@ -71,6 +82,7 @@ export class AdminVolunteerComponent implements OnInit {
               if (event) {
                 for (const participation in listParticipations) {
                   if ( listEvents[event].id === listParticipations[participation].event ) {
+                    listEvents[event].presence = this.getPresenceTxt(listParticipations[participation].presence_status);
                     if ( listParticipations[participation].standby ) {
                       this.eventsAsOnHold.push(this.eventAdapter(listEvents[event]));
                     } else {
@@ -89,7 +101,9 @@ export class AdminVolunteerComponent implements OnInit {
   eventAdapter(event) {
     return {
       id: event.id,
-      start_date: event.getStartTime(),
+      presence: event.presence,
+      cycle: event.cycle.name,
+      start_date: event.getStartDate(),
       end_date: event.getEndTime(),
       tasktype: event.task_type.name,
       location: event.cell.name

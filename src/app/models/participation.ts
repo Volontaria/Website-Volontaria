@@ -24,5 +24,10 @@ export class Participation extends BaseModel {
   }
 }
 
+export class AdminParticipation extends Participation {
+  last_participation: Date;
+
+}
+
 
 
