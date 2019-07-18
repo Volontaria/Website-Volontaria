@@ -1,6 +1,24 @@
 .admin-cell {
   margin: 1rem;
 
+  display: flex;
+  flex-wrap: wrap;
+
+  &__table {
+    width: calc(100% - 2rem);
+    padding: 1rem;
+  }
+
+  &__infos {
+    width: calc(50% - 2rem);
+    padding: 1rem;
+  }
+
+  &__buttons {
+    width: calc(50% - 2rem);
+    padding: 1rem;
+  }
+
   &__actions {
     display: flex;
     justify-content: space-between;
@@ -19,7 +37,28 @@
     }
   }
 
+  .button-op {
+      width: 300px;
+    }
+
   &__table {
     margin-top: 10px;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .admin-cell {
+    &__infos {
+      padding: 1rem;
+      width: calc(100% - 2rem);
+      overflow-x: scroll;
+    }
+
+    &__buttons {
+      width: calc(100% - 2rem);
+      padding: 1rem;
+      overflow-x: scroll;
+    }
+  }
+}
+

@@ -49,4 +49,28 @@ export class CellService extends GlobalService {
   getExportCellLink(url: string) {
     return environment.url_base_api + url;
   }
+
+  getEmailCell(id: number, subject:string, content: string, cycles: number[], tasks: number[]): Observable<any> {
+    const headers = this.getHeaders();
+
+    let urlstring = '';
+    if (cycles.length) {
+      urlstring = '?cycle=' + cycles.join('&cycle=');
+    }
+
+    if (tasks.length) {
+      if (!urlstring.length) {
+        urlstring = '?';
+      } else {
+        urlstring += '&';
+      }
+      urlstring += 'task=' + tasks.join('&task=');
+    }
+
+    return this.http.post<any>(
+      this.url_cells + '/' + id + '/email' + urlstring,
+      {'subject': subject, 'content': content},
+      {headers: headers},
+    );
+  }
 }
