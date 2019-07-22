@@ -5,7 +5,7 @@
   <div class="navbar__left" (click)="closeResponsiveNavbar()">
     <a class="navbar__item" routerLink="/index" *ngIf="isAuthenticated()">Inscription</a>
     <a class="navbar__item" routerLink="/schedule" *ngIf="isAuthenticated()">Mon horaire</a>
-    <a class="navbar__item" routerLink="/info">Informations</a>
+    <a class="navbar__item" routerLink="/info">Information</a>
     <a class="navbar__item" routerLink="/contact">Contact</a>
     <a class="navbar__item" routerLink="/admin" [appHasPermissions]="['access_admin_panel']" *ngIf="isAuthenticated()">Administration</a>
   </div>
