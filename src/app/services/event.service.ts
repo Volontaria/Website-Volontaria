@@ -32,6 +32,12 @@ export class EventService extends GlobalService {
         if (filter.name === 'volunteers') {
           params = params.set('volunteers', filter.value);
         }
+        if (filter.name === 'start_date') {
+          params = params.set('start_date__gte', filter.value);
+        }
+        if (filter.name === 'end_date') {
+          params = params.set('start_date__lte', filter.value);
+        }
       }
     }
     return this.http.get<any>(

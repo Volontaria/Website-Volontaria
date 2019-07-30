@@ -24,7 +24,7 @@
            mwlCalendarPreviousView
            [view]="view"
            [(viewDate)]="viewDate"
-           (viewDateChange)="activeDayIsOpen = false">
+           (viewDateChange)="onPreviousView($event)">
           Précédent
         </a>
         <h3 class="activities-page__activities__calendar__actions__date">
@@ -34,7 +34,7 @@
            mwlCalendarNextView
            [view]="view"
            [(viewDate)]="viewDate"
-           (viewDateChange)="activeDayIsOpen = false">
+           (viewDateChange)="onNextView($event)">
           Suivant
         </a>
       </div>
