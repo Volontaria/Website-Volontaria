@@ -63,6 +63,8 @@ import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { MyBenevolometreComponent } from './components/my-benevolometre/my-benevolometre.component';
 import { AdminVolunteerComponent } from './components/pages/admin-volunteer/admin-volunteer.component';
+import { InfoPageService } from "./services/info.service";
+import { AccordionModule } from "./components/my-accordion/";
 
 registerLocaleData(localeFr);
 
@@ -324,7 +326,8 @@ export class DefaultIntl {
     AngularMultiSelectModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    AccordionModule,
   ],
   exports: [ RouterModule ],
   providers: [
@@ -334,6 +337,7 @@ export class DefaultIntl {
     TasktypeService,
     CycleService,
     CellService,
+    InfoPageService,
     ParticipationService,
     CanActivateViaAuthGuard,
     CanAccessAdminPanelGuard,
