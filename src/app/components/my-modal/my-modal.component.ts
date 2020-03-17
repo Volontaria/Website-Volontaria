@@ -15,7 +15,7 @@ export class MyModalComponent implements OnInit {
   @Input() maxWidth = '95%';
   @Input() activated = true;
 
-  @ViewChild('modalContent') modalContent;
+  @ViewChild('modalContent', { static: true }) modalContent;
 
   @Output() button1: EventEmitter<any> = new EventEmitter();
   @Output() button2: EventEmitter<any> = new EventEmitter();

@@ -6,9 +6,9 @@ $color-theme-green: #00d59c;
 *****/
 
 /* Use for the main nav */
-$main-color: #F19F3C;
-$secondary-color: #f8f5bd;
-$main-color-dark: #D67603;
+$main-color: #2D3E50; // #F19F3C
+$secondary-color: white;
+$main-color-dark: darken($main-color, 20);
 
 $main-background: #F8FBF4;
 $main-background-dark: #DFDFDF;

@@ -37,6 +37,9 @@ export class HomePageComponent {
     this.cellService.getCells('name').subscribe(
       data => {
         this.cells = data.results.map(c => new Cell(c) );
+        if ( this.cells.length === 1) {
+          this.selectUser(this.cells[0]);
+        }
       }
     );
   }

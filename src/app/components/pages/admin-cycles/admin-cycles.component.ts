@@ -48,6 +48,10 @@ export class AdminCyclesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.refreshCycleData();
+  }
+
+  refreshCycleData() {
     this.cycleService.getCycles().subscribe(
       data => {
         this.cycles = data.results.map(c => this.cycleAdapter(new Cycle(c)));
@@ -102,11 +106,7 @@ export class AdminCyclesComponent implements OnInit {
           this.notificationService.success('Création réussie',
             `Le cycle "${data.name}" a été crée`);
 
-          this.cycleService.getCycles().subscribe(
-            dataGetCycle => {
-              this.cycles = dataGetCycle.results.map(c => new Cycle(c));
-            }
-          );
+          this.refreshCycleData();
         },
         err => {
 

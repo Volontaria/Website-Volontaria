@@ -1,5 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 export class HeaderComponent {
 
   responsive = false;
+  organizationName = environment.organization_name;
 
   constructor(private authenticationService: AuthenticationService) { }
 

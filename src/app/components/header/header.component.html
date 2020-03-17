@@ -1,6 +1,6 @@
 <nav class="navbar" [class.responsive]="responsive">
   <a class="title title--main navbar__item navbar__item--brand" routerLink="/" (click)="closeResponsiveNavbar()">
-    NousRire
+    {{ organizationName }}
   </a>
   <div class="navbar__left" (click)="closeResponsiveNavbar()">
     <a class="navbar__item" routerLink="/index" *ngIf="isAuthenticated()">Inscription</a>

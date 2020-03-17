@@ -3,6 +3,7 @@ import {AuthenticationService} from '../../../services/authentication.service';
 import { Router } from '@angular/router';
 import {UserService} from '../../../services/user.service';
 import {NotificationsService} from 'angular2-notifications';
+import {environment} from '../../../../environments/environment';
 
 
 @Component({
@@ -15,6 +16,8 @@ export class LoginPageComponent {
   login: string;
   password: string;
   error: string;
+
+  welcomeMessage = environment.welcomeMessage;
 
   constructor(
     private authenticationService: AuthenticationService,

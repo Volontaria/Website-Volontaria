@@ -6,6 +6,9 @@
 export const environment = {
   production: false,
   default_language: 'fr',
+  project_name: 'Volontaria',
+  organization_name: 'Volontaria',
+  welcomeMessage: '',
   url_base_api: 'http://localhost:8000',
   paths_api: {
     activation: '/users/activate',

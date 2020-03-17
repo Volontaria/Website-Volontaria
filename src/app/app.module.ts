@@ -54,19 +54,25 @@ import { MyModalOpenDirective } from './directives/my-modal-open-directive.direc
 import { MyModalComponent } from './components/my-modal/my-modal.component';
 import { MyModalService } from './services/my-modal/my-modal.service';
 
-import { OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime/picker';
+
 import { ForgotPasswordComponent } from './components/pages/forgot-password/forgot-password.component';
 // tslint:disable-next-line:max-line-length
 import { ForgotPasswordConfirmationComponent } from './components/pages/forgot-password-confirmation/forgot-password-confirmation.component';
 import { ResetPasswordComponent } from './components/pages/reset-password/reset-password.component';
 import { MyTableComponent } from './components/my-table/my-table.component';
-import { CalendarModule } from 'angular-calendar';
+import {CalendarModule, DateAdapter} from 'angular-calendar';
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { MyBenevolometreComponent } from './components/my-benevolometre/my-benevolometre.component';
 import { AdminVolunteerComponent } from './components/pages/admin-volunteer/admin-volunteer.component';
 import { MobilePopUpComponent } from './components/mobile-pop-up/mobile-pop-up.component';
 import {PopUpMobileService} from './services/pop-up-mobile.service';
+import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material';
 
 registerLocaleData(localeFr);
 
@@ -257,7 +263,7 @@ const appRoutes = [
   }
 ];
 
-export class DefaultIntl {
+export class DefaultIntl extends OwlDateTimeIntl {
   upSecondLabel = 'Ajouter une seconde';
   downSecondLabel = 'Retirer une seconde';
   upMinuteLabel = 'Ajouter une minute';
@@ -327,7 +333,7 @@ export class DefaultIntl {
     HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true }
+      {enableTracing: true}
     ),
     FormsModule,
     ReactiveFormsModule,
@@ -335,8 +341,15 @@ export class DefaultIntl {
     AngularMultiSelectModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    CalendarModule.forRoot(),
-    QRCodeModule
+    QRCodeModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    }),
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
   exports: [ RouterModule ],
   providers: [
@@ -355,7 +368,10 @@ export class DefaultIntl {
       useClass: MyHttpInterceptor,
       multi: true,
     },
-    {provide: OwlDateTimeIntl, useClass: DefaultIntl},
+    {
+      provide: OwlDateTimeIntl,
+      useClass: DefaultIntl
+    },
     MyModalService
   ],
   bootstrap: [AppComponent]
