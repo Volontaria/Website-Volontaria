@@ -55,6 +55,11 @@ export class AdminLayoutComponent implements OnInit {
       'title': 'Cycles de commande',
       'link': '/admin/cycles',
       'icon': 'fa fa-calendar'
+    },
+    {
+      'title': 'Type de tache',
+      'link': '/admin/tasks',
+      'icon': 'fa fa-tasks'
     }
   ];
 

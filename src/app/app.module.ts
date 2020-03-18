@@ -73,6 +73,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material';
+import { AdminTasksComponent } from './components/pages/admin-tasks/admin-tasks.component';
 
 registerLocaleData(localeFr);
 
@@ -226,6 +227,14 @@ const appRoutes = [
         ]
       },
       {
+        path: 'admin/tasks',
+        component: AdminTasksComponent,
+        canActivate: [
+          CanActivateViaAuthGuard,
+          CanAccessAdminPanelGuard
+        ]
+      },
+      {
         path: 'admin/cells',
         component: AdminCellsComponent,
         canActivate: [
@@ -325,6 +334,7 @@ export class DefaultIntl extends OwlDateTimeIntl {
     MyBenevolometreComponent,
     AdminVolunteerComponent,
     MobilePopUpComponent,
+    AdminTasksComponent,
   ],
   imports: [
     BrowserModule,
