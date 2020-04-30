@@ -1,0 +1,29 @@
+@import '../../../assets/scss/theme';
+
+.mobile-pop-up{
+  display: grid;
+  grid-template-columns: 1fr 20px;
+  align-items: center;
+  background-color: $dark-purple;
+  width: 100%;
+  height: 40px;
+  padding: 0 30px;
+
+  &__link{
+
+  }
+
+  &__close{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    color: $color-danger;
+    background-color: $color-warning;
+    place-self: center;
+  }
+}
