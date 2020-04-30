@@ -7,6 +7,7 @@
     <a class="navbar__item" routerLink="/schedule" *ngIf="isAuthenticated()">Mon horaire</a>
     <a class="navbar__item" routerLink="/info">Informations</a>
     <a class="navbar__item" routerLink="/contact">Contact</a>
+    <a class="navbar__item" routerLink="/mobile">Application mobile</a>
     <a class="navbar__item" routerLink="/admin" [appHasPermissions]="['access_admin_panel']" *ngIf="isAuthenticated()">Administration</a>
   </div>
   <div class="navbar__right" (click)="closeResponsiveNavbar()">

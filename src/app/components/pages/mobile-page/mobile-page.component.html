@@ -1,0 +1,33 @@
+<div class="mobile-page">
+  <div class="mobile-page__header">
+    <h1 class="title title--main">
+      Volontaria sur mobile !
+    </h1>
+  </div>
+
+  <div class="mobile-page__apps">
+    <div class="mobile-page__apps__description">
+      Retrouvez Volontaria sur votre mobile avec l'application dédiée Android et iOS
+    </div>
+    <div class="mobile-page__apps__description">
+      Téléchargeable gratuitement sur
+    </div>
+
+    <div class="mobile-page__apps__list">
+      <a class="mobile-page__apps__list__app">
+        <img class="mobile-page__apps__list__app__image" src="../../../../assets/images/mobile/mobile-apple.png">
+      </a>
+      <a class="mobile-page__apps__list__app">
+        <img class="mobile-page__apps__list__app__image" src="../../../../assets/images/mobile/mobile-google.png">
+      </a>
+    </div>
+  </div>
+
+  <div class="mobile-page__qrcode">
+    <div class="mobile-page__qrcode__description">
+      Ouvrez l'application puis scannez le QR code suivant
+    </div>
+    <qr-code class="mobile-page__qrcode__scan" [backgroundAlpha]="0" [foreground]="'#F19F3C'" [value]= instanceConfig [size]="250"></qr-code>
+  </div>
+
+</div>

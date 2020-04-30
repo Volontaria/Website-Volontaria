@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyHttpInterceptor } from './my-http-interceptor';
 import { RouterModule } from '@angular/router';
+import { QRCodeModule } from 'angular2-qrcode';
 
 import { AppComponent } from './app.component';
 
@@ -24,6 +25,7 @@ import { MySchedulePageComponent } from './components/pages/myschedule-page/mysc
 import { ActivitiesPageComponent } from './components/pages/activities-page/activities-page.component';
 import { InfoPageComponent } from './components/pages/info-page/info-page.component';
 import { ContactPageComponent } from './components/pages/contact-page/contact-page.component';
+import { MobilePageComponent } from './components/pages/mobile-page/mobile-page.component';
 import { PageNotFoundComponent } from './components/pages/notfound-page/notfound-page.component';
 import { AdminActivityDetailComponent } from './components/pages/admin-activity-detail/admin-activity-detail.component';
 import { AdminActivitiesComponent } from './components/pages/admin-activities/admin-activities.component';
@@ -63,6 +65,8 @@ import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from '@angular/common';
 import { MyBenevolometreComponent } from './components/my-benevolometre/my-benevolometre.component';
 import { AdminVolunteerComponent } from './components/pages/admin-volunteer/admin-volunteer.component';
+import { MobilePopUpComponent } from './components/mobile-pop-up/mobile-pop-up.component';
+import {PopUpMobileService} from './services/pop-up-mobile.service';
 
 registerLocaleData(localeFr);
 
@@ -111,6 +115,11 @@ const appRoutes = [
       {
         path: 'contact',
         component: ContactPageComponent,
+        canActivate: []
+      },
+      {
+        path: 'mobile',
+        component: MobilePageComponent,
         canActivate: []
       },
       {
@@ -294,6 +303,7 @@ export class DefaultIntl {
     AdminActivityDetailComponent,
     InfoPageComponent,
     ContactPageComponent,
+    MobilePageComponent,
     PageNotFoundComponent,
     AdminLayoutComponent,
     DefaultLayoutComponent,
@@ -308,6 +318,7 @@ export class DefaultIntl {
     ResetPasswordComponent,
     MyBenevolometreComponent,
     AdminVolunteerComponent,
+    MobilePopUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -324,7 +335,8 @@ export class DefaultIntl {
     AngularMultiSelectModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    QRCodeModule
   ],
   exports: [ RouterModule ],
   providers: [
@@ -337,6 +349,7 @@ export class DefaultIntl {
     ParticipationService,
     CanActivateViaAuthGuard,
     CanAccessAdminPanelGuard,
+    PopUpMobileService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyHttpInterceptor,
