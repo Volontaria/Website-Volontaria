@@ -6,17 +6,17 @@ import { environment } from '../../../../environments/environment';
   selector: 'app-mobile',
   styleUrls: ['mobile-page.component.scss'],
 })
+
 export class MobilePageComponent {
 
+  APIUrl = environment.url_base_api;
+
   instanceConfig = JSON.stringify( {
-    'instanceAPIUrl': environment.url_base_api
+    'instanceAPIUrl': this.APIUrl,
+    'token': localStorage.getItem('token')
   });
 
   constructor() {
 
-  }
-
-  goToLink(url: string) {
-    window.open(url, '_blank');
   }
 }
