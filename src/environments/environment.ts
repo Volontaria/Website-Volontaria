@@ -21,6 +21,7 @@ export const environment = {
     tasktypes: '/volunteer/tasktypes',
     users: '/users',
     reset_password: '/reset_password',
-    change_password: '/change_password'
+    change_password: '/change_password',
+    urlCKEditorPage: '/ckeditor_page'
   }
 };

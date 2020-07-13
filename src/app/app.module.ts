@@ -24,8 +24,8 @@ import { HomePageComponent } from './components/pages/home-page/home-page.compon
 import { MySchedulePageComponent } from './components/pages/myschedule-page/myschedule-page.component';
 import { ActivitiesPageComponent } from './components/pages/activities-page/activities-page.component';
 import { InfoPageComponent } from './components/pages/info-page/info-page.component';
-import { ContactPageComponent } from './components/pages/contact-page/contact-page.component';
 import { MobilePageComponent } from './components/pages/mobile-page/mobile-page.component';
+import { CkEditorPageComponent } from './components/pages/ck-editor-page/ck-editor-page.component';
 import { PageNotFoundComponent } from './components/pages/notfound-page/notfound-page.component';
 import { AdminActivityDetailComponent } from './components/pages/admin-activity-detail/admin-activity-detail.component';
 import { AdminActivitiesComponent } from './components/pages/admin-activities/admin-activities.component';
@@ -74,6 +74,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material';
 import { AdminTasksComponent } from './components/pages/admin-tasks/admin-tasks.component';
+import { CKEditorContainerComponent } from './components/shared/ckeditor-container/ckeditor-container.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 registerLocaleData(localeFr);
 
@@ -120,8 +122,8 @@ const appRoutes = [
         canActivate: []
       },
       {
-        path: 'contact',
-        component: ContactPageComponent,
+        path: 'page/:key',
+        component: CkEditorPageComponent,
         canActivate: []
       },
       {
@@ -317,8 +319,8 @@ export class DefaultIntl extends OwlDateTimeIntl {
     AdminActivitiesComponent,
     AdminActivityDetailComponent,
     InfoPageComponent,
-    ContactPageComponent,
     MobilePageComponent,
+    CkEditorPageComponent,
     PageNotFoundComponent,
     AdminLayoutComponent,
     DefaultLayoutComponent,
@@ -335,6 +337,7 @@ export class DefaultIntl extends OwlDateTimeIntl {
     AdminVolunteerComponent,
     MobilePopUpComponent,
     AdminTasksComponent,
+    CKEditorContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -359,7 +362,8 @@ export class DefaultIntl extends OwlDateTimeIntl {
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    CKEditorModule
   ],
   exports: [ RouterModule ],
   providers: [
@@ -382,7 +386,7 @@ export class DefaultIntl extends OwlDateTimeIntl {
       provide: OwlDateTimeIntl,
       useClass: DefaultIntl
     },
-    MyModalService
+    MyModalService,
   ],
   bootstrap: [AppComponent]
 })

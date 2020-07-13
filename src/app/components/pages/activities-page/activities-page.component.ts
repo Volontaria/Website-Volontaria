@@ -21,6 +21,7 @@ import {
   addHours
 } from 'date-fns';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
+import {DateUtil} from '../../../utils/date';
 
 const colors: any = {
   grey: {
@@ -321,5 +322,9 @@ export class ActivitiesPageComponent implements OnInit {
       return;
     }
     modal.toggle();
+  }
+
+  displayDate(date) {
+    return DateUtil.formatDay(date);
   }
 }

@@ -58,7 +58,7 @@
     <div class="activities-page__activities__infos">
       <div *ngIf="clickedDay" class="activities-page__activities__infos__details">
         <h2 class="title title--secondary">
-          Liste des plages horaires du {{ clickedDay | date:"dd MMMM yyyy"}}:
+          Liste des plages horaires du {{ displayDate(clickedDay) }}:
         </h2>
         <div class="activities-page__activities__calendar__details__table">
           <app-my-table [settings]="settings"

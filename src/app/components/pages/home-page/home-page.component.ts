@@ -38,13 +38,13 @@ export class HomePageComponent {
       data => {
         this.cells = data.results.map(c => new Cell(c) );
         if ( this.cells.length === 1) {
-          this.selectUser(this.cells[0]);
+          this.selectCell(this.cells[0]);
         }
       }
     );
   }
 
-  selectUser(cell) {
+  selectCell(cell) {
     this.router.navigate(['/activities/' + cell.id]);
   }
 
