@@ -21,7 +21,7 @@ import {
   addHours
 } from 'date-fns';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
-import {DateUtil} from '../../../utils/date';
+import {DateUtil} from "../../../utils/date";
 
 const colors: any = {
   grey: {
@@ -306,8 +306,8 @@ export class ActivitiesPageComponent implements OnInit {
     const newEvent = {
       id: event.id,
       tasktype: event.task_type.name,
-      start_date: event.getStartTime(),
-      end_date: event.getEndTime(),
+      start_date: DateUtil.formatTime(event.start_date),
+      end_date: DateUtil.formatTime(event.end_date),
       nb_volunteers: event.nb_volunteers + '/' + event.nb_volunteers_needed,
       nb_standby: event.nb_volunteers_standby + '/' + event.nb_volunteers_standby_needed
     };
@@ -324,7 +324,7 @@ export class ActivitiesPageComponent implements OnInit {
     modal.toggle();
   }
 
-  displayDate(date) {
+  getDisplayableDate(date) {
     return DateUtil.formatDay(date);
   }
 }

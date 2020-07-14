@@ -17,24 +17,12 @@ export class Event extends BaseModel {
   nb_volunteers_standby: number;
   nb_volunteers_standby_needed: number;
 
-  getStartTime() {
-    const date = new Date(this.start_date);
-    return date.toLocaleTimeString();
-  }
-
-  getEndTime() {
-    const date = new Date(this.end_date);
-    return date.toLocaleTimeString();
-  }
-
   getVolunteersField() {
     return this.nb_volunteers + ' / ' + this.nb_volunteers_needed;
   }
   getStandByField() {
     return this.nb_volunteers_standby + ' / ' + this.nb_volunteers_standby_needed;
   }
-
-
 }
 
 

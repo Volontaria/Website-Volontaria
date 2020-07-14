@@ -12,25 +12,32 @@
   width: 220px;
   min-height: 100%;
   box-sizing: border-box;
-  background-color: #314961;
+  background-color: $dark;
   color: white;
   padding-top: 30px;
+  border-right: 1px solid lightgray;
+  box-shadow: 0 3px 3px $dark;
 
   &__logo {
     background-image: url('../../../assets/images/logo.png');
     background-repeat: no-repeat;
-    background-size: contain;
-    height: 70px;
+    background-size: 75px;
+    height: 100px;
+    width: 100px;
     background-position: center;
-    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: white;
+    margin: 0 auto 30px auto;
   }
 
   &__item {
+
     display: block;
     box-sizing: border-box;
     padding: 10px;
     width: 100%;
-    color: #87969f;
+    color: white;
     font-size: 15px;
 
     &__icon {
@@ -41,8 +48,12 @@
     }
 
     &:hover {
-      background-color: #213242;
+      background-color: lighten($main-color, 10);
       color: white;
+
+      .left-nav__item__icon {
+        color: white;
+      }
     }
   }
 }

@@ -6,6 +6,7 @@ import {Participation} from '../../../models/participation';
 import {Event} from '../../../models/event';
 import {ParticipationService} from '../../../services/participation.service';
 import {EventService} from '../../../services/event.service';
+import {DateUtil} from "../../../utils/date";
 
 @Component({
   selector: 'app-admin-volunteer',
@@ -89,8 +90,8 @@ export class AdminVolunteerComponent implements OnInit {
   eventAdapter(event) {
     return {
       id: event.id,
-      start_date: event.getStartTime(),
-      end_date: event.getEndTime(),
+      start_date: DateUtil.formatDayAndTime(event.start_date),
+      end_date: DateUtil.formatDayAndTime(event.end_date),
       tasktype: event.task_type.name,
       location: event.cell.name
     };

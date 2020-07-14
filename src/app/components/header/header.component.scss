@@ -2,8 +2,10 @@
 @import '../../../assets/scss/easings';
 
 .navbar {
-  background-color: $main-color;
+  // background-color: $main-color;
   display: flex;
+  border-bottom: 1px solid lightgray;
+  box-shadow: 0 0 3px $dark;
 
   &__left {
     display: flex;
@@ -19,7 +21,7 @@
     cursor: pointer;
     padding: 15px;
     text-decoration: none;
-    color: white;
+    color: $dark;
     transition: all $ease-inout-sine 300ms;
     line-height: 20px;
     font-size: 1.2em;
@@ -29,11 +31,15 @@
     }
 
     &:hover {
-      background-color: $main-color-dark;
+      color: $main-color;
+    }
+
+    &:focus {
+
     }
 
     &--brand {
-      background-color: $main-color-dark;
+      color: $main-color;
       padding: 10px;
       font-size: 1.5em;
       line-height: 30px;

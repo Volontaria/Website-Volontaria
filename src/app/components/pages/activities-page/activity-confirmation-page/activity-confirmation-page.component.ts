@@ -6,6 +6,7 @@ import {ParticipationService} from '../../../../services/participation.service';
 import {NotificationsService} from 'angular2-notifications';
 import {User} from '../../../../models/user';
 import {AuthenticationService} from '../../../../services/authentication.service';
+import {DateUtil} from "../../../../utils/date";
 
 
 @Component({
@@ -45,5 +46,9 @@ export class ActivityConfirmationComponent implements OnInit {
         this.router.navigate(['/schedule']);
       }
     );
+  }
+
+  getDisplayableDate(date) {
+    return DateUtil.formatDayAndTime(date);
   }
 }

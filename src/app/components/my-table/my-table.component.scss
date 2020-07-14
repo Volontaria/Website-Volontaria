@@ -50,7 +50,7 @@
         text-align: left;
         font-weight: bold;
         padding: 10px;
-        background-color: $main-color;
+        background-color: $dark;
         color: white;
 
         &--actions {
@@ -68,7 +68,7 @@
     }
 
     &__line {
-      background-color: lighten(lightgrey, 10);
+      background-color: #F2F2F2;
 
       &:nth-child(odd) {
         background-color: white;

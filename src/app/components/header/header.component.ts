@@ -11,7 +11,7 @@ import {environment} from '../../../environments/environment';
 export class HeaderComponent {
 
   responsive = false;
-  organizationName = environment.organization_name;
+  organizationName = environment.organisation_name;
 
   constructor(private authenticationService: AuthenticationService) { }
 

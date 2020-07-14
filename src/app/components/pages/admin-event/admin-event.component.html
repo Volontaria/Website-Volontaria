@@ -4,11 +4,11 @@
     <table class="table">
       <tr>
         <th>Début</th>
-        <td>{{ event.start_date | date:'dd MMMM yyyy' }} à {{ event.start_date | date:'HH:mm' }}</td>
+        <td>{{ getDisplayableDate(event.start_date) }}</td>
       </tr>
       <tr>
         <th>Fin</th>
-        <td>{{ event.end_date | date:'dd MMMM yyyy' }} à {{ event.end_date | date:'HH:mm' }}</td>
+        <td>{{ getDisplayableDate(event.end_date) }}</td>
       </tr>
       <tr>
         <th>Nombre de bénévoles</th>

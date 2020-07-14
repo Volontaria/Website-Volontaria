@@ -60,19 +60,19 @@
       </tr>
       <tr *ngFor="let event of eventsAsVolunteer">
         <td>
-          {{ event.start_date | date:'dd MMMM yyyy'}}<br/>
-          {{ event.start_date | date:'HH:mm'}}
+          {{ getDisplayableDate(event.start_date) }}
         </td>
         <td>
-          {{ event.end_date | date:'dd MMMM yyyy'}}<br/>
-          {{ event.end_date | date:'HH:mm'}}
+          {{ getDisplayableDate(event.end_date) }}
         </td>
         <td>
           {{ event.task_type.name }}
         </td>
         <td>
           {{ event.cell.address.address_line1 }}<br/>
-          {{ event.cell.address.address_line2 }}<br/>
+          <span *ngIf="event.cell.address.address_line2">
+            {{ event.cell.address.address_line2 }}<br/>
+          </span>
           {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
         </td>
         <td>
@@ -100,19 +100,19 @@
       </tr>
       <tr *ngFor="let event of eventsAsOnHold">
         <td>
-          {{ event.start_date | date:'dd MMMM yyyy'}}<br/>
-          {{ event.start_date | date:'HH:mm'}}
+          {{ getDisplayableDate(event.start_date) }}
         </td>
         <td>
-          {{ event.end_date | date:'dd MMMM yyyy'}}<br/>
-          {{ event.end_date | date:'HH:mm'}}
+          {{ getDisplayableDate(event.end_date) }}
         </td>
         <td>
           {{ event.task_type.name }}
         </td>
         <td>
           {{ event.cell.address.address_line1 }}<br/>
-          {{ event.cell.address.address_line2 }}<br/>
+          <span *ngIf="event.cell.address.address_line2">
+            {{ event.cell.address.address_line2 }}<br/>
+          </span>
           {{ event.cell.address.postal_code }} {{ event.cell.address.city }}
         </td>
         <td>

@@ -3,11 +3,11 @@
   <div class="activity-confirmation-page__missions">
     <p>
       <b>Debut : </b>
-      <span *ngIf="event">{{ event.start_date | date:'dd MMMM yyyy - HH:mm'}}</span>
+      <span *ngIf="event">{{ getDisplayableDate(event.start_date) }}</span>
     </p>
     <p>
       <b>Fin : </b>
-      <span *ngIf="event">{{ event.end_date | date:'dd MMMM yyyy - HH:mm'}}</span>
+      <span *ngIf="event">{{ getDisplayableDate(event.end_date) }}</span>
     </p>
     <p>
       <b>Activité : </b>

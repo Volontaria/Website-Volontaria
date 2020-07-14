@@ -401,8 +401,8 @@ export class AdminCellComponent implements OnInit {
     for (const event of this.events) {
       const newEvent = {
         id: event.id,
-        start_date: DateUtil.completeDate(event.start_date),
-        end_date: DateUtil.completeDate(event.end_date),
+        start_date: DateUtil.formatDayAndTime(event.start_date),
+        end_date: DateUtil.formatDayAndTime(event.end_date),
         task_type: event.task_type.name,
         volunteers: event.getVolunteersField(),
         stand_by: event.getStandByField(),
