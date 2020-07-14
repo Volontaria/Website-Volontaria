@@ -1,11 +1,11 @@
+dist: trusty
+addons:
+  chrome: stable
 language: node_js
-
 node_js:
-  - node
-
-before_script:
-  - npm install -g --silent @angular/cli
-
+  - '10'
+install:
+  - npm install
 script:
-- ng build --prod
-- ng lint
+  - ng lint
+  - ng build

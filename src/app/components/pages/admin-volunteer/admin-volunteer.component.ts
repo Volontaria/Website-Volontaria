@@ -6,7 +6,7 @@ import {Participation} from '../../../models/participation';
 import {Event} from '../../../models/event';
 import {ParticipationService} from '../../../services/participation.service';
 import {EventService} from '../../../services/event.service';
-import {DateUtil} from "../../../utils/date";
+import {DateUtil} from '../../../utils/date';
 
 @Component({
   selector: 'app-admin-volunteer',

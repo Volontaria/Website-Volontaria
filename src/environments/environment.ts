@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  organisation_name: 'BocoBoco',
+  organisation_name: 'Volontaria',
   default_language: 'fr',
   project_name: 'Volontaria',
   organization_name: 'Volontaria',

@@ -8,7 +8,7 @@ import { Participation } from '../../../models/participation';
 import { NotificationsService } from 'angular2-notifications';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MyModalService } from '../../../services/my-modal/my-modal.service';
-import {DateUtil} from "../../../utils/date";
+import {DateUtil} from '../../../utils/date';
 
 @Component({
   selector: 'app-myschedule',

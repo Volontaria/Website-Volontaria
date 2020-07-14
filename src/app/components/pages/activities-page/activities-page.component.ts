@@ -21,7 +21,7 @@ import {
   addHours
 } from 'date-fns';
 import {MyModalService} from '../../../services/my-modal/my-modal.service';
-import {DateUtil} from "../../../utils/date";
+import {DateUtil} from '../../../utils/date';
 
 const colors: any = {
   grey: {
