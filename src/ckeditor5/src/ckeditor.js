@@ -31,11 +31,11 @@ import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize.js';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials.js';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph.js';
 
-export default class EditorTV extends InlineEditor {
+export default class Editor extends InlineEditor {
 }
 
 // Plugins to include in the build.
-EditorTV.builtinPlugins = [
+Editor.builtinPlugins = [
   Autoformat,
   Bold,
   Italic,
@@ -65,7 +65,7 @@ EditorTV.builtinPlugins = [
   Paragraph
 ];
 
-EditorTV.defaultConfig = {
+Editor.defaultConfig = {
   toolbar: {
     items: [
       'fontFamily',

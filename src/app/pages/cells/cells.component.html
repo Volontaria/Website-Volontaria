@@ -1,0 +1,18 @@
+<div class="cells">
+  <div class="cells__content">
+    <div class="cells__content__title">
+    Choisit le lieu ou tu souhaites faire du bénévolat
+    </div>
+
+    <table mat-table [dataSource]="cellList" class="cells__content__table">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nom de la cellule </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="'/events/' + row.id"></tr>
+    </table>
+  </div>
+</div>

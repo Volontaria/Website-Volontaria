@@ -1,0 +1,5 @@
+<button class="button"
+        [ngClass]="{'button--disabled': disabled, 'button--danger': type === 'danger'}"
+        (click)="trigger()">
+  {{ label }}
+</button>

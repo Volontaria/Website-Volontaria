@@ -1,0 +1,17 @@
+.app-component {
+  &__mobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1399px) {
+  .app-component {
+    &__router {
+      display: none;
+    }
+
+    &__mobile {
+      display: block;
+    }
+  }
+}

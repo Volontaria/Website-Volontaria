@@ -1,0 +1,77 @@
+<div class="event-detail-list-item" [ngClass]="{'event-detail-list-item--inactive': isFull || isAlreadySubscribed || isPast}">
+  <div class="event-detail-list-item__title">
+    {{ getName() }}
+  </div>
+  <div class="event-detail-list-item__time">
+    De {{ getTime() }}
+  </div>
+  <div class="event-detail-list-item__footer">
+    <app-button label="S'inscrire" class="event-detail-list-item__footer__button"
+                [appOpenModal]="createParticipationModal"
+                *ngIf="canSubscribe"></app-button>
+    <div *ngIf="!canSubscribe" class="event-detail-list-item__footer__note">
+      {{ getStatus() }}
+    </div>
+    <div class="event-detail-list-item__footer__duration">
+      {{ getDuration() }}
+    </div>
+  </div>
+</div>
+
+<app-modal [name]="createParticipationModal"
+           maxWidth="900px"
+           class="event-detail-list-item-modal-participation">
+  <div class="event-detail-list-item-modal-participation__title">
+    Vous souhaitez vous inscrire à cette activité :
+  </div>
+  <div class="event-detail-list-item-modal-participation__section">
+    <div class="event-detail-list-item-modal-participation__section__item">
+      <div class="event-detail-list-item-modal-participation__section__item__important">
+        {{ getName() }}
+      </div>
+    </div>
+    <div class="event-detail-list-item-modal-participation__section__item">
+      <img src="../../../../assets/images/logo.png" />
+    </div>
+  </div>
+
+  <div class="event-detail-list-item-modal-participation__section">
+    <div class="event-detail-list-item-modal-participation__section__item">
+      Le:
+      <div class="event-detail-list-item-modal-participation__section__item__important">
+        {{ getDate() }}
+      </div>
+      <div class="event-detail-list-item-modal-participation__section__item__important">
+        {{ getTime() }}
+      </div>
+    </div>
+
+    <div class="event-detail-list-item-modal-participation__section__item">
+      À :
+      <div class="event-detail-list-item-modal-participation__section__item__important">
+        Montréal - Hochelaga
+      </div>
+      <div>
+        Centre Pierre-Charbonneau, 300 Rue Viau<br/>
+        Montréal, H1V 3J3
+      </div>
+    </div>
+  </div>
+  <div class="event-detail-list-item-modal-participation__section">
+    <div class="event-detail-list-item-modal-participation__section__item">
+      <mat-checkbox [(ngModel)]="informationPageRead">
+        J'ai bien lu <a [routerLink]="'/information'">la page d'information</a>
+      </mat-checkbox>
+    </div>
+    <div class="event-detail-list-item-modal-participation__section__item">
+      <app-button label="Je m'inscrit comme bénévole"
+                  class="event-detail-list-item-modal-participation__section__item__button"
+                  [disabled]="!informationPageRead || this.event.isFullVolunteer"
+                  (click)="createParticipation(false)"></app-button>
+      <app-button label="Je m'inscrit comme remplacant"
+                  class="event-detail-list-item-modal-participation__section__item__button"
+                  [disabled]="!informationPageRead || this.event.isFullVolunteerStandby"
+                  (click)="createParticipation(true)"></app-button>
+    </div>
+  </div>
+</app-modal>

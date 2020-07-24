@@ -1,0 +1,40 @@
+<div class="schedule-section-card" *ngIf="participation">
+  <div class="schedule-section-card__title">
+    {{ participation.activityName }}
+  </div>
+  <div class="schedule-section-card__date">
+    {{ participation.readableStartDate }}
+  </div>
+  <div class="schedule-section-card__time">
+    {{ participation.readableStartTime }} à {{ participation.readableEndTime }}
+  </div>
+  <div class="schedule-section-card__place-name">
+    {{ participation.placeName }}
+  </div>
+  <div class="schedule-section-card__place-address">
+    {{ participation.addressLines }},<br/>
+    {{ participation.event.cell.city }}, {{ participation.event.cell.postal_code }}, {{ participation.event.cell.state_province }}
+  </div>
+  <div class="schedule-section-card__footer">
+    <div class="schedule-section-card__footer__duration">
+      {{ participation.readableDuration }}
+    </div>
+
+    <div class="schedule-section-card__footer__delete" *ngIf="canDelete" [appOpenModal]="deleteModalName">
+      <i class="fa fa-trash"></i>
+    </div>
+  </div>
+</div>
+
+<app-modal *ngIf="deleteModalName"
+           [name]="deleteModalName"
+           maxWidth="900px">
+  <div class="schedule-section-card-modal-delete">
+    <div>
+      Êtes-vous sûr de vouloir annuler votre participation à cet événement ?
+    </div>
+    <div>
+      <app-button label="Annuler ma participation" type="danger" (click)="deleteParticipation()"></app-button>
+    </div>
+  </div>
+</app-modal>

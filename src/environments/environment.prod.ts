@@ -1,18 +1,3 @@
 export const environment = {
-  production: true,
-  default_language: 'fr',
-  url_base_api: 'http://localhost:8000',
-  paths_api: {
-    activation: '/users/activate',
-    authentication: '/authentication',
-    cells: '/volunteer/cells',
-    cycles: '/volunteer/cycles',
-    events: '/volunteer/events',
-    participations: '/volunteer/participations',
-    profile: '/profile',
-    tasktypes: '/volunteer/tasktypes',
-    users: '/users',
-    reset_password: '/reset_password',
-    change_password: '/change_password'
-  }
+  production: true
 };

@@ -1,20 +1,29 @@
-<nav class="navbar" [class.responsive]="responsive">
-  <a class="title title--main navbar__item navbar__item--brand" routerLink="/" (click)="closeResponsiveNavbar()">
-    {{ organizationName }}
-  </a>
-  <div class="navbar__left" (click)="closeResponsiveNavbar()">
-    <a class="navbar__item" routerLink="/index" *ngIf="isAuthenticated()">Inscription</a>
-    <a class="navbar__item" routerLink="/schedule" *ngIf="isAuthenticated()">Mon horaire</a>
-    <a class="navbar__item" routerLink="/page/information">Informations</a>
-    <a class="navbar__item" routerLink="/page/contact">Contact</a>
-    <a class="navbar__item" routerLink="/mobile">Application mobile</a>
-    <a class="navbar__item" routerLink="/admin" [appHasPermissions]="['access_admin_panel']" *ngIf="isAuthenticated()">Administration</a>
+<div class="header">
+  <div class="header__section">
+    <img class="header__section__item header__section__item--logo" [routerLink]="'/'" src="../../../assets/images/logo.png"/>
+    <div class="header__section__item"  [routerLink]="'/cells'">
+      Inscription
+    </div>
+    <div class="header__section__item" [routerLink]="'/schedule'">
+      Mon horaire
+    </div>
+    <div class="header__section__item" [routerLink]="'/page/information'">
+      Information
+    </div>
+    <div class="header__section__item" [routerLink]="'/page/contact'">
+      Contact
+    </div>
   </div>
-  <div class="navbar__right" (click)="closeResponsiveNavbar()">
-    <a class="navbar__item" *ngIf="isAuthenticated()" routerLink="/logout">Déconnexion</a>
-    <a class="navbar__item" *ngIf="!isAuthenticated()" routerLink="/login">Connexion</a>
+  <div class="header__section">
+    <div class="header__section__item"  [routerLink]="'/profile'">
+      <i class="fas fa-user-circle"></i>
+      Profil
+    </div>
+    <div class="header__section__item"  [routerLink]="'/mobile'">
+      <i class="fas fa-mobile-alt"></i>
+    </div>
+    <div class="header__section__item"  [routerLink]="'/logout'">
+      <i class="fas fa-sign-out-alt"></i>
+    </div>
   </div>
-  <span class="navbar__item navbar__item--icon" (click)="toggleResponsiveNavbar()">
-    &#9776;
-  </span>
-</nav>
+</div>

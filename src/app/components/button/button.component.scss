@@ -1,0 +1,28 @@
+@import '../../../assets/scss/theme';
+
+.button {
+  display: inline-block;
+  background-color: $instance-color;
+  color: white;
+  padding: 10px 40px;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px lightgrey;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+
+  &--danger {
+    background-color: $warning;
+  }
+
+  &--disabled {
+    background-color: grey;
+
+    &:hover {
+      cursor: default;
+    }
+  }
+}

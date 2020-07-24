@@ -1,0 +1,16 @@
+@import '../../../assets/scss/theme';
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__section {
+    border-bottom: 1px solid $instance-color;
+    padding: 50px 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}

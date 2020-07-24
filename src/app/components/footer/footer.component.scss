@@ -1,16 +1,19 @@
-@import "../../../assets/scss/_theme.scss";
+@import '../../../assets/scss/theme';
 
 .footer {
-  min-height: 30px;
-  color: white;
-  background-color: $dark;
-  text-align: center;
-  font-size: 18px;
-  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  border-top: 3px solid $main-color;
+  background-color: $light-color;
 
-  &__link {
-    color: white;
-    text-decoration: underline;
-    font-weight: 700;
+  &__section {
+    &--brand {
+      color: $main-color;
+      font-family: $main-font;
+      font-size: 30px;
+      line-height: 50px;
+      padding: 0 30px;
+    }
   }
 }
