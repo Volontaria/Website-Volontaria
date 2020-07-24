@@ -1,8 +1,6 @@
-[![Build Status](https://travis-ci.org/Volontaria/Website-Volontaria.svg?branch=develop)](https://travis-ci.org/Volontaria/Website-Volontaria)
-[![NSP Status](https://nodesecurity.io/orgs/volontaria/projects/37573e46-887f-490e-a49b-2393d5acca94/badge)](https://nodesecurity.io/orgs/volontaria/projects/37573e46-887f-490e-a49b-2393d5acca94)
-# Volontaria
+# WebsiteVolontaria
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
 
 ## Development server
 
@@ -14,7 +12,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 

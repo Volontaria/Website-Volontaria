@@ -1,67 +1,17 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import {ApiRestGenericLibService} from './api-rest-generic-lib.service';
+import {HttpClient} from '@angular/common/http';
+import {Event} from '../models/event';
 
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import GlobalService from './globalService';
-import {AuthenticationService} from './authentication.service';
-import {environment} from '../../environments/environment';
-import {User} from '../models/user';
+@Injectable({
+  providedIn: 'root'
+})
+export class EventService extends ApiRestGenericLibService<Event> {
+  EVENT_URL_BASE = `${this.apiUrl}/events`;
 
-
-@Injectable()
-export class EventService extends GlobalService {
-
-  url_events = environment.url_base_api + environment.paths_api.events;
-
-  constructor(public http: HttpClient,
-              private authenticationService: AuthenticationService) {
-    super();
-  }
-
-  getEvents(filters: {name: string, value: any}[] = null): Observable<any> {
-    const headers = this.getHeaders();
-    let params = new HttpParams();
-    if (filters != null) {
-      for (const filter of filters) {
-        if (filter.name === 'cell') {
-          params = params.set('cell', filter.value);
-        }
-        if (filter.name === 'cycle') {
-          params = params.set('cycle', filter.value);
-        }
-        if (filter.name === 'volunteers') {
-          params = params.set('volunteers', filter.value);
-        }
-      }
-    }
-    return this.http.get<any>(
-      this.url_events,
-      {headers: headers, params: params}
-    );
-  }
-
-  getEvent(id: number): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.get<any>(
-      this.url_events + '/' + id,
-      {headers: headers}
-    );
-  }
-
-  createEvent(body: string): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.post<any>(
-      this.url_events,
-      body,
-      {headers: headers}    );
-  }
-
-  updateEvent(id: number, data: any) {
-    const headers = this.getHeaders();
-    return this.http.patch<any>(
-      this.url_events + '/' + id,
-      data,
-      {headers: headers}    );
+  constructor(public http: HttpClient) {
+    super(http);
+    this.c = Event;
+    this.url = this.EVENT_URL_BASE;
   }
 }
-

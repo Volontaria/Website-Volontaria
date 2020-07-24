@@ -1,0 +1,34 @@
+@import '../../../assets/scss/theme';
+
+.cells {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    margin-top: 100px;
+    min-width: 600px;
+
+    &__title {
+      display: inline-block;
+      border-bottom: 1px solid $instance-color;
+    }
+
+    &__table {
+      margin-top: 30px;
+      width: 100%;
+    }
+  }
+}
+
+.mat-row {
+  &:nth-child(even) {
+    background-color: $background;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $instance-light-color;
+  }
+}

@@ -1,0 +1,37 @@
+<div class="event-calendar">
+  <div class="event-calendar__header event-calendar__header--year">
+    <div class="event-calendar__header__item"
+         *ngFor="let year of YEARS"
+         (click)="changeYear(year)"
+         [ngClass]="{'event-calendar__header__item--active': isSelectedYear(year)}">
+      {{ year }}
+    </div>
+  </div>
+  <div class="event-calendar__header">
+    <div class="event-calendar__header__item"
+         *ngFor="let month of MONTHS"
+         (click)="changeMonth(month.id)"
+         [ngClass]="{'event-calendar__header__item--active': isSelectedMonth(month.id)}">
+      {{ month.name }}
+    </div>
+  </div>
+  <div class="event-calendar__weekdays">
+    <div class="event-calendar__weekdays__item"
+         *ngFor="let day of DAYS"
+         [ngClass]="{'event-calendar__header__item--active': isSelectedDay(day.id)}">
+      {{ day.name }}
+    </div>
+  </div>
+  <div class="event-calendar__preview">
+    <div (click)="newSelectDate(day)"
+         *ngFor="let day of calendar"
+         [ngClass]="{
+             'event-calendar__preview__day--filled': isFilledDate(day.date),
+             'event-calendar__preview__day--selected': isSelectedDate(day.date),
+             'event-calendar__preview__day--not-current-month': !day.currentMonth
+           }"
+         class="event-calendar__preview__day">
+      {{ day.date | date:'d' }}
+    </div>
+  </div>
+</div>

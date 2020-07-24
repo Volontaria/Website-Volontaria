@@ -2,26 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-default-layout',
-  template: `
-    <div id="container">
-      <div id="header">
-        <app-header></app-header>
-      </div>
-      <div id="content">
-        <router-outlet></router-outlet>
-      </div>
-      <div id="footer">
-        <app-footer></app-footer>
-      </div>
-    </div>
-  `,
-  styles: []
+  templateUrl: './default-layout.component.html',
+  styleUrls: ['./default-layout.component.scss']
 })
 export class DefaultLayoutComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

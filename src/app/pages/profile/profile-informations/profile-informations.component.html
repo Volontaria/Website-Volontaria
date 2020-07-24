@@ -1,0 +1,38 @@
+<div class="profile-informations">
+  <div class="profile-informations__section">
+    <img class="profile-informations__section__avatar" src="../../../../assets/images/avatar.jpg" />
+  </div>
+  <div class="profile-informations__section">
+    <form class="profile-informations__section__form"
+          *ngIf="profileForm"
+          [formGroup]="profileForm">
+      <div class="profile-informations__section__form__collateral-fields">
+        <mat-form-field appearance="fill" class="profile-informations__section__form__input">
+          <input matInput
+                 placeholder="Prenom"
+                 type="text"
+                 [formControlName]="'first_name'"/>
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="profile-informations__section__form__input">
+          <input matInput
+                 placeholder="Nom"
+                 type="text"
+                 [formControlName]="'last_name'"/>
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="fill" class="profile-informations__section__form__input">
+        <input matInput
+               placeholder="Email"
+               type="email"
+               [formControlName]="'email'"/>
+        <mat-error></mat-error>
+      </mat-form-field>
+      <mat-error *ngFor="let formError of profileForm.errors | keyvalue">
+        {{ formError.value }}
+      </mat-error>
+    </form>
+    <app-button label="Modification du profil" (click)="changeProfile()"></app-button>
+  </div>
+</div>

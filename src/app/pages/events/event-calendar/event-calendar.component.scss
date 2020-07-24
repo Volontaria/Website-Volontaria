@@ -1,0 +1,92 @@
+@import '../../../../assets/scss/theme';
+
+.event-calendar {
+  &__header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+
+    &--year {
+      justify-content: flex-start;
+    }
+
+    &__item {
+      font-size: 16px;
+      font-weight: 300;
+      margin: 0 6px;
+      padding: 3px;
+      text-align: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &--active {
+        background-color: $instance-light-color;
+
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  &__weekdays {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+
+    &__item {
+      width: 70px;
+      font-size: 12px;
+      font-weight: 300;
+      padding: 5px;
+      text-align: center;
+
+      &--active {
+        background-color: $instance-light-color;
+      }
+    }
+  }
+
+  &__preview {
+    display: grid;
+    grid-template-columns: repeat(7, 60px);
+    grid-template-rows: repeat(7, 60px);
+    grid-gap: 20px;
+
+    &__day {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 6px;
+      font-size: 30px;
+      font-weight: 300;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &--selected {
+        background-color: $instance-light-color;
+
+        &:hover {
+          cursor: default;
+        }
+      }
+
+      &--not-current-month {
+        color: darkgray;
+      }
+
+      &--filled {
+        width:74px;
+        height: 74px;
+        margin: 2px;
+        border: 1px solid $instance-color;
+      }
+    }
+  }
+}

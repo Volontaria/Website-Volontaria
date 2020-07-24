@@ -1,0 +1,101 @@
+@import '../../../../assets/scss/theme';
+
+.event-detail-list-item{
+  transition: 0.4s;
+  padding: 25px;
+  min-width: 180px;
+  max-width: 180px;
+  box-shadow: 3px 3px 10px #A2A1A1;
+
+  &:hover {
+    box-shadow: 3px 3px 25px #A2A1A1;
+    padding: 25px 30px;
+
+    .event-detail-list-item__footer__button {
+      opacity: 1;
+    }
+  }
+
+  &--inactive {
+    background-color: $background;
+
+    &:hover {
+      box-shadow: 3px 3px 10px #A2A1A1;
+      padding: 25px;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    line-height: 27px;
+    text-align: center;
+  }
+
+  &__time {
+    font-size: 16px;
+    margin-top: 35px;
+    text-align: center;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+
+    &__button {
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    &__note {
+      margin: 8px 0;
+    }
+
+    &__duration {
+      font-size: 30px;
+    }
+  }
+}
+
+.event-detail-list-item-modal-participation {
+  &__title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &__section {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &:last-child {
+      margin-bottom: 0;
+      margin-top: 60px;
+    }
+
+    &__item {
+      flex: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &__important {
+        margin: 10px 0;
+        font-size: 20px;
+      }
+
+      &__button {
+        display: block;
+        padding: 20px 0;
+        border-bottom: 1px solid $instance-color;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}

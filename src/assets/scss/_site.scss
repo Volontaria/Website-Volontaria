@@ -1,45 +1,7 @@
-/*****
-Please use this file to style all basic item like link (a),
-paragraph (p) or list (ul, ol)
-*****/
-
-html, body {
-  font-family: 'Titillium Web', sans-serif;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100vh;
-  background-color: $main-background;
-  font-size: 14px;
-}
-
-*, ::after, ::before {
-  box-sizing: border-box;
-}
-
-h2, h3, h4 {
-    font-weight: 400;
-    margin: 10px 0;
-}
-
-h2 {
-    font-size: 30px;
-}
-
-h3 {
-    font-size: 24px;
-}
-
-h4 {
-    font-size: 20px;
-}
-
-hr {
-    border: 1px solid $main-border;
+body {
+  font-family: "Open Sans";
 }
 
 a {
-  text-decoration: none;
   color: $main-color;
-  font-weight: 600;
 }
