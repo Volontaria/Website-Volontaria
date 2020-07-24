@@ -1,29 +1,15 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {AuthenticationService} from '../../services/authentication.service';
-import {environment} from '../../../environments/environment';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['header.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  responsive = false;
-  organizationName = environment.organisation_name;
+  constructor() { }
 
-  constructor(private authenticationService: AuthenticationService) { }
-
-  isAuthenticated() {
-    return this.authenticationService.isAuthenticated();
+  ngOnInit(): void {
   }
 
-  toggleResponsiveNavbar() {
-    this.responsive = !this.responsive;
-  }
-
-  closeResponsiveNavbar() {
-    this.responsive = false;
-  }
 }

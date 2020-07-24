@@ -1,113 +1,128 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import GlobalService from './globalService';
-import { Cell } from '../models/cell';
+import { tap } from 'rxjs/operators';
+import { IUserRegister, User } from '../models/user';
+import { GlobalService } from './global.service';
+import { ProfileService } from './profile.service';
 
 interface AuthenticationResponse {
-  token: string;
+  key: string;
+}
+
+export interface IChangePassword {
+  old_password: string;
+  new_password1: string;
+  new_password2: string;
 }
 
 @Injectable()
 export class AuthenticationService extends GlobalService {
+  TOKEN_KEY = 'token';
 
-  url_authentication = environment.url_base_api + environment.paths_api.authentication;
-  url_change_password = environment.url_base_api + environment.paths_api.change_password;
-  url_reset_password = environment.url_base_api + environment.paths_api.reset_password;
+  urlAuthentication = `${this.apiUrl}/rest-auth/login/`;
+  urlLogout = `${this.apiUrl}/rest-auth/logout/`;
+  urlRegister = `${this.apiUrl}/rest-auth/registration/`;
+  urlResetPassword = `${this.apiUrl}/rest-auth/password/reset/`;
+  urlResetPasswordConfirm = `${this.apiUrl}/rest-auth/password/reset/confirm/`;
+  urlPasswordChange = `${this.apiUrl}/rest-auth/password/change/`;
 
-  constructor(public http: HttpClient) {
+
+  constructor(public http: HttpClient, public profileService: ProfileService) {
     super();
   }
 
-  authenticate(login: string, password: string): Observable<AuthenticationResponse> {
-    const headers = this.getHeaders();
-    return this.http.post<AuthenticationResponse>(
-      this.url_authentication,
-      {
-        login: login,
-        password: password
-      },
-      {headers: headers}
-    );
+  register(registerData: IUserRegister): Observable<User> {
+    const headers = GlobalService.getHeaders();
+
+    return this.http.post<User>(this.urlRegister, registerData, { headers });
   }
 
-  resetPassword(email: string): Observable<any> {
-    const headers = this.getHeaders();
+  login(email: string, password: string): Observable<AuthenticationResponse> {
+    const headers = GlobalService.getHeaders();
+    return this.http
+      .post<AuthenticationResponse>(
+        this.urlAuthentication,
+        {
+          email,
+          password,
+        },
+        { headers }
+      )
+      .pipe(
+        tap((response: AuthenticationResponse) => {
+          this.setToken(response.key);
+          this.profileService.retrieveProfile().subscribe();
+        })
+      );
+  }
+
+  logout(): Observable<any> {
+    const headers = GlobalService.getHeaders();
+    return this.http
+      .post<any>(`${this.urlLogout}`, { headers })
+      .pipe(tap(() => this.clean()));
+  }
+
+  changePassword(data: IChangePassword): Observable<any> {
+    const headers = GlobalService.getHeaders();
+    return this.http.post<any>(this.urlPasswordChange, data, {
+      headers,
+    });
+  }
+
+  askForResetPassword(email: string): Observable<any> {
+    const headers = GlobalService.getHeaders();
     return this.http.post<any>(
-      this.url_reset_password,
+      this.urlResetPassword,
       {
-        username: email
+        email,
       },
-      {headers: headers}
+      { headers }
     );
   }
 
-  changePassword(token: string, password: string): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.post<any>(
-      this.url_change_password,
-      {
-        token: token,
-        new_password: password
-      },
-      {headers: headers}
-    );
+  resetPassword(
+    newPassword1: string,
+    newPassword2: string,
+    uid: string,
+    token: string
+  ): Observable<any> {
+    const headers = GlobalService.getHeaders();
+
+    const body = {
+      new_password1: newPassword1,
+      new_password2: newPassword2,
+      uid,
+      token,
+    };
+    return this.http
+      .post<any>(this.urlResetPasswordConfirm, body, { headers })
+      .pipe(
+        tap(() => {
+          this.logout().subscribe();
+        })
+      );
   }
 
-  isAuthenticated() {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      return true;
-    }
-
-    return false;
+  isAuthenticated(): boolean {
+    return !!this.getToken();
   }
 
-  isAdmin() {
-    return this.getProfile().is_superuser;
+  setToken(token: string): void {
+    localStorage.setItem(this.TOKEN_KEY, token);
   }
 
-  isManager(id_cell: number = null) {
-    const cells: Cell[] = this.getProfile().managed_cell.map(c => new Cell(c));
-    if (id_cell) {
-      for (const cell in cells) {
-        if (cells.hasOwnProperty(cell)) {
-          if (cell['id'] === id_cell) {
-            return true;
-          }
-        }
-      }
-    } else {
-      return !(cells.length === 0);
-    }
-    return false;
+  getToken(): string {
+    return localStorage.getItem(this.TOKEN_KEY);
   }
 
-  getProfile() {
-    return JSON.parse(localStorage.getItem('userProfile'));
+  removeToken(): void {
+    localStorage.removeItem(this.TOKEN_KEY);
   }
 
-  hasPermissions(permissions: string[]) {
-    // Shortcut for admin only
-    if (this.isAdmin()) {
-      return true;
-    }
-
-    // Define here all the default permissions
-    const list_permissions: string[] = [];
-
-    if (this.isManager()) {
-      list_permissions.push('access_admin_panel');
-    }
-
-    for (const permission in permissions) {
-      if (list_permissions.indexOf(permissions[permission]) === -1) {
-        return false;
-      }
-    }
-    return true;
+  clean(): void {
+    this.removeToken();
+    this.profileService.removeProfile();
   }
 }

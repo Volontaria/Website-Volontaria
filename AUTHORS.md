@@ -1,2 +1,0 @@
-Jerome Celle
-Pablo Jimenez

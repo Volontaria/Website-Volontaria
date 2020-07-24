@@ -1,0 +1,17 @@
+@import '../../../../assets/scss/theme';
+
+.event-detail-preview {
+  box-shadow: 3px 3px 10px #A2A1A1;
+  border-radius: 2px;
+  padding: 20px;
+  max-width: 900px;
+
+  &__section {
+    display: block;
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

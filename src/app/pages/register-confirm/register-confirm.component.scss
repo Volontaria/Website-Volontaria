@@ -1,0 +1,55 @@
+@import '../../../assets/scss/theme';
+
+.register-confirm {
+  background-color: #EFEFEF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+
+  &__logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-family: $main-font;
+    font-size: 30px;
+    line-height: 50px;
+    color: $main-color;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    border: 5px solid $instance-color;
+    padding: 40px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    max-width: 750px;
+    margin: auto;
+    background-color: white;
+    text-align: center;
+
+    &__title {
+      font-size: 18px;
+      margin: 40px;
+    }
+
+    &__description {
+      font-size: 12px;
+    }
+
+    &__footer {
+      margin-top: 30px;
+      font-size: 16px;
+    }
+  }
+
+  &__footer {
+    text-align: center;
+    margin: 30px;
+  }
+}

@@ -1,0 +1,88 @@
+@import '../../../../../assets/scss/theme';
+
+.schedule-section-card {
+  padding: 25px;
+  box-shadow: 3px 3px 10px #A2A1A1;
+  width: 205px;
+  transition: 0.4s;
+  transition-delay: 0.4s;
+
+  &:hover {
+    box-shadow: 3px 3px 25px #A2A1A1;
+    padding: 25px 35px;
+
+    .schedule-section-card__footer__delete {
+      opacity: 1;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    line-height: 27px;
+    text-align: center;
+  }
+
+  &__date {
+    margin-top: 30px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  &__time {
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  &__place-name {
+    margin-top: 40px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  &__place-address {
+    margin-top: 10px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  &__footer {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    &__delete {
+      font-size: 30px;
+      color: $warning;
+      opacity: 0;
+      transition: 0.4s;
+      transition-delay: 0.4s;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &__duration {
+      font-size: 30px;
+      text-align: right;
+    }
+  }
+}
+
+.schedule-section-card-modal-delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  & > * {
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

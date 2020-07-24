@@ -1,39 +1,17 @@
 import { Injectable } from '@angular/core';
-import GlobalService from './globalService';
+import {ApiRestGenericLibService} from './api-rest-generic-lib.service';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {CkeditorPage} from "../models/ckeditorPage";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CKEditorPageService extends GlobalService  {
-
-  urlCKEditorPage = environment.url_base_api + environment.paths_api.urlCKEditorPage;
+export class CkeditorPageService extends ApiRestGenericLibService<CkeditorPage> {
+  CKEDITOR_PAGE_URL_BASE = `${this.apiUrl}/page`;
 
   constructor(public http: HttpClient) {
-    super();
-  }
-
-  get(keyPage: string): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.get<any>(
-      this.urlCKEditorPage + '/?key=' + keyPage,
-      {headers: headers}
-    ).pipe(
-      map((data) => {
-        return data.results.length > 0 ? data.results[0] : null;
-      })
-    );
-  }
-
-  update(url: string, ckEditorPage): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.patch<any>(
-      url,
-      ckEditorPage,
-      {headers: headers}
-    );
+    super(http);
+    this.c = CkeditorPage;
+    this.url = this.CKEDITOR_PAGE_URL_BASE;
   }
 }

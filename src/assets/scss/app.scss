@@ -1,37 +1,7 @@
 /*****
 Import all basic file
 *****/
-@import "_easings.scss";
-@import "_theme.scss";
-@import "_site.scss";
-@import "_layout.scss";
-@import "_fonts.scss";
-
-/*****
-Import components
-
-example:
-@import "components/_buttons.scss";
-*****/
-@import "components/_button.scss";
-@import "components/_card.scss";
-@import "components/_table.scss";
-@import "components/_alert.scss";
-@import "components/_title.scss";
-@import "components/_link.scss";
-
-@import "components/forms/_textarea.scss";
-@import "components/forms/_input.scss";
-@import "components/forms/_select.scss";
-@import "components/forms/form-group";
-@import "components/forms/form-label";
-@import "components/forms/form-validation";
-
-@import "components/calendar/_calendar.scss";
-
-/*****
-Import pages
-
-example:
-@import "pages/_home.scss";
-*****/
+@import "font";
+@import "theme";
+@import "site";
+@import "angular-material-theme";

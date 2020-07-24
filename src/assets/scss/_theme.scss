@@ -1,50 +1,15 @@
-/*****
-Please use this file for all your constant
+/*
+Here are some variable that need to be changes for each instances
+ */
+$instance-color: #639F43;
+$instance-light-color: lighten(#639F43, 40);
 
-example :
-$color-theme-green: #00d59c;
-*****/
+/*
+Below are constant of Volontaria
+ */
 
-$dark: #5E5E5E;
-
-/* Use for the main nav */
-$main-color: #2F4050;
-$secondary-color: #f8f5bd;
-$main-color-dark: darken($main-color, 10);
-
-$main-background: #F8FBF4;
-$main-background-dark: #DFDFDF;
-
-$main-border: lightgrey;
-
-$background-color-warning: #fdffd5;
-$color-warning: #cd8535;
-$color-danger: #C82333;
-$color-success: #42A948;
-
-$main-hover: lighten($main-color, 30);
-
-$color-neutral-border: #D6D8DB;
-$color-neutral-background: #E2E3E5;
-$color-neutral-text: #393E42;
-
-$color-info-border: #B8DAFF;
-$color-info-background: #CCE5FF;
-$color-info-text: #034386;
-
-$color-danger-border: #f5c6cb;
-$color-danger-background: #F8D7DA;
-$color-danger-background-hover: darken($color-danger-background, 50%);
-$color-danger-text: #975057;
-$color-danger-text-hover: white;
-
-$color-warning-border: #FFEEBA;
-$color-warning-background: #FFF3CD;
-$color-warning-background-hover: darken($color-warning-background, 50%);
-$color-warning-text: #88680a;
-$color-warning-text-hover: white;
-
-$pink: #E27795;
-$purple: #A285C5;
-$green: #69CAB6;
-$dark-purple: #8689a7;
+$main-font: 'Pacifico', cursive;
+$main-color: #1D2344;
+$light-color: #1D234466;
+$warning: #C82333;
+$background: #EFEFEF;

@@ -1,0 +1,10 @@
+@import '../../../assets/scss/theme';
+
+.schedule {
+  &__section {
+    display: block;
+    padding: 60px 20px;
+    max-width: 1600px;
+    margin: auto;
+  }
+}

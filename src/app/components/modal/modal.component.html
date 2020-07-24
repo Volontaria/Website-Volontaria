@@ -1,0 +1,16 @@
+<div
+  class="modal-component"
+  (click)="clickOverlay($event)"
+  [style.display]="!show ? 'none' : 'block'">
+  <div class="modal-component__content">
+    <div class="modal-component__content__reveal" [style.width]="maxWidth">
+      <div class="modal-component__content__reveal__header">
+        <i class="fa fa-times modal-component__content__reveal__header__cancel"
+           (click)="close()"></i>
+      </div>
+      <div class="modal-component__content__reveal__content" #modalContent>
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

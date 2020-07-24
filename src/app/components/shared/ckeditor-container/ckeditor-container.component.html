@@ -1,8 +1,0 @@
-<div *ngIf="!ckEditorPage">
-  <i class="fas fa-3x fa-spinner fa-spin"></i>
-</div>
-<ckeditor *ngIf="ckEditorPage" [editor]="Editor"
-          [disabled]="disableEditor"
-          [(ngModel)]="ckEditorPage.data"
-          [config]="config">
-</ckeditor>

@@ -1,0 +1,62 @@
+@import '../../../../assets/scss/theme';
+
+.schedule-section {
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__preview {
+      color: $instance-color;
+      font-size: 30px;
+      margin-right: 50px;
+
+      &--hidden {
+        visibility: hidden;
+      }
+    }
+
+    &__content {
+      overflow-x: hidden;
+      max-width: calc(295px * 4);
+
+      &__items {
+        display: flex;
+        position: relative;
+        transition: 0.4s;
+        right: 0;
+
+        &__item {
+          display: block;
+          margin: 20px;
+        }
+      }
+    }
+
+    &__next {
+      color: $instance-color;
+      font-size: 30px;
+      margin-left: 50px;
+
+      &--hidden {
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+
+    &__text {
+      padding: 25px;
+      background-color: $instance-light-color;
+    }
+  }
+}

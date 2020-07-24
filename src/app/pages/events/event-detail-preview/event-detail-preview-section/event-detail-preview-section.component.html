@@ -1,0 +1,20 @@
+<div class="event-detail-preview-section">
+  <div class="event-detail-preview-section__column">
+    <div class="event-detail-preview-section__column__header">
+      <div class="event-detail-preview-section__column__header__title">
+        {{ title }}
+      </div>
+      <div class="event-detail-preview-section__column__header__max">
+        {{ maximum }}
+      </div>
+    </div>
+    <div class="event-detail-preview-section__column__progress-bar">
+          <span [ngStyle]="{'width': percentage + '%', 'background-color': color}" >
+            {{ value }}
+          </span>
+    </div>
+  </div>
+  <div class="event-detail-preview-section__title">
+    {{ status }}
+  </div>
+</div>
