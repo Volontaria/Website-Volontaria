@@ -85,6 +85,11 @@
       &__item {
         margin-bottom: 20px;
 
+        &--logo {
+          max-height: 100px;
+          max-width: 100px;
+        }
+
         &:last-child {
           margin-bottom: 0;
         }
