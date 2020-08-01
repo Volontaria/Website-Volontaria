@@ -9,6 +9,6 @@ import {environment} from "../environments/environment";
 })
 export class AppComponent {
   constructor (private titleService: Title) {
-    this.titleService.setTitle('Volontaria - ' + environment.organisation_name);
+    this.titleService.setTitle('Volontaria - ' + environment.organization_name);
   }
 }

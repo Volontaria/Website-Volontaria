@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   url_base_api: 'http://localhost:8000',
   default_language: 'fr',
+  organization_name: 'Volontaria',
 };
 
 /*

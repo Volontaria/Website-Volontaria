@@ -33,6 +33,14 @@ export class Participation extends BaseModel implements Deserializable {
     return this.event.task_type.name;
   }
 
+  get type(): string {
+    if (this.is_standby) {
+      return 'Remplacant';
+    } else {
+      return 'Bénévole';
+    }
+  }
+
   get readableStartDate(): string {
     return this.event.readableStartDate;
   }

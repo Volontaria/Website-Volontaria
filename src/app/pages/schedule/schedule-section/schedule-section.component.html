@@ -23,7 +23,7 @@
       <i class="fas fa-chevron-right"></i>
     </div>
   </div>
-  <div class="schedule-section__empty">
+  <div class="schedule-section__empty" *ngIf="!participations || participations && !participations.length">
     <div class="schedule-section__empty__text">
       Aucune participation n'est prévu pour le moment. <a href="/cells">Inscrivez vous!</a>
     </div>
