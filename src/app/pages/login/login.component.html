@@ -7,6 +7,7 @@
       <img
         class="login-page__section__content__logo"
         src="../../../assets/images/logo.png"
+        alt="website logo"
       />
 
       <p>Connecte toi è ton compte pour pouvoir t'inscrire un créneaux de bénévolat.</p>
@@ -16,19 +17,13 @@
         [formGroup]="signinForm"
         (ngSubmit)="signin()"
       >
-        <mat-form-field
-          appearance="fill"
-          class="login-page__section__content__form__input"
-        >
+        <mat-form-field appearance="fill">
           <input matInput placeholder="Email" type="email" [formControlName]="'email'" />
           <mat-error *ngIf="signinForm.controls.email.hasError('api')">
             {{ signinForm.controls.email.getError('api') }}
           </mat-error>
         </mat-form-field>
-        <mat-form-field
-          appearance="fill"
-          class="login-page__section__content__form__input"
-        >
+        <mat-form-field appearance="fill">
           <input
             matInput
             placeholder="Mot de passe"
@@ -64,6 +59,7 @@
       <img
         class="login-page__section__content__logo"
         src="../../../assets/images/logo.png"
+        alt="website logo"
       />
 
       <p>
@@ -76,19 +72,13 @@
         [formGroup]="signupForm"
         (ngSubmit)="signup()"
       >
-        <mat-form-field
-          appearance="fill"
-          class="login-page__section__content__form__input"
-        >
+        <mat-form-field appearance="fill">
           <input matInput placeholder="Email" type="email" [formControlName]="'email'" />
           <mat-error *ngIf="signupForm.controls.email.hasError('api')">
             {{ signupForm.controls.email.getError('api') }}
           </mat-error>
         </mat-form-field>
-        <mat-form-field
-          appearance="fill"
-          class="login-page__section__content__form__input"
-        >
+        <mat-form-field appearance="fill">
           <input
             matInput
             placeholder="Mot de passe"
@@ -99,10 +89,7 @@
             {{ signupForm.controls.password1.getError('api') }}
           </mat-error>
         </mat-form-field>
-        <mat-form-field
-          appearance="fill"
-          class="login-page__section__content__form__input"
-        >
+        <mat-form-field appearance="fill">
           <input
             matInput
             placeholder="Confirmation du mot de passe"
@@ -114,10 +101,7 @@
           </mat-error>
         </mat-form-field>
         <div class="login-page__section__content__form__collateral-fields">
-          <mat-form-field
-            appearance="fill"
-            class="login-page__section__content__form__input"
-          >
+          <mat-form-field appearance="fill">
             <input
               matInput
               placeholder="Prenom"
@@ -128,10 +112,7 @@
               {{ signupForm.controls.first_name.getError('api') }}
             </mat-error>
           </mat-form-field>
-          <mat-form-field
-            appearance="fill"
-            class="login-page__section__content__form__input"
-          >
+          <mat-form-field appearance="fill">
             <input
               matInput
               placeholder="Nom"

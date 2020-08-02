@@ -10,9 +10,9 @@ export class ModalComponent implements OnInit {
   @Input() name: string;
   @Input() autoClose = false;
   @Input() show = false;
-  @Input() maxWidth: string = '600px';
+  @Input() maxWidth = '600px';
 
-  @Output() onClose: EventEmitter<any> = new EventEmitter();
+  @Output() modalClose: EventEmitter<any> = new EventEmitter();
 
   constructor(private modalService: ModalService) {}
 
@@ -26,13 +26,13 @@ export class ModalComponent implements OnInit {
     if (this.show) {
       document.addEventListener('keyup', this.escapeListener);
     } else {
-      this.onClose.emit(null);
+      this.modalClose.emit(null);
       document.removeEventListener('keyup', this.escapeListener);
     }
   }
 
   private escapeListener = (event: KeyboardEvent) => {
-    if (event.which === 27 || event.keyCode === 27) {
+    if (event.key === 'Escape') {
       this.show = false;
     }
   };

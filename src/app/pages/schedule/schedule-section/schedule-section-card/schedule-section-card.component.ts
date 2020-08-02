@@ -13,7 +13,7 @@ export class ScheduleSectionCardComponent implements OnInit {
   @Input() participation: Participation;
   @Input() canDelete = false;
 
-  @Output() onDeletion: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() cardDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   deleteModalName: string;
 
@@ -28,14 +28,14 @@ export class ScheduleSectionCardComponent implements OnInit {
   }
 
   deleteParticipation(): void {
-    this.participationService.delete(this.participation.url).subscribe((data) => {
+    this.participationService.delete(this.participation.url).subscribe(() => {
       this.snackBar.open('Votre participation a été supprimée', 'X', {
         duration: 10000,
       });
 
       this.modalService.get(this.deleteModalName).close();
 
-      this.onDeletion.emit(true);
+      this.cardDeleted.emit(true);
     });
   }
 }

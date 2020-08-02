@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -13,13 +13,13 @@ interface InstanceConfig {
   styleUrls: ['./promotion-mobile.component.scss'],
 })
 export class PromotionMobileComponent {
-  APIUrl = environment.url_base_api;
+  apiUrl = environment.url_base_api;
 
   instanceConfig: string;
 
   constructor(private authenticationService: AuthenticationService) {
     const instanceConfig: InstanceConfig = {
-      instanceAPIUrl: this.APIUrl,
+      instanceAPIUrl: this.apiUrl,
       token: this.authenticationService.getToken(),
     };
     this.instanceConfig = JSON.stringify(instanceConfig);

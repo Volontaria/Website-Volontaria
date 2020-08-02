@@ -32,7 +32,7 @@ export class CellsComponent implements OnInit {
     );
     this.cellList$.subscribe((cells: Cell[]) => {
       if (cells.length === 1) {
-        this.router.navigate(['/events/' + cells[0].id]);
+        this.router.navigate(['/events/' + cells[0].id]).then();
       } else {
         this.cellList = new MatTableDataSource(cells);
       }

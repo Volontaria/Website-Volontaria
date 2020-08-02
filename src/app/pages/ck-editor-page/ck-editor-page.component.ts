@@ -23,7 +23,7 @@ export class CkEditorPageComponent implements OnDestroy {
   @ViewChild(forwardRef(() => CkeditorContainerComponent), { static: false })
   private cKEditorContainerComponent: CkeditorContainerComponent;
 
-  CKEditorKey: string;
+  cKEditorKey: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -46,10 +46,10 @@ export class CkEditorPageComponent implements OnDestroy {
   }
 
   refreshCKEditorContent() {
-    this.CKEditorKey = null;
+    this.cKEditorKey = null;
     this.activatedRoute.params.subscribe((params: Params) => {
       console.log(params['key']);
-      this.CKEditorKey = params['key'];
+      this.cKEditorKey = params['key'];
     });
   }
 

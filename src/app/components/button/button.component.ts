@@ -10,7 +10,7 @@ export class ButtonComponent implements OnInit {
   @Input() type: string;
   @Input() disabled = false;
 
-  @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() buttonClick: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
@@ -18,7 +18,7 @@ export class ButtonComponent implements OnInit {
 
   trigger() {
     if (!this.disabled) {
-      this.onClick.emit();
+      this.buttonClick.emit();
     }
   }
 }

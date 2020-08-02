@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from '../../services/authentication.service';
@@ -18,6 +18,6 @@ export class LogoutComponent {
     this.snackBar.open('Déconnexion réussie, à bientôt!', '', {
       duration: 3000,
     });
-    this.router.navigate(['/login']);
+    this.router.navigate(['/', 'login']).then();
   }
 }

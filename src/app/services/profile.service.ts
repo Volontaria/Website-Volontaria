@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IUserInformation, User } from '../models/user';
 import { map, tap } from 'rxjs/operators';
-import {
-  HttpClient,
-  HttpEventType,
-  HttpRequest,
-  HttpResponse,
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { GlobalService } from './global.service';
 
 @Injectable({

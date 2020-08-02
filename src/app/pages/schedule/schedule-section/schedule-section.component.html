@@ -18,7 +18,7 @@
           *ngFor="let participation of participations"
           [participation]="participation"
           [canDelete]="canDelete"
-          (onDeletion)="refreshParticipations()"
+          (cardDeleted)="refreshParticipations()"
         ></app-schedule-section-card>
       </div>
     </div>
@@ -36,7 +36,7 @@
   >
     <div class="schedule-section__empty__text">
       Aucune participation n'est prévu pour le moment.
-      <a href="/cells">Inscrivez vous!</a>
+      <a [routerLink]="['/', 'cells']">Inscrivez vous!</a>
     </div>
   </div>
 </div>
