@@ -1,17 +1,22 @@
 <div class="ck-editor-page">
   <div class="ck-editor-page__action-nav" *ngIf="isAdmin()">
     <div>
-      En tant qu'administrateur vous avez le droit de modifier cette page en cliquant sur le texte que vous
-      souhaitez modifier
+      En tant qu'administrateur vous avez le droit de modifier cette page en cliquant sur
+      le texte que vous souhaitez modifier
     </div>
-    <app-button class="ck-editor-page__action-nav__save" (click)="saveCKEditor()" label="Sauvegarder"></app-button>
+    <app-button
+      class="ck-editor-page__action-nav__save"
+      (click)="saveCKEditor()"
+      label="Sauvegarder"
+    ></app-button>
   </div>
   <div class="ck-editor-page__content">
     <app-ckeditor-container
       *ngIf="CKEditorKey"
       [pageKey]="CKEditorKey"
       [autoSave]="false"
-      (saved)="dataSaved()">
+      (saved)="dataSaved()"
+    >
     </app-ckeditor-container>
   </div>
 </div>

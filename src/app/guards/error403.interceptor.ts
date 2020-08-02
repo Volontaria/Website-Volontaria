@@ -20,13 +20,9 @@ export class Error403Interceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err) => {
         if (err.status === 403) {
-          this._snackBar.open(
-            'Vous n\'avez pas accés aux resssources demandées',
-            'X',
-            {
-              duration: 10000,
-            }
-          );
+          this._snackBar.open("Vous n'avez pas accés aux resssources demandées", 'X', {
+            duration: 10000,
+          });
         }
         return throwError(err);
       })

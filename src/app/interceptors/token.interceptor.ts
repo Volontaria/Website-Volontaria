@@ -12,10 +12,7 @@ import { AuthenticationService } from '../services/authentication.service';
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private authenticationService: AuthenticationService) {}
 
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.authenticationService.isAuthenticated()) {
       request = request.clone({
         setHeaders: {

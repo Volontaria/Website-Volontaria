@@ -1,21 +1,20 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ParticipationService} from '../../../services/participation.service';
-import {Participation} from '../../../models/participation';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ModalService} from '../../../services/modal.service';
-import {Router} from '@angular/router';
-import {ProfileService} from '../../../services/profile.service';
-import {User} from '../../../models/user';
-import {Event} from '../../../models/event';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ParticipationService } from '../../../services/participation.service';
+import { Participation } from '../../../models/participation';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ModalService } from '../../../services/modal.service';
+import { Router } from '@angular/router';
+import { ProfileService } from '../../../services/profile.service';
+import { User } from '../../../models/user';
+import { Event } from '../../../models/event';
 import * as moment from 'moment';
 
 @Component({
   selector: 'app-event-detail-list-item',
   templateUrl: './event-detail-list-item.component.html',
-  styleUrls: ['./event-detail-list-item.component.scss']
+  styleUrls: ['./event-detail-list-item.component.scss'],
 })
 export class EventDetailListItemComponent implements OnInit {
-
   @Input() event: Event;
   @Input() participations: Participation[];
 
@@ -23,11 +22,13 @@ export class EventDetailListItemComponent implements OnInit {
   informationPageRead = false;
   createParticipationModal: string;
 
-  constructor(private participationService: ParticipationService,
-              private snackBar: MatSnackBar,
-              private modalService: ModalService,
-              private router: Router,
-              private profileService: ProfileService) { }
+  constructor(
+    private participationService: ParticipationService,
+    private snackBar: MatSnackBar,
+    private modalService: ModalService,
+    private router: Router,
+    private profileService: ProfileService
+  ) {}
 
   ngOnInit(): void {
     this.createParticipationModal = 'create-participation-' + this.event.id;
@@ -84,30 +85,25 @@ export class EventDetailListItemComponent implements OnInit {
 
   createParticipation(isStandby): void {
     if (this.informationPageRead) {
-      if ((isStandby && !this.event.isFullVolunteerStandby) || (!isStandby && !this.event.isFullVolunteer)) {
-        const newParticipation = new Participation().deserialize(
-          {
-            user: this.profile.url,
-            event: this.event.url,
-            is_standby: isStandby
-          }
-        );
+      if (
+        (isStandby && !this.event.isFullVolunteerStandby) ||
+        (!isStandby && !this.event.isFullVolunteer)
+      ) {
+        const newParticipation = new Participation().deserialize({
+          user: this.profile.url,
+          event: this.event.url,
+          is_standby: isStandby,
+        });
 
-        this.participationService.post(newParticipation).subscribe(
-          (data) => {
-            this.snackBar.open(
-              'Votre participation a été créée',
-              'X',
-              {
-                duration: 10000,
-              }
-            );
+        this.participationService.post(newParticipation).subscribe((data) => {
+          this.snackBar.open('Votre participation a été créée', 'X', {
+            duration: 10000,
+          });
 
-            this.modalService.get(this.createParticipationModal).close();
+          this.modalService.get(this.createParticipationModal).close();
 
-            this.router.navigate(['/schedule']);
-          }
-        );
+          this.router.navigate(['/schedule']);
+        });
       }
     }
   }

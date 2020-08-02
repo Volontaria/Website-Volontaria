@@ -8,9 +8,8 @@ describe('RegisterConfirmComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterConfirmComponent ]
-    })
-    .compileComponents();
+      declarations: [RegisterConfirmComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

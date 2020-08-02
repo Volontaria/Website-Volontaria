@@ -1,16 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import { Event } from '../../../models/event';
-import {ICalendarDay} from "./event-calendar-models";
+import { ICalendarDay } from './event-calendar-models';
 
 @Component({
   selector: 'app-event-calendar',
   templateUrl: './event-calendar.component.html',
-  styleUrls: ['./event-calendar.component.scss']
+  styleUrls: ['./event-calendar.component.scss'],
 })
 export class EventCalendarComponent implements OnInit {
-
   @Output() changeCurrentMonth: EventEmitter<Moment> = new EventEmitter<Moment>();
   currentDate: Moment;
 
@@ -21,11 +20,7 @@ export class EventCalendarComponent implements OnInit {
 
   calendar: ICalendarDay[];
 
-  YEARS = [
-    2020,
-    2021,
-    2022,
-  ];
+  YEARS = [2020, 2021, 2022];
 
   MONTHS = [
     {
@@ -154,7 +149,7 @@ export class EventCalendarComponent implements OnInit {
     for (let i = 0; i < numberOfDays; i++) {
       this.addDayToCalendar({
         currentMonth: true,
-        date: firstDay.clone().add(i, 'days')
+        date: firstDay.clone().add(i, 'days'),
       });
     }
   }
@@ -165,7 +160,7 @@ export class EventCalendarComponent implements OnInit {
     for (let i = offsetWeekIndex; i > 0; i--) {
       this.addDayToCalendar({
         currentMonth: false,
-        date: firstDayForReverse.clone().subtract(i, 'days')
+        date: firstDayForReverse.clone().subtract(i, 'days'),
       });
     }
   }
@@ -174,7 +169,7 @@ export class EventCalendarComponent implements OnInit {
     this.calendar.push(calendarDay);
   }
 
-  changeMonth(month: number): void  {
+  changeMonth(month: number): void {
     this.currentDate.month(month);
     this.initCalendarData();
     this.changeCurrentMonth.emit(this.currentDate.startOf('month'));
@@ -189,7 +184,7 @@ export class EventCalendarComponent implements OnInit {
   isFilledDate(date: moment.Moment): boolean {
     for (const event of this.events) {
       if (date.isSame(moment(event.start_time), 'day')) {
-         return true;
+        return true;
       }
     }
     return false;

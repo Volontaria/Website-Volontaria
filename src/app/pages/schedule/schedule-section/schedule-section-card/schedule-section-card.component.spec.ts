@@ -8,9 +8,8 @@ describe('ScheduleSectionCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ScheduleSectionCardComponent ]
-    })
-    .compileComponents();
+      declarations: [ScheduleSectionCardComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

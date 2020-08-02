@@ -5,7 +5,7 @@ import { GlobalService } from './global.service';
 import { map } from 'rxjs/operators';
 import { ResponseApi } from '../models/api';
 import { SearchField } from '../models/search-field';
-import {Deserializable} from '../models/deserializable';
+import { Deserializable } from '../models/deserializable';
 
 @Injectable({
   providedIn: 'root',

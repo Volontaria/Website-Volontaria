@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import {EventService} from '../../services/event.service';
+import { EventService } from '../../services/event.service';
 import * as moment from 'moment';
-import {map} from 'rxjs/operators';
-import {ResponseApi} from '../../models/api';
-import {Event} from '../../models/event';
-import {Observable} from 'rxjs/internal/Observable';
-import {TaskType} from '../../models/taskType';
-import {TasktypeService} from '../../services/tasktype.service';
-import {Moment} from 'moment';
-import {ActivatedRoute, Params} from '@angular/router';
-import {Participation} from '../../models/participation';
-import {ParticipationService} from '../../services/participation.service';
-import {Cell} from "../../models/cell";
-import {CellService} from "../../services/cell.service";
+import { map } from 'rxjs/operators';
+import { ResponseApi } from '../../models/api';
+import { Event } from '../../models/event';
+import { Observable } from 'rxjs/internal/Observable';
+import { TaskType } from '../../models/taskType';
+import { TasktypeService } from '../../services/tasktype.service';
+import { Moment } from 'moment';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Participation } from '../../models/participation';
+import { ParticipationService } from '../../services/participation.service';
+import { Cell } from '../../models/cell';
+import { CellService } from '../../services/cell.service';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
-  styleUrls: ['./events.component.scss']
+  styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
-
   eventIndex = 0;
   hoveredEvent;
 
@@ -43,11 +42,13 @@ export class EventsComponent implements OnInit {
   tasktypeList$: Observable<TaskType[]>;
   selectedTaskType: number[];
 
-  constructor(private eventService: EventService,
-              private tasktypeService: TasktypeService,
-              private activatedRoute: ActivatedRoute,
-              private participationService: ParticipationService,
-              private cellService: CellService) { }
+  constructor(
+    private eventService: EventService,
+    private tasktypeService: TasktypeService,
+    private activatedRoute: ActivatedRoute,
+    private participationService: ParticipationService,
+    private cellService: CellService
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -62,7 +63,7 @@ export class EventsComponent implements OnInit {
 
   getParticipations(): void {
     const searchField = {
-      cell: this.cellId.toString()
+      cell: this.cellId.toString(),
     };
     this.participationList$ = this.participationService.search(searchField).pipe(
       map((responseApi: ResponseApi<Participation>) => {
@@ -75,11 +76,9 @@ export class EventsComponent implements OnInit {
   }
 
   getCell(): void {
-    this.cellService.getById(this.cellId).subscribe(
-      (cell: Cell) => {
-        this.cell = cell;
-      }
-    );
+    this.cellService.getById(this.cellId).subscribe((cell: Cell) => {
+      this.cell = cell;
+    });
   }
 
   getEventList(): void {
@@ -88,7 +87,7 @@ export class EventsComponent implements OnInit {
     const searchField = {
       start_time__gte: this.selectedDate.toISOString(),
       end_time__lte: endOfDay.toISOString(),
-      cell: this.cellId.toString()
+      cell: this.cellId.toString(),
     };
     this.eventDayList$ = this.eventService.search(searchField).pipe(
       map((responseApi: ResponseApi<Event>) => {
@@ -164,7 +163,7 @@ export class EventsComponent implements OnInit {
     const searchField = {
       start_time__gte: newBeginOfMonth.toISOString(),
       end_time__lte: endOfMonth.toISOString(),
-      cell: this.cellId.toString()
+      cell: this.cellId.toString(),
     };
     this.eventMonthList$ = this.eventService.search(searchField).pipe(
       map((responseApi: ResponseApi<Event>) => {

@@ -2,13 +2,13 @@
 
 .schedule-section-card {
   padding: 25px;
-  box-shadow: 3px 3px 10px #A2A1A1;
+  box-shadow: 3px 3px 10px #a2a1a1;
   width: 205px;
   transition: 0.4s;
   transition-delay: 0.4s;
 
   &:hover {
-    box-shadow: 3px 3px 25px #A2A1A1;
+    box-shadow: 3px 3px 25px #a2a1a1;
     padding: 25px 35px;
 
     .schedule-section-card__footer__delete {

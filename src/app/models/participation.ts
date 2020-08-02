@@ -66,6 +66,6 @@ export class Participation extends BaseModel implements Deserializable {
   }
 
   get readableDuration(): string {
-    return this.event.readableDuration
+    return this.event.readableDuration;
   }
 }

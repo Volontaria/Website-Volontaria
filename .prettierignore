@@ -1,0 +1,6 @@
+/*
+!/e2e
+!/src
+assets/
+*.ico
+*.js.map
