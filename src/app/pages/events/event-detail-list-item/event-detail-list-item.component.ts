@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ParticipationService } from '../../../services/participation.service';
 import { Participation } from '../../../models/participation';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -95,14 +95,14 @@ export class EventDetailListItemComponent implements OnInit {
           is_standby: isStandby,
         });
 
-        this.participationService.post(newParticipation).subscribe((data) => {
+        this.participationService.post(newParticipation).subscribe(() => {
           this.snackBar.open('Votre participation a été créée', 'X', {
             duration: 10000,
           });
 
           this.modalService.get(this.createParticipationModal).close();
 
-          this.router.navigate(['/schedule']);
+          this.router.navigate(['/schedule']).then();
         });
       }
     }

@@ -36,7 +36,7 @@ export class CkeditorContainerComponent implements OnInit {
   @Output()
   saved: EventEmitter<any> = new EventEmitter<any>();
 
-  public Editor = CKEditor;
+  public ckEditor = CKEditor;
   public configWrite = {
     autosave: {
       // The minimum amount of time the Autosave plugin is waiting after the last data change.
@@ -85,8 +85,6 @@ export class CkeditorContainerComponent implements OnInit {
   }
 
   public saveData() {
-    const data = this.ckEditorPage.content;
-
     if (!this.disableEditor) {
       this.ckEditorPageService
         .patch(this.ckEditorPage.url, this.ckEditorPage)

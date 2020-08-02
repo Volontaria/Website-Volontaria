@@ -39,19 +39,19 @@ export class ProfilePasswordComponent implements OnInit {
 
   changePassword() {
     if (this.passwordForm.valid) {
-      this.authenticationService
-        .changePassword(<IChangePassword>this.passwordForm.value)
-        .subscribe(
-          () => {
-            this.ngFormChangePasswordForm.resetForm();
-            this.snackBar.open('Votre mot de passe a été modifié', 'X', {
-              duration: 10000,
-            });
-          },
-          (errorResponse: HttpErrorResponse) => {
-            manageFormError(this.passwordForm, errorResponse);
-          }
-        );
+      const changePasswordData: IChangePassword = this.passwordForm.value;
+
+      this.authenticationService.changePassword(changePasswordData).subscribe(
+        () => {
+          this.ngFormChangePasswordForm.resetForm();
+          this.snackBar.open('Votre mot de passe a été modifié', 'X', {
+            duration: 10000,
+          });
+        },
+        (errorResponse: HttpErrorResponse) => {
+          manageFormError(this.passwordForm, errorResponse);
+        }
+      );
     }
   }
 }

@@ -11,15 +11,15 @@ export class ScheduleSectionComponent implements OnInit {
   @Input() participations: Participation[];
   @Input() canDelete = false;
 
-  @Output() onDeletion: EventEmitter<boolean> = new EventEmitter<boolean>();
-  eventIndex: number = 0;
+  @Output() sectionDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
+  eventIndex = 0;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   refreshParticipations(): void {
-    this.onDeletion.emit(true);
+    this.sectionDeleted.emit(true);
   }
 
   previousEvent(): void {

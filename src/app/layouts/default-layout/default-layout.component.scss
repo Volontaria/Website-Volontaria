@@ -5,7 +5,14 @@
   flex-direction: column;
   justify-content: space-between;
 
+  &__header {
+  }
+
   &__content {
+    flex: 1;
+  }
+
+  &__footer {
     flex: 1;
   }
 }

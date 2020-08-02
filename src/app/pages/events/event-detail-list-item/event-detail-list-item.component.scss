@@ -113,6 +113,9 @@
         border-bottom: 1px solid $instance-color;
         margin-bottom: 20px;
       }
+
+      &__item {
+      }
     }
   }
 
@@ -121,6 +124,9 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 40px;
+
+    &__legal {
+    }
 
     &__actions {
       display: flex;

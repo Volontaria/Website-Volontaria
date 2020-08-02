@@ -1,7 +1,6 @@
 import { BaseModel } from './base-model';
 import { Event } from './event';
 import { Deserializable } from './deserializable';
-import * as moment from 'moment';
 
 export class Participation extends BaseModel implements Deserializable {
   public id?: number;
@@ -9,17 +8,9 @@ export class Participation extends BaseModel implements Deserializable {
   public event: Event;
   public user: any;
 
-  // tslint:disable-next-line:variable-name
   public presence_duration_minutes?: number;
 
-  // tslint:disable-next-line:variable-name
-  public presence_status?: boolean;
-
-  // tslint:disable-next-line:variable-name
   public is_standby?: boolean;
-
-  // tslint:disable-next-line:variable-name
-  public registered_at?: string;
 
   deserialize(input: any): this {
     Object.assign(this, input);

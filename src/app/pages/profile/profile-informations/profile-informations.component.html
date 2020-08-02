@@ -3,6 +3,7 @@
     <img
       class="profile-informations__section__avatar"
       src="../../../../assets/images/avatar.jpg"
+      alt="user avatar"
     />
   </div>
   <div class="profile-informations__section">
@@ -12,10 +13,7 @@
       [formGroup]="profileForm"
     >
       <div class="profile-informations__section__form__collateral-fields">
-        <mat-form-field
-          appearance="fill"
-          class="profile-informations__section__form__input"
-        >
+        <mat-form-field appearance="fill">
           <input
             matInput
             placeholder="Prenom"
@@ -24,18 +22,12 @@
           />
           <mat-error></mat-error>
         </mat-form-field>
-        <mat-form-field
-          appearance="fill"
-          class="profile-informations__section__form__input"
-        >
+        <mat-form-field appearance="fill">
           <input matInput placeholder="Nom" type="text" [formControlName]="'last_name'" />
           <mat-error></mat-error>
         </mat-form-field>
       </div>
-      <mat-form-field
-        appearance="fill"
-        class="profile-informations__section__form__input"
-      >
+      <mat-form-field appearance="fill">
         <input matInput placeholder="Email" type="email" [formControlName]="'email'" />
         <mat-error></mat-error>
       </mat-form-field>
