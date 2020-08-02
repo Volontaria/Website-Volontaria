@@ -1,31 +1,42 @@
 <div class="schedule-section">
-  <div class="schedule-section__title">
-    {{ title }} :
-  </div>
+  <div class="schedule-section__title">{{ title }} :</div>
   <div class="schedule-section__list" *ngIf="participations && participations.length">
-    <div class="schedule-section__list__preview"
-         (click)="previousEvent()"
-         [ngClass]="{'schedule-section__list__preview--hidden': !havePrevious()}">
+    <div
+      class="schedule-section__list__preview"
+      (click)="previousEvent()"
+      [ngClass]="{ 'schedule-section__list__preview--hidden': !havePrevious() }"
+    >
       <i class="fas fa-chevron-left"></i>
     </div>
     <div class="schedule-section__list__content">
-      <div class="schedule-section__list__content__items" [ngStyle]="{'right': eventIndex * 295 + 'px'}">
-        <app-schedule-section-card class="schedule-section__list__content__items__item"
-                                   *ngFor="let participation of participations"
-                                   [participation]="participation"
-                                   [canDelete]="canDelete"
-                                   (onDeletion)="refreshParticipations()"></app-schedule-section-card>
+      <div
+        class="schedule-section__list__content__items"
+        [ngStyle]="{ right: eventIndex * 295 + 'px' }"
+      >
+        <app-schedule-section-card
+          class="schedule-section__list__content__items__item"
+          *ngFor="let participation of participations"
+          [participation]="participation"
+          [canDelete]="canDelete"
+          (onDeletion)="refreshParticipations()"
+        ></app-schedule-section-card>
       </div>
     </div>
-    <div class="schedule-section__list__next"
-         (click)="nextEvent()"
-         [ngClass]="{'schedule-section__list__next--hidden': !haveNext()}">
+    <div
+      class="schedule-section__list__next"
+      (click)="nextEvent()"
+      [ngClass]="{ 'schedule-section__list__next--hidden': !haveNext() }"
+    >
       <i class="fas fa-chevron-right"></i>
     </div>
   </div>
-  <div class="schedule-section__empty" *ngIf="!participations || participations && !participations.length">
+  <div
+    class="schedule-section__empty"
+    *ngIf="!participations || (participations && !participations.length)"
+  >
     <div class="schedule-section__empty__text">
-      Aucune participation n'est prévu pour le moment. <a href="/cells">Inscrivez vous!</a>
+      Aucune participation n'est prévu pour le moment.
+      <a href="/cells">Inscrivez vous!</a>
     </div>
   </div>
 </div>

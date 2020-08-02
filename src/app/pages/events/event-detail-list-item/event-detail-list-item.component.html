@@ -1,10 +1,14 @@
-<div class="event-detail-list-item" [ngClass]="{'event-detail-list-item--inactive': isFull || isAlreadySubscribed || isPast}" [appOpenModal]="createParticipationModal">
+<div
+  class="event-detail-list-item"
+  [ngClass]="{
+    'event-detail-list-item--inactive': isFull || isAlreadySubscribed || isPast
+  }"
+  [appOpenModal]="createParticipationModal"
+>
   <div class="event-detail-list-item__title">
     {{ getName() }}
   </div>
-  <div class="event-detail-list-item__time">
-    De {{ getTime() }}
-  </div>
+  <div class="event-detail-list-item__time">De {{ getTime() }}</div>
   <div class="event-detail-list-item__footer">
     <div class="event-detail-list-item__footer__duration">
       {{ getDuration() }}
@@ -12,50 +16,72 @@
   </div>
 </div>
 
-<app-modal [name]="createParticipationModal"
-           maxWidth="1100px"
-           class="event-detail-list-item-modal-participation">
+<app-modal
+  [name]="createParticipationModal"
+  maxWidth="1100px"
+  class="event-detail-list-item-modal-participation"
+>
   <div class="event-detail-list-item-modal-participation__header" *ngIf="!canSubscribe">
     Vous ne pouvez plus vous inscrire à cette activité
   </div>
   <div class="event-detail-list-item-modal-participation__content">
     <div class="event-detail-list-item-modal-participation__content__informations">
-      <div class="event-detail-list-item-modal-participation__content__informations__item">
+      <div
+        class="event-detail-list-item-modal-participation__content__informations__item"
+      >
         Vous souhaitez vous inscrire à cette activité :
       </div>
-      <div class="event-detail-list-item-modal-participation__content__informations__item">
+      <div
+        class="event-detail-list-item-modal-participation__content__informations__item"
+      >
         avec
       </div>
-      <img src="../../../../assets/images/logo.png"
-           class="event-detail-list-item-modal-participation__content__informations__item event-detail-list-item-modal-participation__content__informations__item--logo"/>
-      <div class="event-detail-list-item-modal-participation__content__informations__item">
-        <div class="event-detail-list-item-modal-participation__content__informations__item__important">
-        {{ getName() }}
+      <img
+        src="../../../../assets/images/logo.png"
+        class="event-detail-list-item-modal-participation__content__informations__item event-detail-list-item-modal-participation__content__informations__item--logo"
+      />
+      <div
+        class="event-detail-list-item-modal-participation__content__informations__item"
+      >
+        <div
+          class="event-detail-list-item-modal-participation__content__informations__item__important"
+        >
+          {{ getName() }}
         </div>
       </div>
-      <div class="event-detail-list-item-modal-participation__content__informations__item">
+      <div
+        class="event-detail-list-item-modal-participation__content__informations__item"
+      >
         <div>
           Le :
         </div>
-        <div class="event-detail-list-item-modal-participation__content__informations__item__important">
+        <div
+          class="event-detail-list-item-modal-participation__content__informations__item__important"
+        >
           {{ getDate() }}
         </div>
-        <div class="event-detail-list-item-modal-participation__content__informations__item__important">
+        <div
+          class="event-detail-list-item-modal-participation__content__informations__item__important"
+        >
           {{ getTime() }}
         </div>
       </div>
-      <div class="event-detail-list-item-modal-participation__content__informations__item ">
+      <div
+        class="event-detail-list-item-modal-participation__content__informations__item"
+      >
         <div>
           À :
         </div>
-        <div class="event-detail-list-item-modal-participation__content__informations__item__important">
+        <div
+          class="event-detail-list-item-modal-participation__content__informations__item__important"
+        >
           {{ event.cell.name }}
         </div>
         <div>
-          {{ event.cell.address_line_1 }}<br/>
+          {{ event.cell.address_line_1 }}<br />
           <span *ngIf="event.cell.address_line_2">
-          {{ event.cell.address_line_2 }}<br/>
-        </span>
+            {{ event.cell.address_line_2 }}<br />
+          </span>
           {{ event.cell.city }}, {{ event.cell.postal_code }}
         </div>
       </div>
@@ -72,19 +98,23 @@
   <div class="event-detail-list-item-modal-participation__footer" *ngIf="canSubscribe">
     <div class="event-detail-list-item-modal-participation__footer__legal">
       <mat-checkbox [(ngModel)]="informationPageRead">
-        J'ai bien lu <a [routerLink]="'/page/information'" target="_blank">la page d'information</a>
+        J'ai bien lu
+        <a [routerLink]="'/page/information'" target="_blank">la page d'information</a>
       </mat-checkbox>
     </div>
     <div class="event-detail-list-item-modal-participation__footer__actions">
-      <app-button label="Je m'inscrit comme bénévole"
-                  class="event-detail-list-item-modal-participation__footer__actions__button"
-                  [disabled]="!informationPageRead || this.event.isFullVolunteer"
-                  (click)="createParticipation(false)"></app-button>
-      <app-button label="Je m'inscrit comme remplacant"
-                  class="event-detail-list-item-modal-participation__footer__actions__button"
-                  [disabled]="!informationPageRead || this.event.isFullVolunteerStandby"
-                  (click)="createParticipation(true)"></app-button>
+      <app-button
+        label="Je m'inscrit comme bénévole"
+        class="event-detail-list-item-modal-participation__footer__actions__button"
+        [disabled]="!informationPageRead || this.event.isFullVolunteer"
+        (click)="createParticipation(false)"
+      ></app-button>
+      <app-button
+        label="Je m'inscrit comme remplacant"
+        class="event-detail-list-item-modal-participation__footer__actions__button"
+        [disabled]="!informationPageRead || this.event.isFullVolunteerStandby"
+        (click)="createParticipation(true)"
+      ></app-button>
     </div>
   </div>
 </app-modal>
-

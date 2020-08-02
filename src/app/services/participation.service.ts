@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {ApiRestGenericLibService} from './api-rest-generic-lib.service';
-import {HttpClient} from '@angular/common/http';
-import {Participation} from '../models/participation';
+import { ApiRestGenericLibService } from './api-rest-generic-lib.service';
+import { HttpClient } from '@angular/common/http';
+import { Participation } from '../models/participation';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ParticipationService extends ApiRestGenericLibService<Participation> {
   PARTICIPATION_URL_BASE = `${this.apiUrl}/participations`;

@@ -10,7 +10,7 @@ export class GlobalService {
 
   constructor() {}
 
-  static getHeaders(): HttpHeaders{
+  static getHeaders(): HttpHeaders {
     const options = {
       'Content-Type': 'application/json',
       'Accept-Language': environment.default_language,

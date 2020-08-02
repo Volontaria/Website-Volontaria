@@ -1,19 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Event} from '../../../models/event';
+import { Component, Input, OnInit } from '@angular/core';
+import { Event } from '../../../models/event';
 
 @Component({
   selector: 'app-event-detail-preview',
   templateUrl: './event-detail-preview.component.html',
-  styleUrls: ['./event-detail-preview.component.scss']
+  styleUrls: ['./event-detail-preview.component.scss'],
 })
 export class EventDetailPreviewComponent implements OnInit {
-
   @Input() event: Event;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get numberOfVolunteer(): number {
     if (this.event) {

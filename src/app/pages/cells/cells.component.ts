@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {map} from 'rxjs/operators';
-import {ResponseApi} from '../../models/api';
-import {CellService} from '../../services/cell.service';
-import {Cell} from '../../models/cell';
-import {MatTableDataSource} from '@angular/material/table';
-import {Observable} from 'rxjs/internal/Observable';
-import {Router} from "@angular/router";
+import { map } from 'rxjs/operators';
+import { ResponseApi } from '../../models/api';
+import { CellService } from '../../services/cell.service';
+import { Cell } from '../../models/cell';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs/internal/Observable';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cells',
   templateUrl: './cells.component.html',
-  styleUrls: ['./cells.component.scss']
+  styleUrls: ['./cells.component.scss'],
 })
 export class CellsComponent implements OnInit {
   cellList$: Observable<Cell[]>;
@@ -18,8 +18,7 @@ export class CellsComponent implements OnInit {
 
   displayedColumns: string[] = ['name'];
 
-  constructor(private cellService: CellService,
-              private router: Router) { }
+  constructor(private cellService: CellService, private router: Router) {}
 
   ngOnInit(): void {
     this.getCells();
@@ -32,7 +31,7 @@ export class CellsComponent implements OnInit {
       })
     );
     this.cellList$.subscribe((cells: Cell[]) => {
-      if ( cells.length === 1) {
+      if (cells.length === 1) {
         this.router.navigate(['/events/' + cells[0].id]);
       } else {
         this.cellList = new MatTableDataSource(cells);

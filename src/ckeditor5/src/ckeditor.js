@@ -31,8 +31,7 @@ import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize.js';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials.js';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph.js';
 
-export default class Editor extends InlineEditor {
-}
+export default class Editor extends InlineEditor {}
 
 // Plugins to include in the build.
 Editor.builtinPlugins = [
@@ -62,7 +61,7 @@ Editor.builtinPlugins = [
   FontBackgroundColor,
   ImageResize,
   Essentials,
-  Paragraph
+  Paragraph,
 ];
 
 Editor.defaultConfig = {
@@ -78,27 +77,22 @@ Editor.defaultConfig = {
       'blockQuote',
       '|',
       'undo',
-      'redo'
-    ]
+      'redo',
+    ],
   },
   alignment: {
-    options: [ 'left', 'right', 'center', 'justify' ]
+    options: ['left', 'right', 'center', 'justify'],
   },
   fontSize: {
-    options: [
-      'default',
-      15,
-      20
-    ]
+    options: ['default', 15, 20],
   },
   fontColor: {
     colors: [
       {
         color: '#142823',
-        label: '$nt-text'
+        label: '$nt-text',
       },
-    ]
+    ],
   },
   language: 'fr',
 };
-

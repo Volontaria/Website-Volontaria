@@ -20,7 +20,7 @@
       margin-top: 20px;
       height: 20px;
       position: relative;
-      background: #EFEFEF;
+      background: #efefef;
       border-radius: 25px;
 
       & > span {
@@ -34,10 +34,13 @@
         overflow: hidden;
         transition: 0.4s;
 
-        &:after{
-          content: "";
+        &:after {
+          content: '';
           position: absolute;
-          top: 0; left: 0; bottom: 0; right: 0;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
           z-index: 1;
           border-top-left-radius: 20px;
           border-bottom-left-radius: 20px;

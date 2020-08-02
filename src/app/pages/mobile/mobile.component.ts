@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   selector: 'app-mobile',
   styleUrls: ['mobile.component.scss'],
 })
-export class MobileComponent {
-
-}
+export class MobileComponent {}

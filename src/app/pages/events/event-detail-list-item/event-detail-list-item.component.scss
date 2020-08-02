@@ -1,14 +1,14 @@
 @import '../../../../assets/scss/theme';
 
-.event-detail-list-item{
+.event-detail-list-item {
   transition: 0.4s;
   padding: 25px;
   min-width: 180px;
   max-width: 180px;
-  box-shadow: 3px 3px 10px #A2A1A1;
+  box-shadow: 3px 3px 10px #a2a1a1;
 
   &:hover {
-    box-shadow: 3px 3px 25px #A2A1A1;
+    box-shadow: 3px 3px 25px #a2a1a1;
     padding: 25px 30px;
     cursor: pointer;
 
@@ -21,7 +21,7 @@
     background-color: $background;
 
     &:hover {
-      box-shadow: 3px 3px 10px #A2A1A1;
+      box-shadow: 3px 3px 10px #a2a1a1;
       padding: 25px;
     }
   }
@@ -121,7 +121,6 @@
     justify-content: space-around;
     align-items: center;
     margin-top: 40px;
-
 
     &__actions {
       display: flex;

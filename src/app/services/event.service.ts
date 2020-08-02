@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {ApiRestGenericLibService} from './api-rest-generic-lib.service';
-import {HttpClient} from '@angular/common/http';
-import {Event} from '../models/event';
+import { ApiRestGenericLibService } from './api-rest-generic-lib.service';
+import { HttpClient } from '@angular/common/http';
+import { Event } from '../models/event';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventService extends ApiRestGenericLibService<Event> {
   EVENT_URL_BASE = `${this.apiUrl}/events`;

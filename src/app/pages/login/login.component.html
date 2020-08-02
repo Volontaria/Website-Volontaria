@@ -4,27 +4,37 @@
       Volontaria
     </div>
     <div class="login-page__section__content">
-      <img class="login-page__section__content__logo" src="../../../assets/images/logo.png"/>
+      <img
+        class="login-page__section__content__logo"
+        src="../../../assets/images/logo.png"
+      />
 
       <p>Connecte toi è ton compte pour pouvoir t'inscrire un créneaux de bénévolat.</p>
 
-      <form class="login-page__section__content__form"
-            [formGroup]="signinForm"
-            (ngSubmit)="signin()">
-        <mat-form-field appearance="fill" class="login-page__section__content__form__input">
-          <input matInput
-                 placeholder="Email"
-                 type="email"
-                 [formControlName]="'email'"/>
+      <form
+        class="login-page__section__content__form"
+        [formGroup]="signinForm"
+        (ngSubmit)="signin()"
+      >
+        <mat-form-field
+          appearance="fill"
+          class="login-page__section__content__form__input"
+        >
+          <input matInput placeholder="Email" type="email" [formControlName]="'email'" />
           <mat-error *ngIf="signinForm.controls.email.hasError('api')">
             {{ signinForm.controls.email.getError('api') }}
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" class="login-page__section__content__form__input">
-          <input matInput
-                 placeholder="Mot de passe"
-                 type="password"
-                 [formControlName]="'password'"/>
+        <mat-form-field
+          appearance="fill"
+          class="login-page__section__content__form__input"
+        >
+          <input
+            matInput
+            placeholder="Mot de passe"
+            type="password"
+            [formControlName]="'password'"
+          />
           <mat-error *ngIf="signinForm.controls.password.hasError('api')">
             {{ signinForm.controls.password.getError('api') }}
           </mat-error>
@@ -35,7 +45,11 @@
       </form>
 
       <div class="login-page__section__content__actions">
-        <app-button label="Se connecter" [disabled]="!this.signinForm.valid" (click)="signin()"></app-button>
+        <app-button
+          label="Se connecter"
+          [disabled]="!this.signinForm.valid"
+          (click)="signin()"
+        ></app-button>
       </div>
     </div>
     <div class="login-page__section__footer">
@@ -47,55 +61,83 @@
       Volontaria
     </div>
     <div class="login-page__section__content">
-      <img class="login-page__section__content__logo" src="../../../assets/images/logo.png"/>
+      <img
+        class="login-page__section__content__logo"
+        src="../../../assets/images/logo.png"
+      />
 
-      <p>Il est nécessaire de créer un compte sur Volontaria pour accéder à la liste des évènements</p>
+      <p>
+        Il est nécessaire de créer un compte sur Volontaria pour accéder à la liste des
+        évènements
+      </p>
 
-      <form class="login-page__section__content__form"
-            [formGroup]="signupForm"
-            (ngSubmit)="signup()">
-        <mat-form-field appearance="fill" class="login-page__section__content__form__input">
-          <input matInput
-                 placeholder="Email"
-                 type="email"
-                 [formControlName]="'email'"/>
-            <mat-error *ngIf="signupForm.controls.email.hasError('api')">
-              {{ signupForm.controls.email.getError('api') }}
-            </mat-error>
+      <form
+        class="login-page__section__content__form"
+        [formGroup]="signupForm"
+        (ngSubmit)="signup()"
+      >
+        <mat-form-field
+          appearance="fill"
+          class="login-page__section__content__form__input"
+        >
+          <input matInput placeholder="Email" type="email" [formControlName]="'email'" />
+          <mat-error *ngIf="signupForm.controls.email.hasError('api')">
+            {{ signupForm.controls.email.getError('api') }}
+          </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" class="login-page__section__content__form__input">
-          <input matInput
-                 placeholder="Mot de passe"
-                 type="password"
-                 [formControlName]="'password1'"/>
+        <mat-form-field
+          appearance="fill"
+          class="login-page__section__content__form__input"
+        >
+          <input
+            matInput
+            placeholder="Mot de passe"
+            type="password"
+            [formControlName]="'password1'"
+          />
           <mat-error *ngIf="signupForm.controls.password1.hasError('api')">
             {{ signupForm.controls.password1.getError('api') }}
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" class="login-page__section__content__form__input">
-          <input matInput
-                 placeholder="Confirmation du mot de passe"
-                 type="password"
-                 [formControlName]="'password2'"/>
+        <mat-form-field
+          appearance="fill"
+          class="login-page__section__content__form__input"
+        >
+          <input
+            matInput
+            placeholder="Confirmation du mot de passe"
+            type="password"
+            [formControlName]="'password2'"
+          />
           <mat-error *ngIf="signupForm.controls.password2.hasError('api')">
             {{ signupForm.controls.password2.getError('api') }}
           </mat-error>
         </mat-form-field>
         <div class="login-page__section__content__form__collateral-fields">
-          <mat-form-field appearance="fill" class="login-page__section__content__form__input">
-            <input matInput
-                   placeholder="Prenom"
-                   type="text"
-                   [formControlName]="'first_name'"/>
+          <mat-form-field
+            appearance="fill"
+            class="login-page__section__content__form__input"
+          >
+            <input
+              matInput
+              placeholder="Prenom"
+              type="text"
+              [formControlName]="'first_name'"
+            />
             <mat-error *ngIf="signupForm.controls.first_name.hasError('api')">
               {{ signupForm.controls.first_name.getError('api') }}
             </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="fill" class="login-page__section__content__form__input">
-            <input matInput
-                   placeholder="Nom"
-                   type="text"
-                   [formControlName]="'last_name'"/>
+          <mat-form-field
+            appearance="fill"
+            class="login-page__section__content__form__input"
+          >
+            <input
+              matInput
+              placeholder="Nom"
+              type="text"
+              [formControlName]="'last_name'"
+            />
             <mat-error *ngIf="signupForm.controls.last_name.hasError('api')">
               {{ signupForm.controls.last_name.getError('api') }}
             </mat-error>
@@ -107,7 +149,11 @@
       </form>
 
       <div class="login-page__section__content__actions">
-        <app-button label="Creer un compte" [disabled]="!this.signupForm.valid" (click)="signup()"></app-button>
+        <app-button
+          label="Creer un compte"
+          [disabled]="!this.signupForm.valid"
+          (click)="signup()"
+        ></app-button>
       </div>
     </div>
     <div class="login-page__section__footer">
@@ -115,9 +161,14 @@
     </div>
   </div>
 
-  <div class="login-page__drawer"
-       [ngClass]="{'login-page__drawer--right': activeSection === 'signin', 'login-page__drawer--left': activeSection === 'signup'}"
-       (click)="switchDrawer()">
+  <div
+    class="login-page__drawer"
+    [ngClass]="{
+      'login-page__drawer--right': activeSection === 'signin',
+      'login-page__drawer--left': activeSection === 'signup'
+    }"
+    (click)="switchDrawer()"
+  >
     <div class="login-page__drawer__sign-up">
       CRÉER UN COMPTE
     </div>

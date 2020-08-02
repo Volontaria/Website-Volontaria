@@ -1,7 +1,7 @@
 import { BaseModel } from './base-model';
-import {Deserializable} from './deserializable';
-import {TaskType} from './taskType';
-import {Cell} from './cell';
+import { Deserializable } from './deserializable';
+import { TaskType } from './taskType';
+import { Cell } from './cell';
 import * as moment from 'moment';
 
 export class Event extends BaseModel implements Deserializable {
@@ -52,8 +52,8 @@ export class Event extends BaseModel implements Deserializable {
   get readableDuration(): string {
     const startTime = moment(this.start_time);
     const endTime = moment(this.end_time);
-    let minutes = endTime.diff(startTime, 'minute')
-    const hours = endTime.diff(startTime, 'hour')
+    let minutes = endTime.diff(startTime, 'minute');
+    const hours = endTime.diff(startTime, 'hour');
     minutes = minutes - hours * 60;
 
     let result = hours + 'H';

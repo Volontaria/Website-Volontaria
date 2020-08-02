@@ -27,7 +27,6 @@ export class AuthenticationService extends GlobalService {
   urlResetPasswordConfirm = `${this.apiUrl}/rest-auth/password/reset/confirm/`;
   urlPasswordChange = `${this.apiUrl}/rest-auth/password/change/`;
 
-
   constructor(public http: HttpClient, public profileService: ProfileService) {
     super();
   }

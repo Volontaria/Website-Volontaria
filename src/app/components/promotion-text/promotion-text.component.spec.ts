@@ -8,9 +8,8 @@ describe('PromotionTextComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PromotionTextComponent ]
-    })
-    .compileComponents();
+      declarations: [PromotionTextComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

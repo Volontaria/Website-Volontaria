@@ -7,10 +7,8 @@
       {{ cell.name }}
     </div>
     <div class="events__title__cell-address">
-      {{ cell.address_line_1 }}<br/>
-      <span *ngIf="cell.address_line_2">
-        {{ cell.address_line_2 }}<br/>
-      </span>
+      {{ cell.address_line_1 }}<br />
+      <span *ngIf="cell.address_line_2"> {{ cell.address_line_2 }}<br /> </span>
       {{ cell.city }}, {{ cell.postal_code }}
     </div>
   </div>
@@ -20,8 +18,14 @@
     </div>
     <mat-form-field appearance="fill" class="events__activity__select">
       <mat-label>Choisis ton activité</mat-label>
-      <mat-select [(ngModel)]="selectedTaskType" (ngModelChange)="refreshEvents()" multiple>
-        <mat-option *ngFor="let tasktype of tasktypeList" [value]="tasktype.id">{{tasktype.name}}</mat-option>
+      <mat-select
+        [(ngModel)]="selectedTaskType"
+        (ngModelChange)="refreshEvents()"
+        multiple
+      >
+        <mat-option *ngFor="let tasktype of tasktypeList" [value]="tasktype.id">{{
+          tasktype.name
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -29,10 +33,12 @@
   <div class="events__columns">
     <div class="events__columns__header">
       <div class="events__columns__header__calendar">
-        <app-event-calendar *ngIf="eventMonthList"
-                            (changeCurrentMonth)="changeCurrentMonth($event)"
-                            (changeSelectedDate)="changeSelectedDate($event)"
-                            [events]="eventMonthList"></app-event-calendar>
+        <app-event-calendar
+          *ngIf="eventMonthList"
+          (changeCurrentMonth)="changeCurrentMonth($event)"
+          (changeSelectedDate)="changeSelectedDate($event)"
+          [events]="eventMonthList"
+        ></app-event-calendar>
       </div>
     </div>
     <div class="events__columns__content">
@@ -46,33 +52,51 @@
             {{ readableSelectedDate }}
           </div>
 
-          <div class="events__columns__content__details__header__action"
-               (click)="previousEvent()"
-               [ngClass]="{'events__columns__content__details__header__action--hidden': !havePrevious()}">
+          <div
+            class="events__columns__content__details__header__action"
+            (click)="previousEvent()"
+            [ngClass]="{
+              'events__columns__content__details__header__action--hidden': !havePrevious()
+            }"
+          >
             <i class="fas fa-chevron-left"></i>
           </div>
 
-          <div class="events__columns__content__details__header__action"
-               (click)="nextEvent()"
-               [ngClass]="{'events__columns__content__details__header__action--hidden': !haveNext()}">
+          <div
+            class="events__columns__content__details__header__action"
+            (click)="nextEvent()"
+            [ngClass]="{
+              'events__columns__content__details__header__action--hidden': !haveNext()
+            }"
+          >
             <i class="fas fa-chevron-right"></i>
           </div>
         </div>
         <div class="events__columns__content__details__list">
-          <div class="events__columns__content__details__list__content"
-               *ngIf="eventDayList && eventDayList.length"
-               [ngStyle]="{'right': eventIndex * 270 + 'px'}">
-            <app-event-detail-list-item class="events__columns__content__details__list__content__item"
-                                        *ngFor="let event of eventDayList"
-                                        (mouseenter)="changeHoverEvent(event)"
-                                        (mouseleave)="clearHoverEvent()"
-                                        [participations]="participationList"
-                                        [event]="event"></app-event-detail-list-item>
+          <div
+            class="events__columns__content__details__list__content"
+            *ngIf="eventDayList && eventDayList.length"
+            [ngStyle]="{ right: eventIndex * 270 + 'px' }"
+          >
+            <app-event-detail-list-item
+              class="events__columns__content__details__list__content__item"
+              *ngFor="let event of eventDayList"
+              (mouseenter)="changeHoverEvent(event)"
+              (mouseleave)="clearHoverEvent()"
+              [participations]="participationList"
+              [event]="event"
+            ></app-event-detail-list-item>
           </div>
-          <div class="events__columns__content__details__list__empty" *ngIf="eventDayList && !eventDayList.length">
+          <div
+            class="events__columns__content__details__list__empty"
+            *ngIf="eventDayList && !eventDayList.length"
+          >
             Aucune activité n'est prévu pour ce jour.
           </div>
-          <div class="events__columns__content__details__list__empty" *ngIf="!eventDayList">
+          <div
+            class="events__columns__content__details__list__empty"
+            *ngIf="!eventDayList"
+          >
             <i class="fas fa-spinner fa-spin fa-3x"></i>
           </div>
         </div>

@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ButtonComponent } from './components/button/button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -20,32 +20,32 @@ import { ScheduleComponent } from './pages/schedule/schedule.component';
 import { ScheduleSectionComponent } from './pages/schedule/schedule-section/schedule-section.component';
 import { ScheduleSectionCardComponent } from './pages/schedule/schedule-section/schedule-section-card/schedule-section-card.component';
 import { EventsComponent } from './pages/events/events.component';
-import {MatSelectModule} from "@angular/material/select";
+import { MatSelectModule } from '@angular/material/select';
 import { EventCalendarComponent } from './pages/events/event-calendar/event-calendar.component';
 import { EventDetailPreviewComponent } from './pages/events/event-detail-preview/event-detail-preview.component';
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { EventDetailPreviewSectionComponent } from './pages/events/event-detail-preview/event-detail-preview-section/event-detail-preview-section.component';
 import { EventDetailListItemComponent } from './pages/events/event-detail-list-item/event-detail-list-item.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { OpenModalDirective } from './directives/open-modal.directive';
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {AuthenticationService} from './services/authentication.service';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {TokenInterceptor} from './interceptors/token.interceptor';
-import {CanActivateViaAuthGuard} from './guards/CanActivateViaAuthGuard';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AuthenticationService } from './services/authentication.service';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { CanActivateViaAuthGuard } from './guards/CanActivateViaAuthGuard';
 import { CellsComponent } from './pages/cells/cells.component';
-import {MatTableModule} from '@angular/material/table';
-import {Error401Interceptor} from "./guards/error401.interceptor";
-import {Error403Interceptor} from "./guards/error403.interceptor";
+import { MatTableModule } from '@angular/material/table';
+import { Error401Interceptor } from './guards/error401.interceptor';
+import { Error403Interceptor } from './guards/error403.interceptor';
 import { RegisterConfirmComponent } from './pages/register-confirm/register-confirm.component';
 import { CkEditorPageComponent } from './pages/ck-editor-page/ck-editor-page.component';
 import { CkeditorContainerComponent } from './components/ckeditor-container/ckeditor-container.component';
-import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
-import {MatButtonModule} from "@angular/material/button";
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { MatButtonModule } from '@angular/material/button';
 import { MobileComponent } from './pages/mobile/mobile.component';
 import { PromotionMobileComponent } from './components/promotion-mobile/promotion-mobile.component';
-import {QRCodeModule} from "angular2-qrcode";
+import { QRCodeModule } from 'angular2-qrcode';
 import { LogoutComponent } from './pages/logout/logout.component';
 
 @NgModule({
@@ -104,6 +104,6 @@ import { LogoutComponent } from './pages/logout/logout.component';
     MatSnackBar,
     CanActivateViaAuthGuard,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

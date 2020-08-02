@@ -21,9 +21,7 @@ export class ProfileService extends GlobalService {
   private currentProfile: BehaviorSubject<User> = new BehaviorSubject<User>(
     ProfileService.getProfileStorage()
   );
-  public currentProfile$: Observable<
-    User
-    > = this.currentProfile.asObservable();
+  public currentProfile$: Observable<User> = this.currentProfile.asObservable();
 
   constructor(public http: HttpClient) {
     super();

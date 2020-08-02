@@ -1,13 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ModalService} from "../../services/modal.service";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent implements OnInit {
-
   @Input() name: string;
   @Input() autoClose = false;
   @Input() show = false;
@@ -15,7 +14,7 @@ export class ModalComponent implements OnInit {
 
   @Output() onClose: EventEmitter<any> = new EventEmitter();
 
-  constructor(private modalService:ModalService) { }
+  constructor(private modalService: ModalService) {}
 
   ngOnInit(): void {
     this.modalService.set(this.name, this);
@@ -36,19 +35,17 @@ export class ModalComponent implements OnInit {
     if (event.which === 27 || event.keyCode === 27) {
       this.show = false;
     }
-  }
+  };
 
   close() {
     this.show = false;
   }
 
   clickOverlay(event: Event) {
-    const target = (event.target as HTMLElement);
+    const target = event.target as HTMLElement;
 
     if (target.classList.contains('modal-component')) {
       this.toggle();
     }
   }
-
-
 }

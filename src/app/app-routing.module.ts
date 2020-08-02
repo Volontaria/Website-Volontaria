@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
-import {DefaultLayoutComponent} from "./layouts/default-layout/default-layout.component";
-import {ProfileComponent} from "./pages/profile/profile.component";
-import {ScheduleComponent} from "./pages/schedule/schedule.component";
-import {EventsComponent} from "./pages/events/events.component";
-import {CanActivateViaAuthGuard} from './guards/CanActivateViaAuthGuard';
-import {CellsComponent} from './pages/cells/cells.component';
-import {RegisterConfirmComponent} from "./pages/register-confirm/register-confirm.component";
-import {CkEditorPageComponent} from "./pages/ck-editor-page/ck-editor-page.component";
-import {MobileComponent} from "./pages/mobile/mobile.component";
-import {LogoutComponent} from "./pages/logout/logout.component";
+import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { ScheduleComponent } from './pages/schedule/schedule.component';
+import { EventsComponent } from './pages/events/events.component';
+import { CanActivateViaAuthGuard } from './guards/CanActivateViaAuthGuard';
+import { CellsComponent } from './pages/cells/cells.component';
+import { RegisterConfirmComponent } from './pages/register-confirm/register-confirm.component';
+import { CkEditorPageComponent } from './pages/ck-editor-page/ck-editor-page.component';
+import { MobileComponent } from './pages/mobile/mobile.component';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 const routes: Routes = [
   {
@@ -40,45 +40,35 @@ const routes: Routes = [
       {
         path: 'cells',
         component: CellsComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        canActivate: [CanActivateViaAuthGuard],
       },
       {
         path: 'events/:cellId',
         component: EventsComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        canActivate: [CanActivateViaAuthGuard],
       },
       {
         path: 'profile',
         component: ProfileComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        canActivate: [CanActivateViaAuthGuard],
       },
       {
         path: 'schedule',
         component: ScheduleComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        canActivate: [CanActivateViaAuthGuard],
       },
       {
         path: '',
         redirectTo: '/cells',
         pathMatch: 'full',
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        canActivate: [CanActivateViaAuthGuard],
       },
-    ]
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

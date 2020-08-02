@@ -1,5 +1,5 @@
 import { BaseModel } from './base-model';
-import {Deserializable} from './deserializable';
+import { Deserializable } from './deserializable';
 
 export class Cell extends BaseModel implements Deserializable {
   public id?: number;

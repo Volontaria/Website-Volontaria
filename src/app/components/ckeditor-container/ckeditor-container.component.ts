@@ -1,24 +1,22 @@
-import {Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import * as CKEditor from '../../../ckeditor5/build/ckeditor.js';
-import {CkeditorPageService} from "../../services/ckeditor-page.service";
-import {AuthenticationService} from "../../services/authentication.service";
-import {User} from "../../models/user";
-import {ProfileService} from "../../services/profile.service";
-import {CkeditorPage} from "../../models/ckeditorPage";
-import {SearchField} from "../../models/search-field";
-import {map} from "rxjs/operators";
-import {ResponseApi} from "../../models/api";
-import {Observable} from "rxjs";
-
+import { CkeditorPageService } from '../../services/ckeditor-page.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { User } from '../../models/user';
+import { ProfileService } from '../../services/profile.service';
+import { CkeditorPage } from '../../models/ckeditorPage';
+import { SearchField } from '../../models/search-field';
+import { map } from 'rxjs/operators';
+import { ResponseApi } from '../../models/api';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ckeditor-container',
   templateUrl: './ckeditor-container.component.html',
-  styleUrls: ['./ckeditor-container.component.scss']
+  styleUrls: ['./ckeditor-container.component.scss'],
 })
 export class CkeditorContainerComponent implements OnInit {
-
   _pageKey: string;
   get pageKey(): string {
     return this._pageKey;
@@ -43,12 +41,10 @@ export class CkeditorContainerComponent implements OnInit {
     autosave: {
       // The minimum amount of time the Autosave plugin is waiting after the last data change.
       waitingTime: 5000,
-      save: () => this.saveData()
+      save: () => this.saveData(),
     },
   };
-  public configRead = {
-
-  };
+  public configRead = {};
   public config;
 
   disableEditor = true;
@@ -58,10 +54,11 @@ export class CkeditorContainerComponent implements OnInit {
 
   profile: User;
 
-  constructor(private auth: AuthenticationService,
-              private profileService: ProfileService,
-              private ckEditorPageService: CkeditorPageService) {
-  }
+  constructor(
+    private auth: AuthenticationService,
+    private profileService: ProfileService,
+    private ckEditorPageService: CkeditorPageService
+  ) {}
 
   ngOnInit(): void {
     this.refreshCKEditor();
@@ -71,10 +68,11 @@ export class CkeditorContainerComponent implements OnInit {
     this.ckEditorPage = null;
     this.profile = this.profileService.getProfile();
     this.disableEditor = !(this.profile && this.profile.is_superuser);
-    this.config = this.disableEditor || !this.autoSave ? this.configRead : this.configWrite;
+    this.config =
+      this.disableEditor || !this.autoSave ? this.configRead : this.configWrite;
     const search: SearchField = {
-      key: this.pageKey
-    }
+      key: this.pageKey,
+    };
     this.ckEditorPage$ = this.ckEditorPageService.search(search).pipe(
       map((responseApi: ResponseApi<CkeditorPage>) => {
         return responseApi.results;
@@ -86,20 +84,18 @@ export class CkeditorContainerComponent implements OnInit {
     });
   }
 
-  public saveData( ) {
-
+  public saveData() {
     const data = this.ckEditorPage.content;
 
     if (!this.disableEditor) {
-      this.ckEditorPageService.patch(this.ckEditorPage.url, this.ckEditorPage).subscribe(
-        (ckEditorPage) => {
+      this.ckEditorPageService
+        .patch(this.ckEditorPage.url, this.ckEditorPage)
+        .subscribe((ckEditorPage) => {
           if (ckEditorPage) {
             this.ckEditorPage = ckEditorPage;
             this.saved.emit(ckEditorPage);
           }
-      });
+        });
     }
   }
-
-
 }
