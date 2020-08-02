@@ -1,0 +1,16 @@
+dist: trusty
+sudo: false
+language: node_js
+node_js:
+- '12'
+before_script:
+- npm install
+script:
+- ng lint
+- npm run prettier:check
+- npm run build
+
+
+env:
+  global:
+  - NG_CLI_ANALYTICS=ci
