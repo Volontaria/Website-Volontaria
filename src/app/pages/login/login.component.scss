@@ -92,7 +92,8 @@
     position: absolute;
     width: 50vw;
     height: 100vh;
-    background-image: url('../../../assets/images/login_background.png');
+    background: linear-gradient(0deg, rgba($main-color, 0.4), rgba($main-color, 0.4)),
+      url('../../../assets/images/login_background.png');
     background-position: center;
     background-size: cover;
     z-index: 10;
