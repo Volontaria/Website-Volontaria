@@ -33,7 +33,8 @@
       (click)="newSelectDate(day)"
       *ngFor="let day of calendar"
       [ngClass]="{
-        'event-calendar__preview__day--filled': isFilledDate(day.date),
+        'event-calendar__preview__day--filled':
+          isFilledDate(day.date) && !isSelectedDate(day.date),
         'event-calendar__preview__day--selected': isSelectedDate(day.date),
         'event-calendar__preview__day--not-current-month': !day.currentMonth
       }"
