@@ -45,6 +45,7 @@
           [disabled]="!this.signinForm.valid"
           (click)="signin()"
         ></app-button>
+        <a class="login-page__section__content__actions__link" (click)="switchDrawer()">Je n'ai pas de compte</a>
       </div>
     </div>
     <div class="login-page__section__footer">
@@ -135,6 +136,7 @@
           [disabled]="!this.signupForm.valid"
           (click)="signup()"
         ></app-button>
+        <a class="login-page__section__content__actions__link" (click)="switchDrawer()">J'ai déjà un compte</a>
       </div>
     </div>
     <div class="login-page__section__footer">
