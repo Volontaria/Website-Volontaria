@@ -141,3 +141,21 @@
     }
   }
 }
+
+@media only screen and (max-width: 1250px) {
+  .events {
+    &__columns {
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 40px;
+
+      &__content {
+        &__details {
+          &__preview {
+            padding-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}
