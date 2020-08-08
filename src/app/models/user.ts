@@ -1,5 +1,5 @@
-import { Deserializable } from './deserializable';
-import { PermissionObject } from './base-model';
+import {BaseModel, PermissionObject} from './base-model';
+import {Deserializable} from './deserializable';
 
 export interface IUserRegister {
   email: string;

@@ -1,7 +1,6 @@
 import { BaseModel } from './base-model';
-import { Deserializable } from './deserializable';
 
-export class Cell extends BaseModel implements Deserializable {
+export class Cell extends BaseModel {
   public id?: number;
   public url?: string;
   public name: string;
@@ -12,9 +11,4 @@ export class Cell extends BaseModel implements Deserializable {
   public state_province: string;
   public longitude: string;
   public latitude: string;
-
-  deserialize(input: any): this {
-    Object.assign(this, input);
-    return this;
-  }
 }
