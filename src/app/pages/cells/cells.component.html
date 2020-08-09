@@ -4,7 +4,7 @@
       Choisit le lieu ou tu souhaites faire du bénévolat
     </div>
 
-    <table mat-table [dataSource]="cellList" class="cells__content__table">
+    <table mat-table [dataSource]="dataSource" class="cells__content__table">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Nom de la cellule</th>
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
@@ -14,7 +14,7 @@
       <tr
         mat-row
         *matRowDef="let row; columns: displayedColumns"
-        [routerLink]="'/events/' + row.id"
+        [routerLink]="['/', 'events', row.id]"
       ></tr>
     </table>
   </div>

@@ -1,10 +1,9 @@
 import { BaseModel } from './base-model';
-import { Deserializable } from './deserializable';
 import { TaskType } from './taskType';
 import { Cell } from './cell';
 import * as moment from 'moment';
 
-export class Event extends BaseModel implements Deserializable {
+export class Event extends BaseModel {
   public id?: number;
   public url?: string;
   public description: string;
@@ -16,11 +15,6 @@ export class Event extends BaseModel implements Deserializable {
   public nb_volunteers_standby: number;
   public cell: Cell;
   public task_type: TaskType;
-
-  deserialize(input: any): this {
-    Object.assign(this, input);
-    return this;
-  }
 
   get readableStartDate(): string {
     const startTime = moment(this.start_time).locale('fr');

@@ -1,8 +1,7 @@
 import { BaseModel } from './base-model';
 import { Event } from './event';
-import { Deserializable } from './deserializable';
 
-export class Participation extends BaseModel implements Deserializable {
+export class Participation extends BaseModel {
   public id?: number;
   public url?: string;
   public event: Event;

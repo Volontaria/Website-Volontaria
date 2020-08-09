@@ -47,6 +47,7 @@ import { MobileComponent } from './pages/mobile/mobile.component';
 import { PromotionMobileComponent } from './components/promotion-mobile/promotion-mobile.component';
 import { QRCodeModule } from 'angular2-qrcode';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { CustomTableComponent } from './shared/custom-table/custom-table.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { LogoutComponent } from './pages/logout/logout.component';
     MobileComponent,
     PromotionMobileComponent,
     LogoutComponent,
+    CustomTableComponent,
   ],
   imports: [
     BrowserModule,
