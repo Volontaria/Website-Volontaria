@@ -1,40 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { ResponseApi } from '../../models/api';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CellService } from '../../services/cell.service';
 import { Cell } from '../../models/cell';
-import { MatTableDataSource } from '@angular/material/table';
-import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
+import { CustomTableComponent } from '../../shared/custom-table/custom-table.component';
 
 @Component({
   selector: 'app-cells',
   templateUrl: './cells.component.html',
   styleUrls: ['./cells.component.scss'],
 })
-export class CellsComponent implements OnInit {
-  cellList$: Observable<Cell[]>;
-  cellList: MatTableDataSource<Cell>;
-
+export class CellsComponent extends CustomTableComponent<Cell>
+  implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name'];
 
-  constructor(private cellService: CellService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.getCells();
+  constructor(private cellService: CellService, private router: Router) {
+    super();
+    this.apiService = this.cellService;
+    this.searchFunction = 'list';
   }
 
-  getCells(): void {
-    this.cellList$ = this.cellService.list().pipe(
-      map((responseApi: ResponseApi<Cell>) => {
-        return responseApi.results;
-      })
-    );
-    this.cellList$.subscribe((cells: Cell[]) => {
-      if (cells.length === 1) {
-        this.router.navigate(['/events/' + cells[0].id]).then();
-      } else {
-        this.cellList = new MatTableDataSource(cells);
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.dataSource.connect().subscribe((cells: Cell[]) => {
+      if (cells?.length === 1) {
+        this.router.navigate(['/', 'events', cells[0].id]).then();
       }
     });
   }
