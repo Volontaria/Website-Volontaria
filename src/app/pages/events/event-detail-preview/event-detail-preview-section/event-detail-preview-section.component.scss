@@ -1,59 +1,64 @@
 @import '../../../../../assets/scss/theme';
 
 .event-detail-preview-section {
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  grid-template-rows: 1fr 1fr;
 
-  &__column {
-    flex: 1;
+  grid-column-gap: 40px;
+  grid-row-gap: 20px;
 
-    &__header {
-      display: flex;
-      justify-content: space-between;
+  &__header {
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    justify-content: space-between;
 
-      &__title {
-        border-bottom: 1px solid $instance-color;
-      }
-
-      &__max {
-      }
+    &__title {
+      border-bottom: 1px solid $instance-color;
     }
 
-    &__progress-bar {
-      margin-top: 20px;
-      height: 20px;
+    &__max {
+    }
+  }
+
+  &__progress-bar {
+    grid-area: 2 / 1 / 3 / 2;
+    height: 20px;
+    position: relative;
+    background: #efefef;
+    border-radius: 25px;
+
+    & > span {
+      display: block;
+      text-align: right;
+      color: white;
+      height: 100%;
+      padding: 0 10px 0 0;
+      border-radius: 20px;
       position: relative;
-      background: #efefef;
-      border-radius: 25px;
+      overflow: hidden;
+      transition: 0.4s;
 
-      & > span {
-        display: block;
-        text-align: right;
-        color: white;
-        height: 100%;
-        padding: 0 10px 0 0;
-        border-radius: 20px;
-        position: relative;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
         overflow: hidden;
-        transition: 0.4s;
-
-        &:after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          z-index: 1;
-          border-top-left-radius: 20px;
-          border-bottom-left-radius: 20px;
-          overflow: hidden;
-        }
       }
     }
   }
 
-  &__title {
-    margin-left: 40px;
+  &__max_value {
+    grid-area: 1 / 2 / 2 / 3;
+  }
+
+  &__status {
+    grid-area: 2 / 2 / 3 / 3;
   }
 }

@@ -1,20 +1,18 @@
 <div class="event-detail-preview-section">
-  <div class="event-detail-preview-section__column">
-    <div class="event-detail-preview-section__column__header">
-      <div class="event-detail-preview-section__column__header__title">
-        {{ title }}
-      </div>
-      <div class="event-detail-preview-section__column__header__max">
-        {{ maximum }}
-      </div>
+  <div class="event-detail-preview-section__header">
+    <div class="event-detail-preview-section__header__title">
+      {{ title }}
     </div>
-    <div class="event-detail-preview-section__column__progress-bar">
-      <span [ngStyle]="{ width: percentage + '%', 'background-color': color }">
-        {{ value }}
-      </span>
+    <div class="event-detail-preview-section__header__max">
+      {{ maximum }}
     </div>
   </div>
-  <div class="event-detail-preview-section__title">
+  <div class="event-detail-preview-section__progress-bar">
+    <span [ngStyle]="{ width: percentage + '%', 'background-color': color }">
+      {{ value }}
+    </span>
+  </div>
+  <div class="event-detail-preview-section__status">
     {{ status }}
   </div>
 </div>
