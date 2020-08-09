@@ -45,9 +45,9 @@
           [disabled]="!this.signinForm.valid"
           (click)="signin()"
         ></app-button>
-        <a class="login-page__section__content__actions__link" (click)="switchDrawer()"
-          >Je n'ai pas de compte</a
-        >
+        <button mat-button type="button" (click)="switchDrawer()">
+          Je n'ai pas de compte
+        </button>
       </div>
     </div>
     <div class="login-page__section__footer">
@@ -138,9 +138,9 @@
           [disabled]="!this.signupForm.valid"
           (click)="signup()"
         ></app-button>
-        <a class="login-page__section__content__actions__link" (click)="switchDrawer()"
-          >J'ai déjà un compte</a
-        >
+        <button mat-button (click)="switchDrawer()" type="button">
+          J'ai déjà un compte
+        </button>
       </div>
     </div>
     <div class="login-page__section__footer">
