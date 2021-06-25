@@ -79,8 +79,74 @@ const routes: Routes = [
     ]
   },
   {
-    path: '',
+    path: 'admin',
     component: AdminLayoutComponent,
+    children: [
+      // {
+      //   path: 'email-addresses',
+      //   component: EmailAddresses,
+      // },
+      // {
+      //   path: 'applications',
+      //   component: ApplicationsComponent,
+      // },
+      // {
+      //   path: 'positions',
+      //   component: PositionsComponent,
+      // },
+      // {
+      //   path: 'participations',
+      //   component: ParticipationsComponent,
+      // },
+      // {
+      //   path: 'tasks',
+      //   component: TasksComponent,
+      // },
+      {
+        path: 'mobile',
+        component: MobileComponent,
+      },
+      {
+        path: 'page/:key',
+        component: CkEditorPageComponent,
+      },
+      {
+        path: 'cells',
+        component: CellsComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'events/:cellId',
+        component: EventsComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: 'schedule',
+        component: ScheduleComponent,
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+      {
+        path: '',
+        redirectTo: '/cells',
+        pathMatch: 'full',
+        canActivate: [
+          CanActivateViaAuthGuard
+        ]
+      },
+    ]
   },
   {
     path: 'dashboard-admin',
