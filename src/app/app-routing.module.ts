@@ -11,6 +11,8 @@ import {RegisterConfirmComponent} from "./pages/register-confirm/register-confir
 import {CkEditorPageComponent} from "./pages/ck-editor-page/ck-editor-page.component";
 import {MobileComponent} from "./pages/mobile/mobile.component";
 import {LogoutComponent} from "./pages/logout/logout.component";
+import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   {
@@ -75,6 +77,16 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: 'admin-dashboard',
+        component: AdminDashboardComponent,
+      },
+    ]
+  }
 ];
 
 @NgModule({

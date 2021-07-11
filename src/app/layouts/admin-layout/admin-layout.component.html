@@ -1,0 +1,43 @@
+<!-- <p>admin-layout works!</p> -->
+
+<!-- <router-outlet></router-outlet> -->
+
+<!-- <div class="admin-layout">
+    <div class="admin-layout__left-nav">
+      <app-left-nav></app-left-nav>
+    </div>
+    <div class="admin-layout__content">
+      <router-outlet></router-outlet>
+    </div>
+</div> -->
+
+<mat-sidenav-container class="admin-layout">
+  <mat-sidenav mode="side" opened>
+    <div class="admin-layout__left-nav">
+      <div class="admin-layout__left-nav admin-layout__left-nav--section">
+        Cells
+      </div>
+      <div class="admin-layout__left-nav admin-layout__left-nav--section">
+        Events
+      </div>
+      <div class="admin-layout__left-nav admin-layout__left-nav--section">
+        Positions
+      </div>
+      <div class="admin-layout__left-nav admin-layout__left-nav--section">
+        Tasks
+      </div>
+      <div class="admin-layout__left-nav admin-layout__left-nav--section">
+        Users
+      </div>
+      <div class="admin-layout__left-nav admin-layout__left-nav--section">
+        Volunteers
+      </div>
+      
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+  
