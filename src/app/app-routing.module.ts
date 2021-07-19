@@ -85,12 +85,16 @@ const routes: Routes = [
       {
         path: 'admin-dashboard',
         component: AdminDashboardComponent,
-        children: [
-          {
-            path: 'events',
-            component: AdminEventsComponent,
-          },
-        ]
+        // children: [
+        //   {
+        //     path: 'events',
+        //     component: AdminEventsComponent,
+        //   },
+        // ]
+      },
+      {
+        path: 'events',
+        component: AdminEventsComponent,
       },
     ]
   }
