@@ -51,6 +51,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { LeftNavComponent } from './components/left-nav/left-nav.component';
 import { MatSidenavModule} from '@angular/material/sidenav';
+import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { MatSidenavModule} from '@angular/material/sidenav';
     AdminLayoutComponent,
     AdminDashboardComponent,
     LeftNavComponent,
+    AdminEventsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,83 @@
+<div class="events">
+    <div class="events__title">
+      <div class="events__title__intro">
+        Lieu du bénévolat :
+      </div>
+      <div class="events__title__cell-name">
+        Montréal - Hochelaga
+      </div>
+      <div class="events__title__cell-address">
+        Centre Pierre-Charbonneau, 300 Rue Viau<br/>
+        Montréal, H1V 3J3
+      </div>
+    </div>
+    <div class="events__activity">
+      <div class="events__activity__intro">
+        Activité :
+      </div>
+      <mat-form-field appearance="fill" class="events__activity__select">
+        <mat-label>Choisis ton activité</mat-label>
+        <mat-select [(ngModel)]="selectedTaskType" (ngModelChange)="refreshEvents()" multiple>
+          <mat-option *ngFor="let tasktype of tasktypeList" [value]="tasktype.id">{{tasktype.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <div class="events__columns">
+      <div class="events__columns__header">
+        <div class="events__columns__header__calendar">
+          <app-event-calendar *ngIf="eventMonthList"
+                              (changeCurrentMonth)="changeCurrentMonth($event)"
+                              (changeSelectedDate)="changeSelectedDate($event)"
+                              [events]="eventMonthList"></app-event-calendar>
+        </div>
+      </div>
+      <div class="events__columns__content">
+        <div class="events__columns__content__details">
+          <div class="events__columns__content__details__header">
+            <div class="events__columns__content__details__header__intro">
+              Activité disponible le
+            </div>
+  
+            <div class="events__columns__content__details__header__date">
+              {{ readableSelectedDate }}
+            </div>
+  
+            <div class="events__columns__content__details__header__action"
+                 (click)="previousEvent()"
+                 [ngClass]="{'events__columns__content__details__header__action--hidden': !havePrevious()}">
+              <i class="fas fa-chevron-left"></i>
+            </div>
+  
+            <div class="events__columns__content__details__header__action"
+                 (click)="nextEvent()"
+                 [ngClass]="{'events__columns__content__details__header__action--hidden': !haveNext()}">
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          <div class="events__columns__content__details__list">
+            <div class="events__columns__content__details__list__content"
+                 *ngIf="eventDayList && eventDayList.length"
+                 [ngStyle]="{'right': eventIndex * 270 + 'px'}">
+              <app-event-detail-list-item class="events__columns__content__details__list__content__item"
+                                          *ngFor="let event of eventDayList"
+                                          (mouseenter)="changeHoverEvent(event)"
+                                          (mouseleave)="clearHoverEvent()"
+                                          [participations]="participationList"
+                                          [event]="event"></app-event-detail-list-item>
+            </div>
+            <div class="events__columns__content__details__list__empty" *ngIf="eventDayList && !eventDayList.length">
+              Aucune activité n'est prévu pour ce jour.
+            </div>
+            <div class="events__columns__content__details__list__empty" *ngIf="!eventDayList">
+              <i class="fas fa-spinner fa-spin fa-3x"></i>
+            </div>
+          </div>
+          <div class="events__columns__content__details__preview">
+            <app-event-detail-preview [event]="hoveredEvent"></app-event-detail-preview>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

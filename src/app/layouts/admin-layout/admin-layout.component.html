@@ -14,25 +14,33 @@
 <mat-sidenav-container class="admin-layout">
   <mat-sidenav mode="side" opened>
     <div class="admin-layout__left-nav">
-      <div class="admin-layout__left-nav admin-layout__left-nav--section">
-        Cells
-      </div>
-      <div class="admin-layout__left-nav admin-layout__left-nav--section">
-        Events
-      </div>
-      <div class="admin-layout__left-nav admin-layout__left-nav--section">
-        Positions
-      </div>
-      <div class="admin-layout__left-nav admin-layout__left-nav--section">
-        Tasks
-      </div>
-      <div class="admin-layout__left-nav admin-layout__left-nav--section">
-        Users
-      </div>
-      <div class="admin-layout__left-nav admin-layout__left-nav--section">
-        Volunteers
-      </div>
-      
+      <h3 mat-subheader>POSITION</h3>
+        <div class="admin-layout__left-nav admin-layout__left-nav--section">
+          Application
+        </div>
+        <div class="admin-layout__left-nav admin-layout__left-nav--section">
+          Positions
+        </div>
+        <h3 mat-subheader>VOLUNTEER</h3>
+        <div class="admin-layout__left-nav admin-layout__left-nav--section">
+          Cells
+        </div>
+        <div class="admin-layout__left-nav admin-layout__left-nav--section">
+          <a routerLink="admin-dashboard/events">Events</a>
+        </div>
+        <div class="admin-layout__left-nav admin-layout__left-nav--section">
+          Participations
+        </div>
+        <div class="admin-layout__left-nav admin-layout__left-nav--section">
+          Tasktypes
+        </div>
+      <h3 mat-subheader>USER</h3>
+        <div class="admin-layout__left-nav admin-layout__left-nav--section">
+          API Tokens
+        </div>
+        <div class="admin-layout__left-nav admin-layout__left-nav--section">
+          Users
+        </div>     
     </div>
   </mat-sidenav>
   <mat-sidenav-content>

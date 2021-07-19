@@ -5,7 +5,7 @@
     min-height: 100vh;
   
     display: flex;
-    flex-direction: column;
+    flex-direction: columns;
     justify-content: space-between;
   
     &__left-nav {
@@ -16,7 +16,7 @@
         align-content: center;
         align-items: center;
         height: 60px;
-        width:120px; 
+        width:180px; 
         color: $main-color;
         // font-family: $main-font;
         font-size: 30px;
@@ -25,8 +25,7 @@
       }
     }
   }
-
-  
+ 
 
   .footer {
     display: flex;
