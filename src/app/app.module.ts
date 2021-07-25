@@ -52,6 +52,7 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { LeftNavComponent } from './components/left-nav/left-nav.component';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
+import { MatCardModule } from '@angular/material/card'; 
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { AdminEventsComponent } from './pages/admin-events/admin-events.componen
     MatButtonModule,
     QRCodeModule,
     MatSidenavModule,
+    MatCardModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
