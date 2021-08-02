@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AdminEventService} from '../../services/admin-event.service';
+// import {AdminEventService} from '../../services/admin-event.service';
 import { AdminEvent } from '../../models/admin-event';
 import { ADMIN_EVENTS } from '../../mock-admin-events'; 
 
@@ -21,17 +21,17 @@ export class AdminEventsComponent {
   ];
   dataSource = ADMIN_EVENTS;
 
-  constructor(private adminEventService: AdminEventService){
+  // constructor(private adminEventService: AdminEventService){
     
-  }
+  // }
 
    
 }
 
 //   constructor() {}
 
-//   ngOnInit() {
-//   }
+  // ngOnInit() {
+  // }
 
 
 // export class AdminEventsComponent implements OnInit {
