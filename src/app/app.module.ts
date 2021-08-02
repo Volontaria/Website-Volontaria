@@ -53,6 +53,11 @@ import { LeftNavComponent } from './components/left-nav/left-nav.component';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
 import { MatCardModule } from '@angular/material/card'; 
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+
 
 @NgModule({
   declarations: [
@@ -106,6 +111,10 @@ import { MatCardModule } from '@angular/material/card';
     QRCodeModule,
     MatSidenavModule,
     MatCardModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

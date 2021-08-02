@@ -64,4 +64,9 @@ export class Event extends BaseModel implements Deserializable {
 
     return result;
   }
+
+  get eventId(): number{
+    return this.id    
+  }
+
 }
