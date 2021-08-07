@@ -1,6 +1,6 @@
-import { AdminEvent } from './models/admin-event';
+import { Event } from './models/event';
 
-export const ADMIN_EVENTS: AdminEvent[] = [
+export const ADMIN_EVENTS = [
     {
     id: 1,
     url: "a-preciser",
@@ -10,7 +10,9 @@ export const ADMIN_EVENTS: AdminEvent[] = [
     nb_volunteers_needed: 2,
     nb_volunteers_standby_needed: 0,
     nb_volunteers: 0,
-    nb_volunteers_standby: 0
+    nb_volunteers_standby: 0,
+    cell: "église saint-denis", // TODO: actually point to cell using foreign key
+    task_type: 'tri', // TODO: actually point to task_type using foreign key
     },
     {
     id: 2,
@@ -21,7 +23,9 @@ export const ADMIN_EVENTS: AdminEvent[] = [
     nb_volunteers_needed: 4,
     nb_volunteers_standby_needed: 2,
     nb_volunteers: 0,
-    nb_volunteers_standby: 0
+    nb_volunteers_standby: 0,
+    cell: "église saint-denis", // TODO: actually point to cell using foreign key
+    task_type: 'vente', // TODO: actually point to task_type using foreign key
     }
 
 ]

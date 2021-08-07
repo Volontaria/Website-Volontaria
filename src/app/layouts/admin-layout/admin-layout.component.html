@@ -1,101 +1,54 @@
-<!-- <p>admin-layout works!</p> -->
-
-<!-- <router-outlet></router-outlet> -->
-
-<!-- <div class="admin-layout">
-    <div class="admin-layout__left-nav">
-      <app-left-nav></app-left-nav>
-    </div>
-    <div class="admin-layout__content">
-      <router-outlet></router-outlet>
-    </div>
-</div> -->
-<!-- 
-<mat-card class="card">
-  Ceci est un essai.
-</mat-card> -->
-
-<!-- <mat-divider></mat-divider> -->
-<!-- <section> -->
-  <!-- <div class="example-label">Stroked</div>
-  <div class="example-button-row">
-    <button mat-stroked-button>Basic</button>
-    <button mat-stroked-button color="primary">Primary</button>
-    <button mat-stroked-button color="accent">Accent</button>
-    <button mat-stroked-button color="warn">Warn</button>
-    <button mat-stroked-button disabled>Disabled</button> -->
-    <!-- <a mat-stroked-button href="https://www.google.com/" target="_blank">Link</a> -->
-  <!-- </div> -->
-<!-- </section> -->
-<!-- <mat-divider></mat-divider> -->
-
 <mat-sidenav-container class="admin-layout">
   <mat-sidenav mode="side" opened>
     <div class="admin-layout__left-nav">
       <mat-card class="admin-layout__left-nav__card">      
         <mat-card-title class="admin-layout__left-nav__card__app-group-title">
-        <!-- <h3 mat-subheader>POSITION</h3> -->
-        POSITION
+        EMPLOI
         </mat-card-title>
-        <!-- <div > -->
-          <a mat-stroked-button target="_blank" routerLink="admin-applications"
+          <a mat-stroked-button routerLink="admin-applications"
           class="admin-layout__left-nav__card__button">
-            Applications
+          Candidatures
           </a>
-        <!-- </div> -->
-        <!-- <div > -->
-          <a mat-stroked-button target="_blank" routerLink="admin-positions"
+          <a mat-stroked-button routerLink="admin-positions"
           class="admin-layout__left-nav__card__button">
-          Positions
+          Emplois
           </a>
-        <!-- </div> -->
       </mat-card>
 
       <mat-card class="admin-layout__left-nav__card"> 
         <mat-card-title class="admin-layout__left-nav__card__app-group-title">
-          VOLUNTEER
+          BÉNÉVOLAT
         </mat-card-title>
-        <!-- <div class="admin-layout__left-nav__card__button"> -->
-          <a mat-stroked-button target="_blank" routerLink="admin-cells"
+          <a mat-stroked-button routerLink="admin-cells"
           class="admin-layout__left-nav__card__button">
-          Cells
+          Lieux
           </a>
-        <!-- </div> -->
-        <!-- <div class="admin-layout__left-nav__card__button"> -->
-          <a mat-stroked-button target="_blank" routerLink="admin-events"
-          class="admin-layout__left-nav__card__button">Events</a>
-          <!-- class="admin-layout__left-nav__card__button">Events</a> -->
-        <!-- </div> -->
-        <!-- <div class="admin-layout__left-nav__card__button"> -->
-          <a mat-stroked-button target="_blank" routerLink="admin-participations"
+          <a mat-stroked-button routerLink="admin-events"
+          class="admin-layout__left-nav__card__button">
+          Événements
+          </a>
+          <a mat-stroked-button routerLink="admin-participations"
           class="admin-layout__left-nav__card__button">
           Participations
           </a>
-        <!-- </div> -->
-        <!-- <div class="admin-layout__left-nav__card__button"> -->
-          <a mat-stroked-button target="_blank" routerLink="admin-task-types"
+          <a mat-stroked-button routerLink="admin-task-types"
           class="admin-layout__left-nav__card__button">
-          Task Types
+          Activités
           </a>
-        <!-- </div> -->
       </mat-card>
 
         <mat-card class="admin-layout__left-nav__card"> 
           <mat-card-title class="admin-layout__left-nav__card__app-group-title">
-            USER
+          INTERFACE
           </mat-card-title>
-        <!-- <div class="admin-layout__left-nav__card__button"> -->
-          <a mat-stroked-button target="_blank" routerLink="admin-api-tokens"
+          <a mat-stroked-button routerLink="admin-api-tokens"
           class="admin-layout__left-nav__card__button">
-          API Tokens
+          Jetons d'application
           </a>
-        <!-- </div> -->
-        <!-- <div class="admin-layout__left-nav__card__button"> -->
-          <a mat-stroked-button target="_blank" routerLink="admin-users"
+          <a mat-stroked-button routerLink="admin-users"
           class="admin-layout__left-nav__card__button">
-          Users
+          Utilisateurs
           </a>
-        <!-- </div>    -->
         </mat-card>   
       </div>
   </mat-sidenav>

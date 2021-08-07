@@ -49,7 +49,6 @@ import {QRCodeModule} from "angular2-qrcode";
 import { LogoutComponent } from './pages/logout/logout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
-import { LeftNavComponent } from './components/left-nav/left-nav.component';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
 import { MatCardModule } from '@angular/material/card'; 
@@ -90,7 +89,6 @@ import { MatSortModule } from '@angular/material/sort';
     LogoutComponent,
     AdminLayoutComponent,
     AdminDashboardComponent,
-    LeftNavComponent,
     AdminEventsComponent,
   ],
   imports: [

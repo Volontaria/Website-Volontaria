@@ -7,6 +7,7 @@ import * as moment from 'moment';
 export class Event extends BaseModel implements Deserializable {
   public id?: number;
   public url?: string;
+  public description: string;
   public start_time: string;
   public end_time: string;
   public nb_volunteers_needed: number;

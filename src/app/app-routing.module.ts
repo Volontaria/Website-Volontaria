@@ -43,16 +43,16 @@ const routes: Routes = [
       {
         path: 'cells',
         component: CellsComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        // canActivate: [
+        //   CanActivateViaAuthGuard
+        // ]
       },
       {
         path: 'events/:cellId',
         component: EventsComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        // canActivate: [
+        //   CanActivateViaAuthGuard
+        // ]
       },
       {
         path: 'profile',
