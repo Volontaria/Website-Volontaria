@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -56,7 +56,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
-
+import '@angular/common/locales/global/fr-CA';
 
 @NgModule({
   declarations: [
@@ -118,6 +118,7 @@ import { MatSortModule } from '@angular/material/sort';
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: Error401Interceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: Error403Interceptor, multi: true },
+    {provide: LOCALE_ID, useValue: 'fr-CA' },
     FormBuilder,
     AuthenticationService,
     MatSnackBar,

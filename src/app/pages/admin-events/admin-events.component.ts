@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {map} from 'rxjs/operators';
 import {ResponseApi} from '../../models/api';
-import {AdminEventService} from '../../services/admin-event.service';
+import {EventService} from '../../services/event.service';
 import {Event} from '../../models/event';
 import {MatTableDataSource} from '@angular/material/table';
 import {Observable} from 'rxjs/internal/Observable';
@@ -20,8 +20,8 @@ export class AdminEventsComponent implements OnInit {
   eventList$: Observable<Event[]>;
   
   
-  // eventList: MatTableDataSource<Event>;
-  eventList = ADMIN_EVENTS;
+  eventList: MatTableDataSource<Event>;
+  // eventList = ADMIN_EVENTS;
 
   displayedColumns: string[] = [
     'description',
@@ -35,30 +35,28 @@ export class AdminEventsComponent implements OnInit {
     'task_type'
   ];
 
-  ngOnInit(): void{
+  // ngOnInit(): void{
     
-  }
+  // }
 
-  constructor(private adminEventService: AdminEventService,
+  constructor(private eventService: EventService,
               private router: Router) { }
 
   // TODO: make the below work            
-  // ngOnInit(): void {
-  //   this.getEvents();
-  // }
+  ngOnInit(): void {
+    this.getEvents();
+  }
 
-  // getEvents(): void {
-  //   this.eventList$ = this.adminEventService.list().pipe(
-  //     map((responseApi: ResponseApi<Event>) => {
-  //       return responseApi.results;
-  //     })
-  //   );
-  //   this.eventList$.subscribe((events: Event[]) => {
-  //     // if ( events.length === 1) {
-  //       this.router.navigate(['/admin-events/']); // or should this be events?
-  //     // } else {
-  //       this.eventList = new MatTableDataSource(events);
-  //     // }
-  //   });
-  // }
+  getEvents(): void {
+    this.eventService.list().subscribe(
+      (responseApi: ResponseApi<Event>) => {
+        this.eventList = new MatTableDataSource(responseApi.results);
+    });
+
+  
+  // get readableDate(this.eventList): string {
+  //     return this.eventList.end_time.locale('fr').format('LL');
+  //   }
+  
+  }
 }

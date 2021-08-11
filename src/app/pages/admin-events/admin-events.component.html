@@ -35,7 +35,7 @@
       class="events__content__table__header">
       Début</mat-header-cell>
       <mat-cell class="events__content__table__cell--date"
-                *matCellDef="let item">{{item.start_time}}</mat-cell>
+                *matCellDef="let item">{{item.start_time | date: 'd MMM yy H:mm'}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="end_time">
@@ -43,7 +43,7 @@
     class="events__content__table__header">
     Fin</mat-header-cell>
     <mat-cell class="events__content__table__cell--date"
-              *matCellDef="let item">{{item.end_time}}</mat-cell>
+              *matCellDef="let item">{{item.end_time | date: 'd MMM yy H:mm'}}</mat-cell>
   </ng-container>
 
   <!-- <ng-container matColumnDef="volunteers">
@@ -83,7 +83,7 @@
     class="events__content__table__header">
     Lieu</mat-header-cell>
     <mat-cell class="events__content__table__cell--text"
-              *matCellDef="let item">{{item.cell}}</mat-cell>
+              *matCellDef="let item">{{item.cell.name}}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="task_type">
@@ -91,7 +91,7 @@
     class="events__content__table__header">
     Activité</mat-header-cell>
     <mat-cell class="events__content__table__cell--text"
-              *matCellDef="let item">{{item.task_type}}</mat-cell>
+              *matCellDef="let item">{{item.task_type.name}}</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
