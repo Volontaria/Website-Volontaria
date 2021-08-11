@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {map} from 'rxjs/operators';
+// import {map} from 'rxjs/operators';
 import {ResponseApi} from '../../models/api';
 import {EventService} from '../../services/event.service';
 import {Event} from '../../models/event';
 import {MatTableDataSource} from '@angular/material/table';
 import {Observable} from 'rxjs/internal/Observable';
 import {Router} from "@angular/router";
+import {ActivatedRoute, Params} from '@angular/router';
+
 
 // temp:
-import { ADMIN_EVENTS } from '../../mock-admin-events';
+// import { ADMIN_EVENTS } from '../../mock-admin-events';
 
 
 @Component({
@@ -40,11 +42,15 @@ export class AdminEventsComponent implements OnInit {
   // }
 
   constructor(private eventService: EventService,
-              private router: Router) { }
+              private router: Router,
+              private activatedRoute: ActivatedRoute
+              ) { }
 
   // TODO: make the below work            
   ngOnInit(): void {
     this.getEvents();
+    this.searchEvents();
+
   }
 
   getEvents(): void {
@@ -52,6 +58,18 @@ export class AdminEventsComponent implements OnInit {
       (responseApi: ResponseApi<Event>) => {
         this.eventList = new MatTableDataSource(responseApi.results);
     });
+
+
+  searchEvents(): void {
+    const search: SearchField = {
+      description: this.description
+    }
+    this.eventService.search(search).subscribe(
+      (responseApi: ResponseApi<Event>) => {
+        this.eventList = new MatTableDataSource(responseApi.results);
+    });
+  }
+
 
   
   // get readableDate(this.eventList): string {
