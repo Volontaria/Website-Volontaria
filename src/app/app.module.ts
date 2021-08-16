@@ -57,6 +57,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import '@angular/common/locales/global/fr-CA';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginatorFrench } from './utils/french-paginator-class';
 
 @NgModule({
   declarations: [
@@ -119,6 +121,7 @@ import '@angular/common/locales/global/fr-CA';
     { provide: HTTP_INTERCEPTORS, useClass: Error401Interceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: Error403Interceptor, multi: true },
     {provide: LOCALE_ID, useValue: 'fr-CA' },
+    { provide: MatPaginatorIntl, useClass: MatPaginatorFrench},
     FormBuilder,
     AuthenticationService,
     MatSnackBar,

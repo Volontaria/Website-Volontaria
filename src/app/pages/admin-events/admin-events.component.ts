@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 // import {map} from 'rxjs/operators';
 import {ResponseApi} from '../../models/api';
 import {EventService} from '../../services/event.service';
@@ -8,7 +8,8 @@ import {SearchField} from "../../models/search-field";
 import {MatTableDataSource} from '@angular/material/table';
 import {Observable} from 'rxjs/internal/Observable';
 import {Router} from "@angular/router";
-import {ActivatedRoute, Params} from '@angular/router';
+// import {ActivatedRoute, Params} from '@angular/router';
+import { MatPaginator} from '@angular/material/paginator';
 
 
 // temp:
@@ -20,10 +21,11 @@ import {ActivatedRoute, Params} from '@angular/router';
   templateUrl: './admin-events.component.html',
   styleUrls: ['./admin-events.component.scss']
 })
-export class AdminEventsComponent implements OnInit {
-  eventList$: Observable<Event[]>;
+export class AdminEventsComponent implements OnInit, AfterViewInit {
+
+  eventList$: Observable<Event[]>; 
   
-  
+  // eventList: MatTableDataSource<Event>;
   eventList: MatTableDataSource<Event>;
   // eventList = ADMIN_EVENTS;
 
@@ -39,6 +41,16 @@ export class AdminEventsComponent implements OnInit {
     'task_type'
   ];
 
+  // For paginator, courtesy https://stackoverflow.com/questions/66839002/how-to-add-pagination-in-angular-material-table-that-bind-to-api-response
+  // see also https://v10.material.angular.io/components/table/overview#pagination
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngAfterViewInit(): void {
+    this.eventList.paginator = this.paginator;
+  }
+
+
+  // Filter
   _description: string;
   get description(): string {
     return this._description;
@@ -77,4 +89,6 @@ export class AdminEventsComponent implements OnInit {
         this.eventList = new MatTableDataSource(responseApi.results);
     });
   } 
+
+
 }
