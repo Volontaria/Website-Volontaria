@@ -2,54 +2,6 @@
 
 <!-- <router-outlet></router-outlet> -->
 
-<!-- source: https://blog.angular-university.io/angular-material-data-table/ -->
-
-<!-- <mat-form-field appearance="fill" class="events__activity__select">
-  <mat-label>Choisis ton activité</mat-label>
-  <mat-select [(ngModel)]="selectedTaskType" (ngModelChange)="refreshEvents()" multiple>
-    <mat-option *ngFor="let tasktype of tasktypeList" [value]="tasktype.id">{{tasktype.name}}</mat-option>
-  </mat-select>
-</mat-form-field> -->
-
-
-<!-- <div class="events__columns__content__details__list">
-  <div class="events__columns__content__details__list__content"
-       *ngIf="eventDayList && eventDayList.length"
-       [ngStyle]="{'right': eventIndex * 270 + 'px'}">
-    <app-event-detail-list-item class="events__columns__content__details__list__content__item"
-                                *ngFor="let event of eventDayList"
-                                (mouseenter)="changeHoverEvent(event)"
-                                (mouseleave)="clearHoverEvent()"
-                                [participations]="participationList"
-                                [event]="event"></app-event-detail-list-item>
-  </div> -->
-  <!-- <div class="events__columns__content__details__list__empty" *ngIf="eventList && !eventList.length">
-    Aucune activité n'est prévu pour ce jour.
-  </div>
-  <div class="events__columns__content__details__list__empty" *ngIf="!eventList">
-    <i class="fas fa-spinner fa-spin fa-3x"></i>
-  </div> -->
-<!-- </div> -->
-
-
-
-
-<!-- 
-<div id="search-component">
-  <label for="search-box">Hero Search</label>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
-  <ul class="search-result">
-    <li *ngFor="let event of eventList" >
-      <a routerLink="/event/{{event.id}}">
-        {{event.description}}
-      </a>
-    </li>
-  </ul>
-</div>
-
- -->
-
 
 <div class="events">
   <div class="events__content">
@@ -57,11 +9,58 @@
       Événements
     </div>
 
+    <!-- <div class="example-container mat-elevation-z8">
+      <div class="example-loading-shade"
+           *ngIf="isLoadingResults || isRateLimitReached">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+          GitHub's API rate limit has been reached. It will be reset in one minute.
+        </div>
+      </div>
+    
+      <div class="example-table-container">
+    
+        <table mat-table [dataSource]="data" class="example-table"
+               matSort matSortActive="created" matSortDisableClear matSortDirection="desc"> -->
+          <!-- Number Column -->
+          <!-- <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef>#</th>
+            <td mat-cell *matCellDef="let row">{{row.number}}</td>
+          </ng-container> -->
+    
+          <!-- Title Column -->
+          <!-- <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let row">{{row.title}}</td>
+          </ng-container> -->
+    
+          <!-- State Column -->
+          <!-- <ng-container matColumnDef="state">
+            <th mat-header-cell *matHeaderCellDef>State</th>
+            <td mat-cell *matCellDef="let row">{{row.state}}</td>
+          </ng-container>
+     -->
+          <!-- Created Column -->
+          <!-- <ng-container matColumnDef="created">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+              Created
+            </th>
+            <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    
+      <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
+    </div>
+     -->
 
+<!-- ##############################     -->
 
-
-
-<mat-table class="events__content__table" [dataSource]="eventList">
+  <!-- Mat table for Volontaria: -->
+  <mat-table class="events__content__table" [dataSource]="eventList">
 
 
   <ng-container matColumnDef="description">
@@ -138,13 +137,15 @@
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  <mat-row mat-row (click)="onSelect(row.id)"
+  *matRowDef="let row; columns: displayedColumns"></mat-row>
 
 
 </mat-table>
 
-<mat-paginator [pageSizeOptions]="[1, 5, 10, 20]" showFirstLastButtons></mat-paginator>
+<!-- <mat-paginator [pageSizeOptions]="[1, 5, 10, 20]" showFirstLastButtons></mat-paginator> -->
 
+<app-admin-event-details [event]="selectedEvent"></app-admin-event-details>
 
   </div>
 </div>

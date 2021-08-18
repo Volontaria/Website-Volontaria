@@ -59,6 +59,8 @@ import { MatSortModule } from '@angular/material/sort';
 import '@angular/common/locales/global/fr-CA';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorFrench } from './utils/french-paginator-class';
+import { AdminEventDetailsComponent } from './pages/admin-events/admin-event-details/admin-event-details.component';
+
 
 @NgModule({
   declarations: [
@@ -92,6 +94,7 @@ import { MatPaginatorFrench } from './utils/french-paginator-class';
     AdminLayoutComponent,
     AdminDashboardComponent,
     AdminEventsComponent,
+    AdminEventDetailsComponent,
   ],
   imports: [
     BrowserModule,
