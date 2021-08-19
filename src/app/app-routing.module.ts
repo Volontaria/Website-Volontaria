@@ -14,6 +14,7 @@ import {LogoutComponent} from "./pages/logout/logout.component";
 import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
+import { AdminEventDetailsComponent } from './pages/admin-events/admin-event-details/admin-event-details.component';
 
 const routes: Routes = [
   {
@@ -89,6 +90,12 @@ const routes: Routes = [
       {
         path: 'admin-events',
         component: AdminEventsComponent,
+        children: [
+          {
+            path: 'details/:id',
+            component: AdminEventDetailsComponent,
+          }
+        ]
       },
     ]
   }

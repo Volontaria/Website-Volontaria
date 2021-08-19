@@ -68,7 +68,9 @@
       class="events__content__table__header">
       Description</mat-header-cell>
       <mat-cell class="events__content__table__cell--text"
-                *matCellDef="let item">{{item.description}}</mat-cell>
+                *matCellDef="let item">{{item.description}}
+                <a fxFlexFill [routerLink]="'/admin-event/details/'+item.id" class="mat-row-link"></a>
+              </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="start_time">
@@ -137,7 +139,7 @@
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   
-  <mat-row mat-row (click)="onSelect(row.id)"
+  <mat-row mat-row 
   *matRowDef="let row; columns: displayedColumns"></mat-row>
 
 
@@ -145,7 +147,22 @@
 
 <!-- <mat-paginator [pageSizeOptions]="[1, 5, 10, 20]" showFirstLastButtons></mat-paginator> -->
 
-<app-admin-event-details [event]="selectedEvent"></app-admin-event-details>
+<!-- <app-admin-event-details [event]="selectedEvent"></app-admin-event-details> -->
+<!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
+
+<router-outlet></router-outlet>
+
+
+
+<!-- <div ngif*="event">
+  <h2>{{event.description | uppercase}} Details</h2>
+  <div><span>id: </span>{{event.id}}</div> 
+  <div>
+    <label for="event-description">Event description: </label>
+    <input id="event-description" [(ngModel)]="event.description" placeholder="description">
+  </div>
+  </div> 
+ -->
 
   </div>
 </div>
