@@ -65,11 +65,17 @@
   }
 }
 
-// see https://stackoverflow.com/questions/53764059/angular-material-7-link-for-whole-row#53765608
-.mat-row-link{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;             
+demo-row-is-clicked {
+  font-weight: bold;
 }
+
+
+
+// // see https://stackoverflow.com/questions/53764059/angular-material-7-link-for-whole-row#53765608
+// .mat-row-link{
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   left: 0;
+//   top: 0;             
+// }

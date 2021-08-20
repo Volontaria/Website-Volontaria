@@ -9,6 +9,13 @@
       Événements
     </div>
 
+    <!-- <h1>{{title}}</h1> -->
+    <!-- <nav>
+      <a routerLink="/admin-event/details/{{event.id}}">Heroes</a>
+    </nav>
+    <router-outlet></router-outlet> -->
+    <!-- <app-messages></app-messages> -->
+
     <!-- <div class="example-container mat-elevation-z8">
       <div class="example-loading-shade"
            *ngIf="isLoadingResults || isRateLimitReached">
@@ -140,17 +147,38 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   
   <mat-row mat-row 
+  (click)="getEventDetail(row)"
   *matRowDef="let row; columns: displayedColumns"></mat-row>
 
 
 </mat-table>
+
+
+<!-- <div>
+  <h3>
+    Click Log
+  </h3>
+</div> -->
+<!-- 
+<div *ngIf="!clickedRows.size">
+  Clicked rows will be logged here
+</div>
+
+<ul>
+  <li *ngFor="let clickedRow of clickedRows">
+    Clicked on {{clickedRow.description}}
+  </li>
+</ul> -->
+
+
+<!-- ref: https://careydevelopment.us/blog/angular-material-tables-how-to-make-clickable-rows-that-take-users-to-a-new-route -->
 
 <!-- <mat-paginator [pageSizeOptions]="[1, 5, 10, 20]" showFirstLastButtons></mat-paginator> -->
 
 <!-- <app-admin-event-details [event]="selectedEvent"></app-admin-event-details> -->
 <!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
 
 
 

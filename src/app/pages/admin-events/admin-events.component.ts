@@ -40,8 +40,8 @@ export class AdminEventsComponent implements OnInit {
   eventList$: Observable<Event[]>;  
   eventList: MatTableDataSource<Event>;
   
-
-
+  // clickedRows = new Set<Event>();
+  event: Observable<Event>;
 
   displayedColumns: string[] = [
     'description',
@@ -117,12 +117,19 @@ export class AdminEventsComponent implements OnInit {
       })
     }
   
-    selectedEvent?: Event;
-    onSelect(event: Event): void {
-      this.selectedEvent = event;
+    // selectedEvent?: Event;
+    // onSelect(event: Event): void {
+    //   this.selectedEvent = event;
+    // }
+
+    // ref https://careydevelopment.us/blog/angular-material-tables-how-to-make-clickable-rows-that-take-users-to-a-new-route
+    getEventDetail(event: Event) {
+      let route = '/admin-events/details/';
+      this.router.navigate([route], { queryParams: { id: event.id } } );
     }
 
-
+    // TODO: investigate why this error when clicking on a row in the event table:
+    // ERROR Error: Uncaught (in promise): Error: Cannot match any routes. URL Segment: 'admin-events/details'
   
   }
   

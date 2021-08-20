@@ -90,13 +90,11 @@ const routes: Routes = [
       {
         path: 'admin-events',
         component: AdminEventsComponent,
-        children: [
-          {
-            path: 'details/:id',
-            component: AdminEventDetailsComponent,
-          }
-        ]
       },
+      {
+        path: 'admin-events/details/:id',
+        component: AdminEventDetailsComponent,
+      }
     ]
   }
 ];
