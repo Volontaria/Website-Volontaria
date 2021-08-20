@@ -4,7 +4,7 @@ import { switchMap } from 'rxjs/operators';
 import { Event } from '../../../models/event'
 import { ActivatedRoute, ParamMap, Router, Route } from '@angular/router';
 import { EventService} from '../../../services/event.service';
-
+import {ResponseApi} from '../../../models/api';
 
 
 @Component({
@@ -29,37 +29,57 @@ export class AdminEventDetailsComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    let event$ = this.route.queryParamMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.eventService.getById(id))   // TODO: adjust arguments for getById
-    );
-
-    event$.subscribe(
-      (event: Event) => this.handleResponse(event),
-      err => this.handleError(err)
-    );
+   this.getEvent();
   }
 
-  private handleResponse(event: Event) {
-    this.event = event;
-    this.loading = false;
+  // Mimicking getHero from Angular Tutorial at https://angular.io/tutorial/toh-pt5
+  getEvent(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.eventService.getById(id)
+      .subscribe(event => this.event = event);
   }
 
-  private handleError(err: Error) {
-    console.log(err);
-    this.loading = false;
+  // TODO: how to use getById function instead?
+  // getEvent(): void {
+  //   this.eventService.getById(this.event.id).subscribe(
+  //     () => {
+  //       this.event = new Event();
+  //     }
+  //   )
+  // }
+  
+  // void {
+  //   let event$ = this.route.queryParamMap.pipe(
+  //     switchMap((params: ParamMap) =>
+  //       this.eventService.getById(id))   // TODO: adjust arguments for getById
+  //   );
 
-    let alertMessage: string = 'Something went wrong, please call support';
+  //   event$.subscribe(
+  //     (event: Event) => this.handleResponse(event),
+  //     err => this.handleError(err)
+  //   );
+  // }
 
-    if (err instanceof HttpErrorResponse) {
-      if (err.status) {
-        if (err.status == 404) {
-          alertMessage = 'Contact with that ID does not exist';
-        }
-      }
-    }
+  // private handleResponse(event: Event) {
+  //   this.event = event;
+  //   this.loading = false;
+  // }
 
-    // this.alertService.error(alertMessage);
-  }
+  // private handleError(err: Error) {
+  //   console.log(err);
+  //   this.loading = false;
+
+  //   let alertMessage: string = 'Something went wrong, please call support';
+
+  //   if (err instanceof HttpErrorResponse) {
+  //     if (err.status) {
+  //       if (err.status == 404) {
+  //         alertMessage = 'Contact with that ID does not exist';
+  //       }
+  //     }
+  //   }
+
+  //   // this.alertService.error(alertMessage);
+  // }
 
 }
