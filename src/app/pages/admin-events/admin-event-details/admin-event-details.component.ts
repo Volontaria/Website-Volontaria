@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { switchMap } from 'rxjs/operators';
-import { Event } from '../../../models/event'
 import { ActivatedRoute, ParamMap, Router, Route } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Event } from '../../../models/event'
 import { EventService} from '../../../services/event.service';
 import {ResponseApi} from '../../../models/api';
 
@@ -15,11 +16,33 @@ import {ResponseApi} from '../../../models/api';
 export class AdminEventDetailsComponent implements OnInit {
 
   loading: boolean = true;
-  event: Event = {} as Event;
+  // an_event$: Event = {} as Event;
+  an_event$!: Observable<Event>;
+  // an_event$: any;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private eventService: EventService) { }
 
+
+  ngOnInit() {
+    // see https://angular.io/guide/router-tutorial-toh#define-a-wildcard-route
+    this.an_event$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.eventService.getById(Number(params.get('id')!)))
+    );
+  }
+
+  gotoEvents(an_event: Event) {
+    const eventId = an_event ? an_event.id : null;
+    // Pass along the event id if available
+    // so that the EventList component can select that event.
+    // Include a junk 'foo' property for fun.
+    this.router.navigate(['/admin-events', { id: eventId, foo: 'foo' }]);
+  }
+
+}
   // @Input() event?: Event;
 
   // ref: https://github.com/careydevelopment/careydevelopmentcrm/blob/0.2.6-click-to-edit-contacts/src/app/features/contacts/edit-contact/edit-contact.component.ts
@@ -28,58 +51,16 @@ export class AdminEventDetailsComponent implements OnInit {
 
   // }
 
-  ngOnInit(): void {
-   this.getEvent();
-  }
+  // ngOnInit(): void {
+  //  this.getEventDetail();
+  // }
 
-  // Mimicking getHero from Angular Tutorial at https://angular.io/tutorial/toh-pt5
-  getEvent(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.eventService.getById(id)
-      .subscribe(event => this.event = event);
-  }
+  // // Mimicking getHero from Angular Tutorial at https://angular.io/tutorial/toh-pt5
+  // getEventDetail(): void {
+  //   const id = Number(this.route.snapshot.paramMap.get('id'));
+  //   this.eventService.getById(id)
+  //     .subscribe(event => this.event = event);
+  // }
 
   // TODO: how to use getById function instead?
-  // getEvent(): void {
-  //   this.eventService.getById(this.event.id).subscribe(
-  //     () => {
-  //       this.event = new Event();
-  //     }
-  //   )
-  // }
-  
-  // void {
-  //   let event$ = this.route.queryParamMap.pipe(
-  //     switchMap((params: ParamMap) =>
-  //       this.eventService.getById(id))   // TODO: adjust arguments for getById
-  //   );
-
-  //   event$.subscribe(
-  //     (event: Event) => this.handleResponse(event),
-  //     err => this.handleError(err)
-  //   );
-  // }
-
-  // private handleResponse(event: Event) {
-  //   this.event = event;
-  //   this.loading = false;
-  // }
-
-  // private handleError(err: Error) {
-  //   console.log(err);
-  //   this.loading = false;
-
-  //   let alertMessage: string = 'Something went wrong, please call support';
-
-  //   if (err instanceof HttpErrorResponse) {
-  //     if (err.status) {
-  //       if (err.status == 404) {
-  //         alertMessage = 'Contact with that ID does not exist';
-  //       }
-  //     }
-  //   }
-
-  //   // this.alertService.error(alertMessage);
-  // }
-
-}
+ 

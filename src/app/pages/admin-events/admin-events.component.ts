@@ -41,7 +41,7 @@ export class AdminEventsComponent implements OnInit {
   eventList: MatTableDataSource<Event>;
   
   // clickedRows = new Set<Event>();
-  event: Observable<Event>;
+  an_event: any;
 
   displayedColumns: string[] = [
     'description',
@@ -106,8 +106,7 @@ export class AdminEventsComponent implements OnInit {
       
     ngOnInit(): void {
       this.getEvents();
-      // this.searchEvents();
-      this.getEventDetail(event);
+      this.getEventDetail(this.an_event);
   
     }
   
@@ -124,70 +123,10 @@ export class AdminEventsComponent implements OnInit {
     // }
 
     // ref https://careydevelopment.us/blog/angular-material-tables-how-to-make-clickable-rows-that-take-users-to-a-new-route
-    getEventDetail(event: Event) {
+    // and then
+    // https://stackoverflow.com/questions/68915846/how-to-fix-error-uncaught-in-promise-error-cannot-match-any-routes-when-clic/68916321#68916321
+    getEventDetail(an_event: Event) {
       let route = '/admin-events/details/';
-      this.router.navigate([route], { queryParams: { id: event.id } } );
+      this.router.navigate([route, an_event.id]);
     }
-
-    // TODO: investigate why this error when clicking on a row in the event table:
-    // ERROR Error: Uncaught (in promise): Error: Cannot match any routes. URL Segment: 'admin-events/details'
-  
   }
-  
-  
-    // export interface GithubApi {
-    //   // items: GithubIssue[];
-    //   // total_count: number;
-    //   count: number;
-    //   next: any;
-    //   previous: any;
-    //   results: Evnt[];
-    // }
-
-    // export interface ResponseApi<T> {
-    //   count: number;
-    //   next: any;
-    //   previous: any;
-    //   results: T[];
-    // }
-
-    // export interface Evnt{
-    //     public id?: number;
-    //     public url?: string;
-    //     public description: string;
-    //     public start_time: string;
-    //     public end_time: string;
-    //     public nb_volunteers_needed: number;
-    //     public nb_volunteers_standby_needed: number;
-    //     public nb_volunteers: number;
-    //     public nb_volunteers_standby: number;
-    //     public cell: Cell;
-    //     public task_type: TaskType;
-      
-    // }
-    
-    // export interface GithubIssue {
-    //   created_at: string;
-    //   number: string;
-    //   state: string;
-    //   title: string;
-    // }
-
-
-    
-    /** An example database that the data source uses to retrieve data for the table. */
-  // export class ExampleHttpDatabase {
-  //   constructor(private _httpClient: HttpClient) {}
-  
-  //   getRepoIssues(sort: string, order: string, page: number): Observable<GithubApi> {
-  //     // const href = 'https://api.github.com/search/issues';
-  //     const href = 'http://localhost:4200/admin-events/';
-  //     const requestUrl =
-  //         // `${href}?q=repo:angular/components&sort=${sort}&order=${order}&page=${page + 1}`;
-  //         `${href}?q=sort=${sort}&order=${order}&page=${page + 1}`;
-
-  
-  //     return this._httpClient.get<GithubApi>(requestUrl);
-  //   }
-  // }
-  

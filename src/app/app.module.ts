@@ -60,6 +60,7 @@ import '@angular/common/locales/global/fr-CA';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorFrench } from './utils/french-paginator-class';
 import { AdminEventDetailsComponent } from './pages/admin-events/admin-event-details/admin-event-details.component';
+// import { AdminDashboardEventsComponent } from './pages/admin-dashboard-events/admin-dashboard-events.component';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { AdminEventDetailsComponent } from './pages/admin-events/admin-event-det
     AdminDashboardComponent,
     AdminEventsComponent,
     AdminEventDetailsComponent,
+    // AdminDashboardEventsComponent,
   ],
   imports: [
     BrowserModule,

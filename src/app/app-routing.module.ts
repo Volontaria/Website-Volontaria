@@ -16,6 +16,7 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
 import { AdminEventDetailsComponent } from './pages/admin-events/admin-event-details/admin-event-details.component';
 
+
 const routes: Routes = [
   {
     path: 'login',
@@ -94,9 +95,9 @@ const routes: Routes = [
       {
         path: 'admin-events/details/:id',
         component: AdminEventDetailsComponent,
-      }
+      }    
     ]
-  }
+  },
 ];
 
 @NgModule({
