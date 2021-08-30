@@ -1,10 +1,63 @@
 <!-- <p>admin-event-details works!</p> -->
 
-<h2>Events</h2>
+<!-- <h2>Events</h2>
 <div *ngIf="an_event$ | async as an_event">
   <h3>{{ an_event.description }}</h3>
   <p>Id: {{ an_event.id }}</p>
   <label for="event-description">Event description: </label>
   <input type="text" id="event-description" [(ngModel)]="an_event.description" placeholder="description"/>
   <button (click)="gotoEvents(an_event)">Back</button>
+</div> -->
+
+<div *ngIf="an_event$ | async as an_event">
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-subtitle>Événement:</mat-card-subtitle>
+    <mat-card-title>{{ an_event.description }}</mat-card-title>
+    
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Début: {{an_event.start_time}}
+    </p>
+    <p>
+      Fin: {{an_event.end_time}}
+    </p>
+    <p>
+      nombre de bénévoles: {{an_event.nb_volunteers}} / {{an_event.nb_volunteers_needed}}
+    </p>
+    <p>
+      nombre de remplaçants: {{an_event.nb_volunteers}} / {{an_event.nb_volunteers_needed}}
+    </p>
+    <p>
+      lieu: 
+    </p>
+    <!-- <p> -->
+      <!-- tâche: {{an_event.TaskType}} -->
+      <p *ngFor="let tasktype of tasktypeList">{{tasktype.name}}</p>
+    <!-- </p> -->
+    <!-- public nb_volunteers_needed: number;
+    public nb_volunteers_standby_needed: number;
+    public nb_volunteers: number;
+    public nb_volunteers_standby: number;
+    public cell: Cell;
+    public task_type: TaskType; -->
+  
+  
+  
+  </mat-card-content>
+</mat-card>
 </div>
+
+
+  <!-- <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>   -->
+<!-- </mat-card> -->
+
+<!-- public id?: number;
+public url?: string;
+public description: string;
+public start_time: string;
+public end_time: string; -->

@@ -1,11 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Route } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Event } from '../../../models/event'
 import { EventService} from '../../../services/event.service';
 import {ResponseApi} from '../../../models/api';
+import {TaskType} from '../../../models/taskType';
+import {TasktypeService} from '../../../services/tasktype.service';
 
 
 @Component({
@@ -20,18 +22,31 @@ export class AdminEventDetailsComponent implements OnInit {
   an_event$!: Observable<Event>;
   // an_event$: any;
 
+  tasktypeList: TaskType[];
+  tasktypeList$: Observable<TaskType[]>;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private eventService: EventService) { }
+    private eventService: EventService,
+    private tasktypeService: TasktypeService) { }
 
 
-  ngOnInit() {
+  ngOnInit(): void {
     // see https://angular.io/guide/router-tutorial-toh#define-a-wildcard-route
     this.an_event$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
         this.eventService.getById(Number(params.get('id')!)))
     );
+
+    // this.activatedRoute.params.subscribe((params: Params) => {
+    //     this.an_event$.id
+    //   this.cellId = params['cellId'];
+      // this.getParticipations();
+      // this.changeSelectedDate(this.selectedDate);
+      // this.changeCurrentMonth(this.actualMonth);
+    // });
+    this.getTaskTypeList();
   }
 
   gotoEvents(an_event: Event) {
@@ -42,25 +57,17 @@ export class AdminEventDetailsComponent implements OnInit {
     this.router.navigate(['/admin-events', { id: eventId, foo: 'foo' }]);
   }
 
+
+// TODO: restrict list of tasks to task matching the event being examined
+getTaskTypeList(): void {
+  this.tasktypeList$ = this.tasktypeService.list().pipe(
+    map((responseApi: ResponseApi<TaskType>) => {
+      return responseApi.results;
+    })
+  );
+  this.tasktypeList$.subscribe((tasktypes: TaskType[]) => {
+    this.tasktypeList = tasktypes;
+  });
 }
-  // @Input() event?: Event;
 
-  // ref: https://github.com/careydevelopment/careydevelopmentcrm/blob/0.2.6-click-to-edit-contacts/src/app/features/contacts/edit-contact/edit-contact.component.ts
-
-  // ngOnInit(): void {
-
-  // }
-
-  // ngOnInit(): void {
-  //  this.getEventDetail();
-  // }
-
-  // // Mimicking getHero from Angular Tutorial at https://angular.io/tutorial/toh-pt5
-  // getEventDetail(): void {
-  //   const id = Number(this.route.snapshot.paramMap.get('id'));
-  //   this.eventService.getById(id)
-  //     .subscribe(event => this.event = event);
-  // }
-
-  // TODO: how to use getById function instead?
- 
+}
