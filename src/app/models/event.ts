@@ -17,8 +17,31 @@ export class Event extends BaseModel implements Deserializable {
   public cell: Cell;
   public task_type: TaskType;
 
+  
+
+  // constructor(data: Object = {}) {
+  //   super();
+  //   for (const name in data) {
+  //     if ( data.hasOwnProperty(name) ) {
+  //       if (['cell'].indexOf(name) > -1) {
+  //         if ( data[name]) {
+  //           this[name] = new Cell(data[name]);
+  //         }
+  //       } else {
+  //         this[name] = data[name];
+  //       }
+  //     }
+  //   }
+  // }
+
   deserialize(input: any): this {
     Object.assign(this, input);
+    if ( input.hasOwnProperty('cell') )  {
+        if ( input['cell']) {
+          this['cell'] = new Cell(input['cell']);
+        }
+    }
+  
     return this;
   }
 

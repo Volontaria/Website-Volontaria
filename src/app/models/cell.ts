@@ -17,4 +17,10 @@ export class Cell extends BaseModel implements Deserializable {
     Object.assign(this, input);
     return this;
   }
+
+  get fullAddress(): string{
+    return `${this.address_line_1}, ${this.city}`;
+  }  // ou sinon getFullAddress()
 }
+
+

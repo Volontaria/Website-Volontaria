@@ -63,6 +63,7 @@ import { AdminEventDetailsComponent } from './pages/admin-events/admin-event-det
 // import { AdminDashboardEventsComponent } from './pages/admin-dashboard-events/admin-dashboard-events.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

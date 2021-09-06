@@ -10,6 +10,14 @@ import {TaskType} from '../../../models/taskType';
 import {TasktypeService} from '../../../services/tasktype.service';
 
 
+import {Pipe, PipeTransform} from '@angular/core';
+import {invalidPipeArgumentError} from '@angular/common/esm2015/src/pipes/invalid_pipe_argument_error';
+
+// /home/vardane/front_volontaria/Website-Volontaria/node_modules/@angular/common/esm2015/src/pipes/invalid_pipe_argument_error.js
+// node_modules/@angular/common/esm2015/src/pipes/invalid_pipe_argument_error.js
+
+
+
 @Component({
   selector: 'app-admin-event-details',
   templateUrl: './admin-event-details.component.html',
@@ -46,7 +54,7 @@ export class AdminEventDetailsComponent implements OnInit {
       // this.changeSelectedDate(this.selectedDate);
       // this.changeCurrentMonth(this.actualMonth);
     // });
-    this.getTaskTypeList();
+    // this.getTaskTypeList();
   }
 
   gotoEvents(an_event: Event) {
@@ -59,15 +67,19 @@ export class AdminEventDetailsComponent implements OnInit {
 
 
 // TODO: restrict list of tasks to task matching the event being examined
-getTaskTypeList(): void {
-  this.tasktypeList$ = this.tasktypeService.list().pipe(
-    map((responseApi: ResponseApi<TaskType>) => {
-      return responseApi.results;
-    })
-  );
-  this.tasktypeList$.subscribe((tasktypes: TaskType[]) => {
-    this.tasktypeList = tasktypes;
-  });
-}
+// getTaskTypeList(): void {
+//   this.tasktypeList$ = this.tasktypeService.list().pipe(
+//     map((responseApi: ResponseApi<TaskType>) => {
+//       return responseApi.results;
+//     })
+//   );
+//   this.tasktypeList$.subscribe((tasktypes: TaskType[]) => {
+//     this.tasktypeList = tasktypes;
+//   });
+// }
+
+// inspired from 
+// https://github.com/angular/angular/blob/a92a89b0eb127a59d7e071502b5850e57618ec2d/packages/common/src/pipes/case_conversion_pipes.ts
 
 }
+

@@ -1,41 +1,107 @@
-<!-- <p>admin-event-details works!</p> -->
+<!-- <p>admin-event-details works!</mat-card> -->
 
 <!-- <h2>Events</h2>
 <div *ngIf="an_event$ | async as an_event">
   <h3>{{ an_event.description }}</h3>
-  <p>Id: {{ an_event.id }}</p>
+  <p>Id: {{ an_event.id }}</mat-card>
   <label for="event-description">Event description: </label>
   <input type="text" id="event-description" [(ngModel)]="an_event.description" placeholder="description"/>
   <button (click)="gotoEvents(an_event)">Back</button>
 </div> -->
 
 <div *ngIf="an_event$ | async as an_event">
-<mat-card class="example-card">
+<mat-card class="page">
   <mat-card-header>
-    <mat-card-subtitle>Événement:</mat-card-subtitle>
-    <mat-card-title>{{ an_event.description }}</mat-card-title>
-    
+    <mat-card-subtitle class="page__subtitle">Événement</mat-card-subtitle>
+    <!-- note: titlecase would capitalize every word in the title, we only the initial letter to be capitalized  -->
+    <mat-card-title class="page__title">{{ an_event.description[0] | uppercase }}{{an_event.description | slice: 1:-1}}</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <p>
-      Début: {{an_event.start_time}}
-    </p>
-    <p>
-      Fin: {{an_event.end_time}}
-    </p>
-    <p>
-      nombre de bénévoles: {{an_event.nb_volunteers}} / {{an_event.nb_volunteers_needed}}
-    </p>
-    <p>
-      nombre de remplaçants: {{an_event.nb_volunteers}} / {{an_event.nb_volunteers_needed}}
-    </p>
-    <p>
-      lieu: 
-    </p>
-    <!-- <p> -->
-      <!-- tâche: {{an_event.TaskType}} -->
-      <p *ngFor="let tasktype of tasktypeList">{{tasktype.name}}</p>
-    <!-- </p> -->
+  <mat-card-content class="page__content">
+
+    <mat-card class="page__content__left">
+      
+      <mat-card class="page__content__odd">
+        <mat-icon class="material-icons">event</mat-icon>
+      </mat-card>
+      
+      <mat-card>
+        <mat-icon class="material-icons">schedule</mat-icon>
+      </mat-card>
+
+      <mat-card class="page__content__odd">
+        <mat-icon class="material-icons">event</mat-icon>
+      </mat-card>  
+
+      <mat-card>
+        <mat-icon class="material-icons">schedule</mat-icon>
+      </mat-card> 
+
+    <mat-card class="page__content__odd">
+    <mat-icon class="material-icons">people_alt</mat-icon>
+    </mat-card> 
+
+    <mat-card >
+    <mat-icon class="material-icons">group_add</mat-icon>
+    </mat-card>
+
+    <mat-card class="page__content__odd">
+    <mat-icon class="material-icons">bungalow</mat-icon>
+    </mat-card>
+
+    <mat-card>
+      <mat-icon class="material-icons">not_listed_location</mat-icon>
+    </mat-card>
+
+      <mat-card class="page__content__odd">
+      <mat-icon class="material-icons">volunteer_activism</mat-icon>
+      </mat-card>
+    
+    </mat-card>
+
+
+    <mat-card class="page__content__middle">
+      <mat-card class="page__content__odd">Date de début:</mat-card>
+      <mat-card>Heure de début:</mat-card>
+      <mat-card class="page__content__odd">Date de fin:</mat-card>
+      <mat-card>Heure de fin:</mat-card>
+      <mat-card class="page__content__odd">Nombre de bénévoles (inscrits / requis)</mat-card>
+      <mat-card>Nombre de remplaçants (inscrits / requis)</mat-card>
+      <mat-card class="page__content__odd">Lieu:</mat-card>
+      <mat-card>Adresse:</mat-card>
+      <mat-card class="page__content__odd">Activité:</mat-card>
+    </mat-card>
+
+
+    <mat-card class="page__content__right">
+      <mat-card class="page__content__odd">
+      {{an_event.start_time | date: 'd MMM yyyy'}}
+    </mat-card>
+    <mat-card>
+        {{an_event.start_time | date: 'H:mm'}} h
+    </mat-card>
+    <mat-card class="page__content__odd">
+      {{an_event.end_time | date: 'd MMM yyyy'}}
+    </mat-card>
+    <mat-card>
+      {{an_event.end_time | date: 'H:mm'}} h
+    </mat-card>
+    <mat-card class="page__content__odd">
+      {{an_event.nb_volunteers}} / {{an_event.nb_volunteers_needed}}
+    </mat-card>
+    <mat-card>
+      {{an_event.nb_volunteers}} / {{an_event.nb_volunteers_needed}}
+    </mat-card>
+    <mat-card class="page__content__odd">
+      {{an_event.cell.name}}
+    </mat-card>
+    <mat-card>
+      {{an_event.cell.fullAddress}}
+    </mat-card>
+    <mat-card class="page__content__odd">
+      {{an_event.task_type.name}}
+    </mat-card>
+    </mat-card>
+    <!-- </mat-card> -->
     <!-- public nb_volunteers_needed: number;
     public nb_volunteers_standby_needed: number;
     public nb_volunteers: number;
@@ -48,6 +114,10 @@
   </mat-card-content>
 </mat-card>
 </div>
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 
 
   <!-- <mat-card-actions>

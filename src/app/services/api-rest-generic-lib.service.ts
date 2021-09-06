@@ -31,6 +31,7 @@ export class ApiRestGenericLibService<T extends Deserializable> extends GlobalSe
       .get<T>(this.url + '/' + id, {
         headers: GlobalService.getHeaders(),
       })
+      // .pipe(map((data) => new this.c(data)));
       .pipe(map((data) => new this.c().deserialize(data)));
   }
 
