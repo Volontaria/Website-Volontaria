@@ -41,7 +41,6 @@ export class Event extends BaseModel implements Deserializable {
           this['cell'] = new Cell(input['cell']);
         }
     }
-  
     return this;
   }
 

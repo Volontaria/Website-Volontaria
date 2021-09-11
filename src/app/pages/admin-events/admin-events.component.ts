@@ -52,7 +52,8 @@ export class AdminEventsComponent implements OnInit {
     // 'standby',
     // 'standby_needed',
     'cell',
-    'task_type'
+    'task_type',
+    'delete',
   ];
 
   // For paginator, courtesy https://stackoverflow.com/questions/66839002/how-to-add-pagination-in-angular-material-table-that-bind-to-api-response
@@ -116,6 +117,22 @@ export class AdminEventsComponent implements OnInit {
           this.eventList = new MatTableDataSource(responseApi.results);
       })
     }
+
+    // Delete selected event
+    // https://angularquestions.com/2021/03/08/how-to-remove-a-row-from-an-angular-material-table/
+
+
+
+
+
+
+    // see https://stackoverflow.com/questions/54744770/how-to-delete-particular-row-from-angular-material-table-which-doesnt-have-filte#55564456
+
+    // deleteEvent(rowid: number) {
+    //   if (rowid > -1) {
+    //     this.eventList.splice(rowid, 1)
+    //   }
+    // }
   
     // selectedEvent?: Event;
     // onSelect(event: Event): void {
@@ -125,8 +142,10 @@ export class AdminEventsComponent implements OnInit {
     // ref https://careydevelopment.us/blog/angular-material-tables-how-to-make-clickable-rows-that-take-users-to-a-new-route
     // and then
     // https://stackoverflow.com/questions/68915846/how-to-fix-error-uncaught-in-promise-error-cannot-match-any-routes-when-clic/68916321#68916321
+
     getEventDetail(an_event: Event) {
       let route = '/admin-events/details/';
       this.router.navigate([route, an_event.id]);
     }
+
   }

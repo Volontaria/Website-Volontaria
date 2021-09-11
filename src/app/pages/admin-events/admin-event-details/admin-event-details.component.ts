@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Route } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
@@ -9,9 +9,13 @@ import {ResponseApi} from '../../../models/api';
 import {TaskType} from '../../../models/taskType';
 import {TasktypeService} from '../../../services/tasktype.service';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ModalService} from '../../../services/modal.service';
 
-import {Pipe, PipeTransform} from '@angular/core';
-import {invalidPipeArgumentError} from '@angular/common/esm2015/src/pipes/invalid_pipe_argument_error';
+
+
+// import {Pipe, PipeTransform} from '@angular/core';
+// import {invalidPipeArgumentError} from '@angular/common/esm2015/src/pipes/invalid_pipe_argument_error';
 
 // /home/vardane/front_volontaria/Website-Volontaria/node_modules/@angular/common/esm2015/src/pipes/invalid_pipe_argument_error.js
 // node_modules/@angular/common/esm2015/src/pipes/invalid_pipe_argument_error.js
@@ -28,16 +32,27 @@ export class AdminEventDetailsComponent implements OnInit {
   loading: boolean = true;
   // an_event$: Event = {} as Event;
   an_event$!: Observable<Event>;
-  // an_event$: any;
+  // an_event: any;
 
   tasktypeList: TaskType[];
   tasktypeList$: Observable<TaskType[]>;
+
+  // Deletion
+  @Input() an_event: Event;
+  @Input() canDelete = false;
+
+  @Output() onDeletion: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  deleteModalName: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private eventService: EventService,
-    private tasktypeService: TasktypeService) { }
+    private tasktypeService: TasktypeService,
+    private snackBar: MatSnackBar,
+    private modalService: ModalService
+    ) { }
 
 
   ngOnInit(): void {
@@ -47,6 +62,65 @@ export class AdminEventDetailsComponent implements OnInit {
         this.eventService.getById(Number(params.get('id')!)))
     );
 
+    this.deleteModalName = 'delete_event_' + this.an_event.id;
+  }
+
+  deleteEvent(): void {
+    this.eventService.delete(this.an_event.url).subscribe(
+      (data) => {
+        this.snackBar.open(
+          "L'événement a été supprimée",
+          "X",
+          {
+            duration: 10000,
+          }
+        );
+
+        this.modalService.get(this.deleteModalName).close();
+
+        this.onDeletion.emit(true);
+      }
+    );
+  }
+
+
+
+    // updateProfile(userInformation: IUserInformation): Observable<User> {
+    //   const headers = GlobalService.getHeaders();
+    //   return this.http
+    //     .patch<any>(this.urlProfile, userInformation, { headers })
+    //     .pipe(
+    //       map((data) => new User().deserialize(data)),
+    //       tap((user: User) => this.setProfile(user))
+    //     );
+    // }
+  
+      // patch(url: string, patchContent: any): Observable<T> {
+  //   const headers: HttpHeaders = GlobalService.getHeaders();
+
+  //   return this.http
+  //     .patch<T>(url, patchContent, { headers })
+  //     .pipe(map((data) => new this.c().deserialize(data)));
+  // }
+
+  // setProfile(profile: User): void {
+  //   this.currentProfile.next(profile);
+  // }
+
+
+
+  // getById(id: number): Observable<T> {
+  //   return this.http
+  //     .get<T>(this.url + '/' + id, {
+  //       headers: GlobalService.getHeaders(),
+  //     })
+  //     // .pipe(map((data) => new this.c(data)));
+  //     .pipe(map((data) => new this.c().deserialize(data)));
+  // }
+  
+
+  
+
     // this.activatedRoute.params.subscribe((params: Params) => {
     //     this.an_event$.id
     //   this.cellId = params['cellId'];
@@ -55,7 +129,7 @@ export class AdminEventDetailsComponent implements OnInit {
       // this.changeCurrentMonth(this.actualMonth);
     // });
     // this.getTaskTypeList();
-  }
+  // }
 
   gotoEvents(an_event: Event) {
     const eventId = an_event ? an_event.id : null;
@@ -65,21 +139,4 @@ export class AdminEventDetailsComponent implements OnInit {
     this.router.navigate(['/admin-events', { id: eventId, foo: 'foo' }]);
   }
 
-
-// TODO: restrict list of tasks to task matching the event being examined
-// getTaskTypeList(): void {
-//   this.tasktypeList$ = this.tasktypeService.list().pipe(
-//     map((responseApi: ResponseApi<TaskType>) => {
-//       return responseApi.results;
-//     })
-//   );
-//   this.tasktypeList$.subscribe((tasktypes: TaskType[]) => {
-//     this.tasktypeList = tasktypes;
-//   });
-// }
-
-// inspired from 
-// https://github.com/angular/angular/blob/a92a89b0eb127a59d7e071502b5850e57618ec2d/packages/common/src/pipes/case_conversion_pipes.ts
-
 }
-

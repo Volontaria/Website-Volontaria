@@ -55,6 +55,19 @@
               *matCellDef="let item">{{item.task_type.name}}</mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef
+    class="events__content__table__header">
+    </mat-header-cell>
+    <mat-cell class="events__content__table__cell--button"
+              *matCellDef="let item">
+              <!-- <button mat-fab color="warn"></button> -->
+              <!-- <app-button label="Annuler l'événement" type="danger" (click)="deleteParticipation()"></app-button> -->
+              <app-button label="Annuler l'événement" type="danger" (click)="appOpenModal()"></app-button>
+               <!-- (click)=onDeleteEvent(item.eventId)></button> -->
+              </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   
   <mat-row mat-row 

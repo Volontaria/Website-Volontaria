@@ -14,9 +14,26 @@
   <mat-card-header>
     <mat-card-subtitle class="page__subtitle">Événement</mat-card-subtitle>
     <!-- note: titlecase would capitalize every word in the title, we only the initial letter to be capitalized  -->
-    <mat-card-title class="page__title">{{ an_event.description[0] | uppercase }}{{an_event.description | slice: 1:-1}}</mat-card-title>
+    <mat-card-title class="page__title">
+      {{ an_event.description[0] | uppercase }}{{an_event.description | slice: 1:-1}}  
+    </mat-card-title>
+    
   </mat-card-header>
+
+  <mat-card class="page__actions">
+    <app-button label="Annuler l'événement" type="danger" [appOpenModal]="deleteModalName"
+    class="page__actions__button"></app-button>
+  <!-- <button mat-button>LIKE</button>
+  <button mat-button>SHARE</button> -->
+  </mat-card>
+
+
+
+
+
   <mat-card-content class="page__content">
+
+
 
     <mat-card class="page__content__left">
       
@@ -114,6 +131,43 @@
   </mat-card-content>
 </mat-card>
 </div>
+
+
+<app-modal *ngIf="deleteModalName"
+           [name]="deleteModalName"
+           maxWidth="900px">
+  <div class="schedule-section-card-modal-delete">
+    <div>
+      Êtes-vous sûr de vouloir supprimer cet événement de la base de données?
+    </div>
+    <div>
+      <app-button label="Annuler l'événement" type="danger" (click)="deleteEvent()"></app-button>
+    </div>
+  </div>
+</app-modal>
+
+
+
+<!-- <div class="schedule-section-card__footer__delete" *ngIf="canDelete" [appOpenModal]="deleteModalName">
+  <i class="fa fa-trash"></i>
+</div> -->
+
+<!-- <app-modal *ngIf="deleteModalName"
+       [name]="deleteModalName"
+       maxWidth="900px">
+<div class="schedule-section-card-modal-delete">
+<div>
+  Êtes-vous sûr de vouloir annuler votre participation à cet événement ?
+</div>
+<div>
+  <app-button label="Annuler ma participation" type="danger" (click)="deleteParticipation()"></app-button>
+</div>
+</div>
+</app-modal> -->
+
+
+
+
 
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
