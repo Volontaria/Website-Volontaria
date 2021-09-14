@@ -107,9 +107,10 @@ export class AdminEventsComponent implements OnInit {
       
     ngOnInit(): void {
       this.getEvents();
-      this.getEventDetail(this.an_event);
-  
+      // this.getEventDetail(this.an_event);  
     }
+
+
   
     getEvents(): void {
       this.eventService.list().subscribe(

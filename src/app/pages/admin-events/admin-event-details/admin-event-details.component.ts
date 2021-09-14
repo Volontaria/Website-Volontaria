@@ -38,10 +38,10 @@ export class AdminEventDetailsComponent implements OnInit {
   tasktypeList$: Observable<TaskType[]>;
 
   // Deletion
-  @Input() an_event: Event;
-  @Input() canDelete = false;
+  // @Input() an_event: Event;
+  // @Input() canDelete = false;
 
-  @Output() onDeletion: EventEmitter<boolean> = new EventEmitter<boolean>();
+  // @Output() onDeletion: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   deleteModalName: string;
 
@@ -58,11 +58,13 @@ export class AdminEventDetailsComponent implements OnInit {
   ngOnInit(): void {
     // see https://angular.io/guide/router-tutorial-toh#define-a-wildcard-route
     this.an_event$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.eventService.getById(Number(params.get('id')!)))
+      switchMap((params: ParamMap) => {
+        this.deleteModalName = 'delete_event_' + params.get('id');
+        return this.eventService.getById(Number(params.get('id')!))
+      })
     );
 
-    this.deleteModalName = 'delete_event_' + this.an_event.id;
+    
   }
 
   deleteEvent(): void {
