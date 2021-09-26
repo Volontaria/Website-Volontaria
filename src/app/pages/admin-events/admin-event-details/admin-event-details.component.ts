@@ -37,6 +37,8 @@ export class AdminEventDetailsComponent implements OnInit {
   tasktypeList: TaskType[];
   tasktypeList$: Observable<TaskType[]>;
 
+  
+
   // Deletion
   // @Input() an_event: Event;
   // @Input() canDelete = false;
@@ -64,25 +66,30 @@ export class AdminEventDetailsComponent implements OnInit {
       })
     );
 
+    // console.log(this.router.url);
+
     
   }
 
-  deleteEvent(): void {
-    this.eventService.delete(this.an_event.url).subscribe(
-      (data) => {
-        this.snackBar.open(
-          "L'événement a été supprimée",
-          "X",
-          {
-            duration: 10000,
-          }
-        );
 
-        this.modalService.get(this.deleteModalName).close();
+    deleteEvent(): void {
+      console.log(this.router.url)
+      this.eventService.delete(this.router.url).subscribe(
+        (data) => {
+          this.snackBar.open(
+            "L'événement a été supprimé",
+            "X",
+            {
+              duration: 10000,
+            }
+          );
+          this.modalService.get(this.deleteModalName).close();
+        }
+      );
 
-        this.onDeletion.emit(true);
-      }
-    );
+      // this.onDeletion.emit(true);
+
+    }
   }
 
 
@@ -133,12 +140,12 @@ export class AdminEventDetailsComponent implements OnInit {
     // this.getTaskTypeList();
   // }
 
-  gotoEvents(an_event: Event) {
-    const eventId = an_event ? an_event.id : null;
+  // gotoEvents(an_event: Event) {
+  //   const eventId = an_event ? an_event.id : null;
     // Pass along the event id if available
     // so that the EventList component can select that event.
     // Include a junk 'foo' property for fun.
-    this.router.navigate(['/admin-events', { id: eventId, foo: 'foo' }]);
-  }
+//     this.router.navigate(['/admin-events', { id: eventId, foo: 'foo' }]);
+//   }
 
-}
+// }
