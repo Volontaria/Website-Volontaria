@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ButtonComponent } from './components/button/button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProfileComponent } from './pages/profile/profile.component';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -60,8 +60,9 @@ import '@angular/common/locales/global/fr-CA';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorFrench } from './utils/french-paginator-class';
 import { AdminEventDetailsComponent } from './pages/admin-events/admin-event-details/admin-event-details.component';
-// import { AdminDashboardEventsComponent } from './pages/admin-dashboard-events/admin-dashboard-events.component';
+import { AdminEventCreationComponent } from './pages/admin-events/admin-event-creation/admin-event-creation.component';
 
+// import { AdminDashboardEventsComponent } from './pages/admin-dashboard-events/admin-dashboard-events.component';
 
 
 @NgModule({
@@ -97,6 +98,7 @@ import { AdminEventDetailsComponent } from './pages/admin-events/admin-event-det
     AdminDashboardComponent,
     AdminEventsComponent,
     AdminEventDetailsComponent,
+    AdminEventCreationComponent,
     // AdminDashboardEventsComponent,
   ],
   imports: [

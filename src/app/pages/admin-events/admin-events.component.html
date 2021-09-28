@@ -3,8 +3,31 @@
 <div class="events">
   <div class="events__content">
     <div class="events__content__title">
-      Événements
+      Événements      
     </div>
+
+
+  <app-button label="Ajouter" type="submit" [appOpenModal]="createModalName"></app-button>
+  <!-- <app-button label="Ajouter" type="submit"
+    (ngSubmit)="openCreationModal()">
+      Ajouter
+  </app-button> -->
+
+
+
+<!-- <app-modal *ngIf="addModalName"
+  [name]="addModalName"
+  maxWidth="900px">
+  <div class="event-modal-add">
+    <div>
+      Êtes-vous sûr de vouloir ajouter cet événement à la base de données?
+    </div>
+    <div>
+      <app-button label="Ajouter l'événement" type="submit" (click)="addEvent()"></app-button>
+    </div>
+  </div>
+</app-modal> -->
+
 
 
 <!-- ##############################     -->

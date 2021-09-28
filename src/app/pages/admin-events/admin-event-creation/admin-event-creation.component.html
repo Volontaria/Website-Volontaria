@@ -1,0 +1,28 @@
+<p>admin-event-creation works!</p>
+
+<div>
+    <form [formGroup]="createEventForm" (ngSubmit)="onSubmit()">
+
+      <div>
+        <label for="start_time">
+          Début
+        </label>
+        <input id="start_time" type="text" formControlName="start_time">
+      </div>
+    
+      <div>
+        <label for="end_time">
+          Fin
+        </label>
+        <input id="end_time" type="text" formControlName="end_time">
+      </div>
+
+
+
+
+
+      <!-- <button class="button" type="submit">Nouveau</button> -->
+      
+    </form>
+  </div>
+

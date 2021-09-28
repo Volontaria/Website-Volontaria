@@ -19,6 +19,7 @@ import {Router} from "@angular/router";
 // import {Cell} from '../../models/cell';
 
 
+import {ModalService} from '../../services/modal.service';
 
 
 
@@ -65,10 +66,14 @@ export class AdminEventsComponent implements OnInit {
   // isLoadingResults = true;
   // isRateLimitReached = false;
 
+  createModalName: string;
+
+
   constructor(private eventService: EventService,
     private router: Router,
     // private activatedRoute: ActivatedRoute
     // private _httpClient: HttpClient
+    private modalService: ModalService
     ) { }
 
   // ngAfterViewInit(): void {
@@ -108,6 +113,8 @@ export class AdminEventsComponent implements OnInit {
     ngOnInit(): void {
       this.getEvents();
       // this.getEventDetail(this.an_event);  
+      // this.createModalName ='delete_event_' + params.get('id');
+      this.createModalName = 'create_event'
     }
 
 
@@ -119,6 +126,21 @@ export class AdminEventsComponent implements OnInit {
       })
     }
 
+    // createEvent(): void{
+    //   this.eventService.post(this).subscribe(
+
+    //   )
+    // }
+
+
+
+    openCreationModal(): void {
+
+      this.modalService.get(this.createModalName).close();
+
+    }
+
+ 
     // Delete selected event
     // https://angularquestions.com/2021/03/08/how-to-remove-a-row-from-an-angular-material-table/
 
