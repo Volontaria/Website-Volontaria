@@ -42,7 +42,7 @@ export class AdminEventsComponent implements OnInit {
   eventList: MatTableDataSource<Event>;
   
   // clickedRows = new Set<Event>();
-  an_event: any;
+  event: any;
 
   displayedColumns: string[] = [
     'description',

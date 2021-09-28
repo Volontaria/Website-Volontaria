@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, ParamMap, Router, Route } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, Route, Params } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Event } from '../../../models/event'
@@ -31,8 +31,11 @@ export class AdminEventDetailsComponent implements OnInit {
 
   loading: boolean = true;
   // an_event$: Event = {} as Event;
-  an_event$!: Observable<Event>;
+  // an_event$!: Observable<Event>;
   // an_event: any;
+  event: Event;
+  eventId: String;
+
 
   tasktypeList: TaskType[];
   tasktypeList$: Observable<TaskType[]>;
@@ -59,12 +62,24 @@ export class AdminEventDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // see https://angular.io/guide/router-tutorial-toh#define-a-wildcard-route
-    this.an_event$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {
-        this.deleteModalName = 'delete_event_' + params.get('id');
-        return this.eventService.getById(Number(params.get('id')!))
-      })
-    );
+    // this.an_event$ = this.route.paramMap.pipe(
+    //   switchMap((params: ParamMap) => {
+    //     this.deleteModalName = 'delete_event_' + params.get('id');
+    //     return this.eventService.getById(Number(params.get('id')!))
+    //   })
+    // );
+
+    this.route.params.subscribe((params: Params) => {
+      this.eventId = params['id'];
+      this.eventService.getById(Number(params.get('id')!)).subscribe(
+          (data) => {
+              this.event = data;
+          },
+          (error) => {
+              console.log('Wow, ce Event nexiste pas, on devrait afficher une erreur 404');
+          }
+      );
+    });
 
     // console.log(this.router.url);
 
@@ -73,8 +88,8 @@ export class AdminEventDetailsComponent implements OnInit {
 
 
     deleteEvent(): void {
-      console.log(this.router.url)
-      this.eventService.delete(this.router.url).subscribe(
+      console.log(this.event.url)
+      this.eventService.delete(this.event.url).subscribe(
         (data) => {
           this.snackBar.open(
             "L'événement a été supprimé",

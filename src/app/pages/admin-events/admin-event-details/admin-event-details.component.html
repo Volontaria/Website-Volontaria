@@ -1,21 +1,21 @@
 <!-- <p>admin-event-details works!</mat-card> -->
 
 <!-- <h2>Events</h2>
-<div *ngIf="an_event$ | async as an_event">
-  <h3>{{ an_event.description }}</h3>
-  <p>Id: {{ an_event.id }}</mat-card>
+<div *ngIf="event$ | async as event">
+  <h3>{{ event.description }}</h3>
+  <p>Id: {{ event.id }}</mat-card>
   <label for="event-description">Event description: </label>
-  <input type="text" id="event-description" [(ngModel)]="an_event.description" placeholder="description"/>
-  <button (click)="gotoEvents(an_event)">Back</button>
+  <input type="text" id="event-description" [(ngModel)]="event.description" placeholder="description"/>
+  <button (click)="gotoEvents(event)">Back</button>
 </div> -->
 
-<div *ngIf="an_event$ | async as an_event">
+<div *ngIf="event">
 <mat-card class="page">
   <mat-card-header>
     <mat-card-subtitle class="page__subtitle">Événement</mat-card-subtitle>
     <!-- note: titlecase would capitalize every word in the title, we only the initial letter to be capitalized  -->
     <mat-card-title class="page__title">
-      {{ an_event.description[0] | uppercase }}{{an_event.description | slice: 1:-1}}  
+      {{ event.description[0] | uppercase }}{{event.description | slice: 1:-1}}  
     </mat-card-title>
     
   </mat-card-header>
@@ -91,31 +91,31 @@
 
     <mat-card class="page__content__right">
       <mat-card class="page__content__odd">
-      {{an_event.start_time | date: 'd MMM yyyy'}}
+      {{event.start_time | date: 'd MMM yyyy'}}
     </mat-card>
     <mat-card>
-        {{an_event.start_time | date: 'H:mm'}} h
+        {{event.start_time | date: 'H:mm'}} h
     </mat-card>
     <mat-card class="page__content__odd">
-      {{an_event.end_time | date: 'd MMM yyyy'}}
+      {{event.end_time | date: 'd MMM yyyy'}}
     </mat-card>
     <mat-card>
-      {{an_event.end_time | date: 'H:mm'}} h
+      {{event.end_time | date: 'H:mm'}} h
     </mat-card>
     <mat-card class="page__content__odd">
-      {{an_event.nb_volunteers}} / {{an_event.nb_volunteers_needed}}
+      {{event.nb_volunteers}} / {{event.nb_volunteers_needed}}
     </mat-card>
     <mat-card>
-      {{an_event.nb_volunteers_standby}} / {{an_event.nb_volunteers_standby_needed}}
+      {{event.nb_volunteers_standby}} / {{event.nb_volunteers_standby_needed}}
     </mat-card>
     <mat-card class="page__content__odd">
-      {{an_event.cell.name}}
+      {{event.cell.name}}
     </mat-card>
     <mat-card>
-      {{an_event.cell.fullAddress}}
+      {{event.cell.fullAddress}}
     </mat-card>
     <mat-card class="page__content__odd">
-      {{an_event.task_type.name}}
+      {{event.task_type.name}}
     </mat-card>
     </mat-card>
     <!-- </mat-card> -->
