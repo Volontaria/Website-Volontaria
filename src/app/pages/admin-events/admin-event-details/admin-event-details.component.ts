@@ -11,6 +11,7 @@ import {TasktypeService} from '../../../services/tasktype.service';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ModalService} from '../../../services/modal.service';
+import { getUrlScheme } from '@angular/compiler';
 
 
 
@@ -46,7 +47,7 @@ export class AdminEventDetailsComponent implements OnInit {
   // @Input() an_event: Event;
   // @Input() canDelete = false;
 
-  // @Output() onDeletion: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() onDeletion: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   deleteModalName: string;
 
@@ -70,42 +71,126 @@ export class AdminEventDetailsComponent implements OnInit {
     // );
 
     this.route.params.subscribe((params: Params) => {
+      console.log(`voici les params`)
+      console.log(params)
       this.eventId = params['id'];
-      this.eventService.getById(Number(params.get('id')!)).subscribe(
+      this.eventService.getById(Number(params['id']!)).subscribe(
           (data) => {
               this.event = data;
+              console.log(`voici les donnees:`)
+              console.log(data)
+              console.log(`voici l'evt`)
+              console.log(this.event)
+
+              return this.event
           },
           (error) => {
-              console.log('Wow, ce Event nexiste pas, on devrait afficher une erreur 404');
+              console.log('Mmmh, cet Event nexiste pas, on devrait afficher une erreur 404');
           }
       );
     });
 
+    this.event.url = this.getUrl(this.event)
+
+
+    // console.log('retour variable evt:')
+    // console.log(this.event) 
+
     // console.log(this.router.url);
 
-    
+    this.deleteModalName = 'delete_event_' + this.event.id;
   }
 
 
-    deleteEvent(): void {
-      console.log(this.event.url)
-      this.eventService.delete(this.event.url).subscribe(
-        (data) => {
-          this.snackBar.open(
-            "L'événement a été supprimé",
-            "X",
-            {
-              duration: 10000,
-            }
-          );
-          this.modalService.get(this.deleteModalName).close();
-        }
-      );
 
-      // this.onDeletion.emit(true);
+  getUrl(event: Event): string {
+    return event.url
+  } 
 
-    }
+
+  deleteEvent(): void {
+
+    this.event.url
+    console.log('voici le url')
+    console.log(this.event.url)
+
+    this.eventService.delete(this.event.url)
+
+    this.onDeletion.emit(true);
   }
+
+  
+
+
+    // this.route.params.subscribe((params: Params) => {
+    //   console.log(`voici les params`)
+    //   console.log(params)
+    //   this.eventId = params['id'];
+    //   this.eventService.getById(Number(params['id']!)).subscribe(
+    //       (data) => {
+    //           this.event = data;
+    //           console.log(`voici les donnees:`)
+    //           console.log(data)
+    //           console.log(`voici l'evt`)
+    //           console.log(this.event)
+    //       });
+    //           // return this.event
+
+
+    //           this.eventService.delete(this.event.url).subscribe(
+    //             (data) => {
+    //               this.snackBar.open(
+    //                 "L'événement a été supprimé",
+    //                 "X",
+    //                 {
+    //                   duration: 10000,
+    //                 }
+    //               );
+
+
+    //             },
+          
+    //             (error) => {
+    //                 console.log('Mmmh, cet Event a supprimer nexiste pas, on devrait afficher une erreur 404');
+    //               }
+    //           );
+    //   });
+  // }
+  
+  
+
+  // Essais temporaires
+  essaiRetour(): string {
+    return 'bon!'
+    };
+
+  essaiAffichage(s: string) {
+    s = this.essaiRetour()
+    console.log(s)
+  }
+
+  } 
+
+
+
+    //   console.log(this.event.url)
+    //   this.eventService.delete(this.event.url).subscribe(
+    //     (data) => {
+    //       this.snackBar.open(
+    //         "L'événement a été supprimé",
+    //         "X",
+    //         {
+    //           duration: 10000,
+    //         }
+    //       );
+    //       this.modalService.get(this.deleteModalName).close();
+    //     }
+    //   );
+
+    //   this.onDeletion.emit(true);
+
+    // }
+  // }
 
 
 

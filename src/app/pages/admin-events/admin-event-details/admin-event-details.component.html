@@ -9,6 +9,8 @@
   <button (click)="gotoEvents(event)">Back</button>
 </div> -->
 
+<!-- test avant div -->
+
 <div *ngIf="event">
 <mat-card class="page">
   <mat-card-header>
@@ -21,12 +23,19 @@
   </mat-card-header>
 
   <mat-card class="page__actions">
-    <app-button label="Annuler l'événement" type="danger" [appOpenModal]="deleteModalName"
+    <app-button label="Annuler l'événement" type="danger" (click)="deleteEvent()"
     class="page__actions__button"></app-button>
+    <!-- <app-button label="Annuler l'événement" type="danger" [appOpenModal]="deleteModalName"
+    class="page__actions__button"></app-button> -->
   <!-- <button mat-button>LIKE</button>
   <button mat-button>SHARE</button> -->
   </mat-card>
 
+
+  <mat-card class="page__actions">
+    <app-button label="Essai retour" type="danger" (click)="essaiAffichage()"
+    class="page__actions__button"></app-button>
+  </mat-card>
 
 
 
@@ -133,7 +142,7 @@
 </div>
 
 
-<app-modal *ngIf="deleteModalName"
+<!-- <app-modal *ngIf="deleteModalName"
            [name]="deleteModalName"
            maxWidth="900px">
   <div class="schedule-section-card-modal-delete">
@@ -146,42 +155,10 @@
   </div>
 </app-modal>
 
-
-
-<!-- <div class="schedule-section-card__footer__delete" *ngIf="canDelete" [appOpenModal]="deleteModalName">
-  <i class="fa fa-trash"></i>
-</div> -->
-
-<!-- <app-modal *ngIf="deleteModalName"
-       [name]="deleteModalName"
-       maxWidth="900px">
-<div class="schedule-section-card-modal-delete">
-<div>
-  Êtes-vous sûr de vouloir annuler votre participation à cet événement ?
-</div>
-<div>
-  <app-button label="Annuler ma participation" type="danger" (click)="deleteParticipation()"></app-button>
-</div>
-</div>
-</app-modal> -->
-
-
-
+ -->
 
 
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
-
-  <!-- <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>   -->
-<!-- </mat-card> -->
-
-<!-- public id?: number;
-public url?: string;
-public description: string;
-public start_time: string;
-public end_time: string; -->
