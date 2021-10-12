@@ -1,0 +1,164 @@
+<!-- <p>admin-event-details works!</mat-card> -->
+
+<!-- <h2>Events</h2>
+<div *ngIf="event$ | async as event">
+  <h3>{{ event.description }}</h3>
+  <p>Id: {{ event.id }}</mat-card>
+  <label for="event-description">Event description: </label>
+  <input type="text" id="event-description" [(ngModel)]="event.description" placeholder="description"/>
+  <button (click)="gotoEvents(event)">Back</button>
+</div> -->
+
+<!-- test avant div -->
+
+<div *ngIf="event">
+<mat-card class="page">
+  <mat-card-header>
+    <mat-card-subtitle class="page__subtitle">Événement</mat-card-subtitle>
+    <!-- note: titlecase would capitalize every word in the title, we only the initial letter to be capitalized  -->
+    <mat-card-title class="page__title">
+      {{ event.description[0] | uppercase }}{{event.description | slice: 1:-1}}  
+    </mat-card-title>
+    
+  </mat-card-header>
+
+  <mat-card class="page__actions">
+    <app-button label="Annuler l'événement" type="danger" (click)="deleteEvent()"
+    class="page__actions__button"></app-button>
+    <!-- <app-button label="Annuler l'événement" type="danger" [appOpenModal]="deleteModalName"
+    class="page__actions__button"></app-button> -->
+  <!-- <button mat-button>LIKE</button>
+  <button mat-button>SHARE</button> -->
+  </mat-card>
+
+
+  <mat-card class="page__actions">
+    <app-button label="Essai retour" type="danger" (click)="essaiAffichage()"
+    class="page__actions__button"></app-button>
+  </mat-card>
+
+
+
+
+  <mat-card-content class="page__content">
+
+
+
+    <mat-card class="page__content__left">
+      
+      <mat-card class="page__content__odd">
+        <mat-icon class="material-icons">event</mat-icon>
+      </mat-card>
+      
+      <mat-card>
+        <mat-icon class="material-icons">schedule</mat-icon>
+      </mat-card>
+
+      <mat-card class="page__content__odd">
+        <mat-icon class="material-icons">event</mat-icon>
+      </mat-card>  
+
+      <mat-card>
+        <mat-icon class="material-icons">schedule</mat-icon>
+      </mat-card> 
+
+    <mat-card class="page__content__odd">
+    <mat-icon class="material-icons">people_alt</mat-icon>
+    </mat-card> 
+
+    <mat-card >
+    <mat-icon class="material-icons">group_add</mat-icon>
+    </mat-card>
+
+    <mat-card class="page__content__odd">
+    <mat-icon class="material-icons">bungalow</mat-icon>
+    </mat-card>
+
+    <mat-card>
+      <mat-icon class="material-icons">not_listed_location</mat-icon>
+    </mat-card>
+
+      <mat-card class="page__content__odd">
+      <mat-icon class="material-icons">volunteer_activism</mat-icon>
+      </mat-card>
+    
+    </mat-card>
+
+
+    <mat-card class="page__content__middle">
+      <mat-card class="page__content__odd">Date de début:</mat-card>
+      <mat-card>Heure de début:</mat-card>
+      <mat-card class="page__content__odd">Date de fin:</mat-card>
+      <mat-card>Heure de fin:</mat-card>
+      <mat-card class="page__content__odd">Nombre de bénévoles (inscrits / requis)</mat-card>
+      <mat-card>Nombre de remplaçants (inscrits / requis)</mat-card>
+      <mat-card class="page__content__odd">Lieu:</mat-card>
+      <mat-card>Adresse:</mat-card>
+      <mat-card class="page__content__odd">Activité:</mat-card>
+    </mat-card>
+
+
+    <mat-card class="page__content__right">
+      <mat-card class="page__content__odd">
+      {{event.start_time | date: 'd MMM yyyy'}}
+    </mat-card>
+    <mat-card>
+        {{event.start_time | date: 'H:mm'}} h
+    </mat-card>
+    <mat-card class="page__content__odd">
+      {{event.end_time | date: 'd MMM yyyy'}}
+    </mat-card>
+    <mat-card>
+      {{event.end_time | date: 'H:mm'}} h
+    </mat-card>
+    <mat-card class="page__content__odd">
+      {{event.nb_volunteers}} / {{event.nb_volunteers_needed}}
+    </mat-card>
+    <mat-card>
+      {{event.nb_volunteers_standby}} / {{event.nb_volunteers_standby_needed}}
+    </mat-card>
+    <mat-card class="page__content__odd">
+      {{event.cell.name}}
+    </mat-card>
+    <mat-card>
+      {{event.cell.fullAddress}}
+    </mat-card>
+    <mat-card class="page__content__odd">
+      {{event.task_type.name}}
+    </mat-card>
+    </mat-card>
+    <!-- </mat-card> -->
+    <!-- public nb_volunteers_needed: number;
+    public nb_volunteers_standby_needed: number;
+    public nb_volunteers: number;
+    public nb_volunteers_standby: number;
+    public cell: Cell;
+    public task_type: TaskType; -->
+  
+  
+  
+  </mat-card-content>
+</mat-card>
+</div>
+
+
+<!-- <app-modal *ngIf="deleteModalName"
+           [name]="deleteModalName"
+           maxWidth="900px">
+  <div class="schedule-section-card-modal-delete">
+    <div>
+      Êtes-vous sûr de vouloir supprimer cet événement de la base de données?
+    </div>
+    <div>
+      <app-button label="Annuler l'événement" type="danger" (click)="deleteEvent()"></app-button>
+    </div>
+  </div>
+</app-modal>
+
+ -->
+
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+

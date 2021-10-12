@@ -1,0 +1,103 @@
+@import '../../../assets/scss/theme';
+
+.events {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+//   align-items: center;
+  align-items: right;
+
+  &__content {
+    margin-top: 50px;
+    margin-left: 100px;
+    min-width: 1000px;
+
+    &__title {
+    font-size: 30px;
+    padding: 10px;
+    // display: inline-block;
+      border-bottom: 1px solid $instance-color;
+    }
+
+    &__actions {
+      display: flex;
+      flex-direction: row;
+      justify-content: right;
+      margin-left: 200px;
+      font-size: 30px;
+      padding: 10px;
+      // display: inline-block;
+        // border-bottom: 1px solid $instance-color;
+        &__button {
+          display: flex;
+          flex-direction: row;
+          justify-content: right;
+        }
+      }
+
+    &__table {
+      margin-top: 30px;
+      width: 100%;
+      &__header{
+        //   padding: 50px;
+        font-size: larger;
+      }
+      &__cell{
+        //   padding: 10px;
+        //   margin: 10px;
+          
+          &--text{
+              text-align: left;
+              padding: 7px;
+          }
+          &--date{
+              text-align: left;
+              padding: 7px;
+          }
+          &--button{
+              margin: 10px;
+              text-align: left;
+              padding: 40px;
+          }
+
+    //       &--number{
+    //         text-align: center;
+    //     }
+      }
+    }
+  }
+}
+
+
+.mat-row {
+
+    min-height: 100px;
+
+    // display:flexbox;
+
+    // margin: 10px;
+    // border-width: 1px;
+
+  &:nth-child(even) {
+    background-color: $background;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $instance-light-color;
+  }
+}
+
+demo-row-is-clicked {
+  font-weight: bold;
+}
+
+
+
+// // see https://stackoverflow.com/questions/53764059/angular-material-7-link-for-whole-row#53765608
+// .mat-row-link{
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   left: 0;
+//   top: 0;             
+// }

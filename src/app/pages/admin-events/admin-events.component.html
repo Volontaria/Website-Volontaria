@@ -1,0 +1,100 @@
+<router-outlet></router-outlet>
+
+<div class="events">
+  <div class="events__content">
+    <div class="events__content__title">
+      Événements      
+    </div>
+
+
+  <app-button label="Ajouter" type="submit" [appOpenModal]="createModalName"></app-button>
+  <!-- <app-button label="Ajouter" type="submit"
+    (ngSubmit)="openCreationModal()">
+      Ajouter
+  </app-button> -->
+
+
+
+<!-- <app-modal *ngIf="addModalName"
+  [name]="addModalName"
+  maxWidth="900px">
+  <div class="event-modal-add">
+    <div>
+      Êtes-vous sûr de vouloir ajouter cet événement à la base de données?
+    </div>
+    <div>
+      <app-button label="Ajouter l'événement" type="submit" (click)="addEvent()"></app-button>
+    </div>
+  </div>
+</app-modal> -->
+
+
+
+<!-- ##############################     -->
+
+  <!-- Mat table for Volontaria: -->
+  <mat-table class="events__content__table" [dataSource]="eventList">
+
+
+  <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef 
+      class="events__content__table__header">
+      Description</mat-header-cell>
+      <mat-cell class="events__content__table__cell--text"
+                *matCellDef="let item">{{item.description}}
+                <!-- <a fxFlexFill [routerLink]="'/admin-event/details/'+item.id" class="mat-row-link"></a> -->
+              </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="start_time">
+      <mat-header-cell *matHeaderCellDef
+      class="events__content__table__header">
+      Début</mat-header-cell>
+      <mat-cell class="events__content__table__cell--date"
+                *matCellDef="let item">{{item.start_time | date: 'd MMM yy H:mm'}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="end_time">
+    <mat-header-cell *matHeaderCellDef
+    class="events__content__table__header">
+    Fin</mat-header-cell>
+    <mat-cell class="events__content__table__cell--date"
+              *matCellDef="let item">{{item.end_time | date: 'd MMM yy H:mm'}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cell">
+    <mat-header-cell *matHeaderCellDef
+    class="events__content__table__header">
+    Lieu</mat-header-cell>
+    <mat-cell class="events__content__table__cell--text"
+              *matCellDef="let item">{{item.cell.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="task_type">
+    <mat-header-cell *matHeaderCellDef
+    class="events__content__table__header">
+    Activité</mat-header-cell>
+    <mat-cell class="events__content__table__cell--text"
+              *matCellDef="let item">{{item.task_type.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef
+    class="events__content__table__header">
+    </mat-header-cell>
+    <mat-cell class="events__content__table__cell--button"
+              *matCellDef="let item">
+              <!-- <button mat-fab color="warn"></button> -->
+              <!-- <app-button label="Annuler l'événement" type="danger" (click)="deleteParticipation()"></app-button> -->
+              <!-- <app-button label="Annuler l'événement" type="danger" (click)="appOpenModal()"></app-button> -->
+               <!-- (click)=onDeleteEvent(item.eventId)></button> -->
+              </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  
+  <mat-row mat-row 
+  (click)="getEventDetail(row)"
+  *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+</mat-table>

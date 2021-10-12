@@ -1,0 +1,82 @@
+// 1
+@import '../../../assets/scss/theme';
+
+// .card{
+//   display: flex;
+//   flex-direction: column;
+//   margin: 10px;
+// }
+
+
+
+.admin-layout {
+    min-height: 100vh;
+  
+    display: flex;
+    flex-direction: columns;
+    justify-content: space-between;
+
+    
+  
+      &__left-nav {
+
+        &__card{
+          display: flex;
+          flex-direction: column;
+          margin: 10px;
+          padding: 20 px;
+          // border-color: yellowgreen;
+          // appearance: outline;
+          &__app-group-title{
+            color: $main-color;
+          }
+          
+          &__button{
+            flex: 1;
+            display: flex;
+            align-content: center;
+            align-items: center;
+            height: 50px;
+            width:250px; 
+            // color: $main-color;
+            background-color: $main-color;
+            color: white;
+            // font-family: $main-font;
+            font-size: 20px;
+            line-height: 50px;
+            padding: 0 30px;
+            margin: 10px;
+            border-radius: 12px;
+            text-decoration: none; // to remove underline under hyperlink
+          }
+      }
+    }
+  }
+
+
+  // a[ng-reflect-router-link] {
+  //   color: white;
+  //   // font-weight: 700;
+  //   font-size: 20px;
+  // }
+
+
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    border-top: 3px solid $main-color;
+    background-color: $light-color;
+  
+    &__section {
+      &--brand {
+        color: $main-color;
+        font-family: $main-font;
+        font-size: 30px;
+        line-height: 50px;
+        padding: 0 30px;
+      }
+    }
+  }
+  

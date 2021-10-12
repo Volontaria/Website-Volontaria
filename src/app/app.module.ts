@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ButtonComponent } from './components/button/button.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ProfileComponent } from './pages/profile/profile.component';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -47,6 +47,23 @@ import { MobileComponent } from './pages/mobile/mobile.component';
 import { PromotionMobileComponent } from './components/promotion-mobile/promotion-mobile.component';
 import {QRCodeModule} from "angular2-qrcode";
 import { LogoutComponent } from './pages/logout/logout.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { MatSidenavModule} from '@angular/material/sidenav';
+import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
+import { MatCardModule } from '@angular/material/card'; 
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import '@angular/common/locales/global/fr-CA';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginatorFrench } from './utils/french-paginator-class';
+import { AdminEventDetailsComponent } from './pages/admin-events/admin-event-details/admin-event-details.component';
+import { AdminEventCreationComponent } from './pages/admin-events/admin-event-creation/admin-event-creation.component';
+
+// import { AdminDashboardEventsComponent } from './pages/admin-dashboard-events/admin-dashboard-events.component';
+
 
 @NgModule({
   declarations: [
@@ -77,6 +94,12 @@ import { LogoutComponent } from './pages/logout/logout.component';
     MobileComponent,
     PromotionMobileComponent,
     LogoutComponent,
+    AdminLayoutComponent,
+    AdminDashboardComponent,
+    AdminEventsComponent,
+    AdminEventDetailsComponent,
+    AdminEventCreationComponent,
+    // AdminDashboardEventsComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,11 +117,19 @@ import { LogoutComponent } from './pages/logout/logout.component';
     CKEditorModule,
     MatButtonModule,
     QRCodeModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: Error401Interceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: Error403Interceptor, multi: true },
+    {provide: LOCALE_ID, useValue: 'fr-CA' },
+    { provide: MatPaginatorIntl, useClass: MatPaginatorFrench},
     FormBuilder,
     AuthenticationService,
     MatSnackBar,

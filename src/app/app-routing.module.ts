@@ -11,6 +11,11 @@ import {RegisterConfirmComponent} from "./pages/register-confirm/register-confir
 import {CkEditorPageComponent} from "./pages/ck-editor-page/ck-editor-page.component";
 import {MobileComponent} from "./pages/mobile/mobile.component";
 import {LogoutComponent} from "./pages/logout/logout.component";
+import {AdminLayoutComponent} from "./layouts/admin-layout/admin-layout.component";
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { AdminEventsComponent } from './pages/admin-events/admin-events.component';
+import { AdminEventDetailsComponent } from './pages/admin-events/admin-event-details/admin-event-details.component';
+
 
 const routes: Routes = [
   {
@@ -40,16 +45,16 @@ const routes: Routes = [
       {
         path: 'cells',
         component: CellsComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        // canActivate: [
+        //   CanActivateViaAuthGuard
+        // ]
       },
       {
         path: 'events/:cellId',
         component: EventsComponent,
-        canActivate: [
-          CanActivateViaAuthGuard
-        ]
+        // canActivate: [
+        //   CanActivateViaAuthGuard
+        // ]
       },
       {
         path: 'profile',
@@ -73,6 +78,33 @@ const routes: Routes = [
           CanActivateViaAuthGuard
         ]
       },
+    ]
+  },
+  {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: 'admin-dashboard',
+        component: AdminDashboardComponent,
+        // canActivate: [
+        //   CanActivateViaAuthGuard
+        // ]
+      },
+      {
+        path: 'admin-events',
+        component: AdminEventsComponent,
+        // canActivate: [
+        //   CanActivateViaAuthGuard
+        // ]
+      },
+      {
+        path: 'admin-events/details/:id',
+        component: AdminEventDetailsComponent,
+        // canActivate: [
+        //   CanActivateViaAuthGuard
+        // ]
+      }    
     ]
   },
 ];

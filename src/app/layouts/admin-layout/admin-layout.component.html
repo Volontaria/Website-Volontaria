@@ -1,0 +1,59 @@
+<mat-sidenav-container class="admin-layout">
+  <mat-sidenav mode="side" opened>
+    <div class="admin-layout__left-nav">
+      <mat-card class="admin-layout__left-nav__card">      
+        <mat-card-title class="admin-layout__left-nav__card__app-group-title">
+        EMPLOI
+        </mat-card-title>
+          <a mat-stroked-button routerLink="admin-applications"
+          class="admin-layout__left-nav__card__button">
+          Candidatures
+          </a>
+          <a mat-stroked-button routerLink="admin-positions"
+          class="admin-layout__left-nav__card__button">
+          Emplois
+          </a>
+      </mat-card>
+
+      <mat-card class="admin-layout__left-nav__card"> 
+        <mat-card-title class="admin-layout__left-nav__card__app-group-title">
+          BÉNÉVOLAT
+        </mat-card-title>
+          <a mat-stroked-button routerLink="admin-cells"
+          class="admin-layout__left-nav__card__button">
+          Lieux
+          </a>
+          <a mat-stroked-button routerLink="admin-events"
+          class="admin-layout__left-nav__card__button">
+          Événements
+          </a>
+          <a mat-stroked-button routerLink="admin-participations"
+          class="admin-layout__left-nav__card__button">
+          Participations
+          </a>
+          <a mat-stroked-button routerLink="admin-task-types"
+          class="admin-layout__left-nav__card__button">
+          Activités
+          </a>
+      </mat-card>
+
+        <mat-card class="admin-layout__left-nav__card"> 
+          <mat-card-title class="admin-layout__left-nav__card__app-group-title">
+          INTERFACE
+          </mat-card-title>
+          <a mat-stroked-button routerLink="admin-api-tokens"
+          class="admin-layout__left-nav__card__button">
+          Jetons d'application
+          </a>
+          <a mat-stroked-button routerLink="admin-users"
+          class="admin-layout__left-nav__card__button">
+          Utilisateurs
+          </a>
+        </mat-card>   
+      </div>
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
