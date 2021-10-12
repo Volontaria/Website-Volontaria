@@ -41,6 +41,7 @@ export class AdminEventDetailsComponent implements OnInit {
   tasktypeList: TaskType[];
   tasktypeList$: Observable<TaskType[]>;
 
+  headers: Headers
   
 
   // Deletion
@@ -57,7 +58,7 @@ export class AdminEventDetailsComponent implements OnInit {
     private eventService: EventService,
     private tasktypeService: TasktypeService,
     private snackBar: MatSnackBar,
-    private modalService: ModalService
+    private modalService: ModalService,    
     ) { }
 
 
@@ -70,56 +71,61 @@ export class AdminEventDetailsComponent implements OnInit {
     //   })
     // );
 
-    this.route.params.subscribe((params: Params) => {
-      console.log(`voici les params`)
-      console.log(params)
-      this.eventId = params['id'];
-      this.eventService.getById(Number(params['id']!)).subscribe(
-          (data) => {
-              this.event = data;
-              console.log(`voici les donnees:`)
-              console.log(data)
-              console.log(`voici l'evt`)
-              console.log(this.event)
+    this.route.params.subscribe( params => this.eventId = params.id)
+    
 
-              return this.event
-          },
-          (error) => {
-              console.log('Mmmh, cet Event nexiste pas, on devrait afficher une erreur 404');
-          }
-      );
-    });
+    this.eventService.getById(Number(this.eventId)).subscribe(
+      (data) => {
+        this.event = data;
+      }
+    )
 
-    this.event.url = this.getUrl(this.event)
+    // this.route.params.subscribe((params: Params) => {
+    //   console.log(`voici les params`)
+    //   console.log(params)
+    //   this.eventId = params['id'];
+    //   this.eventService.getById(Number(params['id']!)).subscribe(
+    //       (data) => {
+    //           this.event = data;
+    //           console.log(`voici les donnees:`)
+    //           console.log(data)
+    //           console.log(`voici l'evt`)
+    //           console.log(this.event)
 
+    //           return this.event
+    //       },
+    //       (error) => {
+    //           console.log('Mmmh, cet Event nexiste pas, on devrait afficher une erreur 404');
+    //       }
+    //   );
+    // });
+
+    // this.event.url = this.getUrl(this.event)
+
+    // https://stackoverflow.com/questions/53617261/angular-httpclient-delete
 
     // console.log('retour variable evt:')
     // console.log(this.event) 
 
     // console.log(this.router.url);
 
-    this.deleteModalName = 'delete_event_' + this.event.id;
+    
   }
 
 
-
-  getUrl(event: Event): string {
-    return event.url
-  } 
-
+  // getUrl(event: Event): string {
+  //   return event.url
+  // } 
 
   deleteEvent(): void {
+    // see https://stackoverflow.com/questions/53617261/angular-httpclient-delete
+    this.eventService.delete(this.event.url).subscribe();
 
-    this.event.url
-    console.log('voici le url')
-    console.log(this.event.url)
-
-    this.eventService.delete(this.event.url)
-
-    this.onDeletion.emit(true);
+    // this.deleteModalName = 'delete_event_' + this.event.id;
   }
 
-  
+
+}
 
 
     // this.route.params.subscribe((params: Params) => {
@@ -159,17 +165,17 @@ export class AdminEventDetailsComponent implements OnInit {
   
   
 
-  // Essais temporaires
-  essaiRetour(): string {
-    return 'bon!'
-    };
+  // // Essais temporaires
+  // essaiRetour(): string {
+  //   return 'bon!'
+  //   };
 
-  essaiAffichage(s: string) {
-    s = this.essaiRetour()
-    console.log(s)
-  }
+  // essaiAffichage(s: string) {
+  //   s = this.essaiRetour()
+  //   console.log(s)
+  // }
 
-  } 
+  // } 
 
 
 

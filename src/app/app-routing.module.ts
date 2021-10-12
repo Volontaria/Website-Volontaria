@@ -87,14 +87,23 @@ const routes: Routes = [
       {
         path: 'admin-dashboard',
         component: AdminDashboardComponent,
+        // canActivate: [
+        //   CanActivateViaAuthGuard
+        // ]
       },
       {
         path: 'admin-events',
         component: AdminEventsComponent,
+        // canActivate: [
+        //   CanActivateViaAuthGuard
+        // ]
       },
       {
         path: 'admin-events/details/:id',
         component: AdminEventDetailsComponent,
+        // canActivate: [
+        //   CanActivateViaAuthGuard
+        // ]
       }    
     ]
   },
